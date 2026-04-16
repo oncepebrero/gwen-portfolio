@@ -1,4 +1,4 @@
-v# Gwen Basconcillo – Portfolio Website
+# Gwen Basconcillo – Portfolio Website
 
 This is my personal portfolio website showcasing my projects, skills, certifications, and experience as an IT student.
 
