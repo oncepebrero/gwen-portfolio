@@ -1,6 +1,10 @@
-# Gwen Basconcillo – Portfolio Website
+v# Gwen Basconcillo – Portfolio Website
 
 This is my personal portfolio website showcasing my projects, skills, certifications, and experience as an IT student.
+
+## Live Website
+
+https://gwenbasconcillo.vercel.app/
 
 ## Overview
 
@@ -26,7 +30,7 @@ The portfolio highlights my work in web development, UI/UX design, and system de
 
 ## Project Structure
 
-```id="s9d82k"
+```id="k29smd"
 ├── index.html
 ├── style.css
 ├── main.js
