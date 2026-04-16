@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gwen Basconcillo</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════ GAME MODAL ══════════ -->
+<div class="game-overlay" id="gameOverlay">
+    <div class="game-modal">
+        <button class="game-close" id="closeGameBtn">✕</button>
+        <div class="game-top">
+            <div>
+                <div class="game-eyebrow">Mini Game</div>
+                <h3 class="game-title-text">🚀 Stellar Dash</h3>
+                <p class="game-sub">Dodge asteroids · Collect stars · Beat your best</p>
+            </div>
+            <div class="game-stats-row">
+                <div class="gs"><span class="gs-val" id="scoreStat">0</span><span class="gs-lbl">Score</span></div>
+                <div class="gs-div"></div>
+                <div class="gs"><span class="gs-val" id="livesStat">♥♥♥</span><span class="gs-lbl">Lives</span></div>
+                <div class="gs-div"></div>
+                <div class="gs"><span class="gs-val" id="hsStat">0</span><span class="gs-lbl">Best</span></div>
+            </div>
+        </div>
+        <canvas id="gameCanvas" height="260"></canvas>
+        <div id="gameMsg" class="game-msg">Arrow keys / WASD · Drag on mobile</div>
+        <div class="game-controls">
+            <button class="g-playbtn" id="gameStartBtn"><i class="fas fa-rocket"></i> PLAY</button>
+            <div class="g-diff">
+                <button class="g-dbtn active" data-diff="easy">Easy</button>
+                <button class="g-dbtn" data-diff="hard">Hard</button>
+                <button class="g-dbtn" data-diff="chaos">Chaos</button>
+            </div>
+        </div>
+        <div class="mobile-dpad">
+            <div></div><button class="dpad-btn" data-dir="up">▲</button><div></div>
+            <button class="dpad-btn" data-dir="left">◀</button>
+            <button class="dpad-btn dpad-c" data-dir="center">●</button>
+            <button class="dpad-btn" data-dir="right">▶</button>
+            <div></div><button class="dpad-btn" data-dir="down">▼</button><div></div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════ PORTFOLIO PAGE ══════════ -->
+<div class="page" id="bondPaper">
+
+    <!-- TOP-RIGHT CONTROLS: theme + game btn -->
+    <div class="top-controls">
+        <button class="game-launch-btn" id="openGameBtn" title="Play Stellar Dash">
+            <i class="fas fa-gamepad"></i>
+        </button>
+        <label class="theme-switch" title="Toggle dark mode">
+            <input type="checkbox" id="themeCheckbox" aria-label="Toggle dark mode">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- ══ HERO HEADER ══ -->
+    <header class="hero">
+        <!-- left accent column -->
+        <div class="hero-left">
+            <div class="profile-wrap" id="profileContainer">
+                <div class="profile-ring"></div>
+                <div class="profile-pic">
+                    <img src="assets/profile.png" class="img-default" id="defaultProfile" alt="Gwen Basconcillo">
+                    <img src="assets/images.jpg"  class="img-hover"   id="hoverProfile"  alt="Gwen Basconcillo">
+                </div>
+            </div>
+            <div class="hero-badge-pill">
+                <i class="fas fa-graduation-cap"></i> IT Student
+            </div>
+        </div>
+
+        <!-- right: name + info -->
+        <div class="hero-right">
+            <h1 class="hero-name">Gwen<br>Basconcillo</h1>
+            <p class="hero-about">
+               Passionate about web development, UI/UX design, and AI integration. Dean's Lister eager to contribute to real-world projects.
+            </p>
+            <div class="hero-meta">
+                <span><i class="fas fa-graduation-cap"></i> BS Information Technology · Mindoro State University</span>
+                <span><i class="fas fa-location-dot"></i> Calapan City, Oriental Mindoro, Philippines</span>
+            </div>
+            <div class="hero-btns">
+                <a href="assets/Gwen Basconcillo.pdf" target="_blank" class="btn-solid">
+                    <i class="fas fa-file-pdf"></i> View Resume
+                </a>
+                <button class="btn-ghost" id="contactScrollBtn">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══ MAIN BODY: sidebar + content ══ -->
+    <div class="body-wrap">
+
+        <!-- ── LEFT SIDEBAR ── -->
+        <aside class="sidebar">
+
+            <!-- ABOUT -->
+            <section class="sb-section"> 
+                <div class="sb-heading">
+                    About
+                </div>
+                <ul class="sb-list">
+                    <li>4th year BSIT student at Mindoro State University – Calapan Campus, graduating soon.</li>
+                    <li>Aspiring IT professional skilled in PHP, HTML/CSS, Node.js and UI/UX design.</li>
+                    <li>Builds user-centered digital solutions with a background in multimedia design.</li>
+                    <li>Exploring AI integration — eager to create smarter, more responsive systems.</li>
+                </ul>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section class="sb-section">
+                <div class="sb-heading">
+                    Experience
+                </div>
+                <div class="tl">
+                    <div class="tl-item">
+                        <div class="tl-marker"></div>
+                        <div class="tl-content">
+                            <div class="tl-role">OJT Intern</div>
+                            <div class="tl-org">New San Jose Builders Inc.</div>
+                            <div class="tl-date">2025 · Present</div>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-marker"></div>
+                        <div class="tl-content">
+                            <div class="tl-role">BS Information Technology</div>
+                            <div class="tl-org">Mindoro State University</div>
+                            <div class="tl-date">2022 – Present</div>
+                            <span class="tl-award">Dean's Lister 2023–2025</span>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-marker tl-marker-sm"></div>
+                        <div class="tl-content">
+                            <div class="tl-role">Hello, World!</div>
+                            <div class="tl-org">First Line of Code</div>
+                            <div class="tl-date">2022</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CORE SKILLS -->
+            <section class="sb-section">
+                <div class="sb-heading">
+                   Core Skills
+                </div>
+                <div class="skill-sub">Technical</div>
+                <div class="skill-dots-wrap">
+                    <div class="skill-row"><span class="skill-name">PHP</span><span class="skill-bar"><span style="width:90%"></span></span></div>
+                    <div class="skill-row"><span class="skill-name">Node.js</span><span class="skill-bar"><span style="width:85%"></span></span></div>
+                    <div class="skill-row"><span class="skill-name">HTML / CSS</span><span class="skill-bar"><span style="width:90%"></span></span></div>
+                    <div class="skill-row"><span class="skill-name">UI/UX Design</span><span class="skill-bar"><span style="width:95%"></span></span></div>
+                    <div class="skill-row"><span class="skill-name">Web Dev</span><span class="skill-bar"><span style="width:85%"></span></span></div>
+                    <div class="skill-row"><span class="skill-name">Prototyping</span><span class="skill-bar"><span style="width:89%"></span></span></div>
+                    <div class="skill-row"><span class="skill-name">Multimedia</span><span class="skill-bar"><span style="width:93%"></span></span></div>
+                    <div class="skill-row"><span class="skill-name">QA Testing</span><span class="skill-bar"><span style="width:80%"></span></span></div>
+                </div>
+                <div class="skill-sub" style="margin-top:.7rem">Strengths</div>
+                <div class="skill-tags">
+                    <span>Teamwork</span>
+                    <span>Communication</span>
+                    <span>Project Mgmt</span>
+                    <span>Problem Solving</span>
+                    <span>Quick Learner</span>
+                    <span>Tech Writing</span>
+                    <span>Goal Oriented</span>
+                    <span>Industrious</span>
+                </div>
+            </section>
+
+            <!-- HOBBIES -->
+            <section class="sb-section">
+                <div class="sb-heading">
+                  Hobbies &amp; Interests
+                </div>
+                <div class="hobby-cols">
+                    <div>
+                        <div class="hobby-sub">Tech</div>
+                        <ul class="hobby-list">
+                            <li>Multimedia</li>
+                            <li>Coding Challenges</li>
+                            <li>Exploring web & app designs</li>
+                            <li>Editing photos or simple graphics</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="hobby-sub">Personal</div>
+                        <ul class="hobby-list">
+                            <li>Photography</li>
+                            <li>Music & Movies</li>
+                            <li>Playing mobile games</li>
+                            <li>Exploring new places and cafés</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </aside>
+
+        <!-- ── MAIN CONTENT ── -->
+        <main class="main-content">
+
+            <!-- CURRENTLY -->
+            <section class="mc-section">
+                <div class="mc-heading">
+                    Currently Working On
+                </div>
+                <div class="cur-list">
+                    <div class="cur-item">
+                        <span class="cur-dot"></span>
+                        <span>Completing Capstone: <strong>AI-Integrated Inventory &amp; E-commerce System</strong> with Real-Time Demand Forecasting for REMHART</span>
+                    </div>
+                    <div class="cur-item">
+                        <span class="cur-dot"></span>
+                        <span>Developing a <strong>web-based tasks management system</strong> for New San Jose Builders Inc. as OJT intern</span>
+                    </div>
+                    <div class="cur-item">
+                        <span class="cur-dot"></span>
+                        <span>Learning <strong>Laravel &amp; Vue.js</strong></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CERTIFICATIONS -->
+            <section class="mc-section">
+                <div class="mc-heading">
+                    Certifications
+                    <button class="toggle-btn" id="toggleCertificatesBtn"><i class="fas fa-chevron-down"></i> View All</button>
+                </div>
+                <div class="cert-grid" id="certificatesGrid">
+
+                    <div class="cert-card" onclick="window.open('assets/certificate1.pdf','_blank')" tabindex="0" role="button">
+                        <div class="cert-icon cc1"><i class="fas fa-shield-halved"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
+                            <div class="cert-issuer">Fortinet Training Institute</div>
+                            <div class="cert-date">Sep 14, 2025</div>
+                        </div>
+                        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
+                    </div>
+
+                    <div class="cert-card" onclick="window.open('assets/certificate2.pdf','_blank')" tabindex="0" role="button">
+                        <div class="cert-icon cc2"><i class="fas fa-network-wired"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-name">Fortinet Networking Fundamentals Self-Paced</div>
+                            <div class="cert-issuer">Fortinet Training Institute</div>
+                            <div class="cert-date">Sep 21, 2025</div>
+                        </div>
+                        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
+                    </div>
+
+                    <div class="cert-card" onclick="window.open('assets/certificate3.pdf','_blank')" tabindex="0" role="button">
+                        <div class="cert-icon cc3"><i class="fab fa-python"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-name">CodeChum Python Programming II</div>
+                            <div class="cert-issuer">Certification Exam</div>
+                            <div class="cert-date">Dec 16, 2025</div>
+                        </div>
+                        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
+                    </div>
+
+                    <div class="cert-card hidden-cert" onclick="window.open('assets/certificate4.pdf','_blank')" tabindex="0" role="button" style="display:none">
+                        <div class="cert-icon cc4"><i class="fas fa-chart-bar"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-name">Data Analytics</div>
+                            <div class="cert-issuer">Information Technology Specialist</div>
+                            <div class="cert-date">Dec 17, 2025</div>
+                        </div>
+                        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
+                    </div>
+
+                    <div class="cert-card hidden-cert" onclick="window.open('assets/certificate5.pdf','_blank')" tabindex="0" role="button" style="display:none">
+                        <div class="cert-icon cc5"><i class="fas fa-award"></i></div>
+                        <div class="cert-body">
+                            <div class="cert-name">MC Tech Training – IT Specialist Data Analytics</div>
+                            <div class="cert-issuer">8-Hour IT Specialist Program</div>
+                            <div class="cert-date">Dec 6, 2026</div>
+                        </div>
+                        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="mc-section">
+                <div class="mc-heading">
+                    Projects
+                    <button class="toggle-btn" id="toggleProjectsBtn"><i class="fas fa-chevron-down"></i> View All</button>
+                </div>
+
+                <div class="proj-list" id="projectsGrid">
+
+                    <div class="proj-entry" tabindex="0">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/capstone-cover.png','RM\'S – Capstone Project');event.stopPropagation()">
+                            <img src="assets/capstone-cover.png" alt="Capstone" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">RM'S – Capstone Project</span>
+                                <span class="proj-year">2025</span>
+                            </div>
+                            <div class="proj-org">Mindoro State University</div>
+                            <ul class="proj-bullets">
+                                <li>AI-Integrated Inventory &amp; E-commerce Management System with Real-Time Demand Forecasting</li>
+                                <li>Built for REMHART using PHP, HTML/CSS, JavaScript, and AI integration</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+                                <span class="ptag"><i class="fab fa-js"></i> JS</span>
+                                <span class="ptag"><i class="fas fa-brain"></i> AI</span>
+                                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry" tabindex="0">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/NSJBI.png','OJT – Attendance Monitoring System');event.stopPropagation()">
+                            <img src="assets/NSJBI.png" alt="Attendance" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">OJT – Attendance Monitoring System</span>
+                                <span class="proj-year">2025</span>
+                            </div>
+                            <div class="proj-org">New San Jose Builders Inc.</div>
+                            <ul class="proj-bullets">
+                                <li>Web-based attendance monitoring system for internship at NSJBI</li>
+                                <li>Developed using Vue.js, Node.js, and MySQL database</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fab fa-vuejs"></i> Vue</span>
+                                <span class="ptag"><i class="fab fa-node"></i> Node</span>
+                                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/SafepathUI.png','SafePath App');event.stopPropagation()">
+                            <img src="assets/SafepathUI.png" alt="SafePath" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">SafePath – Bullying Complaint System</span>
+                                <span class="proj-year">2024</span>
+                            </div>
+                            <div class="proj-org">Application Development</div>
+                            <ul class="proj-bullets">
+                                <li>Student safety platform with AI-powered text classification using TensorFlow &amp; Wit.ai</li>
+                                <li>Built with Express.js, Bootstrap, MySQL</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fab fa-node"></i> Express</span>
+                                <span class="ptag"><i class="fas fa-brain"></i> TensorFlow</span>
+                                <span class="ptag"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                            </div>
+                            <a href="https://github.com/oncepebrero/SafePath" target="_blank" class="proj-gh-link" onclick="event.stopPropagation()"><i class="fab fa-github"></i> Repository</a>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/Minsu.png','MinSU Venue Scheduling');event.stopPropagation()">
+                            <img src="assets/Minsu.png" alt="MinSU" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">MinSU Event Venue Scheduling System</span>
+                                <span class="proj-year">2023</span>
+                            </div>
+                            <div class="proj-org">Mindoro State University</div>
+                            <ul class="proj-bullets">
+                                <li>Web app for managing and reserving event venues at MinSU</li>
+                                <li>Includes user authentication and reservation management</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fab fa-html5"></i> HTML</span>
+                                <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+                                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/Slites.png','SLITES Smart Lighting');event.stopPropagation()">
+                            <img src="assets/Slites.png" alt="SLITES" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">SLITES – Smart Lighting Intelligence</span>
+                                <span class="proj-year">2024</span>
+                            </div>
+                            <div class="proj-org">Integrative Programming &amp; Technologies</div>
+                            <ul class="proj-bullets">
+                                <li>IoT automated lighting system with LDR and PIR sensors</li>
+                                <li>Real-time monitoring dashboard and remote control via web interface</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fas fa-microchip"></i> Orange Pi</span>
+                                <span class="ptag"><i class="fab fa-python"></i> Python</span>
+                                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/lavalust.jpg','Panchitan Lavalust');event.stopPropagation()">
+                            <img src="assets/lavalust.jpg" alt="Lavalust" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">Panchitan ni Unchang – Lavalust Framework</span>
+                                <span class="proj-year">2024</span>
+                            </div>
+                            <div class="proj-org">Web Development 2</div>
+                            <ul class="proj-bullets">
+                                <li>Authentic Filipino cuisine e-commerce built with Lavalust framework</li>
+                                <li>Features FAQs, Help, Support, and user registration</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fas fa-fire"></i> Lavalust</span>
+                                <span class="ptag"><i class="fab fa-php"></i> PHP</span>
+                                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/mushroom.jpg','Mushroom Cultivation Monitor');event.stopPropagation()">
+                            <img src="assets/mushroom.jpg" alt="Mushroom" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">IoT – Mushroom Cultivation Monitor</span>
+                                <span class="proj-year">2023</span>
+                            </div>
+                            <div class="proj-org">Integrative Programming &amp; Technologies</div>
+                            <ul class="proj-bullets">
+                                <li>IoT system monitoring humidity &amp; temperature in mushroom cultivation</li>
+                                <li>Automated water pump control and real-time data logging</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fas fa-microchip"></i> Arduino</span>
+                                <span class="ptag"><i class="fas fa-tint"></i> Sensors</span>
+                                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/meat.jpg','Meat Quality Detection');event.stopPropagation()">
+                            <img src="assets/meat.jpg" alt="Meat" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">Meat Quality Detection Tool</span>
+                                <span class="proj-year">2024</span>
+                            </div>
+                            <div class="proj-org">Embedded Systems</div>
+                            <ul class="proj-bullets">
+                                <li>Embedded system with image processing for detecting meat quality</li>
+                                <li>Displays ML prediction and training results via web interface</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fas fa-camera"></i> Image ML</span>
+                                <span class="ptag"><i class="fab fa-python"></i> Python</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/BRAINSTER.png','Brainster Game');event.stopPropagation()">
+                            <img src="assets/BRAINSTER.png" alt="Brainster" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">Brainster – Discrete Mathematics Game</span>
+                                <span class="proj-year">2023</span>
+                            </div>
+                            <div class="proj-org">Discrete Mathematics</div>
+                            <ul class="proj-bullets">
+                                <li>Interactive puzzle game applying Discrete Mathematics concepts</li>
+                                <li>Covers logic, sets, and graph theory through gameplay</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fas fa-puzzle-piece"></i> Game Dev</span>
+                                <span class="ptag"><i class="fab fa-js"></i> JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="proj-entry hidden-proj" tabindex="0" style="display:none">
+                        <div class="proj-thumb-sm" onclick="openProjectImage('assets/WIX.png','Panchitan ni Unchang – Wix');event.stopPropagation()">
+                            <img src="assets/WIX.png" alt="Wix" onerror="this.style.display='none'">
+                            <div class="pzoom"><i class="fas fa-expand"></i></div>
+                        </div>
+                        <div class="proj-main">
+                            <div class="proj-header-row">
+                                <span class="proj-title">Panchitan ni Unchang – Wix CMS</span>
+                                <span class="proj-year">2024</span>
+                            </div>
+                            <div class="proj-org">CMS Integration &amp; System Architecture</div>
+                            <ul class="proj-bullets">
+                                <li>E-commerce website for local pancit eatery using Wix CMS</li>
+                                <li>Includes full CMS integration and system architecture design</li>
+                            </ul>
+                            <div class="proj-tech-row">
+                                <span class="ptag"><i class="fab fa-wix"></i> Wix</span>
+                                <span class="ptag"><i class="fas fa-shopping-cart"></i> E-Commerce</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- LET'S CONNECT -->
+            <section class="mc-section" id="contactStrip">
+                <div class="mc-heading">
+                    Let's Connect
+                </div>
+                <p class="connect-blurb">I'm currently looking for OJT opportunities and collaborations. Feel free to reach out to discuss web development, UI/UX design, or potential projects.</p>
+                <div class="connect-links">
+                    <a href="mailto:gwenbasconcillo11@gmail.com" class="cl cl-email"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://facebook.com/oncepebrero" target="_blank" class="cl cl-fb"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://github.com/oncepebrero" target="_blank" class="cl cl-gh"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </section>
+
+            <!-- CONTACT FORM (powered by Formspree) -->
+            <section class="mc-section" id="contactForm">
+                <div class="mc-heading">
+                    Send a Message
+                </div>
+                <form id="contactFormElement" action="https://formspree.io/f/mwvavydo" method="POST">
+                    <div class="form-row-2">
+                        <div class="fg">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                            <div class="ferr" id="name-error"></div>
+                        </div>
+                        <div class="fg">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                            <div class="ferr" id="email-error"></div>
+                        </div>
+                    </div>
+                    <div class="fg">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Your message..." required></textarea>
+                        <div class="ferr" id="message-error"></div>
+                    </div>
+                    <!-- Formspree honeypot spam filter — do not remove -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    <!-- After submit, Formspree redirects back to the same page -->
+                    <input type="hidden" name="_next" value="javascript:void(0)">
+                    <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                </form>
+                <div id="formStatus" style="display:none;margin-top:10px;padding:8px 12px;border-radius:8px;font-size:.74rem"></div>
+            </section>
+
+        </main>
+    </div><!-- /body-wrap -->
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>&copy; <span id="fyear">2025</span> Gwen M. Basconcillo &mdash; All rights reserved.</p>
+        <p>Built with <span class="ft-tag">HTML/CSS</span> <span class="ft-tag">JavaScript</span></p>
+        <p>Inspired by <a href="https://bryllim.com/" target="_blank" class="ft-link">Bryl Lim</a></p>
+    </footer>
+
+</div><!-- /page -->
+
+<!-- Image Modal -->
+<div class="img-modal" id="imageModal">
+    <button class="img-modal-close" onclick="closeProjectImage()">✕</button>
+    <div class="img-modal-inner">
+        <img id="modalImage" src="" alt="">
+        <div id="modalCaption" class="img-modal-cap"></div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="main.js"></script>
+<script>
+// ── PROJECT IMAGE MODAL ──
+function openProjectImage(src, name) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('modalCaption').textContent = name;
+    document.getElementById('imageModal').classList.add('open');
+}
+function closeProjectImage() { document.getElementById('imageModal').classList.remove('open'); }
+window.addEventListener('click', e => { if (e.target.id === 'imageModal') closeProjectImage(); });
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeProjectImage();
+        document.getElementById('gameOverlay').classList.remove('open');
+    }
+});
+document.getElementById('fyear').textContent = new Date().getFullYear();
+
+// ── FORMSPREE AJAX SUBMISSION ──
+// Intercepts the form submit to keep the user on the page and show a toast,
+// instead of navigating away to Formspree's default thank-you page.
+(function () {
+    const form      = document.getElementById('contactFormElement');
+    const submitBtn = document.getElementById('submitBtn');
+    const status    = document.getElementById('formStatus');
+
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Basic client-side validation
+        let ok = true;
+        ['name', 'email', 'message'].forEach(function (id) {
+            const el  = document.getElementById(id);
+            const err = document.getElementById(id + '-error');
+            if (el && !el.value.trim()) {
+                if (err) err.textContent = 'Required.';
+                ok = false;
+            } else if (err) {
+                err.textContent = '';
+            }
+        });
+        if (!ok) return;
+
+        // Disable button while sending
+        if (submitBtn) {
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+            submitBtn.disabled  = true;
+        }
+
+        try {
+            const response = await fetch(form.action, {
+                method:  'POST',
+                body:    new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.reset();
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Message sent! 💌', 'success');
+                } else {
+                    status.style.display      = 'block';
+                    status.style.background   = '#d1fae5';
+                    status.style.color        = '#065f46';
+                    status.textContent        = '✅ Message sent! I\'ll get back to you soon.';
+                }
+            } else {
+                const data = await response.json();
+                const msg  = (data && data.errors)
+                    ? data.errors.map(function (err) { return err.message; }).join(', ')
+                    : 'Failed to send. Please try again.';
+                if (typeof window.showToast === 'function') {
+                    window.showToast(msg, 'error');
+                } else {
+                    status.style.display      = 'block';
+                    status.style.background   = '#fee2e2';
+                    status.style.color        = '#991b1b';
+                    status.textContent        = '❌ ' + msg;
+                }
+            }
+        } catch (err) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Network error. Try again.', 'error');
+            }
+        } finally {
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                submitBtn.disabled  = false;
+            }
+        }
+    });
+})();
+</script>
+</body>
+</html>
