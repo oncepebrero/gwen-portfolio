@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // ── THEME ──
+  // ── THEME (Para sa light/dark mode) ──
+  // Kunin ang checkbox at html element para magpalit ng tema
   const themeBox = document.getElementById('themeCheckbox');
   const htmlEl = document.documentElement;
   const saved = localStorage.getItem('gwen_theme') || 'light';
@@ -12,14 +13,16 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem('gwen_theme', t);
   });
 
-  // ── PROFILE ──
+  // ── PROFILE (Epekto kapag ni-click ang profile picture) ──
+  // Paliit at ikot ng konti para may feedback na na-click
   const prof = document.getElementById('profileContainer');
   if (prof) prof.addEventListener('click', function () {
     this.style.transform = 'scale(.92) rotate(4deg)';
     setTimeout(() => this.style.transform = '', 250);
   });
 
-  // ── CONTACT SCROLL ──
+  // ── CONTACT SCROLL (I-scroll papunta sa contact section) ──
+  // Kapag pinindot ang button, diretso sa contact strip at may outline effect
   const scrollBtn = document.getElementById('contactScrollBtn');
   const strip = document.getElementById('contactStrip');
   if (scrollBtn && strip) scrollBtn.addEventListener('click', () => {
@@ -28,45 +31,55 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => strip.style.outline = '', 1400);
   });
 
-  // ── CERTS TOGGLE ──
+  // ── CERTS MODAL ──
   const certBtn  = document.getElementById('toggleCertificatesBtn');
-  const certGrid = document.getElementById('certificatesGrid');
-  if (certBtn && certGrid) {
-    const hidden = [...certGrid.querySelectorAll('.hidden-cert')];
-    if (!hidden.length) { certBtn.style.display = 'none'; } else {
-      let exp = false;
-      hidden.forEach(el => el.style.display = 'none');
-      certBtn.addEventListener('click', () => {
-        exp = !exp;
-        hidden.forEach(el => { el.style.display = exp ? 'flex' : 'none'; });
-        certBtn.innerHTML = exp ? '<i class="fas fa-chevron-up"></i> Show Less' : '<i class="fas fa-chevron-down"></i> View All';
-        certBtn.classList.toggle('active', exp);
-      });
-    }
+  const certsModal = document.getElementById('certsModal');
+  const closeCertsBtn = document.getElementById('closeCertsModal');
+  if (certBtn && certsModal) {
+    certBtn.addEventListener('click', () => {
+      certsModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    closeCertsBtn.addEventListener('click', () => {
+      certsModal.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    certsModal.addEventListener('click', e => {
+      if (e.target === certsModal) {
+        certsModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
   }
 
-  // ── PROJECTS TOGGLE ──
+  // ── PROJECTS MODAL ──
   const projBtn  = document.getElementById('toggleProjectsBtn');
-  const projGrid = document.getElementById('projectsGrid');
-  if (projBtn && projGrid) {
-    const hidden = [...projGrid.querySelectorAll('.hidden-proj')];
-    if (!hidden.length) { projBtn.style.display = 'none'; } else {
-      let exp = false;
-      hidden.forEach(el => el.style.display = 'none');
-      projBtn.addEventListener('click', () => {
-        exp = !exp;
-        hidden.forEach(el => { el.style.display = exp ? 'flex' : 'none'; });
-        projBtn.innerHTML = exp ? '<i class="fas fa-chevron-up"></i> Show Less' : '<i class="fas fa-chevron-down"></i> View All';
-        projBtn.classList.toggle('active', exp);
-      });
-    }
+  const projectsModal = document.getElementById('projectsModal');
+  const closeProjectsBtn = document.getElementById('closeProjectsModal');
+  if (projBtn && projectsModal) {
+    projBtn.addEventListener('click', () => {
+      projectsModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    closeProjectsBtn.addEventListener('click', () => {
+      projectsModal.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    projectsModal.addEventListener('click', e => {
+      if (e.target === projectsModal) {
+        projectsModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
   }
 
-  // ── FORM ──
+  // ── FORM (Pagpapadala ng mensahe sa email) ──
+  // Kunin ang form elements at gawing functional ang pag-submit
   const form      = document.getElementById('contactFormElement');
   const submitBtn = document.getElementById('submitBtn');
   const toast     = document.getElementById('toast');
 
+  // Function para magpakita ng notification message (toast)
   function showToast(msg, type = 'success') {
     if (!toast) return;
     const icons = { success:'check-circle', error:'exclamation-circle', info:'info-circle' };
@@ -76,9 +89,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   window.showToast = showToast;
 
+  // Kapag na-submit ang form, i-send gamit ang fetch API
   if (form) form.addEventListener('submit', async function (e) {
     e.preventDefault();
     let ok = true;
+    // Tignan kung may laman ang name, email, at message
     ['name','email','message'].forEach(id => {
       const el = document.getElementById(id);
       const err = document.getElementById(id + '-error');
@@ -98,7 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // ── SCROLL REVEAL ──
+  // ── SCROLL REVEAL (Pag-appear ng elements habang nag-scroll) ──
+  // Obserbahan ang mga section at i-animate kapag nakita na sa screen
   const revObs = new IntersectionObserver((entries, o) => {
     entries.forEach(en => {
       if (en.isIntersecting) {
@@ -116,16 +132,19 @@ document.addEventListener('DOMContentLoaded', function () {
     revObs.observe(el);
   });
 
-  // ── RESUME ──
+  // ── RESUME (Pagbukas ng resume) ──
+  // Magpakita ng toast message kapag na-click ang resume button
   const resumeA = document.querySelector('.btn-solid');
   if (resumeA) resumeA.addEventListener('click', () => showToast('Opening resume… 📄', 'info'));
 
-  // ── WELCOME ──
+  // ── WELCOME (Welcome message pagka-load ng page) ──
+  // Magpakita ng welcome notification pagkatapos ng 1.1 segundo
   setTimeout(() => showToast("Welcome to Gwen's portfolio! 🌸", 'info'), 1100);
 
   // ══════════════════════════════════════
-  //  GAME MODAL
+  //  GAME MODAL (Para sa popup ng laro)
   // ══════════════════════════════════════
+  // Kunin ang mga button at overlay para buksan/sarahan ang game window
   const openBtn  = document.getElementById('openGameBtn');
   const closeBtn = document.getElementById('closeGameBtn');
   const overlay  = document.getElementById('gameOverlay');
@@ -138,12 +157,14 @@ document.addEventListener('DOMContentLoaded', function () {
   if (overlay)  overlay.addEventListener('click', e => { if (e.target === overlay) closeGame(); });
 
   // ══════════════════════════════════════
-  //  STELLAR DASH — CANVAS GAME
+  //  STELLAR DASH — CANVAS GAME (Ang laro mismo)
   // ══════════════════════════════════════
+  // Larong spaceship na umiiwas sa asteroids at kumukuha ng stars
   const canvas = document.getElementById('gameCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
+  // I-adjust ang laki ng canvas depende sa screen
   function resize() {
     const W = Math.min((canvas.parentElement || document.body).clientWidth - 44, 580);
     canvas.width  = W;
@@ -152,25 +173,28 @@ document.addEventListener('DOMContentLoaded', function () {
   resize();
   window.addEventListener('resize', () => { resize(); if (!gameRunning) drawIdle(); });
 
+  // Game variables (score, lives, level, atbp.)
   let gameRunning = false, animId = 0;
   let score = 0, lives = 3, level = 1, frame = 0;
   let hs   = parseInt(localStorage.getItem('gwen_hs') || '0');
   let diff = 'easy', invincible = 0;
   let asteroids = [], bgStars = [], sparks = [], collectibles = [];
 
+  // Iba't ibang difficulty (bilis ng laro, dami ng asteroids, atbp.)
   const DIFF = {
     easy:  { spd:1.7, rate:90,  cRate:170, lives:4 },
     hard:  { spd:2.7, rate:60,  cRate:220, lives:3 },
     chaos: { spd:4.1, rate:35,  cRate:300, lives:2 },
   };
 
+  // Spaceship properties at kulay ng laro
   const ship = { x:0, y:0, vx:0, vy:0, spd:3.8, trail:[], w:26, h:20 };
   const PAL  = ['#d4426a','#f4a8bc','#2bb5a0','#6c4ec9','#f7c948','#a02655','#2563eb'];
 
   const rn = (a,b) => a + Math.random()*(b-a);
   const rc = ()    => PAL[Math.floor(Math.random()*PAL.length)];
 
-  // BG stars
+  // Gumawa ng mga bituin sa background
   function mkBg() {
     bgStars = [];
     for (let i=0;i<70;i++) bgStars.push({x:rn(0,canvas.width),y:rn(0,canvas.height),r:rn(.4,1.8),spd:rn(.08,.5),a:rn(.2,.85)});
@@ -178,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function tickBg() { bgStars.forEach(s=>{s.y+=s.spd;if(s.y>canvas.height){s.y=0;s.x=rn(0,canvas.width);}}); }
   function drawBg() { bgStars.forEach(s=>{ctx.save();ctx.globalAlpha=s.a;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();ctx.restore();}); }
 
-  // Ship
+  // Iguhit ang spaceship
   function drawShip(x,y,flick) {
     ctx.save(); ctx.translate(x,y);
     if (flick && Math.floor(flick/5)%2===0){ctx.restore();return;}
@@ -200,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ctx.restore();
   }
 
-  // Asteroid
+  // Gumawa ng bagong asteroid (hadlang)
   function spawnAst() {
     const cfg=DIFF[diff];let x,y,vx,vy;
     const s=Math.random()<.65?'t':Math.random()<.5?'l':'r';
@@ -217,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();
   }
 
-  // Collectible star
+  // Gumawa ng collectible star (dagdag puntos)
   function spawnCol() { collectibles.push({x:rn(20,canvas.width-20),y:-15,vy:rn(.7,1.3),r:8,col:rc(),p:0}); }
   function drawStar5(x,y,r,col,a=1) {
     ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.fillStyle=col;ctx.shadowBlur=10;ctx.shadowColor=col;
@@ -228,18 +252,18 @@ document.addEventListener('DOMContentLoaded', function () {
     ctx.closePath();ctx.fill();ctx.restore();
   }
 
-  // Sparks
+  // Sparks effect (pagsabog)
   function burst(x,y,col,n=12) {
     for(let i=0;i<n;i++){const ang=(i/n)*Math.PI*2,spd=rn(1.5,4.5);
       sparks.push({x,y,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,r:rn(2,5),col,life:1,dec:rn(.025,.055)});}
   }
 
-  // Collision
+  // Check collision sa pagitan ng ship at asteroid
   function circRect(cx,cy,cr,rx,ry,rw,rh){
     return Math.hypot(cx-Math.max(rx-rw/2,Math.min(cx,rx+rw/2)),cy-Math.max(ry-rh/2,Math.min(cy,ry+rh/2)))<cr;
   }
 
-  // UI
+  // Update ng score at lives sa screen
   function updateUI(){
     const sv=document.getElementById('scoreStat'),lv=document.getElementById('livesStat'),hv=document.getElementById('hsStat');
     if(sv)sv.textContent=score; if(lv)lv.textContent='♥'.repeat(lives); if(hv)hv.textContent=hs;
@@ -248,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const el=document.getElementById('gameMsg');if(el){el.textContent=t;el.style.color=col;}
   }
 
-  // Idle
+  // Ipakita ang idle screen (hindi pa naglalaro)
   function drawIdle(){
     ctx.fillStyle='#050210';ctx.fillRect(0,0,canvas.width,canvas.height);drawBg();
     drawShip(canvas.width/2,canvas.height/2,0);
@@ -262,12 +286,12 @@ document.addEventListener('DOMContentLoaded', function () {
     ctx.restore();
   }
 
-  // Keys
+  // Keyboard controls (WASD at arrow keys)
   const keys={};
   document.addEventListener('keydown',e=>{keys[e.key]=true;});
   document.addEventListener('keyup',  e=>{keys[e.key]=false;});
 
-  // Loop
+  // Main game loop (paulit-ulit na tumatakbo habang naglalaro)
   function loop(){
     if(!gameRunning)return;frame++;
     ctx.fillStyle='#050210';ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -281,10 +305,12 @@ document.addEventListener('DOMContentLoaded', function () {
     ship.x=Math.max(ship.w/2,Math.min(canvas.width -ship.w/2,ship.x+ship.vx));
     ship.y=Math.max(ship.h/2,Math.min(canvas.height-ship.h/2,ship.y+ship.vy));
 
+    // Gumawa ng bagong asteroids at stars depende sa frame rate
     if(frame%cfg.rate ===0) spawnAst();
     if(frame%cfg.cRate===0) spawnCol();
     if(frame%280===0){level++;score+=50;burst(canvas.width/2,30,'#f7c948',16);setMsg(`Level ${level}! +50`,'#f7c948');setTimeout(()=>setMsg(''),1100);}
 
+    // Igalaw ang asteroids at stars
     asteroids.forEach(a=>{a.x+=a.vx;a.y+=a.vy;a.rot+=a.rs;});
     asteroids=asteroids.filter(a=>a.x>-60&&a.x<canvas.width+60&&a.y<canvas.height+60);
     collectibles.forEach(c=>{c.y+=c.vy;c.p+=.1;});
@@ -295,6 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
     drawShip(ship.x,ship.y,invincible);
     if(invincible>0)invincible--;
 
+    // I-draw ang sparks effect
     sparks=sparks.filter(p=>{
       p.x+=p.vx;p.y+=p.vy;p.vy+=.07;p.life-=p.dec;p.r*=.96;
       if(p.life>0){ctx.save();ctx.globalAlpha=p.life;ctx.fillStyle=p.col;ctx.shadowBlur=5;ctx.shadowColor=p.col;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.restore();}
@@ -304,6 +331,7 @@ document.addEventListener('DOMContentLoaded', function () {
     score++;
     if(frame%60===0)updateUI();
 
+    // Check collision sa asteroids (bawas buhay)
     if(invincible===0){
       for(let i=asteroids.length-1;i>=0;i--){
         const a=asteroids[i];
@@ -315,6 +343,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     }
+    
+    // Check collision sa stars (dagdag puntos)
     for(let i=collectibles.length-1;i>=0;i--){
       const c=collectibles[i];
       if(Math.hypot(c.x-ship.x,c.y-ship.y)<c.r+ship.w/2.5){
@@ -326,6 +356,7 @@ document.addEventListener('DOMContentLoaded', function () {
     animId=requestAnimationFrame(loop);
   }
 
+  // Simulan ang laro
   function startGame(){
     const cfg=DIFF[diff];score=0;lives=cfg.lives;level=1;frame=0;
     asteroids=[];collectibles=[];sparks=[];ship.x=canvas.width/2;ship.y=canvas.height*.68;ship.trail=[];
@@ -335,8 +366,10 @@ document.addEventListener('DOMContentLoaded', function () {
     loop();
   }
 
+  // Pause ang laro
   function pauseGame(){gameRunning=false;cancelAnimationFrame(animId);}
 
+  // Tapos na ang laro (Game Over)
   function endGame(){
     gameRunning=false;cancelAnimationFrame(animId);
     if(score>hs){hs=score;localStorage.setItem('gwen_hs',hs);}updateUI();
@@ -352,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setMsg(`Final: ${score}`,'#f4a8bc');
   }
 
-  // Mouse/touch
+  // Mouse at touch controls (para sa mobile)
   let drag=false;
   canvas.addEventListener('mousedown',()=>drag=true);
   canvas.addEventListener('mouseup',()=>drag=false);
@@ -367,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ship.x=(e.touches[0].clientX-rc.left)*(canvas.width/rc.width);ship.y=(e.touches[0].clientY-rc.top)*(canvas.height/rc.height);
   },{passive:false});
 
-  // D-pad
+  // D-pad controls (para sa mobile buttons)
   ['up','down','left','right'].forEach(dir=>{
     const b=document.querySelector(`.dpad-btn[data-dir="${dir}"]`);
     if(!b)return;
@@ -378,6 +411,7 @@ document.addEventListener('DOMContentLoaded', function () {
     b.addEventListener('touchstart',e=>{e.preventDefault();fn();},{passive:false});b.addEventListener('mousedown',fn);
   });
 
+  // Play button at difficulty buttons
   const playBtn=document.getElementById('gameStartBtn');
   if(playBtn)playBtn.addEventListener('click',startGame);
   document.querySelectorAll('.g-dbtn').forEach(b=>b.addEventListener('click',function(){
@@ -385,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
     this.classList.add('active');diff=this.dataset.diff;
   }));
 
-  // Init
+  // Simulan ang game na naka-idle (naghihintay ng play)
   mkBg();ship.x=canvas.width/2;ship.y=canvas.height*.68;drawIdle();updateUI();setMsg('Arrow keys / WASD · Drag on mobile');
 
 });
