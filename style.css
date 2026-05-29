@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+/* RESET - Para pare-pareho ang itsura sa lahat ng browser */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -7,8 +8,9 @@
 }
 
 /* ===== DESIGN SYSTEM ===== */
+/* kulay at style ng buong website (light mode) */
 :root {
-  /* Professional neutral palette */
+  /* Professional neutral palette - Mga pangunahing kulay */
   --primary:     #0B192C;
   --primary-dim: #1d4ed8;
   --primary-soft: #dbeafe;
@@ -16,58 +18,59 @@
   --accent-mid:  #334155;
   --accent-soft: #e2e8f0;
   
-  /* Neutrals */
+  /* Neutrals - Mga neutral na kulay */
   --white:       #ffffff;
   --bg:          #f8fafc;
   --surface:     #ffffff;
   --border:      #e2e8f0;
   --border-focus: #94a3b8;
   
-  /* Text */
+  /* Text - Kulay ng mga letra */
   --text-primary:  #0f172a;
   --text-secondary: #334155;
   --text-tertiary: #64748b;
   --text-muted:    #94a3b8;
   
-  /* Feedback */
+  /* Feedback - Kulay para sa mga mensahe */
   --success:     #10b981;
   --error:       #ef4444;
   --warning:     #f59e0b;
   
-  /* Shadows */
+  /* Shadows - Anino ng mga elemento */
   --shadow-xs: 0 1px 2px rgba(0,0,0,0.03);
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03);
   --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.02);
   
-  /* Radius */
+  /* Radius - Pagkabilog ng mga sulok */
   --radius-sm:   6px;
   --radius-md:   10px;
   --radius-lg:   14px;
   --radius-xl:   18px;
   --radius-full: 9999px;
   
-  /* Transitions */
+  /* Transitions - Bilis ng pagbabago ng istilo */
   --transition-fast: 150ms ease;
   --transition-base: 200ms ease;
   --transition-slow: 300ms ease;
 }
 
+/* DARK MODE - Mga kulay kapag madilim ang tema */
 [data-theme="dark"] {
-  /* Surfaces */
+  /* Surfaces - Background sa madilim na tema */
   --bg:              #0f1117;
   --surface:         #1a1d27;
   --border:          #2a2f3e;
   --border-focus:    #4a5068;
 
-  /* Text — must stay readable on dark surfaces */
+  /* Text — Dapat nababasa pa rin sa madilim na background */
   --text-primary:    #f0f4ff;
   --text-secondary:  #c8d0e8;
   --text-tertiary:   #8892b0;
   --text-muted:      #5a6480;
 
-  /* Brand colors adjusted for dark */
+  /* Brand colors adjusted for dark - Mga kulay ng brand para sa madilim */
   --primary:         #5b8dee;
   --primary-dim:     #7aa3f5;
   --primary-soft:    rgba(91,141,238,0.15);
@@ -75,17 +78,19 @@
   --accent-mid:      #5b8dee;
   --accent-soft:     rgba(91,141,238,0.12);
 
-  /* Shadows */
+  /* Shadows - Mas madilim na anino para sa madilim na tema */
   --shadow-xs: 0 1px 2px rgba(0,0,0,0.3);
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.45);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
 }
 
+/* Smooth scrolling - Maayos na pag-scroll pababa */
 html {
   scroll-behavior: smooth;
 }
 
+/* Body - Pangunahing istilo ng buong page */
 body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   background: var(--bg);
@@ -98,6 +103,7 @@ body {
 }
 
 /* ===== PAGE WRAPPER ===== */
+/* Lalagyan ng buong content, may animation sa pagka-load */
 .page {
   max-width: 875px;
   margin: 0 auto;
@@ -105,6 +111,7 @@ body {
   animation: fadeUp 0.55s ease both;
 }
 
+/* Animation para lumutang ang content pataas */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -117,6 +124,7 @@ body {
 }
 
 /* ===== TOP CONTROLS ===== */
+/* Mga button sa itaas (theme at game) - nakaposisyon nang fixed */
 .top-controls {
   position: fixed;
   top: 1rem;
@@ -132,6 +140,7 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
+/* Button para buksan ang laro */
 .game-launch-btn {
   width: 30px;
   height: 30px;
@@ -148,12 +157,13 @@ body {
   flex-shrink: 0;
 }
 
+/* Hover effect para sa game button */
 .game-launch-btn:hover {
   transform: scale(1.18) rotate(-8deg);
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
 }
 
-/* Theme Switch */
+/* Theme Switch - Switch para sa light/dark mode */
 .theme-switch {
   position: relative;
   display: inline-block;
@@ -176,6 +186,7 @@ body {
   transition: background 0.3s;
 }
 
+/* Bilog na lumilipat sa switch */
 .slider::before {
   content: "☀︎";
   position: absolute;
@@ -193,6 +204,7 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Kapag naka-check (dark mode) */
 input:checked + .slider {
   background: var(--primary-soft);
 }
@@ -204,6 +216,7 @@ input:checked + .slider::before {
 }
 
 /* ===== HERO SECTION ===== */
+/* Pangunahing seksyon sa itaas (profile at pangalan) */
 .hero {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -216,6 +229,7 @@ input:checked + .slider::before {
   min-height: 200px;
 }
 
+/* Kaliwang bahagi ng hero - may gradient background */
 .hero-left {
   background: linear-gradient(160deg, var(--primary) 0%, #1e40af 100%);
   display: flex;
@@ -228,6 +242,7 @@ input:checked + .slider::before {
   overflow: hidden;
 }
 
+/* Dekorasyon sa background */
 .hero-left::before {
   content: '';
   position: absolute;
@@ -236,6 +251,7 @@ input:checked + .slider::before {
               radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.1), transparent 60%);
 }
 
+/* Lalagyan ng profile picture */
 .profile-wrap {
   position: relative;
   width: 150px;
@@ -249,6 +265,7 @@ input:checked + .slider::before {
   transform: scale(1.08) rotate(-2deg);
 }
 
+/* Umiikot na singsing sa paligid ng profile */
 .profile-ring {
   position: absolute;
   inset: -3px;
@@ -258,12 +275,14 @@ input:checked + .slider::before {
   z-index: 0;
 }
 
+/* Animation ng pag-ikot ng singsing */
 @keyframes spinRing {
   to {
     transform: rotate(360deg);
   }
 }
 
+/* Istilo ng mismong larawan */
 .profile-pic {
   position: relative;
   z-index: 1;
@@ -286,6 +305,7 @@ input:checked + .slider::before {
   display: none;
 }
 
+/* Palitan ang larawan kapag naka-hover */
 .profile-wrap:hover .img-default {
   display: none;
 }
@@ -294,6 +314,7 @@ input:checked + .slider::before {
   display: block;
 }
 
+/* Pulse animation para sa badge */
 @keyframes ping {
   0%, 100% {
     box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
@@ -321,6 +342,7 @@ input:checked + .slider::before {
   backdrop-filter: blur(4px);
 }
 
+/* Kanang bahagi ng hero - impormasyon */
 .hero-right {
   padding: 2rem 2rem 1.6rem;
   display: flex;
@@ -369,6 +391,7 @@ input:checked + .slider::before {
   width: 14px;
 }
 
+/* Mga button sa hero */
 .hero-btns {
   display: flex;
   gap: 0.5rem;
@@ -420,6 +443,7 @@ input:checked + .slider::before {
 }
 
 /* ===== BODY WRAP: SIDEBAR + MAIN ===== */
+/* Grid layout para sa sidebar at main content */
 .body-wrap {
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -428,6 +452,7 @@ input:checked + .slider::before {
 }
 
 /* ===== SIDEBAR ===== */
+/* Kaliwang sidebar - naglalaman ng skills, experience, hobbies */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -447,6 +472,7 @@ input:checked + .slider::before {
   box-shadow: var(--shadow-sm);
 }
 
+/* Heading ng bawat seksyon sa sidebar */
 .sb-heading {
   background: var(--primary);
   color: #fff;
@@ -464,6 +490,7 @@ input:checked + .slider::before {
   font-size: 0.72rem;
 }
 
+/* Listahan sa sidebar */
 .sb-list {
   list-style: none;
   padding: 0.85rem 1rem 0.9rem;
@@ -482,6 +509,7 @@ input:checked + .slider::before {
   margin-bottom: 0;
 }
 
+/* Dot bawat list item */
 .sb-list li::before {
   content: '';
   position: absolute;
@@ -494,7 +522,7 @@ input:checked + .slider::before {
   opacity: 0.8;
 }
 
-/* Timeline */
+/* Timeline - Para sa work experience */
 .tl {
   padding: 0.85rem 1rem 0.85rem;
 }
@@ -510,6 +538,7 @@ input:checked + .slider::before {
   margin-bottom: 0;
 }
 
+/* Guhit na nagkokonekta sa timeline items */
 .tl-item::after {
   content: '';
   position: absolute;
@@ -578,7 +607,7 @@ input:checked + .slider::before {
   border-radius: 8px;
 }
 
-/* Skill bars */
+/* Skill bars - Visual representation ng skill level */
 .skill-sub {
   font-size: 0.62rem;
   font-weight: 800;
@@ -623,13 +652,14 @@ input:checked + .slider::before {
   animation: barGrow 0.8s ease both;
 }
 
+/* Animation ng paglaki ng skill bar */
 @keyframes barGrow {
   from {
     width: 0 !important;
   }
 }
 
-/* Strength tags */
+/* Strength tags - Mga badge ng skills */
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
@@ -662,7 +692,7 @@ input:checked + .slider::before {
   font-size: 0.58rem;
 }
 
-/* Hobbies */
+/* Hobbies - Mga hilig */
 .hobby-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -715,6 +745,7 @@ input:checked + .slider::before {
 }
 
 /* ===== MAIN CONTENT ===== */
+/* Kanang bahagi - certifications, projects, contact form */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -745,6 +776,7 @@ input:checked + .slider::before {
   padding: 0.55rem 1rem;
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 0.4rem;
 }
 
@@ -752,6 +784,7 @@ input:checked + .slider::before {
   font-size: 0.72rem;
 }
 
+/* Toggle button - Para sa show/hide */
 .toggle-btn {
   margin-left: auto;
   display: inline-flex;
@@ -827,6 +860,7 @@ input:checked + .slider::before {
   animation: curPulse 2s ease-in-out infinite;
 }
 
+/* Pulse animation para sa current dot */
 @keyframes curPulse {
   0%, 100% {
     box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
@@ -836,10 +870,10 @@ input:checked + .slider::before {
   }
 }
 
-/* Certifications Grid */
+/* Certifications Grid - Mga certificate */
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 0.6rem;
   padding: 0.9rem 1rem;
 }
@@ -859,6 +893,7 @@ input:checked + .slider::before {
   align-items: flex-start;
 }
 
+/* Linya sa itaas ng card kapag naka-hover */
 .cert-card::after {
   content: '';
   position: absolute;
@@ -881,9 +916,9 @@ input:checked + .slider::before {
   border-color: var(--primary);
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
-  transform: translateY(-3px);
 }
 
+/* Icon ng certificate na may iba't ibang kulay */
 .cert-icon {
   width: 40px;
   height: 40px;
@@ -940,7 +975,7 @@ input:checked + .slider::before {
   opacity: 1;
 }
 
-/* Projects List */
+/* Projects List - Mga proyekto */
 .proj-list {
   display: flex;
   flex-direction: column;
@@ -968,6 +1003,7 @@ input:checked + .slider::before {
   background: rgba(37, 99, 235, 0.06);
 }
 
+/* Thumbnail ng proyekto */
 .proj-thumb-sm {
   width: 68px;
   height: 68px;
@@ -992,6 +1028,7 @@ input:checked + .slider::before {
   display: block;
 }
 
+/* Zoom icon sa thumbnail */
 .pzoom {
   position: absolute;
   inset: 0;
@@ -1077,6 +1114,7 @@ input:checked + .slider::before {
   opacity: 0.7;
 }
 
+/* Technology tags */
 .proj-tech-row {
   display: flex;
   flex-wrap: wrap;
@@ -1101,6 +1139,7 @@ input:checked + .slider::before {
   font-size: 0.58rem;
 }
 
+/* GitHub link */
 .proj-gh-link {
   display: inline-flex;
   align-items: center;
@@ -1122,7 +1161,7 @@ input:checked + .slider::before {
   border-color: var(--accent);
 }
 
-/* Connect Section */
+/* Connect Section - Mga social links */
 .connect-blurb {
   font-size: 0.76rem;
   color: var(--text-secondary);
@@ -1184,7 +1223,7 @@ input:checked + .slider::before {
   transform: translateY(-2px);
 }
 
-/* Contact Form */
+/* Contact Form - Para sa pagpapadala ng mensahe */
 .form-row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1232,6 +1271,7 @@ input:checked + .slider::before {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
+/* Error message sa form */
 .ferr {
   font-size: 0.6rem;
   color: var(--error);
@@ -1266,7 +1306,7 @@ input:checked + .slider::before {
   filter: brightness(1.07);
 }
 
-/* Footer */
+/* Footer - Paa ng website */
 .site-footer {
   text-align: center;
   font-size: 0.63rem;
@@ -1300,7 +1340,7 @@ input:checked + .slider::before {
   text-decoration: underline;
 }
 
-/* Toast */
+/* Toast - Notification message */
 .toast {
   position: fixed;
   bottom: 1.5rem;
@@ -1336,7 +1376,7 @@ input:checked + .slider::before {
   background: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
-/* Image Modal */
+/* Image Modal - Popup para sa malaking larawan */
 .img-modal {
   display: none;
   position: fixed;
@@ -1417,7 +1457,7 @@ input:checked + .slider::before {
   transform: rotate(90deg) scale(1.1);
 }
 
-/* Game Overlay */
+/* Game Overlay - Popup para sa laro */
 .game-overlay {
   display: none;
   position: fixed;
@@ -1447,6 +1487,7 @@ input:checked + .slider::before {
   animation: mZoom 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
 }
 
+/* Gradient line sa itaas ng game modal */
 .game-modal::before {
   content: '';
   position: absolute;
@@ -1601,6 +1642,7 @@ input:checked + .slider::before {
   box-shadow: 0 7px 22px rgba(37, 99, 235, 0.6);
 }
 
+/* Difficulty buttons */
 .g-diff {
   display: flex;
   gap: 0.18rem;
@@ -1641,6 +1683,7 @@ input:checked + .slider::before {
   background: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
+/* Mobile D-pad - Para sa touch screen controls */
 .mobile-dpad {
   display: none;
   grid-template-columns: repeat(3, 1fr);
@@ -1676,7 +1719,7 @@ input:checked + .slider::before {
   color: var(--primary);
 }
 
-/* Responsive */
+/* Responsive Design - Para sa mobile at tablet */
 @media (max-width: 800px) {
   body {
     padding: 1rem 0.6rem 5rem;
@@ -1742,6 +1785,7 @@ input:checked + .slider::before {
   }
 }
 
+/* Reduced motion - Para sa mga ayaw ng animation */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1749,14 +1793,16 @@ input:checked + .slider::before {
   }
 }
 
+/* Focus visible - Para sa keyboard navigation */
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
   border-radius: 4px;
 }
+
 /* ═══════════════════════════════════════════════════
    DARK MODE EXPLICIT OVERRIDES
-   Ensure all text/bg combos stay readable in dark mode
+   Tiyaking nababasa lahat sa madilim na tema
 ═══════════════════════════════════════════════════ */
 
 [data-theme="dark"] .sb-heading {
@@ -2005,22 +2051,122 @@ input:checked + .slider::before {
 /* Heading icons always white on dark heading */
 [data-theme="dark"] .sb-heading i { color: rgba(255,255,255,0.85); }
 
-/* ── CERT GRID — flex column layout fix ── */
+/* ── CERT CARD layout fix ── */
 .cert-card .cert-icon { flex-shrink: 0; }
 .cert-card .cert-body { width: 100%; }
 
-/* ── ALIGNMENT: ensure body-wrap fills width ── */
+/* ── ALIGNMENT ── */
 .body-wrap { width: 100%; }
-
-/* ── SKILL BAR: min width for label ── */
 .skill-name { min-width: 80px; }
+/* ══════════════════════════════════════
+   SECTION MODALS (Certs & Projects)
+══════════════════════════════════════ */
+.section-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(10, 6, 30, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: smFadeIn .22s ease;
+}
+.section-modal.open {
+  display: flex;
+}
+@keyframes smFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
-/* ── HERO RIGHT: better vertical centering ── */
-.hero-right { padding: 1.6rem 1.8rem 1.4rem; }
+.section-modal-inner {
+  background: var(--surface, #fff);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 780px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 72px rgba(0,0,0,.28), 0 2px 8px rgba(212,66,106,.12);
+  animation: smSlideUp .28s cubic-bezier(.22,1,.36,1);
+  padding: 2rem 2rem 2.4rem;
+}
+@keyframes smSlideUp {
+  from { opacity: 0; transform: translateY(32px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 
-/* ── MC-HEADING: flex row with items centered ── */
-.mc-heading {
+.section-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+.section-modal-eyebrow {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: .25rem;
+}
+.section-modal-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+.section-modal-close {
+  background: var(--border);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: .9rem;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
+  justify-content: center;
+  transition: background .15s, color .15s, transform .15s;
+  margin-top: .1rem;
 }
+.section-modal-close:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.08) rotate(90deg);
+}
+
+/* Cert grid inside modal — allow more columns */
+.section-modal-cert-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 1rem !important;
+}
+
+/* Projects list inside modal */
+.section-modal-proj-list {
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .section-modal-inner {
+  background: var(--surface, #1a1230);
+}
+[data-theme="dark"] .section-modal-title {
+  color: var(--text, #f0eaff);
+}
+[data-theme="dark"] .section-modal-close {
+  background: rgba(255,255,255,.08);
+  color: #ccc;
+}
+
+/* Scrollbar inside modal */
+.section-modal-inner::-webkit-scrollbar { width: 5px; }
+.section-modal-inner::-webkit-scrollbar-track { background: transparent; }
+.section-modal-inner::-webkit-scrollbar-thumb { background: var(--border, #ddd); border-radius: 99px; }
