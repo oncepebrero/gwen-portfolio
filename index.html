@@ -543,70 +543,17 @@
     }
     .img-modal-close:hover { background: var(--primary); }
  /* ══════════════════════════════
-       RESPONSIVE — MOBILE (≤480px)
+       RESPONSIVE
     ══════════════════════════════ */
-    @media (max-width: 480px) {
-      body { padding: .75rem .6rem 3rem; }
-
-      /* hero: full vertical stack */
-      .hero {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "left"
-          "center"
-          "right";
-        text-align: center;
-        padding: 1.2rem 1rem .9rem;
-        gap: .8rem;
-      }
-      .hero-left   { align-items: center; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-left { align-items: center; }
       .hero-center { align-items: center; }
-      .hero-right  {
-        justify-content: center;
-        border-top: 1px solid var(--border);
-        padding-top: .65rem;
-      }
+      .hero-right { align-items: center; flex-direction: row; justify-content: center; }
       .hero-meta span { justify-content: center; }
       .hero-btns { justify-content: center; }
-      .class-badge { justify-content: center; }
-      .profile-wrap { width: 110px; height: 110px; }
-      .hero-name { font-size: 1.45rem; }
-
-      /* panels */
-      .panel { padding: .85rem .9rem; }
-      .panel-heading { font-size: .57rem; }
-
-      /* certs: 1 col on small */
-      .cert-grid { grid-template-columns: 1fr; }
-
-      /* projects: no thumb on very small */
-      .proj-entry { grid-template-columns: 56px 1fr; gap: .55rem; }
-      .proj-thumb-sm { width: 56px; height: 42px; }
-      .proj-title { font-size: .7rem; }
-      .proj-bullets li { font-size: .7rem; }
-
-      /* hobbies: 1 col */
-      .hobby-cols { grid-template-columns: 1fr; gap: .7rem; }
-
-      /* modal full-screen feel */
-      .section-modal { padding: .5rem; }
-      .section-modal-inner { padding: 1.1rem 1rem 1.5rem; max-height: 95vh; }
-      .section-modal-title { font-size: .95rem; }
-
-      /* connect links wrap nicely */
-      .connect-links { gap: .35rem; }
-      .cl { font-size: .62rem; padding: .32rem .6rem; }
-    }
-
-    /* ══════════════════════════════
-       RESPONSIVE — XS (≤360px)
-    ══════════════════════════════ */
-    @media (max-width: 360px) {
-      .hero-name { font-size: 1.3rem; }
-      .btn-solid, .btn-ghost { font-size: .62rem; padding: .32rem .7rem; }
-      .hero-btns { gap: .35rem; }
-      .proj-entry { grid-template-columns: 1fr; }
-      .proj-thumb-sm { width: 100%; height: 120px; }
+      .body-wrap { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
