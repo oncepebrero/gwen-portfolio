@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gwen Basconcillo | UI/UX Designer</title>
+<title>Gwen Basconcillo — UI/UX Designer &amp; IT Graduate</title>
 <meta name="description" content="Portfolio of Gwen Basconcillo, BS Information Technology graduate specializing in UI/UX design, web development, QA testing, and technical documentation.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -131,13 +131,14 @@ img{max-width:100%;display:block;}
 .hero-blob.b1{width:420px;height:420px;background:var(--accent1);top:-160px;right:-120px;}
 .hero-blob.b2{width:380px;height:380px;background:var(--accent2);bottom:-180px;left:-140px;opacity:.25;}
 .hero-inner{position:relative;z-index:1;}
-.hero-heading-row{display:flex;gap:1.3rem;align-items:center;margin-bottom:1.2rem;}
+.hero-heading-row{display:flex;gap:1.4rem;align-items:center;margin-bottom:1.4rem;}
 .hero-photo-wrap{
   width:140px;height:140px;border-radius:28px;flex-shrink:0;
   box-shadow:0 12px 30px rgba(124,92,255,.25);
 }
 .hero-photo{width:100%;height:100%;border-radius:28px;overflow:hidden;}
 .hero-photo img{width:100%;height:100%;object-fit:cover;}
+.hero-id{display:flex;flex-direction:column;}
 .hero-text{max-width:640px;}
 .hero-name{
   font-family:var(--disp);font-weight:800;font-size:clamp(1.8rem,4.5vw,2.4rem);
@@ -148,12 +149,16 @@ img{max-width:100%;display:block;}
   margin-top:.4rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .hero-desc{font-size:.82rem;color:var(--ink-2);max-width:60ch;line-height:1.65;}
-.hero-cta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem;}
+.hero-actions{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid var(--line);
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.6rem;}
 .btn-primary{
   display:inline-flex;align-items:center;gap:.45rem;
   background:var(--grad);color:#0A0E18;font-weight:600;
   padding:.62rem 1.25rem;border-radius:30px;
-  font-family:var(--mono);font-size:.72rem;border:none;cursor:pointer;
+  font-family:var(--mono);font-size:.7rem;border:none;cursor:pointer;
   transition:transform .18s,box-shadow .18s;
 }
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(124,92,255,.35);}
@@ -161,23 +166,23 @@ img{max-width:100%;display:block;}
   display:inline-flex;align-items:center;gap:.45rem;
   background:transparent;color:var(--ink);border:1px solid var(--line-strong);
   padding:.62rem 1.25rem;border-radius:30px;
-  font-family:var(--mono);font-size:.72rem;cursor:pointer;transition:all .18s;
+  font-family:var(--mono);font-size:.7rem;cursor:pointer;transition:all .18s;
 }
 .btn-outline:hover{border-color:var(--accent2);color:var(--accent2);}
-.hero-socials{display:flex;gap:.5rem;margin-top:1rem;}
+.hero-socials{display:flex;gap:.5rem;}
 .hero-socials a{
-  width:30px;height:30px;border-radius:50%;border:1px solid var(--line-strong);
+  width:32px;height:32px;border-radius:50%;border:1px solid var(--line-strong);
   display:flex;align-items:center;justify-content:center;color:var(--ink-2);font-size:.75rem;
   transition:all .18s;
 }
 .hero-socials a:hover{border-color:transparent;background:var(--grad);color:#0A0E18;}
-.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem;}
 .hero-badges span{
-  font-family:var(--mono);font-size:.62rem;color:var(--ink-2);
+  font-family:var(--mono);font-size:.7rem;color:var(--ink-2);
   border:1px solid var(--line);padding:.28rem .65rem;border-radius:20px;
   display:inline-flex;align-items:center;gap:.35rem;
 }
-.hero-badges i{color:var(--accent2);font-size:.65rem;}
+.hero-badges i{color:var(--accent2);font-size:.7rem;}
 
 /* ══════════════════════════════════════════
    SECTION SHELL
@@ -197,7 +202,6 @@ img{max-width:100%;display:block;}
   display:inline-flex;align-items:center;gap:.35rem;
 }
 .section-more:hover{text-decoration:underline;}
-
 
 /* ══════════════════════════════════════════
    SKILLS — tech icon grid
@@ -447,25 +451,27 @@ img{max-width:100%;display:block;}
           <img src="assets/gwenita.jpg" alt="Gwen Basconcillo" onerror="this.style.display='none'">
         </div>
       </div>
-      <div>
+      <div class="hero-id">
         <h1 class="hero-name">Gwen Basconcillo</h1>
-        <div class="hero-role">UI/UX Designer &amp; Web Development </div>
+        <div class="hero-role">UI/UX Designer &amp; IT Graduate — Web Development · QA Testing · Technical Documentation</div>
+        <div class="hero-badges">
+          <span><i class="fas fa-graduation-cap"></i> BS Information Technology, MinSU</span>
+          <span><i class="fas fa-location-dot"></i> Oriental Mindoro, PH</span>
+        </div>
       </div>
     </div>
     <div class="hero-text">
       <p class="hero-desc">Aspiring Information Technology professional with skills in web development, UI/UX design, quality assurance, and technical documentation. Experienced in building responsive web applications using JavaScript, PHP, Node.js, HTML/CSS, and MySQL, while creating intuitive user experiences that balance functionality and design. Known for being detail-oriented, adaptable, and committed to delivering reliable digital solutions through continuous learning, problem-solving, and a user-centered approach.</p>
-      <div class="hero-cta">
-        <a href="assets/Basconcillo_Resume.pdf" target="_blank" class="btn-primary"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
-        <button class="btn-outline" id="contactScrollBtn"><i class="fas fa-envelope"></i> Get in Touch</button>
-      </div>
-      <div class="hero-socials">
-        <a href="mailto:gwenbasconcillo11@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/oncepebrero" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://facebook.com/oncepebrero" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      </div>
-      <div class="hero-badges">
-        <span><i class="fas fa-graduation-cap"></i> BS Information Technology, MinSU</span>
-        <span><i class="fas fa-location-dot"></i> Calapan City, Oriental Mindoro, PH</span>
+      <div class="hero-actions">
+        <div class="hero-cta">
+          <a href="assets/Basconcillo_Resume.pdf" target="_blank" class="btn-primary"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
+          <button class="btn-outline" id="contactScrollBtn"><i class="fas fa-envelope"></i> Get in Touch</button>
+        </div>
+        <div class="hero-socials">
+          <a href="mailto:gwenbasconcillo11@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/oncepebrero" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://facebook.com/oncepebrero" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
       </div>
     </div>
   </div>
