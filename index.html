@@ -318,7 +318,7 @@ img{max-width:100%;display:block;}
 .is-hidden{display:none !important;}
 
 @media (max-width:900px){ .proj-grid{grid-template-columns:1fr 1fr;} }
-@media (max-width:600px){ .proj-grid{grid-template-columns:1fr;} }
+@media (max-width:900px){ .cert-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));} }
 
 /* ══════════════════════════════════════════
    CONNECT
@@ -392,6 +392,27 @@ img{max-width:100%;display:block;}
   .connect-panel{padding:1.3rem 1.1rem;}
   .wrap{padding:0 1.1rem;}
   .nav-inner{padding:.6rem 1.1rem;}
+
+  /* keep certifications & projects compact on small screens */
+  .cert-grid{grid-template-columns:1fr 1fr;gap:.55rem;}
+  .cert-thumb{aspect-ratio:4/3;}
+  .cert-info{padding:.55rem .6rem .65rem;}
+  .cert-name{font-size:.68rem;}
+  .cert-meta{flex-direction:column;align-items:flex-start;gap:.15rem;}
+  .cert-issuer,.cert-date{font-size:.52rem;}
+  .cert-skills{gap:.22rem;padding-top:.4rem;margin-top:.4rem;}
+  .cert-skills span{font-size:.5rem;padding:.12rem .32rem;}
+  .cert-ext{width:18px;height:18px;font-size:.5rem;}
+
+  .proj-grid{grid-template-columns:1fr 1fr;gap:.5rem;}
+  .proj-thumb{aspect-ratio:4/3;}
+  .proj-body{padding:.5rem .55rem .6rem;gap:.24rem;}
+  .proj-title{font-size:.66rem;}
+  .proj-org,.proj-year,.proj-role{font-size:.52rem;}
+  .proj-bullets li{font-size:.58rem;-webkit-line-clamp:2;}
+  .proj-stack span{font-size:.5rem;padding:.12rem .34rem;}
+  .proj-link{font-size:.54rem;}
+  .proj-status{font-size:.48rem;padding:.16rem .42rem;}
 }
 @media (max-width:420px){
   .hero-photo-wrap{width:100px;height:100px;}
