@@ -1,945 +1,900 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gwen Basconcillo</title>
-  <link rel="icon" type="image/png" href="assets/gwenita.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gwen Basconcillo — UI/UX Designer &amp; IT Graduate</title>
+<meta name="description" content="Portfolio of Gwen Basconcillo, BS Information Technology graduate specializing in UI/UX design, web development, QA testing, and technical documentation.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+<style>
 
-    /* ══════════════════════════════
-       TOKENS — DARK (default)
-    ══════════════════════════════ */
-    :root {
-      --bg:        #0d0f1a;
-      --surface:   #131627;
-      --surface2:  #181c30;
-      --border:    #252a45;
-      --primary:   #7ba4ff;
-      --accent:    #c084fc;
-      --gold:      #fbbf24;
-      --green:     #34d399;
-      --text-1:    #e8eeff;
-      --text-2:    #b0bcd8;
-      --text-3:    #7a86a8;
-      --mono:      'Share Tech Mono', monospace;
-      --display:   'Orbitron', sans-serif;
-      --body:      'Exo 2', sans-serif;
-      --r:         10px;
-      --glow:      0 0 16px rgba(123,164,255,.2);
-    }
+/* ══════════════════════════════════════════
+   TOKENS
+   ══════════════════════════════════════════ */
+:root{
+  --bg:#080B14;
+  --surface:#0F1420;
+  --surface-2:#141A2A;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.14);
+  --ink:#F4F6FB;
+  --ink-2:#AEB6C7;
+  --ink-3:#6E7690;
+  --accent1:#7C5CFF;
+  --accent2:#22D3EE;
+  --grad:linear-gradient(135deg,var(--accent1),var(--accent2));
+  --teal:#2DD9A8;
+  --amber:#FFB454;
+  --red:#FF6B6B;
+  --disp:'Space Grotesk',sans-serif;
+  --body:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --shadow:0 20px 50px rgba(0,0,0,.35);
+}
+[data-theme="light"]{
+  --bg:#F5F6FA;
+  --surface:#FFFFFF;
+  --surface-2:#EEF0F6;
+  --line:rgba(20,25,40,.09);
+  --line-strong:rgba(20,25,40,.16);
+  --ink:#12172A;
+  --ink-2:#4B5468;
+  --ink-3:#828B9E;
+  --shadow:0 20px 50px rgba(20,25,40,.08);
+}
 
-    /* ══════════════════════════════
-       TOKENS — LIGHT
-    ══════════════════════════════ */
-    [data-theme="light"] {
-      --bg:       #eef1fa;
-      --surface:  #ffffff;
-      --surface2: #f4f6fd;
-      --border:   #d4daf0;
-      --primary:  #2d52cc;
-      --accent:   #7c3aed;
-      --gold:     #b45309;
-      --green:    #047857;
-      --text-1:   #0e1535;
-      --text-2:   #2c3a6a;
-      --text-3:   #6070a0;
-      --glow:     0 0 12px rgba(45,82,204,.1);
-    }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--body);
+  background:var(--bg);
+  color:var(--ink-2);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s ease,color .3s ease;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font:inherit;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.4rem;}
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+/* ══════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1040px;margin:0 auto;padding:.85rem 1.4rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.nav-logo{font-family:var(--disp);font-weight:700;font-size:1rem;color:var(--ink);display:flex;align-items:center;gap:.5rem;}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--grad);}
+.nav-links{display:flex;gap:1.6rem;align-items:center;}
+.nav-links a{
+  font-family:var(--mono);font-size:.72rem;color:var(--ink-2);letter-spacing:.02em;
+  transition:color .18s;position:relative;
+}
+.nav-links a:hover{color:var(--ink);}
+.nav-right{display:flex;align-items:center;gap:.7rem;}
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line-strong);background:transparent;color:var(--ink-2);
+  cursor:pointer;transition:all .18s;font-size:.75rem;
+}
+.theme-toggle:hover{border-color:var(--accent2);color:var(--accent2);}
+.nav-resume{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--grad);color:#0A0E18;
+  padding:.5rem 1rem;border-radius:30px;
+  font-family:var(--mono);font-size:.68rem;font-weight:600;
+}
+@media (max-width:760px){ .nav-links{display:none;} }
 
-    body {
-      font-family: var(--body);
-      background: var(--bg);
-      color: var(--text-2);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      padding: 1.5rem 1rem 3rem;
-      background-image:
-        linear-gradient(rgba(123,164,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(123,164,255,.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-    [data-theme="light"] body {
-      background-image:
-        linear-gradient(rgba(45,82,204,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(45,82,204,.03) 1px, transparent 1px);
-    }
+/* ══════════════════════════════════════════
+   HERO
+   ══════════════════════════════════════════ */
+.hero{position:relative;padding:3.2rem 0 2.6rem;overflow:hidden;}
+.hero-blob{
+  position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;z-index:0;pointer-events:none;
+}
+.hero-blob.b1{width:420px;height:420px;background:var(--accent1);top:-160px;right:-120px;}
+.hero-blob.b2{width:380px;height:380px;background:var(--accent2);bottom:-180px;left:-140px;opacity:.25;}
+.hero-inner{position:relative;z-index:1;}
+.hero-heading-row{display:flex;gap:1.4rem;align-items:center;margin-bottom:1.3rem;}
+.hero-photo-wrap{
+  width:128px;height:128px;border-radius:50%;flex-shrink:0;
+  background:var(--grad);padding:4px;box-shadow:0 12px 30px rgba(124,92,255,.25);
+}
+.hero-photo{width:100%;height:100%;border-radius:50%;overflow:hidden;border:3px solid var(--bg);}
+.hero-photo img{width:100%;height:100%;object-fit:cover;}
+.hero-text{max-width:640px;}
+.hero-name{
+  font-family:var(--disp);font-weight:800;font-size:clamp(1.8rem,4.5vw,2.4rem);
+  color:var(--ink);line-height:1.1;letter-spacing:-.01em;
+}
+.hero-role{
+  font-family:var(--disp);font-weight:500;font-size:clamp(.9rem,2vw,1.05rem);
+  margin-top:.4rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-desc{font-size:.84rem;color:var(--ink-2);max-width:60ch;line-height:1.7;}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--grad);color:#0A0E18;font-weight:600;
+  padding:.7rem 1.4rem;border-radius:30px;
+  font-family:var(--mono);font-size:.75rem;border:none;cursor:pointer;
+  transition:transform .18s,box-shadow .18s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(124,92,255,.35);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:var(--ink);border:1px solid var(--line-strong);
+  padding:.7rem 1.4rem;border-radius:30px;
+  font-family:var(--mono);font-size:.75rem;cursor:pointer;transition:all .18s;
+}
+.btn-outline:hover{border-color:var(--accent2);color:var(--accent2);}
+.hero-socials{display:flex;gap:.6rem;margin-top:1.1rem;}
+.hero-socials a{
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;color:var(--ink-2);font-size:.85rem;
+  transition:all .18s;
+}
+.hero-socials a:hover{border-color:transparent;background:var(--grad);color:#0A0E18;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem;}
+.hero-badges span{
+  font-family:var(--mono);font-size:.65rem;color:var(--ink-2);
+  border:1px solid var(--line);padding:.32rem .7rem;border-radius:20px;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.hero-badges i{color:var(--accent2);font-size:.7rem;}
 
-    .page { max-width: 900px; margin: 0 auto; animation: fadeUp .45s ease both; }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+/* ══════════════════════════════════════════
+   SECTION SHELL
+   ══════════════════════════════════════════ */
+.section{padding:2.4rem 0;}
+.section-head{margin-bottom:1.4rem;}
+.section-eyebrow{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent2);display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;
+}
 
-    /* ══════════════════════════════
-       HERO
-    ══════════════════════════════ */
-    .hero {
-      display: grid;
-      grid-template-columns: 230px 1fr auto;
-      align-items: center;
-      gap: 1.4rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1.7rem 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: var(--glow);
-      position: relative;
-    }
+.section-title{font-family:var(--disp);font-weight:700;font-size:1.7rem;color:var(--ink);}
+.section-sub{font-size:.82rem;color:var(--ink-3);margin-top:.5rem;max-width:60ch;}
+.section-toprow{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.section-more{
+  font-family:var(--mono);font-size:.7rem;color:var(--accent2);background:none;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.section-more:hover{text-decoration:underline;}
 
-    /* left: photo + badge */
-    .hero-left {
-      display: flex; flex-direction: column; align-items: center; gap: .6rem;
-    }
-    .profile-wrap {
-      position: relative; width: 140px; height: 140px;
-      transition: transform .3s cubic-bezier(.34,1.56,.64,1); cursor: pointer;
-    }
-    .profile-wrap:hover { transform: scale(1.05); }
-    .profile-ring {
-      position: absolute; inset: -3px; border-radius: 50%;
-      background: conic-gradient(var(--primary), var(--accent), var(--primary));
-      animation: spin 6s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .profile-pic {
-      position: relative; z-index: 1;
-      width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
-      border: 3px solid var(--bg);
-    }
-    .profile-pic img { width:100%; height:100%; object-fit:cover; display:block; }
-    .pfp-fallback {
-      width:100%; height:100%;
-      background: linear-gradient(135deg,#1a1f40,#2a1f50);
-      display:none; align-items:center; justify-content:center;
-      font-family:var(--display); font-size:1.8rem; color:var(--primary);
-    }
-    .class-badge {
-      font-family: var(--mono); font-size: .6rem;
-      background: rgba(123,164,255,.1); border: 1px solid rgba(123,164,255,.25);
-      color: var(--primary); padding: .25rem .65rem; border-radius: 20px;
-      display: flex; align-items: center; gap: .35rem;
-      text-align: center; line-height: 1.4;
-    }
-    [data-theme="light"] .class-badge {
-      background: rgba(45,82,204,.08); border-color: rgba(45,82,204,.2);
-    }
-    .status-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--green); flex-shrink: 0;
-      animation: blink 2s infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+/* ══════════════════════════════════════════
+   QUICK FACTS
+   ══════════════════════════════════════════ */
+.fact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.fact-cell{background:var(--surface);padding:1.1rem 1rem;text-align:center;}
+.fact-cell i{color:var(--accent2);font-size:1.1rem;margin-bottom:.5rem;display:block;}
+.fact-cell b{display:block;font-family:var(--disp);font-size:.85rem;color:var(--ink);}
+.fact-cell span{font-family:var(--mono);font-size:.6rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;}
+@media (max-width:640px){ .fact-grid{grid-template-columns:repeat(2,1fr);} }
 
-    /* center: text */
-    .hero-center { display: flex; flex-direction: column; gap: .4rem; }
-    .hero-name {
-      font-family: var(--display); font-size: 1.75rem; font-weight: 900;
-      color: var(--text-1); line-height: 1.1;
-    }
-    .hero-name span { color: var(--primary); }
-    .hero-meta { display: flex; flex-direction: column; gap: .22rem; }
-    .hero-meta span {
-      font-family: var(--mono); font-size: .67rem; color: var(--text-3);
-      display: flex; align-items: center; gap: .4rem;
-    }
-    .hero-meta i { color: var(--primary); width: 11px; text-align: center; }
-    .hero-btns { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .3rem; }
+/* ══════════════════════════════════════════
+   SKILLS — tech icon grid
+   ══════════════════════════════════════════ */
+.skill-block{margin-bottom:1.3rem;}
+.skill-block:last-child{margin-bottom:0;}
+.skill-cat-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem;}
+.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:.85rem;}
+.icon-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:1rem .6rem;display:flex;flex-direction:column;align-items:center;gap:.55rem;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.icon-card:hover{transform:translateY(-4px);border-color:var(--accent1);box-shadow:0 12px 24px rgba(124,92,255,.15);}
+.icon-card i{font-size:1.6rem;}
+.icon-card span{font-family:var(--mono);font-size:.62rem;color:var(--ink-2);text-align:center;}
+.practice-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.practice-tags span{
+  font-family:var(--mono);font-size:.68rem;color:var(--ink);
+  background:var(--surface-2);border:1px solid var(--line);
+  padding:.4rem .85rem;border-radius:20px;
+}
 
-    .btn-solid {
-      display: inline-flex; align-items: center; gap: .35rem;
-      background: var(--primary); color: #fff;
-      padding: .38rem .85rem; border-radius: 6px;
-      font-family: var(--mono); font-size: .68rem;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: opacity .2s, transform .15s;
-    }
-    .btn-solid:hover { opacity: .88; transform: translateY(-1px); }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: .35rem;
-      background: transparent; color: var(--text-2);
-      padding: .38rem .85rem; border-radius: 6px;
-      font-family: var(--mono); font-size: .68rem;
-      border: 1px solid var(--border); cursor: pointer;
-      transition: border-color .2s, color .2s;
-    }
-    .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+/* ══════════════════════════════════════════
+   EXPERIENCE / EDUCATION — timeline
+   ══════════════════════════════════════════ */
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--line-strong);}
+.tl-item{position:relative;padding-bottom:1.4rem;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  position:absolute;left:-2rem;top:2px;width:14px;height:14px;border-radius:50%;
+  background:var(--grad);box-shadow:0 0 0 4px var(--bg);
+}
+.tl-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem;
+}
+.tl-date{font-family:var(--mono);font-size:.66rem;color:var(--accent2);}
+.tl-org{font-family:var(--disp);font-weight:700;font-size:1rem;color:var(--ink);margin-top:.3rem;}
+.tl-role{font-family:var(--mono);font-size:.68rem;color:var(--ink-2);margin-top:.25rem;}
+.tl-badge{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--mono);font-size:.64rem;color:var(--amber);margin-top:.5rem;}
+.tl-bullets{margin-top:.7rem;display:flex;flex-direction:column;gap:.4rem;}
+.tl-bullets li{font-size:.78rem;color:var(--ink-2);line-height:1.6;position:relative;padding-left:.85rem;}
+.tl-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent2);font-size:.65rem;}
 
-    /* col 3 — toggle only */
-    .hero-right {
-      display: flex; flex-direction: column;
-      align-items: flex-end; justify-content: flex-start;
-      gap: .4rem; align-self: flex-start;
-    }
-    .theme-sw { position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0; }
-    .theme-sw input { opacity: 0; width: 0; height: 0; }
-    .theme-sw .sl {
-      position: absolute; inset: 0; cursor: pointer;
-      background: var(--border); border-radius: 24px; transition: background .3s;
-    }
-    .theme-sw .sl::before {
-      content: "☀︎"; position: absolute;
-      width: 19px; height: 19px; left: 2.5px; bottom: 2.5px;
-      background: linear-gradient(135deg,#f59e0b,#3b82f6);
-      border-radius: 50%; font-size: 10px; color: #fff;
-      line-height: 19px; text-align: center;
-      transition: transform .3s cubic-bezier(.34,1.56,.64,1);
-    }
-    .theme-sw input:checked + .sl { background: rgba(123,164,255,.3); }
-    .theme-sw input:checked + .sl::before {
-      content: "⏾"; transform: translateX(20px);
-      background: linear-gradient(135deg,var(--accent),var(--primary));
-    }
+/* ══════════════════════════════════════════
+   CERTIFICATIONS — image cards
+   ══════════════════════════════════════════ */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem;}
+.cert-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.cert-card:hover{transform:translateY(-5px);border-color:var(--accent1);box-shadow:0 16px 32px rgba(124,92,255,.18);}
+.cert-thumb{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--surface-2);}
+.cert-thumb img{width:100%;height:100%;object-fit:cover;}
+.cert-ext{
+  position:absolute;top:.55rem;right:.55rem;width:26px;height:26px;border-radius:50%;
+  background:rgba(8,11,20,.7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.65rem;
+  backdrop-filter:blur(4px);
+}
+.cert-info{padding:.9rem 1rem 1rem;}
+.cert-name{font-family:var(--disp);font-weight:600;font-size:.82rem;color:var(--ink);line-height:1.35;}
+.cert-meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.4rem;}
+.cert-issuer{font-family:var(--mono);font-size:.6rem;color:var(--ink-3);}
+.cert-date{font-family:var(--mono);font-size:.6rem;color:var(--accent2);white-space:nowrap;}
+.cert-skills{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem;padding-top:.55rem;border-top:1px dashed var(--line);}
+.cert-skills span{font-family:var(--mono);font-size:.58rem;color:var(--ink-2);background:var(--surface-2);padding:.16rem .45rem;border-radius:4px;}
 
-    /* hero stats */
-    .hero-stats { display: flex; gap: .5rem; }
-    .hstat {
-      display: flex; flex-direction: column; align-items: center; gap: .08rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 6px; padding: .3rem .55rem; min-width: 48px;
-    }
-    .hstat-val { font-family: var(--display); font-size: .8rem; font-weight: 700; color: var(--gold); }
-    .hstat-lbl { font-family: var(--mono); font-size: .48rem; letter-spacing: .07em; color: var(--text-3); text-transform: uppercase; }
+/* ══════════════════════════════════════════
+   PROJECTS — image cards
+   ══════════════════════════════════════════ */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.proj-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;height:100%;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.proj-card:hover{transform:translateY(-5px);border-color:var(--accent1);box-shadow:0 20px 40px rgba(124,92,255,.18);}
+.proj-thumb{width:100%;aspect-ratio:16/8;position:relative;overflow:hidden;cursor:pointer;background:var(--surface-2);}
+.proj-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s;}
+.proj-thumb:hover img{transform:scale(1.06);}
+.proj-status{
+  position:absolute;top:.7rem;left:.7rem;
+  font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+  padding:.28rem .65rem;border-radius:20px;backdrop-filter:blur(4px);
+}
+.status-shipped{background:rgba(45,217,168,.16);color:var(--teal);border:1px solid rgba(45,217,168,.4);}
+.status-academic{background:rgba(124,92,255,.16);color:#B4A6FF;border:1px solid rgba(124,92,255,.4);}
+.status-prototype{background:rgba(255,180,84,.16);color:var(--amber);border:1px solid rgba(255,180,84,.4);}
+.status-internship{background:rgba(255,180,84,.16);color:var(--amber);border:1px solid rgba(255,180,84,.4);}
+.proj-body{padding:.85rem .95rem 1rem;display:flex;flex-direction:column;gap:.45rem;flex:1;}
+.proj-title{font-family:var(--disp);font-weight:700;font-size:.86rem;color:var(--ink);}
+.proj-org{font-family:var(--mono);font-size:.62rem;color:var(--ink-3);margin-top:.1rem;}
+.proj-year{font-family:var(--mono);font-size:.62rem;color:var(--ink-3);font-weight:400;}
+.proj-role{font-family:var(--mono);font-size:.62rem;color:var(--accent2);margin-top:.15rem;}
+.proj-bullets{display:flex;flex-direction:column;gap:.3rem;}
+.proj-bullets li{font-size:.71rem;color:var(--ink-2);line-height:1.5;position:relative;padding-left:.8rem;}
+.proj-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent2);font-size:.62rem;}
+.proj-foot{margin-top:auto;padding-top:.5rem;display:flex;flex-direction:column;gap:.55rem;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.32rem;}
+.proj-stack span{font-family:var(--mono);font-size:.58rem;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);padding:.18rem .48rem;border-radius:5px;}
+.proj-link{font-family:var(--mono);font-size:.65rem;color:var(--accent2);display:inline-flex;align-items:center;gap:.35rem;width:fit-content;}
+.proj-link:hover{text-decoration:underline;}
 
-    /* ══════════════════════════════
-       BODY LAYOUT
-    ══════════════════════════════ */
-    .body-wrap { display: grid; grid-template-columns: 260px 1fr; gap: 1rem; align-items: start; }
-    .sidebar { display: flex; flex-direction: column; gap: 1rem; }
-    .main-col { display: flex; flex-direction: column; gap: 1rem; }
+.is-hidden{display:none !important;}
 
-    /* ══════════════════════════════
-       PANEL
-    ══════════════════════════════ */
-    .panel {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 1rem 1.1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,.12);
-    }
-    .panel-heading {
-      font-family: var(--mono); font-size: .6rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase; color: var(--primary);
-      display: flex; align-items: center; gap: .4rem;
-      margin-bottom: .75rem; padding-bottom: .45rem;
-      border-bottom: 1px solid var(--border);
-    }
+@media (max-width:720px){ .proj-grid{grid-template-columns:1fr;} }
 
-    /* about bio */
-    .bio-text {
-      font-family: var(--body); font-size: .78rem; color: var(--text-2);
-      line-height: 1.7;
-    }
+/* ══════════════════════════════════════════
+   CONNECT
+   ══════════════════════════════════════════ */
+.connect-panel{
+  background:linear-gradient(135deg, rgba(124,92,255,.12), rgba(34,211,238,.08));
+  border:1px solid var(--line-strong);border-radius:20px;padding:1.6rem 1.6rem;
+}
+.connect-text{font-size:.85rem;color:var(--ink-2);line-height:1.75;margin-bottom:1.4rem;max-width:60ch;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem;}
+.fg label{font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase;}
+.fg input,.fg textarea{
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:10px;
+  padding:.65rem .85rem;font-family:var(--body);font-size:.82rem;color:var(--ink);
+  outline:none;transition:border-color .18s;resize:none;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--ink-3);}
+.fg input:focus,.fg textarea:focus{border-color:var(--accent1);}
+.ferr{font-family:var(--mono);font-size:.6rem;color:var(--red);min-height:.85rem;}
 
-    /* skills */
-    .skill-sub { font-family: var(--mono); font-size: .57rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: .38rem; }
-    .skill-row { display: flex; align-items: center; gap: .5rem; margin-bottom: .45rem; }
-    .skill-name { font-family: var(--mono); font-size: .65rem; color: var(--text-2); min-width: 78px; }
-    .skill-bar-wrap { flex: 1; }
-    .skill-bar-bg { width: 100%; height: 4px; background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
-    [data-theme="light"] .skill-bar-bg { background: #e8ecf8; }
-    .skill-bar-fill {
-      height: 100%; border-radius: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transform-origin: left; animation: barGrow .7s cubic-bezier(.22,1,.36,1) both;
-    }
-    @keyframes barGrow { from { transform: scaleX(0); } }
-    .skill-lvl { font-family: var(--mono); font-size: .56rem; color: var(--gold); min-width: 32px; text-align: right; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: .28rem; margin-top: .15rem; }
-    .skill-tags span {
-      font-family: var(--mono); font-size: .58rem;
-      background: rgba(123,164,255,.08); border: 1px solid rgba(123,164,255,.18);
-      color: var(--primary); padding: .15rem .42rem; border-radius: 4px;
-    }
-    [data-theme="light"] .skill-tags span {
-      background: rgba(45,82,204,.07); border-color: rgba(45,82,204,.18);
-    }
+/* footer */
+.site-footer{
+  text-align:center;padding:2.4rem 1.4rem;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.65rem;color:var(--ink-3);letter-spacing:.03em;
+}
+.site-footer p+p{margin-top:.4rem;}
 
-    /* experience/education */
-    .lore-item { border-left: 2px solid var(--primary); padding-left: .65rem; margin-bottom: .6rem; }
-    .lore-item:last-child { margin-bottom: 0; }
-    .lore-title { font-family: var(--mono); font-size: .7rem; color: var(--text-1); font-weight: 600; }
-    .lore-sub { font-family: var(--mono); font-size: .62rem; color: var(--text-3); margin-top: .1rem; line-height: 1.5; }
-    .lore-badge {
-      display: inline-block; margin-top: .25rem;
-      font-family: var(--mono); font-size: .55rem;
-      background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.3);
-      color: var(--gold); padding: .12rem .38rem; border-radius: 4px;
-    }
-    [data-theme="light"] .lore-badge { background: rgba(180,83,9,.08); border-color: rgba(180,83,9,.25); }
+/* toast */
+.toast{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(50px);
+  background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:.7rem;
+  padding:.55rem 1.15rem;border-radius:30px;box-shadow:0 8px 24px rgba(0,0,0,.25);
+  opacity:0;transition:all .28s;z-index:9999;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-    /* language */
-    .lang-list { list-style: none; display: flex; flex-direction: column; gap: .25rem; }
-    .lang-list li {
-      font-family: var(--mono); font-size: .7rem; color: var(--text-2);
-      display: flex; align-items: center; gap: .4rem;
-    }
-    .lang-list li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--primary); flex-shrink:0; }
+/* image modal */
+.img-modal{
+  display:none;position:fixed;inset:0;z-index:3000;
+  background:rgba(4,6,12,.92);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:2rem;
+}
+.img-modal.open{display:flex;}
+.img-modal-inner{position:relative;max-width:800px;width:100%;}
+.img-modal-inner img{width:100%;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6);display:block;}
+.img-modal-cap{font-family:var(--mono);font-size:.65rem;color:#c5cedd;text-align:center;margin-top:.7rem;}
+.img-modal-close{
+  position:fixed;top:1.2rem;right:1.2rem;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+  color:#fff;border-radius:50%;width:36px;height:36px;font-size:.85rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background .18s;
+}
+.img-modal-close:hover{background:var(--accent1);}
 
-    /* hobbies */
-    .hobby-cols { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-    .hobby-sub { font-family: var(--mono); font-size: .57rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: .28rem; }
-    .hobby-list { list-style: none; }
-    .hobby-list li { font-family: var(--mono); font-size: .66rem; color: var(--text-2); padding: .15rem 0; transition: color .15s; }
-    .hobby-list li:hover { color: var(--primary); }
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
 
-    /* ══════════════════════════════
-       SECTION HEADING
-    ══════════════════════════════ */
-    .section-head { display: flex; align-items: center; gap: .55rem; margin-bottom: .8rem; }
-    .section-head-icon { color: var(--gold); font-size: .7rem; }
-    .section-head-label {
-      font-family: var(--mono); font-size: .65rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase; color: var(--text-1);
-      white-space: nowrap;
-    }
-    .section-head-line { flex: 1; height: 1px; background: var(--border); }
-
-    /* mc-heading */
-    .mc-heading { display: flex; align-items: center; margin-bottom: .8rem; }
-
-    /* currently */
-    .cur-list { display: flex; flex-direction: column; gap: .4rem; }
-    .cur-item {
-      display: flex; align-items: flex-start; gap: .55rem;
-      font-family: var(--body); font-size: .78rem; color: var(--text-2); line-height: 1.6;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-left: 3px solid var(--primary);
-      border-radius: 0 6px 6px 0; padding: .45rem .65rem;
-    }
-    .cur-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); flex-shrink: 0; margin-top: .45rem; }
-    .cur-item strong { color: var(--text-1); }
-
-    /* toggle btn */
-    .toggle-btn {
-      font-family: var(--mono); font-size: .6rem;
-      background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text-3); padding: .28rem .65rem;
-      border-radius: 6px; cursor: pointer;
-      display: flex; align-items: center; gap: .28rem;
-      transition: all .18s; margin-left: .65rem; white-space: nowrap;
-    }
-    .toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
-
-    /* ══════════════════════════════
-       CERTIFICATIONS
-    ══════════════════════════════ */
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: .6rem; }
-    .cert-card {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 8px; padding: .7rem;
-      display: flex; align-items: flex-start; gap: .5rem;
-      transition: border-color .18s, box-shadow .18s; cursor: pointer;
-    }
-    .cert-card:hover { border-color: var(--primary); box-shadow: var(--glow); }
-    .cert-icon { width: 28px; height: 28px; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: .75rem; }
-    .cc1 { background: rgba(99,102,241,.15);  color: #818cf8; }
-    .cc2 { background: rgba(20,184,166,.15);  color: #2dd4bf; }
-    .cc3 { background: rgba(245,158,11,.15);  color: #f59e0b; }
-    .cc4 { background: rgba(239,68,68,.15);   color: #f87171; }
-    .cc5 { background: rgba(168,85,247,.15);  color: #c084fc; }
-    .cc6 { background: rgba(34,211,238,.15);  color: #22d3ee; }
-    [data-theme="light"] .cc1 { background: rgba(99,102,241,.12); color: #4338ca; }
-    [data-theme="light"] .cc2 { background: rgba(20,184,166,.12); color: #0d9488; }
-    [data-theme="light"] .cc3 { background: rgba(245,158,11,.12); color: #b45309; }
-    [data-theme="light"] .cc4 { background: rgba(239,68,68,.12);  color: #dc2626; }
-    [data-theme="light"] .cc5 { background: rgba(168,85,247,.12); color: #7c3aed; }
-    [data-theme="light"] .cc6 { background: rgba(34,211,238,.12); color: #0891b2; }
-    .cert-body { flex: 1; min-width: 0; }
-    .cert-name { font-family: var(--mono); font-size: .66rem; color: var(--text-1); font-weight: 600; line-height: 1.35; }
-    .cert-issuer { font-family: var(--mono); font-size: .58rem; color: var(--text-3); margin-top: .1rem; }
-    .cert-date { font-family: var(--mono); font-size: .56rem; color: var(--primary); margin-top: .1rem; }
-    .cert-ext { color: var(--text-3); font-size: .58rem; flex-shrink: 0; margin-top: .15rem; }
-
-    /* ══════════════════════════════
-       PROJECTS
-    ══════════════════════════════ */
-    .proj-list { display: flex; flex-direction: column; gap: .6rem; }
-    .proj-entry {
-      display: grid; grid-template-columns: 68px 1fr;
-      gap: .7rem; align-items: start;
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 8px; padding: .75rem;
-      transition: border-color .18s, box-shadow .18s; cursor: default;
-    }
-    .proj-entry:hover { border-color: var(--primary); box-shadow: var(--glow); }
-    .proj-thumb-sm {
-      width: 68px; height: 50px; border-radius: 6px;
-      background: var(--border); overflow: hidden; position: relative;
-      border: 1px solid var(--border); flex-shrink: 0; cursor: pointer;
-    }
-    .proj-thumb-sm img { width:100%; height:100%; object-fit:cover; display:block; }
-    .pzoom {
-      position: absolute; inset: 0; background: rgba(0,0,0,.5);
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: .65rem; opacity: 0; transition: opacity .18s;
-    }
-    .proj-thumb-sm:hover .pzoom { opacity: 1; }
-    .proj-main { display: flex; flex-direction: column; gap: .15rem; }
-    .proj-header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: .4rem; }
-    .proj-title { font-family: var(--display); font-size: .75rem; font-weight: 700; color: var(--text-1); line-height: 1.3; }
-    .proj-year {
-      font-family: var(--mono); font-size: .56rem;
-      background: rgba(251,191,36,.1); border: 1px solid rgba(251,191,36,.22);
-      color: var(--gold); padding: .14rem .38rem; border-radius: 4px;
-      white-space: nowrap; flex-shrink: 0; margin-top: .05rem;
-    }
-    [data-theme="light"] .proj-year { background: rgba(180,83,9,.07); border-color: rgba(180,83,9,.2); }
-    .proj-org { font-family: var(--mono); font-size: .62rem; color: var(--accent); margin-bottom: .28rem; }
-    .proj-bullets { list-style: none; display: flex; flex-direction: column; gap: .2rem; }
-    .proj-bullets li {
-      font-family: var(--body); font-size: .73rem; color: var(--text-2);
-      padding-left: .85rem; position: relative; line-height: 1.45;
-    }
-    .proj-bullets li::before { content:'◦'; position:absolute; left:0; color:var(--accent); }
-    .proj-tech-row { display: flex; flex-wrap: wrap; gap: .25rem; margin-top: .32rem; }
-    .ptag {
-      font-family: var(--mono); font-size: .55rem;
-      background: rgba(192,132,252,.08); border: 1px solid rgba(192,132,252,.18);
-      color: var(--accent); padding: .14rem .4rem; border-radius: 4px;
-      display: flex; align-items: center; gap: .25rem;
-    }
-    [data-theme="light"] .ptag { background: rgba(124,58,237,.07); border-color: rgba(124,58,237,.2); }
-    .proj-gh-link {
-      display: inline-flex; align-items: center; gap: .28rem;
-      font-family: var(--mono); font-size: .6rem; color: var(--text-3);
-      border: 1px solid var(--border); border-radius: 4px;
-      padding: .18rem .45rem; text-decoration: none; margin-top: .3rem;
-      transition: all .18s; width: fit-content;
-    }
-    .proj-gh-link:hover { color: var(--primary); border-color: var(--primary); }
-
-    /* ══════════════════════════════
-       CONNECT
-    ══════════════════════════════ */
-    .connect-blurb-text { font-family: var(--body); font-size: .78rem; color: var(--text-2); line-height: 1.65; margin-bottom: .8rem; }
-    .connect-links { display: flex; gap: .4rem; flex-wrap: wrap; }
-    .cl {
-      display: inline-flex; align-items: center; gap: .35rem;
-      font-family: var(--mono); font-size: .65rem;
-      padding: .36rem .75rem; border-radius: 6px;
-      border: 1px solid var(--border); color: var(--text-2);
-      text-decoration: none; background: transparent; cursor: pointer;
-      transition: all .18s;
-    }
-    .cl:hover { border-color: var(--primary); color: var(--primary); }
-    .cl-email { background: rgba(123,164,255,.08); border-color: rgba(123,164,255,.25); color: var(--primary); }
-    .cl-fb   { background: rgba(59,130,246,.07);  border-color: rgba(59,130,246,.2);  color: #60a5fa; }
-    .cl-gh   { background: var(--surface2); }
-    [data-theme="light"] .cl-email { background: rgba(45,82,204,.07); border-color: rgba(45,82,204,.22); }
-    [data-theme="light"] .cl-fb   { background: rgba(37,99,235,.06);  border-color: rgba(37,99,235,.18); color: #2563eb; }
-    [data-theme="light"] .cl-gh   { color: var(--text-2); }
-
-    /* ══════════════════════════════
-       CONTACT FORM
-    ══════════════════════════════ */
-    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; margin-bottom: .55rem; }
-    .fg { display: flex; flex-direction: column; gap: .25rem; margin-bottom: .55rem; }
-    .fg label { font-family: var(--mono); font-size: .6rem; letter-spacing: .06em; color: var(--text-3); text-transform: uppercase; }
-    .fg input, .fg textarea {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 6px; padding: .45rem .65rem;
-      font-family: var(--mono); font-size: .73rem; color: var(--text-1);
-      outline: none; transition: border-color .18s, box-shadow .18s; resize: none;
-    }
-    .fg input::placeholder, .fg textarea::placeholder { color: var(--text-3); }
-    .fg input:focus, .fg textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(123,164,255,.1); }
-    [data-theme="light"] .fg input:focus, [data-theme="light"] .fg textarea:focus { box-shadow: 0 0 0 3px rgba(45,82,204,.08); }
-    .ferr { font-family: var(--mono); font-size: .58rem; color: #f87171; min-height: .85rem; }
-    [data-theme="light"] .ferr { color: #dc2626; }
-    .btn-submit {
-      display: inline-flex; align-items: center; gap: .38rem;
-      background: var(--primary); color: #fff;
-      padding: .44rem 1rem; border-radius: 6px;
-      font-family: var(--mono); font-size: .7rem; border: none; cursor: pointer;
-      transition: opacity .2s;
-    }
-    .btn-submit:hover { opacity: .85; }
-
-    /* ══════════════════════════════
-       FOOTER
-    ══════════════════════════════ */
-    .site-footer {
-      text-align: center; margin-top: 1.4rem;
-      font-family: var(--mono); font-size: .58rem; color: var(--text-3);
-      letter-spacing: .05em; padding-top: .75rem; border-top: 1px solid var(--border);
-    }
-    .ft-tag {
-      display: inline-block; font-family: var(--mono); font-size: .56rem;
-      background: rgba(123,164,255,.08); border: 1px solid rgba(123,164,255,.18);
-      color: var(--primary); padding: .08rem .35rem; border-radius: 3px; margin: 0 .08rem;
-    }
-    [data-theme="light"] .ft-tag { background: rgba(45,82,204,.07); border-color: rgba(45,82,204,.18); }
-    .ft-link { color: var(--primary); text-decoration: none; }
-
-    /* ══════════════════════════════
-       TOAST
-    ══════════════════════════════ */
-    .toast {
-      position: fixed; bottom: 1.5rem; left: 50%;
-      transform: translateX(-50%) translateY(50px);
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--text-1); font-family: var(--mono); font-size: .7rem;
-      padding: .5rem 1.1rem; border-radius: 30px;
-      box-shadow: 0 4px 18px rgba(0,0,0,.25);
-      opacity: 0; transition: all .28s; z-index: 9999; pointer-events: none;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* ══════════════════════════════
-       MODALS
-    ══════════════════════════════ */
-    .section-modal {
-      display: none; position: fixed; inset: 0; z-index: 2000;
-      background: rgba(5,7,20,.72);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      align-items: center; justify-content: center; padding: 1.5rem;
-    }
-    [data-theme="light"] .section-modal { background: rgba(14,21,53,.5); }
-    .section-modal.open { display: flex; }
-    .section-modal-inner {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); width: 100%; max-width: 780px;
-      max-height: 88vh; overflow-y: auto;
-      box-shadow: 0 24px 64px rgba(0,0,0,.45);
-      padding: 1.6rem 1.8rem 2rem;
-      animation: smUp .25s cubic-bezier(.22,1,.36,1);
-    }
-    @keyframes smUp { from{opacity:0;transform:translateY(24px) scale(.97)} to{opacity:1;transform:none} }
-    .section-modal-inner::-webkit-scrollbar { width: 4px; }
-    .section-modal-inner::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-    .section-modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.2rem; gap: 1rem; }
-    .section-modal-eyebrow { font-family: var(--mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: .18rem; }
-    .section-modal-title { font-family: var(--display); font-size: 1.1rem; font-weight: 700; color: var(--text-1); }
-    .section-modal-close {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 50%; width: 30px; height: 30px; font-size: .8rem;
-      cursor: pointer; color: var(--text-3); flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: all .15s;
-    }
-    .section-modal-close:hover { background: var(--primary); color: #fff; transform: rotate(90deg); }
-
-    /* image modal */
-    .img-modal {
-      display: none; position: fixed; inset: 0; z-index: 3000;
-      background: rgba(0,0,0,.85); backdrop-filter: blur(8px);
-      align-items: center; justify-content: center; padding: 2rem;
-    }
-    .img-modal.open { display: flex; }
-    .img-modal-inner { position: relative; max-width: 800px; width: 100%; }
-    .img-modal-inner img { width:100%; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,.6); display:block; }
-    .img-modal-cap { font-family: var(--mono); font-size: .65rem; color: #9aa5c4; text-align: center; margin-top: .55rem; }
-    .img-modal-close {
-      position: fixed; top: 1.2rem; right: 1.2rem;
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: #fff; border-radius: 50%; width: 32px; height: 32px;
-      font-size: .85rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; transition: background .18s;
-    }
-    .img-modal-close:hover { background: var(--primary); }
- /* ══════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════ */
-    @media (max-width: 760px) {
-      .hero { grid-template-columns: 1fr; text-align: left; }
-      .hero-left { align-items: left; }
-      .hero-center { align-items: left; }
-      .hero-right { align-items: left; flex-direction: row; justify-content: left; }
-      .hero-meta span { justify-content: left; }
-      .hero-btns { justify-content: left; }
-      .body-wrap { grid-template-columns: 1fr; }
-      .form-row-2 { grid-template-columns: 1fr; }
-    }
-  </style>
+@media (max-width:640px){
+  .hero{padding:2.4rem 0 2rem;}
+  .hero-inner{gap:1.6rem;}
+  .hero-photo-wrap{width:92px;height:92px;}
+  .form-row-2{grid-template-columns:1fr;}
+  .section{padding:2rem 0;}
+  .connect-panel{padding:1.6rem 1.2rem;}
+}
+</style>
 </head>
 <body>
 
-<div class="page">
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="dot"></span> Gwen Basconcillo</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#connect">Connect</a>
+    </div>
+    <div class="nav-right">
+      <button type="button" class="theme-toggle" id="themeToggleBtn" aria-label="Toggle dark mode">
+        <i class="fas fa-sun" id="themeIcon"></i>
+      </button>
+      <a href="assets/Gwen_Basconcillo_Resume.pdf" target="_blank" class="nav-resume"><i class="fas fa-file-arrow-down"></i> Resume</a>
+    </div>
+  </div>
+</nav>
 
-  <!-- ═══════════════════════════════
-       HERO
-  ═══════════════════════════════ -->
-  <header class="hero">
-
-    <!-- Photo + badge -->
-    <div class="hero-left">
-      <div class="profile-wrap" id="profileContainer">
-        <div class="profile-ring"></div>
-        <div class="profile-pic">
-          <img src="assets/gwenita.jpg" alt="Gwen Basconcillo"
-               onerror="this.style.display='none';document.getElementById('pfpFallback').style.display='flex'">
-          <div class="pfp-fallback" id="pfpFallback">GB</div>
+<!-- HERO -->
+<header class="hero" id="about">
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-heading-row">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <img src="assets/gwenita.jpg" alt="Gwen Basconcillo" onerror="this.style.display='none'">
         </div>
       </div>
-      <div class="class-badge">
-        UI/UX Designer
+      <div>
+        <h1 class="hero-name">Gwen Basconcillo</h1>
+        <div class="hero-role">UI/UX Designer &amp; IT Graduate — Web Development · QA Testing · Technical Documentation</div>
+      </div>
+    </div>
+    <div class="hero-text">
+      <p class="hero-desc">Aspiring Information Technology professional with skills in web development, UI/UX design, quality assurance, and technical documentation. Experienced in building responsive web applications using JavaScript, PHP, Node.js, HTML/CSS, and MySQL, while creating intuitive user experiences that balance functionality and design. Known for being detail-oriented, adaptable, and committed to delivering reliable digital solutions through continuous learning, problem-solving, and a user-centered approach.</p>
+      <div class="hero-cta">
+        <a href="assets/Gwen_Basconcillo_Resume.pdf" target="_blank" class="btn-primary"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
+        <button class="btn-outline" id="contactScrollBtn"><i class="fas fa-envelope"></i> Get in Touch</button>
+      </div>
+      <div class="hero-socials">
+        <a href="mailto:gwenbasconcillo11@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/oncepebrero" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://facebook.com/oncepebrero" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="hero-badges">
+        <span><i class="fas fa-graduation-cap"></i> BS Information Technology, MinSU</span>
+        <span><i class="fas fa-location-dot"></i> Oriental Mindoro, PH</span>
+        <span><i class="fas fa-briefcase"></i> Full-time · Internship</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- QUICK FACTS -->
+  <section class="section reveal" style="padding-top:0;">
+    <div class="fact-grid">
+      <div class="fact-cell"><i class="fas fa-calendar-check"></i><b>Flexible</b><span>Availability</span></div>
+      <div class="fact-cell"><i class="fas fa-laptop-house"></i><b>Any Setup</b><span>Remote / Onsite / Hybrid</span></div>
+      <div class="fact-cell"><i class="fas fa-diagram-project"></i><b>11 Builds</b><span>Shipped Projects</span></div>
+      <div class="fact-cell"><i class="fas fa-language"></i><b>FIL · EN</b><span>Languages</span></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section reveal" id="skills">
+    <div class="section-head">
+      <div class="section-eyebrow">Technical Toolkit</div>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <p class="section-sub">Languages, frameworks, and tools I use to design, build, test, and document software.</p>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-cat-label">Languages &amp; Markup</div>
+      <div class="icon-grid">
+        <div class="icon-card"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+        <div class="icon-card"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+        <div class="icon-card"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+        <div class="icon-card"><i class="devicon-php-plain colored"></i><span>PHP</span></div>
+        <div class="icon-card"><i class="devicon-python-plain colored"></i><span>Python</span></div>
       </div>
     </div>
 
-    <!-- Name + meta + buttons -->
-    <div class="hero-center">
-      <h1 class="hero-name"><span>Gwen</span> Basconcillo</h1>
-      <div class="hero-meta">
-        <span><i class="fas fa-graduation-cap"></i> BS Information Technology &middot; Mindoro State University</span>
-        <span><i class="fas fa-location-dot"></i> Calapan City, Oriental Mindoro, Philippines</span>
-        <span><i class="fas fa-envelope"></i> gwenbasconcillo11@gmail.com</span>
-        <span><i class="fas fa-phone"></i> 09666954800</span>
-      </div>
-      <div class="hero-btns">
-        <a href="assets/Gwen_Basconcillo_Resume.pdf" target="_blank" class="btn-solid">
-          <i class="fas fa-file-pdf"></i> View Resume
-        </a>
-        <button class="btn-ghost" id="contactScrollBtn">
-          <i class="fas fa-envelope"></i> Contact Me
-        </button>
+    <div class="skill-block">
+      <div class="skill-cat-label">Frameworks &amp; Libraries</div>
+      <div class="icon-grid">
+        <div class="icon-card"><i class="devicon-bootstrap-plain colored"></i><span>Bootstrap</span></div>
+        <div class="icon-card"><i class="devicon-express-original colored"></i><span>Express.js</span></div>
+        <div class="icon-card"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
       </div>
     </div>
 
-    <!-- Stats + theme toggle -->
-    <div class="hero-right">
-      <label class="theme-sw" title="Toggle theme">
-        <input type="checkbox" id="themeCheckbox">
-        <span class="sl"></span>
-      </label>
+    <div class="skill-block">
+      <div class="skill-cat-label">Databases &amp; Tools</div>
+      <div class="icon-grid">
+        <div class="icon-card"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
+        <div class="icon-card"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+        <div class="icon-card"><i class="devicon-github-original colored"></i><span>GitHub</span></div>
+      </div>
     </div>
 
-  </header>
-
-  <!-- ═══════════════════════════════
-       BODY
-  ═══════════════════════════════ -->
-  <div class="body-wrap">
-
-    <!-- ── SIDEBAR ── -->
-    <aside class="sidebar">
-
-      <!-- About -->
-      <div class="panel">
-        <div class="panel-heading"><i class="fas fa-user-circle"></i> About</div>
-        <p class="bio-text">Aspiring Information Technology professional with skills in web development, UI/UX design, quality assurance, and technical documentation. Experienced in building responsive web applications using JavaScript, PHP, Node.js, HTML/CSS, and MySQL, while creating intuitive user experiences that balance functionality and design. Known for being detail-oriented, adaptable, and committed to delivering reliable digital solutions through continuous learning, problem-solving, and a user-centered approach. Passionate about leveraging technology to create impactful systems that address real-world needs and improve everyday experiences.</p>
+    <div class="skill-block">
+      <div class="skill-cat-label">Practice</div>
+      <div class="practice-tags">
+        <span>UI/UX Design</span>
+        <span>QA &amp; Test Case Design</span>
+        <span>Technical Writing</span>
+        <span>Prototyping</span>
+        <span>Multimedia Editing</span>
+        <span>Canva</span>
       </div>
+    </div>
 
-      
-      <!-- Experience / Education -->
-      <div class="panel">
-        <div class="panel-heading"><i class="fas fa-briefcase"></i> Experience &amp; Education</div>
-        <div class="lore-item">
-          <div class="lore-title">Mindoro State University</div>
-          <div class="lore-sub">BS Information Technology<br>2022 &ndash; 2026</div>
-          <span class="lore-badge">&#9733; Dean's Lister 2023&ndash;2026</span>
-        </div>
-        <div class="lore-item">
-          <div class="lore-title">New San Jose Builders Inc.</div>
-          <div class="lore-sub">OJT Intern — QA Analyst, Developer & Technical Documentation<br>2025 &middot; 486 hours</div>
+    <div class="skill-block" style="margin-bottom:0;">
+      <div class="skill-cat-label">Strengths</div>
+      <div class="practice-tags">
+        <span>Teamwork</span>
+        <span>Communication</span>
+        <span>Problem Solving</span>
+        <span>Quick Learner</span>
+        <span>Tech Writing</span>
+        <span>Goal Oriented</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENTLY -->
+  <section class="section reveal" id="currently" style="padding-top:0;">
+    <div class="section-head">
+      <div class="section-eyebrow">Right Now</div>
+      <h2 class="section-title">Currently</h2>
+    </div>
+    <ul class="tl-bullets" style="gap:.6rem;">
+      <li>Completed capstone: <strong style="color:var(--ink)">AI-Integrated Inventory &amp; E-commerce System</strong> with real-time demand forecasting, built for REMHART</li>
+      <li>Completed OJT at <strong style="color:var(--ink)">New San Jose Builders Inc.</strong> — 486 hours as QA Analyst, Developer &amp; Technical Documentation Intern</li>
+      <li>Currently learning <strong style="color:var(--ink)">Laravel &amp; Vue.js</strong></li>
+    </ul>
+  </section>
+
+  <!-- EXPERIENCE & EDUCATION -->
+  <section class="section reveal" id="experience">
+    <div class="section-head">
+      <div class="section-eyebrow">Track Record</div>
+      <h2 class="section-title">Experience &amp; Education</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2025 · 486 HOURS</div>
+          <div class="tl-org">New San Jose Builders Inc.</div>
+          <div class="tl-role">OJT Intern — QA Analyst, Developer &amp; Technical Documentation</div>
+          <ul class="tl-bullets">
+            <li>Wrote and executed test cases, logging defects for the development team to resolve</li>
+            <li>Documented system features and internal processes for reference and onboarding</li>
+            <li>Assisted in building and maintaining internal web tools alongside senior developers</li>
+          </ul>
         </div>
       </div>
-
-     <!-- Core Skills -->
-      <div class="panel">
-        <div class="panel-heading"><i class="fas fa-code-branch"></i> Core Skills</div>
-        <div class="skill-sub">Technical</div>
-        <div class="skill-row"><span class="skill-name">Bootstrap</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div><span class="skill-lvl">LVL. 9</span></div>
-        <div class="skill-row"><span class="skill-name">Javascript</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div><span class="skill-lvl">LVL. 8</span></div>
-        <div class="skill-row"><span class="skill-name">HTML / CSS</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div><span class="skill-lvl">LVL. 9</span></div>
-        <div class="skill-row"><span class="skill-name">UI/UX Design</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div></div><span class="skill-lvl">LVL. 10</span></div>
-        <div class="skill-row"><span class="skill-name">Web Dev</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div><span class="skill-lvl">LVL. 8</span></div>
-        <div class="skill-row"><span class="skill-name">Prototyping</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:89%"></div></div></div><span class="skill-lvl">LVL. 9</span></div>
-        <div class="skill-row"><span class="skill-name">Multimedia</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:93%"></div></div></div><span class="skill-lvl">LVL. 9</span></div>
-        <div class="skill-row"><span class="skill-name">QA Testing</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div></div><span class="skill-lvl">LVL. 8</span></div>
-        <div class="skill-row"><span class="skill-name">Canva</span><div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div><span class="skill-lvl">LVL. 9</span></div>
-        <div class="skill-sub" style="margin-top:.6rem">Strengths</div>
-        <div class="skill-tags">
-          <span>Teamwork</span><span>Communication</span> <span>Problem Solving</span>
-          <span>Quick Learner</span><span>Tech Writing</span>
-          <span>Goal Oriented</span>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2022 – 2026</div>
+          <div class="tl-org">Mindoro State University</div>
+          <div class="tl-role">BS Information Technology</div>
+          <div class="tl-badge"><i class="fas fa-star"></i> Dean's Lister, 2023 – 2026</div>
+          <ul class="tl-bullets">
+            <li>Capstone: AI-integrated inventory &amp; e-commerce system with demand forecasting, built for REMHART</li>
+          </ul>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Hobbies -->
-      <div class="panel">
-        <div class="panel-heading"><i class="fas fa-star"></i> Hobbies &amp; Interests</div>
-        <div class="hobby-cols">
+  <!-- CERTIFICATIONS -->
+  <section class="section reveal" id="certifications">
+    <div class="section-toprow">
+      <div class="section-head" style="margin-bottom:0;">
+        <div class="section-eyebrow">Credentials</div>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      <button type="button" class="section-more" id="certsToggle"><i class="fas fa-chevron-down"></i> View all 6</button>
+    </div>
+    <div class="cert-grid" id="certGrid" style="margin-top:1.8rem;">
+      <a class="cert-card" href="assets/ojt.jpg" target="_blank">
+        <div class="cert-thumb"><img src="assets/ojt.jpg" alt="OJT Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">OJT Certificate of Completion</div>
+          <div class="cert-meta"><span class="cert-issuer">New San Jose Builders Inc.</span><span class="cert-date">May 2025</span></div>
+          <div class="cert-skills"><span>QA Testing</span><span>Documentation</span></div>
+        </div>
+      </a>
+      <a class="cert-card" href="assets/certificate1.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/cybersecurity-cover.png" alt="Fortinet Cybersecurity Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
+          <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
+          <div class="cert-skills"><span>Cybersecurity</span><span>Threat Awareness</span></div>
+        </div>
+      </a>
+      <a class="cert-card" href="assets/certificate2.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/networking-cover..png" alt="Fortinet Networking Fundamentals Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Fortinet Networking Fundamentals</div>
+          <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
+          <div class="cert-skills"><span>Routing</span><span>Network Design</span></div>
+        </div>
+      </a>
+      <a class="cert-card" href="assets/certificate3.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Python Programming II</div>
+          <div class="cert-meta"><span class="cert-issuer">CodeChum</span><span class="cert-date">Dec 2025</span></div>
+          <div class="cert-skills"><span>OOP</span><span>Data Structures</span></div>
+        </div>
+      </a>
+      <a class="cert-card is-hidden" href="assets/certificate4.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/data-cover.png" alt="Data Analytics Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Data Analytics — IT Specialist</div>
+          <div class="cert-meta"><span class="cert-issuer">IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
+          <div class="cert-skills"><span>Data Analysis</span><span>Reporting</span></div>
+        </div>
+      </a>
+      <a class="cert-card is-hidden" href="assets/certificate5.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/mctech-cover.png" alt="MC Tech Training Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">MC Tech Training — Data Analytics</div>
+          <div class="cert-meta"><span class="cert-issuer">8-Hour IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
+          <div class="cert-skills"><span>Visualization</span><span>Spreadsheets</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section reveal" id="projects">
+    <div class="section-toprow">
+      <div class="section-head" style="margin-bottom:0;">
+        <div class="section-eyebrow">Selected Work</div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <button type="button" class="section-more" id="projectsToggle"><i class="fas fa-chevron-down"></i> View all 11</button>
+    </div>
+    <div class="proj-grid" id="projGrid" style="margin-top:1.8rem;">
+
+      <div class="proj-card">
+        <div class="proj-thumb" onclick="openImg('assets/capstone-cover.png','RM\'S — Capstone Project')">
+          <span class="proj-status status-shipped">Shipped</span>
+          <img src="assets/capstone-cover.png" alt="RM'S Capstone Project" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-body">
           <div>
-            <div class="hobby-sub">Tech</div>
-            <ul class="hobby-list">
-              <li>Multimedia</li>
-              <li>Thrifting</li>
-              <li>Test Case Creation</li>
-              <li> Photography & Photo Editing</li>
-            </ul>
+            <div class="proj-title">RM'S — Capstone Project <span class="proj-year">· 2025</span></div>
+            <div class="proj-org">Mindoro State University · for REMHART</div>
+            <div class="proj-role">Full-Stack Developer</div>
           </div>
+          <ul class="proj-bullets">
+            <li>AI-integrated inventory &amp; e-commerce system with real-time demand forecasting for a live retail client</li>
+            <li>Designed the database schema and built the admin dashboard for stock, sales, and order tracking</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI Integration</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-thumb" onclick="openImg('assets/dailydrive-cover.png','DailyDrive — Task Management System')">
+          <span class="proj-status status-shipped">Shipped</span>
+          <img src="assets/dailydrive-cover.png" alt="DailyDrive" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-body">
           <div>
-            <div class="hobby-sub">Personal</div>
-            <ul class="hobby-list">
-              <li>Movies</li>
-              <li>Music</li>
-              <li>Mobile Games</li>
-              <li>Cafés &amp; Travel</li>
-            </ul>
+            <div class="proj-title">DailyDrive – Task Management System <span class="proj-year">· 2026</span></div>
+            <div class="proj-org">Personal / Academic Project</div>
+            <div class="proj-role">Solo Developer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>Full-featured productivity platform with admin &amp; user dashboards, task tracking, subtasks, file attachments, and real-time notifications</li>
+            <li>Gamification system, recurring tasks, dark/light mode toggle, and automated due-date reminders via cron jobs</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Node.js</span><span>Express</span><span>MySQL</span><span>EJS/CSS</span><span>FullCalendar</span><span>Chart.js</span></div>
           </div>
         </div>
       </div>
 
-    </aside>
-
-    <!-- ── MAIN COLUMN ── -->
-    <main class="main-col">
-
-      <!-- Currently -->
-      <div class="panel">
-        <div class="section-head">
-          <span class="section-head-icon"><i class="fas fa-circle-dot"></i></span>
-          <span class="section-head-label">Currently</span>
-          <div class="section-head-line"></div>
+      <div class="proj-card">
+        <div class="proj-thumb" onclick="openImg('assets/SafepathUI.png','SafePath — Bullying Complaint System')">
+          <span class="proj-status status-shipped">Shipped</span>
+          <img src="assets/SafepathUI.png" alt="SafePath" onerror="this.style.display='none'">
         </div>
-        <div class="cur-list">
-          <div class="cur-item"><span class="cur-dot"></span><span>Completed Capstone: <strong>AI-Integrated Inventory &amp; E-commerce System</strong> with Real-Time Demand Forecasting for REMHART</span></div>
-          <div class="cur-item"><span class="cur-dot"></span><span>Completed OJT at <strong>New San Jose Builders Inc.</strong> — 486 hours as QA Analyst, Developer & Technical Documentation Intern</span></div>
-          <div class="cur-item"><span class="cur-dot"></span><span>Learning <strong>Laravel &amp; Vue.js</strong></span></div>
-        </div>
-      </div>
-
-      <!-- Certifications -->
-      <div class="panel">
-        <div class="mc-heading">
-          <div class="section-head" style="margin-bottom:0;flex:1">
-            <span class="section-head-icon"><i class="fas fa-certificate"></i></span>
-            <span class="section-head-label">Certifications</span>
-            <div class="section-head-line"></div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">SafePath – Bullying Complaint System <span class="proj-year">· 2024</span></div>
+            <div class="proj-org">Application Development</div>
+            <div class="proj-role">Backend Developer</div>
           </div>
-          <button class="toggle-btn" id="toggleCertificatesBtn"><i class="fas fa-list"></i> View All</button>
-        </div>
-        <div class="cert-grid">
-          <div class="cert-card" onclick="window.open('assets/ojt.jpg','_blank')" tabindex="0" role="button">
-            <div class="cert-icon cc1"><i class="fas fa-briefcase"></i></div>
-            <div class="cert-body">
-              <div class="cert-name">OJT Certificate of Completion</div>
-              <div class="cert-issuer">New San Jose Builders Inc.</div>
-              <div class="cert-date">May 07, 2026</div>
-            </div>
-            <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-          </div>
-          <div class="cert-card" onclick="window.open('assets/certificate1.pdf','_blank')" tabindex="0" role="button">
-            <div class="cert-icon cc2"><i class="fas fa-shield-halved"></i></div>
-            <div class="cert-body">
-              <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
-              <div class="cert-issuer">Fortinet Training Institute</div>
-              <div class="cert-date">Sep 14, 2025</div>
-            </div>
-            <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-          </div>
-          <div class="cert-card" onclick="window.open('assets/certificate2.pdf','_blank')" tabindex="0" role="button">
-            <div class="cert-icon cc3"><i class="fas fa-network-wired"></i></div>
-            <div class="cert-body">
-              <div class="cert-name">Fortinet Networking Fundamentals</div>
-              <div class="cert-issuer">Fortinet Training Institute</div>
-              <div class="cert-date">Sep 21, 2025</div>
-            </div>
-            <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-          </div>
-          <div class="cert-card" onclick="window.open('assets/certificate3.pdf','_blank')" tabindex="0" role="button">
-            <div class="cert-icon cc4"><i class="fab fa-python"></i></div>
-            <div class="cert-body">
-              <div class="cert-name">Python Programming II</div>
-              <div class="cert-issuer">CodeChum</div>
-              <div class="cert-date">Dec 16, 2025</div>
-            </div>
-            <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
+          <ul class="proj-bullets">
+            <li>Student safety platform for reporting bullying incidents confidentially</li>
+            <li>AI-powered text classification using TensorFlow &amp; Wit.ai to flag concerning reports for review</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Express.js</span><span>TensorFlow</span><span>Bootstrap</span><span>MySQL</span></div>
+            <a href="https://github.com/oncepebrero/SafePath" target="_blank" class="proj-link"><i class="fab fa-github"></i> View Repository</a>
           </div>
         </div>
       </div>
 
-      <!-- Projects -->
-      <div class="panel">
-        <div class="mc-heading">
-          <div class="section-head" style="margin-bottom:0;flex:1">
-            <span class="section-head-icon"><i class="fas fa-rocket"></i></span>
-            <span class="section-head-label">Projects</span>
-            <div class="section-head-line"></div>
-          </div>
-          <button class="toggle-btn" id="toggleProjectsBtn"><i class="fas fa-list"></i> View All</button>
+      <div class="proj-card">
+        <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','OJT — Attendance Monitoring System')">
+          <span class="proj-status status-internship">Internship</span>
+          <img src="assets/NSJBI.png" alt="Attendance Monitoring System" onerror="this.style.display='none'">
         </div>
-        <div class="proj-list">
-          <div class="proj-entry">
-            <div class="proj-thumb-sm" onclick="openProjectImage('assets/dailydrive-cover.png','DailyDrive – Task Management System')">
-              <img src="assets/dailydrive-cover.png" alt="DailyDrive" onerror="this.style.display='none'">
-              <div class="pzoom"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="proj-main">
-              <div class="proj-header-row"><span class="proj-title">DailyDrive – Task Management System</span><span class="proj-year">2026</span></div>
-              <div class="proj-org">Personal / Academic Project</div>
-              <ul class="proj-bullets">
-                <li>Full-featured productivity platform with Admin &amp; User dashboards, task tracking, subtasks, file attachments, and real-time notifications</li>
-                <li>Gamification system, recurring tasks, dark/light mode toggle, and automated due-date reminders via cron jobs</li>
-              </ul>
-              <div class="proj-tech-row">
-                <span class="ptag"><i class="fab fa-node"></i> Node.js</span>
-                <span class="ptag"><i class="fab fa-js"></i> Express</span>
-                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
-                <span class="ptag"><i class="fab fa-css3-alt"></i> EJS/CSS</span>
-                <span class="ptag"><i class="fas fa-calendar"></i> FullCalendar</span>
-                <span class="ptag"><i class="fas fa-chart-line"></i> Chart.js</span>
-              </div>
-            </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">OJT – Attendance Monitoring System <span class="proj-year">· 2025</span></div>
+            <div class="proj-org">New San Jose Builders Inc. · OJT</div>
+            <div class="proj-role">QA &amp; Developer</div>
           </div>
-          <div class="proj-entry">
-            <div class="proj-thumb-sm" onclick="openProjectImage('assets/capstone-cover.png','RM\'S – Capstone Project')">
-              <img src="assets/capstone-cover.png" alt="Capstone" onerror="this.style.display='none'">
-              <div class="pzoom"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="proj-main">
-              <div class="proj-header-row"><span class="proj-title">RM'S – Capstone Project</span><span class="proj-year">2025</span></div>
-              <div class="proj-org">Mindoro State University</div>
-              <ul class="proj-bullets">
-                <li>AI-Integrated Inventory &amp; E-commerce Management System with Real-Time Demand Forecasting</li>
-                <li>Built for REMHART using PHP, HTML/CSS, JavaScript, and AI integration</li>
-              </ul>
-              <div class="proj-tech-row">
-                <span class="ptag"><i class="fab fa-php"></i> PHP</span>
-                <span class="ptag"><i class="fab fa-js"></i> JS</span>
-                <span class="ptag"><i class="fas fa-brain"></i> AI</span>
-                <span class="ptag"><i class="fas fa-database"></i> MySQL</span>
-              </div>
-            </div>
+          <ul class="proj-bullets">
+            <li>Web-based attendance monitoring system built during a QA &amp; development internship</li>
+            <li>Wrote test cases and documentation alongside feature development for company use</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Vue.js</span><span>Node.js</span><span>MySQL</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Let's Connect -->
-      <div class="panel" id="contactStrip">
-        <div class="section-head">
-          <span class="section-head-icon"><i class="fas fa-link"></i></span>
-          <span class="section-head-label">Let's Connect</span>
-          <div class="section-head-line"></div>
+      <div class="proj-card is-hidden">
+        <div class="proj-thumb" onclick="openImg('assets/Minsu.png','MinSU Event Venue Scheduling System')">
+          <span class="proj-status status-academic">Academic</span>
+          <img src="assets/Minsu.png" alt="MinSU Event Venue Scheduling System" onerror="this.style.display='none'">
         </div>
-        <p class="connect-blurb-text">Open to collaborations, freelance work, and new opportunities. Feel free to reach out to discuss web development, UI/UX design, or potential projects.</p>
-        <div class="connect-links">
-          <a href="mailto:gwenbasconcillo11@gmail.com" class="cl cl-email"><i class="fas fa-envelope"></i> Email</a>
-          <a href="https://facebook.com/oncepebrero" target="_blank" class="cl cl-fb"><i class="fab fa-facebook-f"></i> Facebook</a>
-          <a href="https://github.com/oncepebrero" target="_blank" class="cl cl-gh"><i class="fab fa-github"></i> GitHub</a>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">MinSU Event Venue Scheduling System <span class="proj-year">· 2023</span></div>
+            <div class="proj-org">Mindoro State University</div>
+            <div class="proj-role">Developer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>Reservation &amp; scheduling web app with role-based accounts for booking campus event venues</li>
+            <li>Built conflict-checking logic to prevent double-booking of venues and time slots</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>HTML</span><span>PHP</span><span>MySQL</span></div>
+          </div>
         </div>
       </div>
 
-      <!-- Send a Message -->
-      <div class="panel">
-        <div class="section-head">
-          <span class="section-head-icon"><i class="fas fa-paper-plane"></i></span>
-          <span class="section-head-label">Send a Message</span>
-          <div class="section-head-line"></div>
+      <div class="proj-card is-hidden">
+        <div class="proj-thumb" onclick="openImg('assets/Slites.png','SLITES — Smart Lighting Intelligence')">
+          <span class="proj-status status-prototype">Prototype</span>
+          <img src="assets/Slites.png" alt="SLITES Smart Lighting Intelligence" onerror="this.style.display='none'">
         </div>
-        <form id="contactFormElement" action="https://formspree.io/f/mwvavydo" method="POST">
-          <div class="form-row-2">
-            <div class="fg">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required>
-              <div class="ferr" id="name-error"></div>
-            </div>
-            <div class="fg">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required>
-              <div class="ferr" id="email-error"></div>
-            </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">SLITES – Smart Lighting Intelligence <span class="proj-year">· 2024</span></div>
+            <div class="proj-org">Integrative Programming &amp; Technologies</div>
+            <div class="proj-role">IoT Developer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>IoT automated lighting system using LDR &amp; PIR sensors on an Orange Pi board</li>
+            <li>Built a live monitoring dashboard to track sensor readings and lighting state</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Orange Pi</span><span>Python</span><span>MySQL</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card is-hidden">
+        <div class="proj-thumb" onclick="openImg('assets/lavalust.jpg','Panchitan ni Unchang — Lavalust Build')">
+          <span class="proj-status status-shipped">Shipped</span>
+          <img src="assets/lavalust.jpg" alt="Panchitan ni Unchang Lavalust build" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Panchitan ni Unchang — Lavalust Framework <span class="proj-year">· 2024</span></div>
+            <div class="proj-org">Web Development 2</div>
+            <div class="proj-role">Web Developer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>Local eatery e-commerce site built on the Lavalust PHP framework</li>
+            <li>Added FAQs, customer support, and user accounts for order history</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Lavalust</span><span>PHP</span><span>MySQL</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card is-hidden">
+        <div class="proj-thumb" onclick="openImg('assets/WIX.png','Panchitan ni Unchang — Wix Build')">
+          <span class="proj-status status-shipped">Shipped</span>
+          <img src="assets/WIX.png" alt="Panchitan ni Unchang Wix build" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Panchitan ni Unchang — Wix CMS <span class="proj-year">· 2024</span></div>
+            <div class="proj-org">CMS Integration &amp; System Architecture</div>
+            <div class="proj-role">Site Builder &amp; IA Designer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>Same eatery, rebuilt as a Wix CMS storefront with a fresh information architecture</li>
+            <li>Designed the full site structure and navigation flow from scratch</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Wix</span><span>E-Commerce</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card is-hidden">
+        <div class="proj-thumb" onclick="openImg('assets/mushroom.jpg','IoT Mushroom Cultivation Monitor')">
+          <span class="proj-status status-prototype">Prototype</span>
+          <img src="assets/mushroom.jpg" alt="IoT Mushroom Cultivation Monitor" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">IoT – Mushroom Cultivation Monitor <span class="proj-year">· 2023</span></div>
+            <div class="proj-org">Integrative Programming &amp; Technologies</div>
+            <div class="proj-role">IoT Developer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>Humidity &amp; temperature monitoring system for mushroom cultivation</li>
+            <li>Automated pump control triggered by sensor thresholds</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Arduino</span><span>Sensors</span><span>MySQL</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card is-hidden">
+        <div class="proj-thumb" onclick="openImg('assets/meat.jpg','Meat Quality Detection Tool')">
+          <span class="proj-status status-prototype">Prototype</span>
+          <img src="assets/meat.jpg" alt="Meat Quality Detection Tool" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Meat Quality Detection Tool <span class="proj-year">· 2024</span></div>
+            <div class="proj-org">Embedded Systems</div>
+            <div class="proj-role">ML Developer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>Embedded image-processing system that predicts meat quality using machine learning</li>
+            <li>Trained a classification model on sample image data to flag freshness issues</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>Python</span><span>Image ML</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card is-hidden">
+        <div class="proj-thumb" onclick="openImg('assets/BRAINSTER.png','Brainster')">
+          <span class="proj-status status-academic">Academic</span>
+          <img src="assets/BRAINSTER.png" alt="Brainster puzzle game" onerror="this.style.display='none'">
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-title">Brainster – Discrete Mathematics Game <span class="proj-year">· 2023</span></div>
+            <div class="proj-org">Discrete Mathematics</div>
+            <div class="proj-role">Game Developer</div>
+          </div>
+          <ul class="proj-bullets">
+            <li>Interactive puzzle game teaching logic, set theory, and graph theory concepts</li>
+            <li>Designed level progression to reinforce discrete math concepts through play</li>
+          </ul>
+          <div class="proj-foot">
+            <div class="proj-stack"><span>JavaScript</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section class="section reveal" id="connect">
+    <div class="section-head">
+      <div class="section-eyebrow">Let's Talk</div>
+      <h2 class="section-title">Get in Touch</h2>
+    </div>
+    <div class="connect-panel">
+      <p class="connect-text">Open to entry-level opportunities, internships, and freelance work in web development, QA, or technical documentation. Feel free to reach out directly, or send a note below.</p>
+      <form id="contactFormElement" action="https://formspree.io/f/mwvavydo" method="POST">
+        <div class="form-row-2">
+          <div class="fg">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+            <div class="ferr" id="name-error"></div>
           </div>
           <div class="fg">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="Your message..." required></textarea>
-            <div class="ferr" id="message-error"></div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <div class="ferr" id="email-error"></div>
           </div>
-          <input type="text" name="_gotcha" style="display:none">
-          <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
-          <div id="formStatus" style="display:none;margin-top:10px;padding:8px 12px;border-radius:6px;font-size:.72rem"></div>
-        </form>
-      </div>
-
-    </main>
-  </div>
-
-  <footer class="site-footer">
-    <p>&copy; <span id="fyear"></span> Gwen M. Basconcillo &mdash; All rights reserved.</p>
-    <p style="margin-top:.3rem">Built with <span class="ft-tag">HTML/CSS</span> <span class="ft-tag">JavaScript</span> &nbsp;&middot;&nbsp; Inspired by <a href="https://bryllim.com/" target="_blank" class="ft-link">Bryl Lim</a></p>
-  </footer>
-
-</div><!-- /page -->
-
-<!-- CERTIFICATIONS MODAL -->
-<div class="section-modal" id="certsModal">
-  <div class="section-modal-inner">
-    <div class="section-modal-header">
-      <div>
-        <div class="section-modal-eyebrow">All Certifications</div>
-        <h3 class="section-modal-title">My Certificates</h3>
-      </div>
-      <button class="section-modal-close" id="closeCertsModal">&#10005;</button>
+        </div>
+        <div class="fg">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="3" placeholder="Your message..." required></textarea>
+          <div class="ferr" id="message-error"></div>
+        </div>
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="btn-primary" id="submitBtn"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
     </div>
-    <div class="cert-grid" style="grid-template-columns:repeat(auto-fill,minmax(210px,1fr))">
-      <div class="cert-card" onclick="window.open('assets/ojt.jpg','_blank')" tabindex="0" role="button">
-        <div class="cert-icon cc1"><i class="fas fa-briefcase"></i></div>
-        <div class="cert-body"><div class="cert-name">OJT Certificate of Completion</div><div class="cert-issuer">New San Jose Builders Inc.</div><div class="cert-date">May 07, 2025</div></div>
-        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-      </div>
-      <div class="cert-card" onclick="window.open('assets/certificate1.pdf','_blank')" tabindex="0" role="button">
-        <div class="cert-icon cc2"><i class="fas fa-shield-halved"></i></div>
-        <div class="cert-body"><div class="cert-name">Fortinet Certified Associate in Cybersecurity</div><div class="cert-issuer">Fortinet Training Institute</div><div class="cert-date">Sep 14, 2025</div></div>
-        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-      </div>
-      <div class="cert-card" onclick="window.open('assets/certificate2.pdf','_blank')" tabindex="0" role="button">
-        <div class="cert-icon cc3"><i class="fas fa-network-wired"></i></div>
-        <div class="cert-body"><div class="cert-name">Fortinet Networking Fundamentals</div><div class="cert-issuer">Fortinet Training Institute</div><div class="cert-date">Sep 21, 2025</div></div>
-        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-      </div>
-      <div class="cert-card" onclick="window.open('assets/certificate3.pdf','_blank')" tabindex="0" role="button">
-        <div class="cert-icon cc4"><i class="fab fa-python"></i></div>
-        <div class="cert-body"><div class="cert-name">CodeChum Python Programming II</div><div class="cert-issuer">Certification Exam</div><div class="cert-date">Dec 16, 2025</div></div>
-        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-      </div>
-      <div class="cert-card" onclick="window.open('assets/certificate4.pdf','_blank')" tabindex="0" role="button">
-        <div class="cert-icon cc5"><i class="fas fa-chart-bar"></i></div>
-        <div class="cert-body"><div class="cert-name">Data Analytics – IT Specialist</div><div class="cert-issuer">Information Technology Specialist</div><div class="cert-date">Dec 17, 2025</div></div>
-        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-      </div>
-      <div class="cert-card" onclick="window.open('assets/certificate5.pdf','_blank')" tabindex="0" role="button">
-        <div class="cert-icon cc6"><i class="fas fa-award"></i></div>
-        <div class="cert-body"><div class="cert-name">MC Tech Training – IT Specialist Data Analytics</div><div class="cert-issuer">8-Hour IT Specialist Program</div><div class="cert-date">Dec 6, 2025</div></div>
-        <i class="fas fa-arrow-up-right-from-square cert-ext"></i>
-      </div>
-    </div>
-  </div>
-</div>
+  </section>
 
-<!-- PROJECTS MODAL -->
-<div class="section-modal" id="projectsModal">
-  <div class="section-modal-inner">
-    <div class="section-modal-header">
-      <div>
-        <div class="section-modal-eyebrow">All Projects</div>
-        <h3 class="section-modal-title">My Projects</h3>
-      </div>
-      <button class="section-modal-close" id="closeProjectsModal">&#10005;</button>
-    </div>
-    <div class="proj-list">
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/dailydrive-cover.png','DailyDrive – Task Management System')"><img src="assets/dailydrive-cover.png" alt="DailyDrive" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">DailyDrive – Task Management System</span><span class="proj-year">2026</span></div><div class="proj-org">Personal / Academic Project</div><ul class="proj-bullets"><li>Full-featured productivity platform with Admin &amp; User dashboards, task tracking, subtasks, file attachments, and real-time notifications</li><li>Gamification system, recurring tasks, dark/light mode toggle, and automated due-date reminders via cron jobs</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fab fa-node"></i> Node.js</span><span class="ptag"><i class="fab fa-js"></i> Express</span><span class="ptag"><i class="fas fa-database"></i> MySQL</span><span class="ptag"><i class="fab fa-css3-alt"></i> EJS/CSS</span><span class="ptag"><i class="fas fa-calendar"></i> FullCalendar</span><span class="ptag"><i class="fas fa-chart-line"></i> Chart.js</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/capstone-cover.png','RM\'S – Capstone Project')"><img src="assets/capstone-cover.png" alt="Capstone" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">RM'S – Capstone Project</span><span class="proj-year">2025</span></div><div class="proj-org">Mindoro State University</div><ul class="proj-bullets"><li>AI-Integrated Inventory &amp; E-commerce Management System with Real-Time Demand Forecasting</li><li>Built for REMHART using PHP, HTML/CSS, JavaScript, and AI integration</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fab fa-php"></i> PHP</span><span class="ptag"><i class="fab fa-js"></i> JS</span><span class="ptag"><i class="fas fa-brain"></i> AI</span><span class="ptag"><i class="fas fa-database"></i> MySQL</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/NSJBI.png','OJT – Attendance Monitoring System')"><img src="assets/NSJBI.png" alt="Attendance" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">OJT – Attendance Monitoring System</span><span class="proj-year">2025</span></div><div class="proj-org">New San Jose Builders Inc.</div><ul class="proj-bullets"><li>Web-based attendance monitoring system developed during internship at NSJBI</li><li>Built using Vue.js, Node.js, and MySQL database</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fab fa-vuejs"></i> Vue</span><span class="ptag"><i class="fab fa-node"></i> Node</span><span class="ptag"><i class="fas fa-database"></i> MySQL</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/SafepathUI.png','SafePath – Bullying Complaint System')"><img src="assets/SafepathUI.png" alt="SafePath" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">SafePath – Bullying Complaint System</span><span class="proj-year">2024</span></div><div class="proj-org">Application Development</div><ul class="proj-bullets"><li>Student safety platform with AI-powered text classification using TensorFlow &amp; Wit.ai</li><li>Built with Express.js, Bootstrap, MySQL</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fab fa-node"></i> Express</span><span class="ptag"><i class="fas fa-brain"></i> TensorFlow</span><span class="ptag"><i class="fab fa-bootstrap"></i> Bootstrap</span></div><a href="https://github.com/oncepebrero/SafePath" target="_blank" class="proj-gh-link" onclick="event.stopPropagation()"><i class="fab fa-github"></i> Repository</a></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/Minsu.png','MinSU Event Venue Scheduling System')"><img src="assets/Minsu.png" alt="MinSU" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">MinSU Event Venue Scheduling System</span><span class="proj-year">2023</span></div><div class="proj-org">Mindoro State University</div><ul class="proj-bullets"><li>Web app for managing and reserving event venues at MinSU</li><li>Includes user authentication and reservation management</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fab fa-html5"></i> HTML</span><span class="ptag"><i class="fab fa-php"></i> PHP</span><span class="ptag"><i class="fas fa-database"></i> MySQL</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/Slites.png','SLITES – Smart Lighting Intelligence')"><img src="assets/Slites.png" alt="SLITES" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">SLITES – Smart Lighting Intelligence</span><span class="proj-year">2024</span></div><div class="proj-org">Integrative Programming &amp; Technologies</div><ul class="proj-bullets"><li>IoT automated lighting system with LDR and PIR sensors</li><li>Real-time monitoring dashboard and remote control via web interface</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fas fa-microchip"></i> Orange Pi</span><span class="ptag"><i class="fab fa-python"></i> Python</span><span class="ptag"><i class="fas fa-database"></i> MySQL</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/lavalust.jpg','Panchitan ni Unchang – Lavalust Framework')"><img src="assets/lavalust.jpg" alt="Lavalust" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">Panchitan ni Unchang – Lavalust Framework</span><span class="proj-year">2024</span></div><div class="proj-org">Web Development 2</div><ul class="proj-bullets"><li>Authentic Filipino cuisine e-commerce built with Lavalust framework</li><li>Features FAQs, Help, Support, and user registration</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fas fa-fire"></i> Lavalust</span><span class="ptag"><i class="fab fa-php"></i> PHP</span><span class="ptag"><i class="fas fa-database"></i> MySQL</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/mushroom.jpg','IoT – Mushroom Cultivation Monitor')"><img src="assets/mushroom.jpg" alt="Mushroom" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">IoT – Mushroom Cultivation Monitor</span><span class="proj-year">2023</span></div><div class="proj-org">Integrative Programming &amp; Technologies</div><ul class="proj-bullets"><li>IoT system monitoring humidity &amp; temperature in mushroom cultivation</li><li>Automated water pump control and real-time data logging</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fas fa-microchip"></i> Arduino</span><span class="ptag"><i class="fas fa-tint"></i> Sensors</span><span class="ptag"><i class="fas fa-database"></i> MySQL</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/meat.jpg','Meat Quality Detection Tool')"><img src="assets/meat.jpg" alt="Meat" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">Meat Quality Detection Tool</span><span class="proj-year">2024</span></div><div class="proj-org">Embedded Systems</div><ul class="proj-bullets"><li>Embedded system with image processing for detecting meat quality</li><li>Displays ML prediction and training results via web interface</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fas fa-camera"></i> Image ML</span><span class="ptag"><i class="fab fa-python"></i> Python</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/BRAINSTER.png','Brainster – Discrete Mathematics Game')"><img src="assets/BRAINSTER.png" alt="Brainster" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">Brainster – Discrete Mathematics Game</span><span class="proj-year">2023</span></div><div class="proj-org">Discrete Mathematics</div><ul class="proj-bullets"><li>Interactive puzzle game applying Discrete Mathematics concepts</li><li>Covers logic, sets, and graph theory through gameplay</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fas fa-puzzle-piece"></i> Game Dev</span><span class="ptag"><i class="fab fa-js"></i> JavaScript</span></div></div></div>
-      <div class="proj-entry"><div class="proj-thumb-sm" onclick="openProjectImage('assets/WIX.png','Panchitan ni Unchang – Wix CMS')"><img src="assets/WIX.png" alt="Wix" onerror="this.style.display='none'"><div class="pzoom"><i class="fas fa-expand"></i></div></div><div class="proj-main"><div class="proj-header-row"><span class="proj-title">Panchitan ni Unchang – Wix CMS</span><span class="proj-year">2024</span></div><div class="proj-org">CMS Integration &amp; System Architecture</div><ul class="proj-bullets"><li>E-commerce website for local pancit eatery using Wix CMS</li><li>Full CMS integration and system architecture design</li></ul><div class="proj-tech-row"><span class="ptag"><i class="fab fa-wix"></i> Wix</span><span class="ptag"><i class="fas fa-shopping-cart"></i> E-Commerce</span></div></div></div>
-    </div>
-  </div>
-</div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="fyear"></span> Gwen M. Basconcillo. All rights reserved.</p>
+  <p>Built with HTML, CSS &amp; JavaScript.</p>
+</footer>
 
 <!-- IMAGE MODAL -->
 <div class="img-modal" id="imageModal">
-  <button class="img-modal-close" onclick="closeProjectImage()">&#10005;</button>
+  <button class="img-modal-close" onclick="closeImg()">&#10005;</button>
   <div class="img-modal-inner">
     <img id="modalImage" src="" alt="">
     <div id="modalCaption" class="img-modal-cap"></div>
@@ -951,61 +906,66 @@
 <script>
   document.getElementById('fyear').textContent = new Date().getFullYear();
 
-  // Theme
-  const themeBox = document.getElementById('themeCheckbox');
+  // Theme (dark default, light optional)
   const htmlEl = document.documentElement;
-  const saved = localStorage.getItem('gwen_theme') || 'dark';
-  htmlEl.setAttribute('data-theme', saved);
-  themeBox.checked = saved === 'light';
-  themeBox.addEventListener('change', () => {
-    const t = themeBox.checked ? 'light' : 'dark';
-    htmlEl.setAttribute('data-theme', t);
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  function setTheme(t){
+    htmlEl.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
     localStorage.setItem('gwen_theme', t);
+    themeIcon.className = t === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+  }
+  setTheme(localStorage.getItem('gwen_theme') || 'dark');
+  themeToggleBtn.addEventListener('click', () => {
+    setTheme(htmlEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
 
   // Contact scroll
   document.getElementById('contactScrollBtn').addEventListener('click', () => {
-    const s = document.getElementById('contactStrip');
-    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    s.style.outline = '2px solid rgba(123,164,255,.35)';
-    setTimeout(() => s.style.outline = '', 1400);
+    document.getElementById('connect').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // Modal helpers
-  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
-
-  document.getElementById('toggleCertificatesBtn').addEventListener('click', () => openModal('certsModal'));
-  document.getElementById('closeCertsModal').addEventListener('click', () => closeModal('certsModal'));
-  document.getElementById('certsModal').addEventListener('click', e => { if (e.target.id === 'certsModal') closeModal('certsModal'); });
-
-  document.getElementById('toggleProjectsBtn').addEventListener('click', () => openModal('projectsModal'));
-  document.getElementById('closeProjectsModal').addEventListener('click', () => closeModal('projectsModal'));
-  document.getElementById('projectsModal').addEventListener('click', e => { if (e.target.id === 'projectsModal') closeModal('projectsModal'); });
-
-  function openProjectImage(src, name) {
+  // Image modal
+  function openImg(src, name) {
     document.getElementById('modalImage').src = src;
     document.getElementById('modalCaption').textContent = name;
     document.getElementById('imageModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-  function closeProjectImage() { document.getElementById('imageModal').classList.remove('open'); }
-  document.getElementById('imageModal').addEventListener('click', e => { if (e.target.id === 'imageModal') closeProjectImage(); });
-
-  document.addEventListener('keydown', e => {
-    if (e.key !== 'Escape') return;
-    closeProjectImage();
-    closeModal('certsModal');
-    closeModal('projectsModal');
-  });
+  function closeImg() {
+    document.getElementById('imageModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('imageModal').addEventListener('click', e => { if (e.target.id === 'imageModal') closeImg(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeImg(); });
 
   // Toast
-  function showToast(msg, type) {
+  function showToast(msg, ok) {
     const t = document.getElementById('toast');
     t.textContent = msg;
-    t.style.borderColor = type === 'success' ? 'var(--green)' : '#f87171';
+    t.style.color = ok ? '#2DD9A8' : '#FF6B6B';
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3200);
   }
+
+  // Generic expand/collapse
+  function setupToggle(btnId, containerId, itemSelector, totalCount) {
+    const btn = document.getElementById(btnId);
+    const container = document.getElementById(containerId);
+    if (!btn || !container) return;
+    const hiddenItems = container.querySelectorAll(itemSelector + '.is-hidden');
+    let expanded = false;
+    btn.addEventListener('click', () => {
+      expanded = !expanded;
+      hiddenItems.forEach(el => el.classList.toggle('is-hidden', !expanded));
+      btn.innerHTML = expanded
+        ? '<i class="fas fa-chevron-up"></i> Show fewer'
+        : '<i class="fas fa-chevron-down"></i> View all ' + totalCount;
+      if (!expanded) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+  setupToggle('projectsToggle', 'projGrid', '.proj-card', 11);
+  setupToggle('certsToggle', 'certGrid', '.cert-card', 6);
 
   // Contact form
   (function () {
@@ -1025,12 +985,19 @@
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…'; btn.disabled = true;
       try {
         const res = await fetch(form.action, { method:'POST', body: new FormData(form), headers:{'Accept':'application/json'} });
-        if (res.ok) { form.reset(); showToast('Message sent! 💌', 'success'); }
-        else { const d = await res.json(); showToast((d.errors||[]).map(x=>x.message).join(', ')||'Failed.','error'); }
-      } catch { showToast('Network error. Try again.','error'); }
+        if (res.ok) { form.reset(); showToast('Message sent.', true); }
+        else { const d = await res.json(); showToast((d.errors||[]).map(x=>x.message).join(', ')||'Something went wrong.', false); }
+      } catch { showToast('Network error. Try again.', false); }
       finally { btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message'; btn.disabled = false; }
     });
   })();
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
 </script>
 </body>
 </html>
