@@ -124,34 +124,43 @@ img{max-width:100%;display:block;}
 /* ══════════════════════════════════════════
    HERO
    ══════════════════════════════════════════ */
-.hero{position:relative;padding:2.6rem 0 2.2rem;overflow:hidden;}
+.hero{position:relative;padding:3.4rem 0 2.8rem;overflow:hidden;}
 .hero-blob{
   position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;z-index:0;pointer-events:none;
 }
 .hero-blob.b1{width:420px;height:420px;background:var(--accent1);top:-160px;right:-120px;}
 .hero-blob.b2{width:380px;height:380px;background:var(--accent2);bottom:-180px;left:-140px;opacity:.25;}
 .hero-inner{position:relative;z-index:1;}
-.hero-heading-row{display:flex;gap:1.4rem;align-items:center;margin-bottom:1.4rem;}
+
+.hero-heading-row{display:flex;gap:1.9rem;align-items:flex-start;margin-bottom:2rem;}
 .hero-photo-wrap{
-  width:140px;height:140px;border-radius:28px;flex-shrink:0;
-  box-shadow:0 12px 30px rgba(124,92,255,.25);
+  width:150px;height:150px;border-radius:28px;flex-shrink:0;
+  padding:3px;background:var(--grad);
+  box-shadow:0 16px 34px rgba(124,92,255,.28);
 }
-.hero-photo{width:100%;height:100%;border-radius:28px;overflow:hidden;}
+.hero-photo{width:100%;height:100%;border-radius:26px;overflow:hidden;background:var(--bg);}
 .hero-photo img{width:100%;height:100%;object-fit:cover;}
-.hero-id{display:flex;flex-direction:column;}
-.hero-text{max-width:640px;}
+.hero-id{display:flex;flex-direction:column;padding-top:.2rem;}
 .hero-name{
-  font-family:var(--disp);font-weight:800;font-size:clamp(1.8rem,4.5vw,2.4rem);
-  color:var(--ink);line-height:1.1;letter-spacing:-.01em;
+  font-family:var(--disp);font-weight:800;font-size:clamp(2rem,4.8vw,2.7rem);
+  color:var(--ink);line-height:1.05;letter-spacing:-.015em;
 }
 .hero-role{
-  font-family:var(--disp);font-weight:500;font-size:clamp(.9rem,2vw,1.05rem);
-  margin-top:.4rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  font-family:var(--disp);font-weight:500;font-size:clamp(.92rem,2vw,1.08rem);
+  margin-top:.5rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.hero-desc{font-size:.82rem;color:var(--ink-2);max-width:60ch;line-height:1.65;}
+.hero-desc{font-size:.85rem;color:var(--ink-2);max-width:58ch;line-height:1.7;margin-top:.9rem;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
+.hero-badges span{
+  font-family:var(--mono);font-size:.7rem;color:var(--ink-2);
+  border:1px solid var(--line);padding:.28rem .65rem;border-radius:20px;
+  display:inline-flex;align-items:center;gap:.35rem;
+}
+.hero-badges i{color:var(--accent2);font-size:.7rem;}
+
 .hero-actions{
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-  margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.1rem;
+  margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line);
 }
 .hero-cta{display:flex;flex-wrap:wrap;gap:.6rem;}
 .btn-primary{
@@ -176,81 +185,77 @@ img{max-width:100%;display:block;}
   transition:all .18s;
 }
 .hero-socials a:hover{border-color:transparent;background:var(--grad);color:#0A0E18;}
-.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem;}
-.hero-badges span{
-  font-family:var(--mono);font-size:.7rem;color:var(--ink-2);
-  border:1px solid var(--line);padding:.28rem .65rem;border-radius:20px;
-  display:inline-flex;align-items:center;gap:.35rem;
-}
-.hero-badges i{color:var(--accent2);font-size:.7rem;}
 
 /* ══════════════════════════════════════════
    SECTION SHELL
    ══════════════════════════════════════════ */
-.section{padding:2rem 0;}
-.section-head{margin-bottom:1.1rem;}
+.section{padding:3.25rem 0;border-top:1px solid var(--line);}
+.section:first-of-type{border-top:none;}
+.section-head{margin-bottom:1.75rem;}
 .section-eyebrow{
   font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent2);display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;
+  color:var(--accent2);display:flex;align-items:center;gap:.5rem;margin-bottom:.55rem;
 }
 
 .section-title{font-family:var(--disp);font-weight:700;font-size:1.45rem;color:var(--ink);}
-.section-sub{font-size:.8rem;color:var(--ink-3);margin-top:.4rem;max-width:60ch;}
-.section-toprow{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.section-sub{font-size:.8rem;color:var(--ink-3);margin-top:.5rem;max-width:60ch;line-height:1.6;}
+.section-toprow{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.75rem;}
+.section-toprow .section-head{margin-bottom:0;}
 .section-more{
   font-family:var(--mono);font-size:.68rem;color:var(--accent2);background:none;border:none;cursor:pointer;
-  display:inline-flex;align-items:center;gap:.35rem;
+  display:inline-flex;align-items:center;gap:.35rem;padding:.3rem 0;
 }
 .section-more:hover{text-decoration:underline;}
 
 /* ══════════════════════════════════════════
    SKILLS — tech icon grid
    ══════════════════════════════════════════ */
-.skill-block{margin-bottom:1.1rem;}
+.skill-block{margin-bottom:1.6rem;}
 .skill-block:last-child{margin-bottom:0;}
-.skill-cat-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.8rem;}
-.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:.6rem;}
+.skill-cat-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.9rem;}
+.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:.75rem;}
 .icon-card{
   background:var(--surface);border:1px solid var(--line);border-radius:10px;
-  padding:.7rem .5rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  padding:.9rem .6rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+  min-height:78px;
   transition:transform .18s,border-color .18s,box-shadow .18s;
 }
 .icon-card:hover{transform:translateY(-3px);border-color:var(--accent1);box-shadow:0 10px 20px rgba(124,92,255,.15);}
-.icon-card i{font-size:1.25rem;}
-.icon-card span{font-family:var(--mono);font-size:.58rem;color:var(--ink-2);text-align:center;}
-.practice-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.icon-card i{font-size:1.3rem;}
+.icon-card span{font-family:var(--mono);font-size:.6rem;color:var(--ink-2);text-align:center;}
+.practice-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
 .practice-tags span{
-  font-family:var(--mono);font-size:.65rem;color:var(--ink);
+  font-family:var(--mono);font-size:.66rem;color:var(--ink);
   background:var(--surface-2);border:1px solid var(--line);
-  padding:.35rem .75rem;border-radius:20px;
+  padding:.4rem .85rem;border-radius:20px;
 }
 
 /* ══════════════════════════════════════════
    EXPERIENCE / EDUCATION — timeline
    ══════════════════════════════════════════ */
 .timeline{position:relative;padding-left:1.7rem;}
-.timeline::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line-strong);}
-.tl-item{position:relative;padding-bottom:1.1rem;}
+.timeline::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line-strong);}
+.tl-item{position:relative;padding-bottom:1.5rem;}
 .tl-item:last-child{padding-bottom:0;}
 .tl-dot{
-  position:absolute;left:-1.7rem;top:2px;width:12px;height:12px;border-radius:50%;
+  position:absolute;left:-1.7rem;top:6px;width:12px;height:12px;border-radius:50%;
   background:var(--grad);box-shadow:0 0 0 4px var(--bg);
 }
 .tl-card{
-  background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.3rem 1.4rem;
 }
-.tl-date{font-family:var(--mono);font-size:.66rem;color:var(--accent2);}
-.tl-org{font-family:var(--disp);font-weight:700;font-size:1rem;color:var(--ink);margin-top:.3rem;}
-.tl-role{font-family:var(--mono);font-size:.68rem;color:var(--ink-2);margin-top:.25rem;}
-.tl-badge{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--mono);font-size:.64rem;color:var(--amber);margin-top:.5rem;}
-.tl-bullets{margin-top:.7rem;display:flex;flex-direction:column;gap:.4rem;}
-.tl-bullets li{font-size:.78rem;color:var(--ink-2);line-height:1.6;position:relative;padding-left:.85rem;}
+.tl-date{font-family:var(--mono);font-size:.66rem;color:var(--accent2);letter-spacing:.03em;}
+.tl-org{font-family:var(--disp);font-weight:700;font-size:1.05rem;color:var(--ink);margin-top:.4rem;}
+.tl-role{font-family:var(--mono);font-size:.7rem;color:var(--ink-2);margin-top:.3rem;line-height:1.5;}
+.tl-badge{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--mono);font-size:.64rem;color:var(--amber);margin-top:.6rem;}
+.tl-bullets{margin-top:.85rem;display:flex;flex-direction:column;gap:.5rem;}
+.tl-bullets li{font-size:.8rem;color:var(--ink-2);line-height:1.6;position:relative;padding-left:.9rem;}
 .tl-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent2);font-size:.65rem;}
 
 /* ══════════════════════════════════════════
    CERTIFICATIONS — image cards
    ══════════════════════════════════════════ */
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.9rem;}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.1rem;}
 .cert-card{
   background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;
   transition:transform .2s,border-color .2s,box-shadow .2s;
@@ -259,22 +264,22 @@ img{max-width:100%;display:block;}
 .cert-thumb{width:100%;aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--surface-2);}
 .cert-thumb img{width:100%;height:100%;object-fit:cover;}
 .cert-ext{
-  position:absolute;top:.5rem;right:.5rem;width:22px;height:22px;border-radius:50%;
+  position:absolute;top:.55rem;right:.55rem;width:22px;height:22px;border-radius:50%;
   background:rgba(8,11,20,.7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.58rem;
   backdrop-filter:blur(4px);
 }
-.cert-info{padding:.75rem .85rem .85rem;}
-.cert-name{font-family:var(--disp);font-weight:600;font-size:.82rem;color:var(--ink);line-height:1.35;}
-.cert-meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.4rem;}
+.cert-info{padding:1rem 1.1rem 1.1rem;display:flex;flex-direction:column;}
+.cert-name{font-family:var(--disp);font-weight:600;font-size:.84rem;color:var(--ink);line-height:1.4;min-height:2.35em;}
+.cert-meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.55rem;}
 .cert-issuer{font-family:var(--mono);font-size:.6rem;color:var(--ink-3);}
 .cert-date{font-family:var(--mono);font-size:.6rem;color:var(--accent2);white-space:nowrap;}
-.cert-skills{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem;padding-top:.55rem;border-top:1px dashed var(--line);}
-.cert-skills span{font-family:var(--mono);font-size:.58rem;color:var(--ink-2);background:var(--surface-2);padding:.16rem .45rem;border-radius:4px;}
+.cert-skills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;padding-top:.75rem;border-top:1px dashed var(--line);}
+.cert-skills span{font-family:var(--mono);font-size:.6rem;color:var(--ink-2);background:var(--surface-2);padding:.2rem .5rem;border-radius:4px;}
 
 /* ══════════════════════════════════════════
    PROJECTS — image cards
    ══════════════════════════════════════════ */
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
 .proj-card{
   background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;
   display:flex;flex-direction:column;height:100%;
@@ -285,29 +290,29 @@ img{max-width:100%;display:block;}
 .proj-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s;}
 .proj-thumb:hover img{transform:scale(1.06);}
 .proj-status{
-  position:absolute;top:.5rem;left:.5rem;
-  font-family:var(--mono);font-size:.55rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
-  padding:.22rem .55rem;border-radius:20px;backdrop-filter:blur(4px);
+  position:absolute;top:.6rem;left:.6rem;
+  font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+  padding:.26rem .6rem;border-radius:20px;backdrop-filter:blur(4px);
 }
 .status-shipped{background:rgba(45,217,168,.16);color:var(--teal);border:1px solid rgba(45,217,168,.4);}
 .status-academic{background:rgba(124,92,255,.16);color:#B4A6FF;border:1px solid rgba(124,92,255,.4);}
 .status-prototype{background:rgba(255,180,84,.16);color:var(--amber);border:1px solid rgba(255,180,84,.4);}
 .status-internship{background:rgba(255,180,84,.16);color:var(--amber);border:1px solid rgba(255,180,84,.4);}
-.proj-body{padding:.65rem .7rem .75rem;display:flex;flex-direction:column;gap:.32rem;flex:1;}
-.proj-title{font-family:var(--disp);font-weight:700;font-size:.76rem;color:var(--ink);line-height:1.3;}
-.proj-org{font-family:var(--mono);font-size:.58rem;color:var(--ink-3);margin-top:.05rem;}
-.proj-year{font-family:var(--mono);font-size:.58rem;color:var(--ink-3);font-weight:400;}
-.proj-role{font-family:var(--mono);font-size:.58rem;color:var(--accent2);margin-top:.1rem;}
-.proj-bullets{display:flex;flex-direction:column;gap:.22rem;}
+.proj-body{padding:.9rem 1rem 1.05rem;display:flex;flex-direction:column;gap:.4rem;flex:1;}
+.proj-title{font-family:var(--disp);font-weight:700;font-size:.8rem;color:var(--ink);line-height:1.35;min-height:2.1em;}
+.proj-org{font-family:var(--mono);font-size:.6rem;color:var(--ink-3);margin-top:.1rem;}
+.proj-year{font-family:var(--mono);font-size:.6rem;color:var(--ink-3);font-weight:400;}
+.proj-role{font-family:var(--mono);font-size:.6rem;color:var(--accent2);margin-top:.15rem;}
+.proj-bullets{display:flex;flex-direction:column;gap:.3rem;margin-top:.1rem;}
 .proj-bullets li{
-  font-size:.66rem;color:var(--ink-2);line-height:1.45;position:relative;padding-left:.75rem;
+  font-size:.68rem;color:var(--ink-2);line-height:1.5;position:relative;padding-left:.8rem;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
 .proj-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent2);font-size:.58rem;}
-.proj-foot{margin-top:auto;padding-top:.4rem;display:flex;flex-direction:column;gap:.45rem;}
-.proj-stack{display:flex;flex-wrap:wrap;gap:.28rem;}
-.proj-stack span{font-family:var(--mono);font-size:.55rem;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);padding:.15rem .42rem;border-radius:5px;}
-.proj-link{font-family:var(--mono);font-size:.6rem;color:var(--accent2);display:inline-flex;align-items:center;gap:.3rem;width:fit-content;}
+.proj-foot{margin-top:auto;padding-top:.6rem;display:flex;flex-direction:column;gap:.55rem;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.35rem;}
+.proj-stack span{font-family:var(--mono);font-size:.57rem;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);padding:.18rem .48rem;border-radius:5px;}
+.proj-link{font-family:var(--mono);font-size:.62rem;color:var(--accent2);display:inline-flex;align-items:center;gap:.3rem;width:fit-content;}
 .proj-link:hover{text-decoration:underline;}
 
 .is-hidden{display:none !important;}
@@ -320,11 +325,11 @@ img{max-width:100%;display:block;}
    ══════════════════════════════════════════ */
 .connect-panel{
   background:linear-gradient(135deg, rgba(124,92,255,.12), rgba(34,211,238,.08));
-  border:1px solid var(--line-strong);border-radius:18px;padding:1.4rem;
+  border:1px solid var(--line-strong);border-radius:18px;padding:1.9rem;
 }
-.connect-text{font-size:.82rem;color:var(--ink-2);line-height:1.7;margin-bottom:1.2rem;max-width:60ch;}
-.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
-.fg{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.9rem;}
+.connect-text{font-size:.82rem;color:var(--ink-2);line-height:1.7;margin-bottom:1.6rem;max-width:60ch;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem;}
 .fg label{font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase;}
 .fg input,.fg textarea{
   background:var(--surface);border:1px solid var(--line-strong);border-radius:10px;
@@ -337,10 +342,10 @@ img{max-width:100%;display:block;}
 
 /* footer */
 .site-footer{
-  text-align:center;padding:1.8rem 1.4rem;border-top:1px solid var(--line);
+  text-align:center;padding:2.4rem 1.4rem;border-top:1px solid var(--line);
   font-family:var(--mono);font-size:.63rem;color:var(--ink-3);letter-spacing:.03em;
 }
-.site-footer p+p{margin-top:.4rem;}
+.site-footer p+p{margin-top:.45rem;}
 
 /* toast */
 .toast{
@@ -377,37 +382,39 @@ img{max-width:100%;display:block;}
   .hero-photo-wrap{width:120px;height:120px;}
 }
 @media (max-width:640px){
-  .hero{padding:2rem 0 1.6rem;}
+  .hero{padding:2.2rem 0 1.8rem;}
   .hero-inner{gap:1.2rem;}
-  .hero-heading-row{flex-direction:column;align-items:flex-start;gap:1rem;margin-bottom:1rem;}
+  .hero-heading-row{flex-direction:column;align-items:flex-start;gap:1.1rem;margin-bottom:1.2rem;}
   .hero-photo-wrap{width:112px;height:112px;}
   .form-row-2{grid-template-columns:1fr;}
-  .section{padding:1.6rem 0;}
-  .section-head{margin-bottom:1.1rem;}
-  .connect-panel{padding:1.3rem 1.1rem;}
+  .section{padding:2.1rem 0;}
+  .section-head{margin-bottom:1.4rem;}
+  .section-toprow{margin-bottom:1.4rem;}
+  .connect-panel{padding:1.5rem 1.2rem;}
   .wrap{padding:0 1.1rem;}
   .nav-inner{padding:.6rem 1.1rem;}
 
-  /* keep certifications & projects compact on small screens */
-  .cert-grid{grid-template-columns:1fr 1fr;gap:.55rem;}
+  /* keep certifications & projects compact but breathable on small screens */
+  .cert-grid{grid-template-columns:1fr 1fr;gap:.7rem;}
   .cert-thumb{aspect-ratio:4/3;}
-  .cert-info{padding:.55rem .6rem .65rem;}
-  .cert-name{font-size:.68rem;}
-  .cert-meta{flex-direction:column;align-items:flex-start;gap:.15rem;}
-  .cert-issuer,.cert-date{font-size:.52rem;}
-  .cert-skills{gap:.22rem;padding-top:.4rem;margin-top:.4rem;}
-  .cert-skills span{font-size:.5rem;padding:.12rem .32rem;}
+  .cert-info{padding:.7rem .75rem .8rem;}
+  .cert-name{font-size:.7rem;min-height:2.2em;}
+  .cert-meta{flex-direction:column;align-items:flex-start;gap:.2rem;margin-top:.5rem;}
+  .cert-issuer,.cert-date{font-size:.54rem;}
+  .cert-skills{gap:.3rem;padding-top:.55rem;margin-top:.55rem;}
+  .cert-skills span{font-size:.52rem;padding:.15rem .38rem;}
   .cert-ext{width:18px;height:18px;font-size:.5rem;}
 
-  .proj-grid{grid-template-columns:1fr 1fr;gap:.5rem;}
+  .proj-grid{grid-template-columns:1fr 1fr;gap:.65rem;}
   .proj-thumb{aspect-ratio:4/3;}
-  .proj-body{padding:.5rem .55rem .6rem;gap:.24rem;}
-  .proj-title{font-size:.66rem;}
-  .proj-org,.proj-year,.proj-role{font-size:.52rem;}
-  .proj-bullets li{font-size:.58rem;-webkit-line-clamp:2;}
-  .proj-stack span{font-size:.5rem;padding:.12rem .34rem;}
-  .proj-link{font-size:.54rem;}
-  .proj-status{font-size:.48rem;padding:.16rem .42rem;}
+  .proj-body{padding:.65rem .7rem .75rem;gap:.3rem;}
+  .proj-title{font-size:.68rem;min-height:2.15em;}
+  .proj-org,.proj-year,.proj-role{font-size:.54rem;}
+  .proj-bullets li{font-size:.6rem;-webkit-line-clamp:2;}
+  .proj-foot{padding-top:.45rem;gap:.4rem;}
+  .proj-stack span{font-size:.52rem;padding:.14rem .38rem;}
+  .proj-link{font-size:.56rem;}
+  .proj-status{font-size:.5rem;padding:.18rem .46rem;}
 }
 @media (max-width:420px){
   .hero-photo-wrap{width:100px;height:100px;}
@@ -419,13 +426,14 @@ img{max-width:100%;display:block;}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo"><span </span> Gwen Basconcillo</div>
+    <div class="nav-logo"><span class="dot"></span> Gwen Basconcillo</div>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#certifications">Certifications</a>
       <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
       <a href="#connect">Connect</a>
     </div>
     <div class="nav-right">
@@ -449,24 +457,23 @@ img{max-width:100%;display:block;}
       </div>
       <div class="hero-id">
         <h1 class="hero-name">Gwen Basconcillo</h1>
-        <div class="hero-role">UI/UX Designer</div>
+        <div class="hero-role">UI/UX Designer &amp; Web Developer</div>
+        <p class="hero-desc">I like working where design meets code—planning the experience, building the solution, and testing it to ensure it stands up to real-world use. With a background in Information Technology and experience in web development, UI/UX design, and QA testing, I enjoy creating digital experiences that are simple, functional, and user-focused.</p>
         <div class="hero-badges">
           <span><i class="fas fa-location-dot"></i> Calapan City, Oriental Mindoro, PH</span>
         </div>
       </div>
     </div>
-    <div class="hero-text">
-      <p class="hero-desc">Aspiring Information Technology professional with skills in web development, UI/UX design, quality assurance, and technical documentation. Experienced in building responsive web applications using JavaScript, PHP, Node.js, HTML/CSS, and MySQL, while creating intuitive user experiences that balance functionality and design. Known for being detail-oriented, adaptable, and committed to delivering reliable digital solutions through continuous learning, problem-solving, and a user-centered approach.</p>
-      <div class="hero-actions">
-        <div class="hero-cta">
-          <a href="assets/Basconcillo_Resume.pdf" target="_blank" class="btn-primary"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
-          <button class="btn-outline" id="contactScrollBtn"><i class="fas fa-envelope"></i> Get in Touch</button>
-        </div>
-        <div class="hero-socials">
-          <a href="mailto:gwenbasconcillo11@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://github.com/oncepebrero" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://facebook.com/oncepebrero" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        </div>
+
+    <div class="hero-actions">
+      <div class="hero-cta">
+        <a href="assets/Basconcillo_Resume.pdf" target="_blank" class="btn-primary"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
+        <button class="btn-outline" id="contactScrollBtn"><i class="fas fa-envelope"></i> Get in Touch</button>
+      </div>
+      <div class="hero-socials">
+        <a href="mailto:gwenbasconcillo11@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/oncepebrero" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://facebook.com/oncepebrero" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
       </div>
     </div>
   </div>
@@ -525,7 +532,7 @@ img{max-width:100%;display:block;}
       </div>
     </div>
 
-    <div class="skill-block" style="margin-bottom:0;">
+    <div class="skill-block">
       <div class="skill-cat-label">Strengths</div>
       <div class="practice-tags">
         <span>Teamwork</span>
@@ -538,120 +545,17 @@ img{max-width:100%;display:block;}
     </div>
   </section>
 
-  <!-- EXPERIENCE & EDUCATION -->
-  <section class="section reveal" id="experience">
-    <div class="section-head">
-      <div class="section-eyebrow">Track Record</div>
-      <h2 class="section-title">Experience</h2>
-    </div>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-date">2025 · 486 HOURS</div>
-          <div class="tl-org">New San Jose Builders Inc.</div>
-          <div class="tl-role">OJT Intern — QA Analyst, Developer &amp; Technical Documentation</div>
-          <ul class="tl-bullets">
-            <li>Wrote and executed test cases, logging defects for the development team to resolve</li>
-            <li>Documented system features and internal processes for reference and onboarding</li>
-            <li>Assisted in building and maintaining internal web tools alongside senior developers</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-date">2022 – 2026</div>
-          <div class="tl-org">Mindoro State University</div>
-          <div class="tl-role">BS Information Technology</div>
-          <div class="tl-badge"><i class="fas fa-star"></i> Dean's Lister, 2023 – 2026</div>
-          <ul class="tl-bullets">
-            <li>Capstone: AI-integrated inventory &amp; e-commerce system with demand forecasting, built for REMHART</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CERTIFICATIONS -->
-  <section class="section reveal" id="certifications">
-    <div class="section-toprow">
-      <div class="section-head" style="margin-bottom:0;">
-        <div class="section-eyebrow">Credentials</div>
-        <h2 class="section-title">Certifications</h2>
-      </div>
-      <button type="button" class="section-more" id="certsToggle"><i class="fas fa-chevron-down"></i> View all 7</button>
-    </div>
-     <div class="cert-grid" id="certGrid" style="margin-top:1.8rem;">
-  <a class="cert-card" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
-    <div class="cert-thumb"><img src="assets/cert-covers/academic-distinction.jpg" alt="Certificate of Academic Distinction"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-    <div class="cert-info">
-      <div class="cert-name">Certificate of Academic Distinction</div>
-      <div class="cert-meta"><span class="cert-issuer">Mindoro State University</span><span class="cert-date">June 2026</span></div>
-      <div class="cert-skills"><span>Academic Excellence</span><span>GWA: 1.7405</span></div>
-    </div>
-  </a>
-      <a class="cert-card" href="assets/ojt.jpg" target="_blank">
-        <div class="cert-thumb"><img src="assets/ojt.jpg" alt="OJT Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">OJT Certificate of Completion</div>
-          <div class="cert-meta"><span class="cert-issuer">New San Jose Builders Inc.</span><span class="cert-date">May 2025</span></div>
-          <div class="cert-skills"><span>QA Testing</span><span>Documentation</span></div>
-        </div>
-      </a>
-      <a class="cert-card" href="assets/certificate1.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/cybersecurity-cover.png" alt="Fortinet Cybersecurity Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
-          <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
-          <div class="cert-skills"><span>Cybersecurity</span><span>Threat Awareness</span></div>
-        </div>
-      </a>
-      <a class="cert-card" href="assets/certificate2.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/networking-cover..png" alt="Fortinet Networking Fundamentals Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">Fortinet Networking Fundamentals</div>
-          <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
-          <div class="cert-skills"><span>Routing</span><span>Network Design</span></div>
-        </div>
-      </a>
-      <a class="cert-card is-hidden" href="assets/certificate3.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">Python Programming II</div>
-          <div class="cert-meta"><span class="cert-issuer">CodeChum</span><span class="cert-date">Dec 2025</span></div>
-          <div class="cert-skills"><span>OOP</span><span>Data Structures</span></div>
-        </div>
-      </a>
-      <a class="cert-card is-hidden" href="assets/certificate4.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/data-cover.png" alt="Data Analytics Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">Data Analytics — IT Specialist</div>
-          <div class="cert-meta"><span class="cert-issuer">IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
-          <div class="cert-skills"><span>Data Analysis</span><span>Reporting</span></div>
-        </div>
-      </a>
-      <a class="cert-card is-hidden" href="assets/certificate5.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/mctech-cover.png" alt="MC Tech Training Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">MC Tech Training — Data Analytics</div>
-          <div class="cert-meta"><span class="cert-issuer">8-Hour IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
-          <div class="cert-skills"><span>Visualization</span><span>Spreadsheets</span></div>
-        </div>
-      </a>
-    </div>
-  </section>
-   
   <!-- PROJECTS -->
   <section class="section reveal" id="projects">
     <div class="section-toprow">
-      <div class="section-head" style="margin-bottom:0;">
+      <div class="section-head">
         <div class="section-eyebrow">Selected Work</div>
         <h2 class="section-title">Projects</h2>
       </div>
       <button type="button" class="section-more" id="projectsToggle"><i class="fas fa-chevron-down"></i> View all 11</button>
     </div>
-    <div class="proj-grid" id="projGrid" style="margin-top:1.8rem;">
+    <div class="proj-grid" id="projGrid">
 
       <div class="proj-card">
         <div class="proj-thumb" onclick="openImg('assets/capstone-cover.png','RM\'S — Capstone Project')">
@@ -888,6 +792,120 @@ img{max-width:100%;display:block;}
     </div>
   </section>
 
+  <!-- EXPERIENCE -->
+  <section class="section reveal" id="experience">
+    <div class="section-head">
+      <div class="section-eyebrow">Track Record</div>
+      <h2 class="section-title">Experience</h2>
+      <p class="section-sub">Hands-on QA, development, and documentation work in a live company environment.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2025 · 486 HOURS</div>
+          <div class="tl-org">New San Jose Builders Inc.</div>
+          <div class="tl-role">OJT Intern — QA Analyst, Developer &amp; Technical Documentation</div>
+          <ul class="tl-bullets">
+            <li>Wrote and executed test cases, logging defects for the development team to resolve</li>
+            <li>Documented system features and internal processes for reference and onboarding</li>
+            <li>Assisted in building and maintaining internal web tools alongside senior developers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section reveal" id="education">
+    <div class="section-head">
+      <div class="section-eyebrow">Academic Background</div>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-date">2022 – 2026</div>
+          <div class="tl-org">Mindoro State University</div>
+          <div class="tl-role">BS Information Technology</div>
+          <div class="tl-badge"><i class="fas fa-star"></i> Dean's Lister, 2023 – 2026</div>
+          <ul class="tl-bullets">
+            <li>Capstone: AI-integrated inventory &amp; e-commerce system with demand forecasting, built for REMHART</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section reveal" id="certifications">
+    <div class="section-toprow">
+      <div class="section-head">
+        <div class="section-eyebrow">Credentials</div>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      <button type="button" class="section-more" id="certsToggle"><i class="fas fa-chevron-down"></i> View all 7</button>
+    </div>
+     <div class="cert-grid" id="certGrid">
+  <a class="cert-card" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
+    <div class="cert-thumb"><img src="assets/cert-covers/academic-distinction.jpg" alt="Certificate of Academic Distinction"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+    <div class="cert-info">
+      <div class="cert-name">Certificate of Academic Distinction</div>
+      <div class="cert-meta"><span class="cert-issuer">Mindoro State University</span><span class="cert-date">June 2026</span></div>
+      <div class="cert-skills"><span>Academic Excellence</span><span>GWA: 1.7405</span></div>
+    </div>
+  </a>
+      <a class="cert-card" href="assets/ojt.jpg" target="_blank">
+        <div class="cert-thumb"><img src="assets/ojt.jpg" alt="OJT Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">OJT Certificate of Completion</div>
+          <div class="cert-meta"><span class="cert-issuer">New San Jose Builders Inc.</span><span class="cert-date">May 2025</span></div>
+          <div class="cert-skills"><span>QA Testing</span><span>Documentation</span></div>
+        </div>
+      </a>
+      <a class="cert-card" href="assets/certificate1.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/cybersecurity-cover.png" alt="Fortinet Cybersecurity Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
+          <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
+          <div class="cert-skills"><span>Cybersecurity</span><span>Threat Awareness</span></div>
+        </div>
+      </a>
+      <a class="cert-card" href="assets/certificate2.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/networking-cover..png" alt="Fortinet Networking Fundamentals Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Fortinet Networking Fundamentals</div>
+          <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
+          <div class="cert-skills"><span>Routing</span><span>Network Design</span></div>
+        </div>
+      </a>
+      <a class="cert-card is-hidden" href="assets/certificate3.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Python Programming II</div>
+          <div class="cert-meta"><span class="cert-issuer">CodeChum</span><span class="cert-date">Dec 2025</span></div>
+          <div class="cert-skills"><span>OOP</span><span>Data Structures</span></div>
+        </div>
+      </a>
+      <a class="cert-card is-hidden" href="assets/certificate4.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/data-cover.png" alt="Data Analytics Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Data Analytics — IT Specialist</div>
+          <div class="cert-meta"><span class="cert-issuer">IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
+          <div class="cert-skills"><span>Data Analysis</span><span>Reporting</span></div>
+        </div>
+      </a>
+      <a class="cert-card is-hidden" href="assets/certificate5.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/mctech-cover.png" alt="MC Tech Training Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">MC Tech Training — Data Analytics</div>
+          <div class="cert-meta"><span class="cert-issuer">8-Hour IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
+          <div class="cert-skills"><span>Visualization</span><span>Spreadsheets</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
   <!-- CONNECT -->
   <section class="section reveal" id="connect">
     <div class="section-head">
