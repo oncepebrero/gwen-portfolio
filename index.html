@@ -157,6 +157,8 @@ img{max-width:100%;display:block;}
   display:inline-flex;align-items:center;gap:.35rem;
 }
 .hero-badges i{color:var(--accent2);font-size:.7rem;}
+.hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:1rem;font-family:var(--mono);font-size:.74rem;color:var(--ink-2);}
+.hero-meta .meta-sep{color:var(--ink-3);}
 
 .hero-actions{
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.1rem;
@@ -229,6 +231,12 @@ img{max-width:100%;display:block;}
   background:var(--surface-2);border:1px solid var(--line);
   padding:.4rem .85rem;border-radius:20px;
 }
+.skills-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:1.7rem;}
+.skills-col-title{font-family:var(--disp);font-weight:700;font-size:.85rem;color:var(--ink);margin-bottom:.8rem;padding-bottom:.55rem;border-bottom:1px solid var(--line);}
+.skills-list li{font-size:.78rem;color:var(--ink-2);padding:.35rem 0;line-height:1.5;}
+.skills-strengths{font-size:.78rem;color:var(--ink-3);margin-top:1.9rem;padding-top:1.4rem;border-top:1px dashed var(--line);max-width:62ch;line-height:1.7;}
+@media (max-width:900px){ .skills-columns{grid-template-columns:1fr 1fr;} }
+@media (max-width:560px){ .skills-columns{grid-template-columns:1fr;} }
 
 /* ══════════════════════════════════════════
    EXPERIENCE / EDUCATION — timeline
@@ -279,7 +287,23 @@ img{max-width:100%;display:block;}
 /* ══════════════════════════════════════════
    PROJECTS — image cards
    ══════════════════════════════════════════ */
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;}
+.featured-project{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:0;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  margin-bottom:1.5rem;
+}
+.featured-thumb{position:relative;aspect-ratio:16/11;cursor:pointer;overflow:hidden;background:var(--surface-2);}
+.featured-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s;}
+.featured-thumb:hover img{transform:scale(1.04);}
+.featured-body{padding:1.7rem 1.8rem;display:flex;flex-direction:column;justify-content:center;gap:.65rem;}
+.featured-eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);}
+.featured-title{font-family:var(--disp);font-weight:700;font-size:1.3rem;color:var(--ink);}
+.featured-meta{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);}
+@media (max-width:760px){
+  .featured-project{grid-template-columns:1fr;}
+  .featured-body{padding:1.3rem;}
+}
 .proj-card{
   background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;
   display:flex;flex-direction:column;height:100%;
@@ -317,7 +341,7 @@ img{max-width:100%;display:block;}
 
 .is-hidden{display:none !important;}
 
-@media (max-width:900px){ .proj-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width:760px){ .proj-grid{grid-template-columns:1fr;} }
 @media (max-width:900px){ .cert-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));} }
 
 /* ══════════════════════════════════════════
@@ -405,16 +429,17 @@ img{max-width:100%;display:block;}
   .cert-skills span{font-size:.52rem;padding:.15rem .38rem;}
   .cert-ext{width:18px;height:18px;font-size:.5rem;}
 
-  .proj-grid{grid-template-columns:1fr 1fr;gap:.65rem;}
-  .proj-thumb{aspect-ratio:4/3;}
-  .proj-body{padding:.65rem .7rem .75rem;gap:.3rem;}
-  .proj-title{font-size:.68rem;min-height:2.15em;}
-  .proj-org,.proj-year,.proj-role{font-size:.54rem;}
-  .proj-bullets li{font-size:.6rem;-webkit-line-clamp:2;}
-  .proj-foot{padding-top:.45rem;gap:.4rem;}
-  .proj-stack span{font-size:.52rem;padding:.14rem .38rem;}
-  .proj-link{font-size:.56rem;}
-  .proj-status{font-size:.5rem;padding:.18rem .46rem;}
+  .proj-grid{grid-template-columns:1fr;gap:.9rem;}
+  .proj-thumb{aspect-ratio:16/10;}
+  .proj-body{padding:.85rem .95rem 1rem;gap:.35rem;}
+  .proj-title{font-size:.82rem;min-height:0;}
+  .proj-org,.proj-year,.proj-role{font-size:.6rem;}
+  .proj-bullets li{font-size:.72rem;-webkit-line-clamp:3;}
+  .proj-foot{padding-top:.5rem;gap:.45rem;}
+  .proj-stack span{font-size:.58rem;padding:.18rem .44rem;}
+  .proj-link{font-size:.64rem;}
+  .proj-status{font-size:.54rem;padding:.2rem .5rem;}
+  .featured-title{font-size:1.1rem;}
 }
 @media (max-width:420px){
   .hero-photo-wrap{width:100px;height:100px;}
@@ -579,15 +604,11 @@ img{max-width:100%;display:block;}
       <div class="hero-id">
         <h1 class="hero-name">Gwen Basconcillo</h1>
         <div class="hero-role">UI/UX &amp; Graphic Designer</div>
-        <div class="hero-roles">
-          <span><i class="fas fa-pen-ruler"></i> Front-End Developer</span>
-          <span><i class="fas fa-diagram-project"></i> Wireframing &amp; Prototyping</span>
-          <span><i class="fas fa-layer-group"></i> Design Systems</span>
-          <span><i class="fas fa-bug"></i> Entry-Level QA Tester</span>
-        </div>
-        <div class="hero-badges">
-          <span><i class="fas fa-location-dot"></i> Calapan City, Oriental Mindoro, PH</span>
-          <span><i class="fas fa-graduation-cap"></i> BS IT · Mindoro State University</span>
+        <p class="hero-desc">I design and build interfaces, then test them until they're right — from wireframes and design systems to responsive front-end code and QA validation. Also working as a front-end developer and entry-level QA tester.</p>
+        <div class="hero-meta">
+          <span>Calapan City, Oriental Mindoro, PH</span>
+          <span class="meta-sep">·</span>
+          <span>BS IT, Mindoro State University</span>
         </div>
       </div>
     </div>
@@ -605,30 +626,6 @@ img{max-width:100%;display:block;}
       </div>
     </div>
 
-    <div class="marquee-wrap" aria-hidden="true">
-      <div class="marquee-track">
-        <span><i class="fas fa-check"></i> UI/UX Design</span>
-        <span><i class="fas fa-check"></i> Graphic Design</span>
-        <span><i class="fas fa-check"></i> Wireframing</span>
-        <span><i class="fas fa-check"></i> Prototyping</span>
-        <span><i class="fas fa-check"></i> Design Systems</span>
-        <span><i class="fas fa-check"></i> Front-End Development</span>
-        <span><i class="fas fa-check"></i> QA &amp; Manual Testing</span>
-        <span><i class="fas fa-check"></i> Bug Reporting</span>
-        <span><i class="fas fa-check"></i> Technical Documentation</span>
-        <span><i class="fas fa-check"></i> React &amp; Next.js (learning)</span>
-        <span><i class="fas fa-check"></i> UI/UX Design</span>
-        <span><i class="fas fa-check"></i> Graphic Design</span>
-        <span><i class="fas fa-check"></i> Wireframing</span>
-        <span><i class="fas fa-check"></i> Prototyping</span>
-        <span><i class="fas fa-check"></i> Design Systems</span>
-        <span><i class="fas fa-check"></i> Front-End Development</span>
-        <span><i class="fas fa-check"></i> QA &amp; Manual Testing</span>
-        <span><i class="fas fa-check"></i> Bug Reporting</span>
-        <span><i class="fas fa-check"></i> Technical Documentation</span>
-        <span><i class="fas fa-check"></i> React &amp; Next.js (learning)</span>
-      </div>
-    </div>
   </div>
 </header>
 
@@ -686,72 +683,46 @@ img{max-width:100%;display:block;}
       <p class="section-sub">Languages, frameworks, and tools I use to design, build, test, and document software.</p>
     </div>
 
-    <div class="skill-block">
-      <div class="skill-cat-label">Languages &amp; Markup</div>
-      <div class="icon-grid">
-        <div class="icon-card"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
-        <div class="icon-card"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
-        <div class="icon-card"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
-        <div class="icon-card"><i class="devicon-php-plain colored"></i><span>PHP</span></div>
-        <div class="icon-card"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+    <div class="skills-columns">
+      <div class="skills-col">
+        <div class="skills-col-title">Design &amp; Prototyping</div>
+        <ul class="skills-list">
+          <li>Figma</li>
+          <li>Design Systems</li>
+          <li>Wireframing &amp; Prototyping</li>
+          <li>Canva</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <div class="skills-col-title">Languages &amp; Development</div>
+        <ul class="skills-list">
+          <li>HTML5, CSS3, JavaScript</li>
+          <li>PHP</li>
+          <li>Python</li>
+          <li>Bootstrap</li>
+          <li>Node.js &amp; Express.js</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <div class="skills-col-title">Data, CMS &amp; Tools</div>
+        <ul class="skills-list">
+          <li>MySQL</li>
+          <li>Wix</li>
+          <li>Shopify</li>
+          <li>Git &amp; GitHub</li>
+        </ul>
+      </div>
+      <div class="skills-col">
+        <div class="skills-col-title">QA &amp; Practice</div>
+        <ul class="skills-list">
+          <li>Manual Testing &amp; Test Case Design</li>
+          <li>Bug Reporting</li>
+          <li>Technical Documentation</li>
+          <li>Multimedia Editing</li>
+        </ul>
       </div>
     </div>
-
-    <div class="skill-block">
-      <div class="skill-cat-label">Design &amp; Prototyping</div>
-      <div class="icon-grid">
-        <div class="icon-card"><i class="fa-brands fa-figma"></i><span>Figma</span></div>
-        <div class="icon-card"><i class="fa-solid fa-swatchbook"></i><span>Design Systems</span></div>
-        <div class="icon-card"><i class="fa-solid fa-object-ungroup"></i><span>Wireframing</span></div>
-        <div class="icon-card"><i class="fa-brands fa-canva"></i><span>Canva</span></div>
-      </div>
-    </div>
-
-    <div class="skill-block">
-      <div class="skill-cat-label">Frameworks &amp; Libraries</div>
-      <div class="icon-grid">
-        <div class="icon-card"><i class="devicon-bootstrap-plain colored"></i><span>Bootstrap</span></div>
-        <div class="icon-card"><i class="devicon-express-original colored"></i><span>Express.js</span></div>
-        <div class="icon-card"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
-      </div>
-    </div>
-
-   <div class="skill-block">
-  <div class="skill-cat-label">Databases, CMS &amp; Tools</div>
-  <div class="icon-grid">
-    <div class="icon-card"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
-    <div class="icon-card"><i class="fa-brands fa-wix"></i><span>Wix</span></div>
-    <div class="icon-card"><i class="fa-brands fa-shopify"></i><span>Shopify</span></div>
-    <div class="icon-card"><i class="devicon-git-plain colored"></i><span>Git</span></div>
-    <div class="icon-card"><i class="devicon-github-original colored"></i><span>GitHub</span></div>
-  </div>
-</div>
-
-    <div class="skill-block">
-      <div class="skill-cat-label">Practice</div>
-      <div class="practice-tags">
-        <span>UI/UX Design</span>
-        <span>Graphic Design</span>
-        <span>Wireframing</span>
-        <span>Prototyping</span>
-        <span>Design Systems</span>
-        <span>QA &amp; Test Case Design</span>
-        <span>Technical Writing</span>
-        <span>Multimedia Editing</span>
-      </div>
-    </div>
-
-    <div class="skill-block">
-      <div class="skill-cat-label">Strengths</div>
-      <div class="practice-tags">
-        <span>Teamwork</span>
-        <span>Communication</span>
-        <span>Problem Solving</span>
-        <span>Quick Learner</span>
-        <span>Tech Writing</span>
-        <span>Goal Oriented</span>
-      </div>
-    </div>
+    <p class="skills-strengths">Also bring: teamwork, clear communication, quick learning, and a goal-oriented approach to problem solving.</p>
   </section>
 
 
@@ -762,30 +733,27 @@ img{max-width:100%;display:block;}
         <div class="section-eyebrow">Selected Work</div>
         <h2 class="section-title">Projects</h2>
       </div>
-      <button type="button" class="section-more" id="projectsToggle"><i class="fas fa-chevron-down"></i> View all 11</button>
+      <button type="button" class="section-more" id="projectsToggle"><i class="fas fa-chevron-down"></i> View all 10</button>
     </div>
-    <div class="proj-grid" id="projGrid">
 
-      <div class="proj-card">
-        <div class="proj-thumb" onclick="openImg('assets/capstone-cover.png','RM\'S — Capstone Project')">
-          <span class="proj-status status-shipped">Shipped</span>
-          <img src="assets/capstone-cover.png" alt="RM'S Capstone Project" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">RM'S — Capstone Project <span class="proj-year">· 2025</span></div>
-            <div class="proj-org">Mindoro State University · for REMHART</div>
-            <div class="proj-role">Full-Stack Developer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>AI-integrated inventory &amp; e-commerce system with real-time demand forecasting for a live retail client</li>
-            <li>Designed the database schema and built the admin dashboard for stock, sales, and order tracking</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI Integration</span></div>
-          </div>
-        </div>
+    <div class="featured-project">
+      <div class="featured-thumb" onclick="openImg('assets/capstone-cover.png','RM\'S — Capstone Project')">
+        <span class="proj-status status-shipped">Shipped</span>
+        <img src="assets/capstone-cover.png" alt="RM'S Capstone Project" onerror="this.style.display='none'">
       </div>
+      <div class="featured-body">
+        <div class="featured-eyebrow">Featured Project</div>
+        <h3 class="featured-title">RM'S — Capstone Project</h3>
+        <div class="featured-meta">Mindoro State University · for REMHART · 2025 · Full-Stack Developer</div>
+        <ul class="tl-bullets">
+          <li>AI-integrated inventory &amp; e-commerce system with real-time demand forecasting, built for a live retail client</li>
+          <li>Designed the database schema and built the admin dashboard for stock, sales, and order tracking</li>
+        </ul>
+        <div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI Integration</span></div>
+      </div>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
 
       <div class="proj-card">
         <div class="proj-thumb" onclick="openImg('assets/dailydrive-cover.png','DailyDrive — Task Management System')">
@@ -1298,7 +1266,7 @@ img{max-width:100%;display:block;}
       if (!expanded) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
-  setupToggle('projectsToggle', 'projGrid', '.proj-card', 11);
+  setupToggle('projectsToggle', 'projGrid', '.proj-card', 10);
   setupToggle('certsToggle', 'certGrid', '.cert-card', 6);
 
   // Contact form
