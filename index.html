@@ -279,6 +279,17 @@ img{max-width:100%;display:block;}
    PROJECTS — image cards
    ══════════════════════════════════════════ */
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+
+/* main-page project cards: compact — the modal gallery keeps the full-size card */
+#projGrid .proj-thumb{aspect-ratio:16/9;}
+#projGrid .proj-body{padding:.75rem .85rem .85rem;gap:.3rem;}
+#projGrid .proj-title{min-height:0;font-size:var(--fs-sm);}
+#projGrid .proj-role{display:none;}
+#projGrid .proj-bullets{margin-top:0;}
+#projGrid .proj-bullets li{-webkit-line-clamp:1;}
+#projGrid .proj-bullets li:nth-child(2){display:none;}
+#projGrid .proj-foot{padding-top:.4rem;gap:.4rem;}
+#projGrid .proj-stack span{padding:.14rem .4rem;}
 .featured-project{
   display:grid;grid-template-columns:1.1fr 1fr;gap:0;
   background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;
@@ -580,16 +591,12 @@ img{max-width:100%;display:block;}
 .marquee-item i{color:var(--accent2);font-size:.85em;}
 @keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* section eyebrow live pulse dot */
-.section-eyebrow .pulse-dot{
-  width:6px;height:6px;border-radius:50%;background:var(--accent2);position:relative;flex-shrink:0;
+/* nav logo dot */
+.nav-logo .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;
+  box-shadow:0 0 0 0 rgba(45,217,168,.6);animation:dotPulse 2.2s ease-in-out infinite;
 }
-.section-eyebrow .pulse-dot::after{
-  content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent2);
-  animation:pulseRing 1.8s cubic-bezier(.3,.6,.4,1) infinite;
-}
-@keyframes pulseRing{0%{transform:scale(.5);opacity:.9;}100%{transform:scale(2.1);opacity:0;}}
-
+@keyframes dotPulse{0%{box-shadow:0 0 0 0 rgba(45,217,168,.55);}70%{box-shadow:0 0 0 7px rgba(45,217,168,0);}100%{box-shadow:0 0 0 0 rgba(45,217,168,0);}}
 
 /* ══════════════════════════════════════════
    GALLERY MODAL — "view all" for projects & certifications
@@ -646,7 +653,7 @@ img{max-width:100%;display:block;}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo">Gwen Basconcillo</div>
+    <div class="nav-logo"><span class="dot"></span> Gwen Basconcillo</div>
     <div class="nav-links">
       <a href="#about-me">About</a>
       <a href="#services">Services</a>
@@ -1575,13 +1582,6 @@ img{max-width:100%;display:block;}
     const html = items.map(([icon, label]) => `<span class="marquee-item"><i class="${icon}"></i>${label}</span>`).join('');
     track.innerHTML = html + html; // duplicate for seamless loop
   })();
-
-  // Live "pulse" indicator on every section eyebrow
-  document.querySelectorAll('.section-eyebrow').forEach(el => {
-    const dot = document.createElement('span');
-    dot.className = 'pulse-dot';
-    el.prepend(dot);
-  });
 
   // Contact form
   (function () {
