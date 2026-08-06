@@ -516,16 +516,143 @@ img{max-width:100%;display:block;}
 }
 .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
 .back-to-top:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-3px);}
+
+/* ══════════════════════════════════════════
+   GRAIN / AMBIENT LAYER
+   ══════════════════════════════════════════ */
+.grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+[data-theme="light"] .grain{opacity:.02;}
+
+/* cursor spotlight that trails the pointer inside the hero */
+.cursor-glow{
+  position:absolute;width:480px;height:480px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle, rgba(124,92,255,.16), rgba(34,211,238,.06) 45%, transparent 70%);
+  transform:translate(-50%,-50%);left:50%;top:30%;
+  transition:left .5s cubic-bezier(.16,1,.3,1),top .5s cubic-bezier(.16,1,.3,1),opacity .4s ease;
+  opacity:0;
+}
+.hero:hover .cursor-glow{opacity:1;}
+
+/* letter-reveal for hero name */
+.hero-name .ch{
+  display:inline-block;opacity:0;transform:translateY(.6em) rotate(4deg);filter:blur(6px);
+  animation:chIn .68s cubic-bezier(.2,.9,.25,1) forwards;
+}
+@keyframes chIn{to{opacity:1;transform:translateY(0) rotate(0);filter:blur(0);}}
+
+/* animated gradient sweep on the role line */
+.hero-role{background-size:200% auto;animation:gradShift 6s ease-in-out infinite;}
+@keyframes gradShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* glow / tilt interactive card treatment */
+.glow-card{position:relative;transform-style:preserve-3d;will-change:transform;}
+.glow-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;z-index:2;pointer-events:none;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(124,92,255,.16), transparent 65%);
+  opacity:0;transition:opacity .25s ease;
+}
+.glow-card:hover::before{opacity:1;}
+
+/* micro shine sweep across buttons */
+.btn-primary{position:relative;overflow:hidden;}
+.btn-primary::after{
+  content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+  transform:skewX(-20deg);transition:left .55s ease;
+}
+.btn-primary:hover::after{left:130%;}
+
+/* skills marquee ticker */
+.marquee{
+  margin-top:1.6rem;overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track{display:flex;gap:2.2rem;width:max-content;animation:marqueeScroll 26s linear infinite;}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+.marquee-item{
+  display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);
+  color:var(--ink-3);white-space:nowrap;letter-spacing:.03em;
+}
+.marquee-item i{color:var(--accent2);font-size:.85em;}
+@keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* section eyebrow live pulse dot */
+.section-eyebrow .pulse-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--accent2);position:relative;flex-shrink:0;
+}
+.section-eyebrow .pulse-dot::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent2);
+  animation:pulseRing 1.8s cubic-bezier(.3,.6,.4,1) infinite;
+}
+@keyframes pulseRing{0%{transform:scale(.5);opacity:.9;}100%{transform:scale(2.1);opacity:0;}}
+
+/* nav logo dot */
+.nav-logo .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;
+  box-shadow:0 0 0 0 rgba(45,217,168,.6);animation:dotPulse 2.2s ease-in-out infinite;
+}
+@keyframes dotPulse{0%{box-shadow:0 0 0 0 rgba(45,217,168,.55);}70%{box-shadow:0 0 0 7px rgba(45,217,168,0);}100%{box-shadow:0 0 0 0 rgba(45,217,168,0);}}
+
+/* ══════════════════════════════════════════
+   GALLERY MODAL — "view all" for projects & certifications
+   ══════════════════════════════════════════ */
+.gallery-modal{
+  display:none;position:fixed;inset:0;z-index:2500;
+  background:rgba(4,6,12,.88);backdrop-filter:blur(10px);
+  align-items:flex-start;justify-content:center;padding:4.5vh 1.2rem;
+  overflow-y:auto;
+}
+.gallery-modal.open{display:flex;animation:fadeIn .22s ease both;}
+.gallery-modal-inner{
+  width:100%;max-width:1040px;background:var(--bg);border:1px solid var(--line-strong);
+  border-radius:18px;box-shadow:0 30px 70px rgba(0,0,0,.55);
+  animation:fadeInUp .32s cubic-bezier(.2,.9,.25,1) both;overflow:hidden;
+}
+.gallery-modal-head{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.15rem 1.5rem;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--bg);z-index:2;
+}
+.gallery-modal-head h3{font-family:var(--disp);font-weight:700;font-size:var(--fs-lg);color:var(--ink);}
+.gallery-modal-count{font-family:var(--mono);font-size:var(--fs-2xs);color:var(--ink-3);margin-top:.15rem;}
+.gallery-modal-close{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  border:1px solid var(--line-strong);background:transparent;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:var(--fs-sm);
+  transition:all .18s;
+}
+.gallery-modal-close:hover{background:var(--accent1);border-color:var(--accent1);color:#fff;transform:rotate(90deg);}
+.gallery-modal-body{padding:1.5rem;}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;}
+.gallery-grid .proj-card,.gallery-grid .cert-card{opacity:0;transform:translateY(14px);animation:fadeInUp .5s ease forwards;}
+@media (max-width:640px){
+  .gallery-modal{padding:0;}
+  .gallery-modal-inner{max-width:100%;min-height:100%;border-radius:0;}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:.7rem;}
+  .gallery-modal-body{padding:1rem;}
+}
+@media (max-width:420px){ .gallery-grid{grid-template-columns:1fr;} }
+
+/* reduced motion: calm everything down */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  .hero-name .ch{opacity:1;transform:none;filter:none;}
+}
 </style>
 </head>
 <body>
 
+<div class="grain" aria-hidden="true"></div>
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo"><span class="dot"></span> Gwen Basconcillo</div>
+    <div class="nav-logo">Gwen Basconcillo</div>
     <div class="nav-links">
       <a href="#about-me">About</a>
       <a href="#services">Services</a>
@@ -550,6 +677,7 @@ img{max-width:100%;display:block;}
 
 <!-- HERO -->
 <header class="hero" id="about">
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
   <div class="hero-blob b1"></div>
   <div class="hero-blob b2"></div>
   <div class="wrap hero-inner">
@@ -560,7 +688,7 @@ img{max-width:100%;display:block;}
         </div>
       </div>
       <div class="hero-id">
-        <h1 class="hero-name">Gwen Basconcillo</h1>
+        <h1 class="hero-name" id="heroName" data-text="Gwen Basconcillo">Gwen Basconcillo</h1>
         <div class="hero-role">UI/UX &amp; Graphic Designer</div>
         <p class="hero-desc">I design and build interfaces, then test them until they're right — from wireframes and design systems to responsive front-end code and QA validation. Also working as a front-end developer and entry-level QA tester.</p>
         <div class="hero-meta">
@@ -582,6 +710,10 @@ img{max-width:100%;display:block;}
         <a href="https://github.com/oncepebrero" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://facebook.com/oncepebrero" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
       </div>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack"></div>
     </div>
 
   </div>
@@ -614,19 +746,19 @@ img{max-width:100%;display:block;}
       <p class="section-sub">A blend of design and development skills crafted to bring ideas to life—from first sketch to tested, shipped product.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card reveal in">
+      <div class="service-card reveal in glow-card">
         <div class="service-title">UI/UX Design</div>
         <div class="service-desc">Designing intuitive interfaces, user flows, and wireframes that prioritize usability and engagement.</div>
       </div>
-      <div class="service-card reveal in">
+      <div class="service-card reveal in glow-card">
         <div class="service-title">Graphic Design</div>
         <div class="service-desc">Creating clean, versatile visuals—layouts, mockups, and brand assets—using Canva.</div>
       </div>
-      <div class="service-card reveal in">
+      <div class="service-card reveal in glow-card">
         <div class="service-title">Front-End Development</div>
         <div class="service-desc">Building responsive, user-centered web applications with HTML, CSS, JavaScript, and Bootstrap.</div>
       </div>
-      <div class="service-card reveal in">
+      <div class="service-card reveal in glow-card">
         <div class="service-title">QA &amp; Software Testing</div>
         <div class="service-desc">Manual testing, bug reporting, and validation to ensure software works the way it should.</div>
       </div>
@@ -689,7 +821,7 @@ img{max-width:100%;display:block;}
         <div class="section-eyebrow">Selected Work</div>
         <h2 class="section-title">Projects</h2>
       </div>
-      <button type="button" class="section-more" id="projectsToggle"><i class="fas fa-chevron-down"></i> View all 10</button>
+      <button type="button" class="section-more" id="projectsToggle" onclick="openGallery('projectsGalleryModal')"><i class="fas fa-grip"></i> View all 10</button>
     </div>
 
     <div class="featured-project reveal in">
@@ -711,7 +843,7 @@ img{max-width:100%;display:block;}
 
     <div class="proj-grid" id="projGrid">
 
-      <div class="proj-card reveal">
+      <div class="proj-card reveal glow-card">
         <div class="proj-thumb" onclick="openImg('assets/dailydrive-cover.png','DailyDrive — Task Management System')">
           <span class="proj-status status-shipped">Shipped</span>
           <img src="assets/dailydrive-cover.png" alt="DailyDrive" onerror="this.style.display='none'">
@@ -732,7 +864,7 @@ img{max-width:100%;display:block;}
         </div>
       </div>
 
-      <div class="proj-card reveal">
+      <div class="proj-card reveal glow-card">
         <div class="proj-thumb" onclick="openImg('assets/SafepathUI.png','SafePath — Bullying Complaint System')">
           <span class="proj-status status-shipped">Shipped</span>
           <img src="assets/SafepathUI.png" alt="SafePath" onerror="this.style.display='none'">
@@ -754,7 +886,7 @@ img{max-width:100%;display:block;}
         </div>
       </div>
 
-      <div class="proj-card reveal">
+      <div class="proj-card reveal glow-card">
         <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','OJT — Attendance Monitoring System')">
           <span class="proj-status status-internship">Internship</span>
           <img src="assets/NSJBI.png" alt="Attendance Monitoring System" onerror="this.style.display='none'">
@@ -775,153 +907,6 @@ img{max-width:100%;display:block;}
         </div>
       </div>
 
-      <div class="proj-card reveal is-hidden">
-        <div class="proj-thumb" onclick="openImg('assets/Minsu.png','MinSU Event Venue Scheduling System')">
-          <span class="proj-status status-academic">Academic</span>
-          <img src="assets/Minsu.png" alt="MinSU Event Venue Scheduling System" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">MinSU Event Venue Scheduling System <span class="proj-year">· 2023</span></div>
-            <div class="proj-org">Mindoro State University</div>
-            <div class="proj-role">Developer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>Reservation &amp; scheduling web app with role-based accounts for booking campus event venues</li>
-            <li>Built conflict-checking logic to prevent double-booking of venues and time slots</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>HTML</span><span>PHP</span><span>MySQL</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal is-hidden">
-        <div class="proj-thumb" onclick="openImg('assets/Slites.png','SLITES — Smart Lighting Intelligence')">
-          <span class="proj-status status-prototype">Prototype</span>
-          <img src="assets/Slites.png" alt="SLITES Smart Lighting Intelligence" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">SLITES – Smart Lighting Intelligence <span class="proj-year">· 2024</span></div>
-            <div class="proj-org">Integrative Programming &amp; Technologies</div>
-            <div class="proj-role">IoT Developer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>IoT automated lighting system using LDR &amp; PIR sensors on an Orange Pi board</li>
-            <li>Built a live monitoring dashboard to track sensor readings and lighting state</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>Orange Pi</span><span>Python</span><span>MySQL</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal is-hidden">
-        <div class="proj-thumb" onclick="openImg('assets/lavalust.jpg','Panchitan ni Unchang — Lavalust Build')">
-          <span class="proj-status status-shipped">Shipped</span>
-          <img src="assets/lavalust.jpg" alt="Panchitan ni Unchang Lavalust build" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">Panchitan ni Unchang — Lavalust Framework <span class="proj-year">· 2024</span></div>
-            <div class="proj-org">Web Development 2</div>
-            <div class="proj-role">Web Developer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>Local eatery e-commerce site built on the Lavalust PHP framework</li>
-            <li>Added FAQs, customer support, and user accounts for order history</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>Lavalust</span><span>PHP</span><span>MySQL</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal is-hidden">
-        <div class="proj-thumb" onclick="openImg('assets/WIX.png','Panchitan ni Unchang — Wix Build')">
-          <span class="proj-status status-shipped">Shipped</span>
-          <img src="assets/WIX.png" alt="Panchitan ni Unchang Wix build" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">Panchitan ni Unchang — Wix CMS <span class="proj-year">· 2024</span></div>
-            <div class="proj-org">CMS Integration &amp; System Architecture</div>
-            <div class="proj-role">Site Builder &amp; IA Designer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>Same eatery, rebuilt as a Wix CMS storefront with a fresh information architecture</li>
-            <li>Designed the full site structure and navigation flow from scratch</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>Wix</span><span>E-Commerce</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal is-hidden">
-        <div class="proj-thumb" onclick="openImg('assets/mushroom.jpg','IoT Mushroom Cultivation Monitor')">
-          <span class="proj-status status-prototype">Prototype</span>
-          <img src="assets/mushroom.jpg" alt="IoT Mushroom Cultivation Monitor" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">IoT – Mushroom Cultivation Monitor <span class="proj-year">· 2023</span></div>
-            <div class="proj-org">Integrative Programming &amp; Technologies</div>
-            <div class="proj-role">IoT Developer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>Humidity &amp; temperature monitoring system for mushroom cultivation</li>
-            <li>Automated pump control triggered by sensor thresholds</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>Arduino</span><span>Sensors</span><span>MySQL</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal is-hidden">
-        <div class="proj-thumb" onclick="openImg('assets/meat.jpg','Meat Quality Detection Tool')">
-          <span class="proj-status status-prototype">Prototype</span>
-          <img src="assets/meat.jpg" alt="Meat Quality Detection Tool" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">Meat Quality Detection Tool <span class="proj-year">· 2024</span></div>
-            <div class="proj-org">Embedded Systems</div>
-            <div class="proj-role">ML Developer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>Embedded image-processing system that predicts meat quality using machine learning</li>
-            <li>Trained a classification model on sample image data to flag freshness issues</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>Python</span><span>Image ML</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal is-hidden">
-        <div class="proj-thumb" onclick="openImg('assets/BRAINSTER.png','Brainster')">
-          <span class="proj-status status-academic">Academic</span>
-          <img src="assets/BRAINSTER.png" alt="Brainster puzzle game" onerror="this.style.display='none'">
-        </div>
-        <div class="proj-body">
-          <div>
-            <div class="proj-title">Brainster – Discrete Mathematics Game <span class="proj-year">· 2023</span></div>
-            <div class="proj-org">Discrete Mathematics</div>
-            <div class="proj-role">Game Developer</div>
-          </div>
-          <ul class="proj-bullets">
-            <li>Interactive puzzle game teaching logic, set theory, and graph theory concepts</li>
-            <li>Designed level progression to reinforce discrete math concepts through play</li>
-          </ul>
-          <div class="proj-foot">
-            <div class="proj-stack"><span>JavaScript</span></div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -933,25 +918,25 @@ img{max-width:100%;display:block;}
       <p class="section-sub">A structured approach that carries an idea from research through to a tested, working product.</p>
     </div>
     <div class="process-grid">
-      <div class="process-card reveal in">
+      <div class="process-card reveal in glow-card">
         <div class="process-num">01</div>
         <div class="process-title">Discover &amp; Define</div>
         <div class="process-desc">Understanding the problem—gathering requirements, identifying user needs, and uncovering pain points before designing anything.</div>
         <div class="process-step-tag">Step 1</div>
       </div>
-      <div class="process-card reveal in">
+      <div class="process-card reveal in glow-card">
         <div class="process-num">02</div>
         <div class="process-title">Wireframe &amp; Prototype</div>
         <div class="process-desc">Translating insights into low-fidelity wireframes and interactive prototypes to explore layout, flow, and structure.</div>
         <div class="process-step-tag">Step 2</div>
       </div>
-      <div class="process-card reveal in">
+      <div class="process-card reveal in glow-card">
         <div class="process-num">03</div>
         <div class="process-title">Design &amp; Build</div>
         <div class="process-desc">Crafting polished UI and design systems, then developing the front end to bring the design to life with clean, responsive code.</div>
         <div class="process-step-tag">Step 3</div>
       </div>
-      <div class="process-card reveal in">
+      <div class="process-card reveal in glow-card">
         <div class="process-num">04</div>
         <div class="process-title">Test &amp; Refine</div>
         <div class="process-desc">Manually testing features, logging bugs, and refining usability and visual details before final delivery.</div>
@@ -1013,10 +998,10 @@ img{max-width:100%;display:block;}
         <div class="section-eyebrow">Credentials</div>
         <h2 class="section-title">Certifications</h2>
       </div>
-      <button type="button" class="section-more" id="certsToggle"><i class="fas fa-chevron-down"></i> View all 7</button>
+      <button type="button" class="section-more" id="certsToggle" onclick="openGallery('certsGalleryModal')"><i class="fas fa-grip"></i> View all 7</button>
     </div>
      <div class="cert-grid" id="certGrid">
-  <a class="cert-card reveal in" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
+  <a class="cert-card reveal in glow-card" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
     <div class="cert-thumb"><img src="assets/cert-covers/academic-distinction.jpg" alt="Certificate of Academic Distinction"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
     <div class="cert-info">
       <div class="cert-name">Certificate of Academic Distinction</div>
@@ -1024,7 +1009,7 @@ img{max-width:100%;display:block;}
       <div class="cert-skills"><span>Academic Excellence</span><span>GWA: 1.7405</span></div>
     </div>
   </a>
-      <a class="cert-card reveal in" href="assets/ojt.jpg" target="_blank">
+      <a class="cert-card reveal in glow-card" href="assets/ojt.jpg" target="_blank">
         <div class="cert-thumb"><img src="assets/ojt.jpg" alt="OJT Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
         <div class="cert-info">
           <div class="cert-name">OJT Certificate of Completion</div>
@@ -1032,7 +1017,7 @@ img{max-width:100%;display:block;}
           <div class="cert-skills"><span>QA Testing</span><span>Documentation</span></div>
         </div>
       </a>
-      <a class="cert-card reveal in" href="assets/certificate1.pdf" target="_blank">
+      <a class="cert-card reveal in glow-card" href="assets/certificate1.pdf" target="_blank">
         <div class="cert-thumb"><img src="assets/cert-covers/cybersecurity-cover.png" alt="Fortinet Cybersecurity Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
         <div class="cert-info">
           <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
@@ -1040,36 +1025,12 @@ img{max-width:100%;display:block;}
           <div class="cert-skills"><span>Cybersecurity</span><span>Threat Awareness</span></div>
         </div>
       </a>
-      <a class="cert-card reveal in" href="assets/certificate2.pdf" target="_blank">
+      <a class="cert-card reveal in glow-card" href="assets/certificate2.pdf" target="_blank">
         <div class="cert-thumb"><img src="assets/cert-covers/networking-cover..png" alt="Fortinet Networking Fundamentals Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
         <div class="cert-info">
           <div class="cert-name">Fortinet Networking Fundamentals</div>
           <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
           <div class="cert-skills"><span>Routing</span><span>Network Design</span></div>
-        </div>
-      </a>
-      <a class="cert-card reveal is-hidden" href="assets/certificate3.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">Python Programming II</div>
-          <div class="cert-meta"><span class="cert-issuer">CodeChum</span><span class="cert-date">Dec 2025</span></div>
-          <div class="cert-skills"><span>OOP</span><span>Data Structures</span></div>
-        </div>
-      </a>
-      <a class="cert-card reveal is-hidden" href="assets/certificate4.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/data-cover.png" alt="Data Analytics Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">Data Analytics — IT Specialist</div>
-          <div class="cert-meta"><span class="cert-issuer">IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
-          <div class="cert-skills"><span>Data Analysis</span><span>Reporting</span></div>
-        </div>
-      </a>
-      <a class="cert-card reveal is-hidden" href="assets/certificate5.pdf" target="_blank">
-        <div class="cert-thumb"><img src="assets/cert-covers/mctech-cover.png" alt="MC Tech Training Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-        <div class="cert-info">
-          <div class="cert-name">MC Tech Training — Data Analytics</div>
-          <div class="cert-meta"><span class="cert-issuer">8-Hour IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
-          <div class="cert-skills"><span>Visualization</span><span>Spreadsheets</span></div>
         </div>
       </a>
     </div>
@@ -1141,6 +1102,304 @@ img{max-width:100%;display:block;}
   </div>
 </div>
 
+<!-- PROJECTS GALLERY MODAL -->
+<div class="gallery-modal" id="projectsGalleryModal">
+  <div class="gallery-modal-inner">
+    <div class="gallery-modal-head">
+      <div>
+        <h3>All Projects</h3>
+        <div class="gallery-modal-count">10 projects, 2023–2026</div>
+      </div>
+      <button type="button" class="gallery-modal-close" onclick="closeGallery('projectsGalleryModal')" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="gallery-modal-body">
+      <div class="gallery-grid">
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/capstone-cover.png','RM\'S — Capstone Project')">
+            <span class="proj-status status-shipped">Shipped</span>
+            <img src="assets/capstone-cover.png" alt="RM'S Capstone Project" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">RM'S Inventory — Capstone Project <span class="proj-year">· 2025</span></div>
+              <div class="proj-org">Mindoro State University · for REMHART</div>
+              <div class="proj-role">Technical Writer, QA Analyst &amp; Prototyping</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>AI-integrated inventory &amp; e-commerce system with real-time demand forecasting</li>
+              <li>Designed the database schema and admin dashboard for stock and order tracking</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/dailydrive-cover.png','DailyDrive — Task Management System')">
+            <span class="proj-status status-shipped">Shipped</span>
+            <img src="assets/dailydrive-cover.png" alt="DailyDrive" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">DailyDrive – Task Management System <span class="proj-year">· 2026</span></div>
+              <div class="proj-org">Personal / Academic Project</div>
+              <div class="proj-role">Solo Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Admin &amp; user dashboards, task tracking, subtasks, file attachments, notifications</li>
+              <li>Gamification, recurring tasks, dark/light mode, automated reminders via cron</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>Node.js</span><span>Express</span><span>MySQL</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/SafepathUI.png','SafePath — Bullying Complaint System')">
+            <span class="proj-status status-shipped">Shipped</span>
+            <img src="assets/SafepathUI.png" alt="SafePath" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">SafePath – Bullying Complaint System <span class="proj-year">· 2024</span></div>
+              <div class="proj-org">Application Development</div>
+              <div class="proj-role">Graphic Designer &amp; Documentation</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Student safety platform for reporting bullying incidents confidentially</li>
+              <li>AI-powered text classification using TensorFlow &amp; Wit.ai</li>
+            </ul>
+            <div class="proj-foot">
+              <div class="proj-stack"><span>Express.js</span><span>TensorFlow</span><span>MySQL</span></div>
+              <a href="https://github.com/oncepebrero/SafePath" target="_blank" class="proj-link"><i class="fab fa-github"></i> Repository</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','OJT — Attendance Monitoring System')">
+            <span class="proj-status status-internship">Internship</span>
+            <img src="assets/NSJBI.png" alt="Attendance Monitoring System" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">OJT – Attendance Monitoring System <span class="proj-year">· 2025</span></div>
+              <div class="proj-org">New San Jose Builders Inc. · OJT</div>
+              <div class="proj-role">QA &amp; Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Web-based attendance monitoring system built during a QA &amp; dev internship</li>
+              <li>Wrote test cases and documentation alongside feature development</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>Vue.js</span><span>Node.js</span><span>MySQL</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/Minsu.png','MinSU Event Venue Scheduling System')">
+            <span class="proj-status status-academic">Academic</span>
+            <img src="assets/Minsu.png" alt="MinSU Event Venue Scheduling System" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">MinSU Event Venue Scheduling System <span class="proj-year">· 2023</span></div>
+              <div class="proj-org">Mindoro State University</div>
+              <div class="proj-role">Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Reservation &amp; scheduling app with role-based accounts for booking venues</li>
+              <li>Conflict-checking logic to prevent double-booking of venues and slots</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>HTML</span><span>PHP</span><span>MySQL</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/Slites.png','SLITES — Smart Lighting Intelligence')">
+            <span class="proj-status status-prototype">Prototype</span>
+            <img src="assets/Slites.png" alt="SLITES Smart Lighting Intelligence" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">SLITES – Smart Lighting Intelligence <span class="proj-year">· 2024</span></div>
+              <div class="proj-org">Integrative Programming &amp; Technologies</div>
+              <div class="proj-role">IoT Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>IoT automated lighting system using LDR &amp; PIR sensors on an Orange Pi board</li>
+              <li>Live monitoring dashboard to track sensor readings and lighting state</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>Orange Pi</span><span>Python</span><span>MySQL</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/lavalust.jpg','Panchitan ni Unchang — Lavalust Build')">
+            <span class="proj-status status-shipped">Shipped</span>
+            <img src="assets/lavalust.jpg" alt="Panchitan ni Unchang Lavalust build" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">Panchitan ni Unchang — Lavalust Framework <span class="proj-year">· 2024</span></div>
+              <div class="proj-org">Web Development 2</div>
+              <div class="proj-role">Web Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Local eatery e-commerce site built on the Lavalust PHP framework</li>
+              <li>Added FAQs, customer support, and user accounts for order history</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>Lavalust</span><span>PHP</span><span>MySQL</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/WIX.png','Panchitan ni Unchang — Wix Build')">
+            <span class="proj-status status-shipped">Shipped</span>
+            <img src="assets/WIX.png" alt="Panchitan ni Unchang Wix build" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">Panchitan ni Unchang — Wix CMS <span class="proj-year">· 2024</span></div>
+              <div class="proj-org">CMS Integration &amp; System Architecture</div>
+              <div class="proj-role">Site Builder &amp; IA Designer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Same eatery, rebuilt as a Wix CMS storefront with fresh information architecture</li>
+              <li>Designed the full site structure and navigation flow from scratch</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>Wix</span><span>E-Commerce</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/mushroom.jpg','IoT Mushroom Cultivation Monitor')">
+            <span class="proj-status status-prototype">Prototype</span>
+            <img src="assets/mushroom.jpg" alt="IoT Mushroom Cultivation Monitor" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">IoT – Mushroom Cultivation Monitor <span class="proj-year">· 2023</span></div>
+              <div class="proj-org">Integrative Programming &amp; Technologies</div>
+              <div class="proj-role">IoT Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Humidity &amp; temperature monitoring system for mushroom cultivation</li>
+              <li>Automated pump control triggered by sensor thresholds</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>Arduino</span><span>Sensors</span><span>MySQL</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/meat.jpg','Meat Quality Detection Tool')">
+            <span class="proj-status status-prototype">Prototype</span>
+            <img src="assets/meat.jpg" alt="Meat Quality Detection Tool" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">Meat Quality Detection Tool <span class="proj-year">· 2024</span></div>
+              <div class="proj-org">Embedded Systems</div>
+              <div class="proj-role">ML Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Embedded image-processing system that predicts meat quality using ML</li>
+              <li>Trained a classification model on sample image data to flag freshness</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>Python</span><span>Image ML</span></div></div>
+          </div>
+        </div>
+
+        <div class="proj-card glow-card">
+          <div class="proj-thumb" onclick="openImg('assets/BRAINSTER.png','Brainster')">
+            <span class="proj-status status-academic">Academic</span>
+            <img src="assets/BRAINSTER.png" alt="Brainster puzzle game" onerror="this.style.display='none'">
+          </div>
+          <div class="proj-body">
+            <div>
+              <div class="proj-title">Brainster – Discrete Mathematics Game <span class="proj-year">· 2023</span></div>
+              <div class="proj-org">Discrete Mathematics</div>
+              <div class="proj-role">Game Developer</div>
+            </div>
+            <ul class="proj-bullets">
+              <li>Interactive puzzle game teaching logic, set theory, and graph theory</li>
+              <li>Designed level progression to reinforce concepts through play</li>
+            </ul>
+            <div class="proj-foot"><div class="proj-stack"><span>JavaScript</span></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS GALLERY MODAL -->
+<div class="gallery-modal" id="certsGalleryModal">
+  <div class="gallery-modal-inner">
+    <div class="gallery-modal-head">
+      <div>
+        <h3>All Certifications</h3>
+        <div class="gallery-modal-count">7 credentials, 2025–2026</div>
+      </div>
+      <button type="button" class="gallery-modal-close" onclick="closeGallery('certsGalleryModal')" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    </div>
+    <div class="gallery-modal-body">
+      <div class="gallery-grid">
+
+        <a class="cert-card glow-card" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
+          <div class="cert-thumb"><img src="assets/cert-covers/academic-distinction.jpg" alt="Certificate of Academic Distinction"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+          <div class="cert-info">
+            <div class="cert-name">Certificate of Academic Distinction</div>
+            <div class="cert-meta"><span class="cert-issuer">Mindoro State University</span><span class="cert-date">June 2026</span></div>
+          </div>
+        </a>
+        <a class="cert-card glow-card" href="assets/ojt.jpg" target="_blank">
+          <div class="cert-thumb"><img src="assets/ojt.jpg" alt="OJT Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+          <div class="cert-info">
+            <div class="cert-name">OJT Certificate of Completion</div>
+            <div class="cert-meta"><span class="cert-issuer">New San Jose Builders Inc.</span><span class="cert-date">May 2025</span></div>
+          </div>
+        </a>
+        <a class="cert-card glow-card" href="assets/certificate1.pdf" target="_blank">
+          <div class="cert-thumb"><img src="assets/cert-covers/cybersecurity-cover.png" alt="Fortinet Cybersecurity Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+          <div class="cert-info">
+            <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
+            <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
+          </div>
+        </a>
+        <a class="cert-card glow-card" href="assets/certificate2.pdf" target="_blank">
+          <div class="cert-thumb"><img src="assets/cert-covers/networking-cover..png" alt="Fortinet Networking Fundamentals Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+          <div class="cert-info">
+            <div class="cert-name">Fortinet Networking Fundamentals</div>
+            <div class="cert-meta"><span class="cert-issuer">Fortinet Training Institute</span><span class="cert-date">Sep 2025</span></div>
+          </div>
+        </a>
+        <a class="cert-card glow-card" href="assets/certificate3.pdf" target="_blank">
+          <div class="cert-thumb"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+          <div class="cert-info">
+            <div class="cert-name">Python Programming II</div>
+            <div class="cert-meta"><span class="cert-issuer">CodeChum</span><span class="cert-date">Dec 2025</span></div>
+          </div>
+        </a>
+        <a class="cert-card glow-card" href="assets/certificate4.pdf" target="_blank">
+          <div class="cert-thumb"><img src="assets/cert-covers/data-cover.png" alt="Data Analytics Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+          <div class="cert-info">
+            <div class="cert-name">Data Analytics — IT Specialist</div>
+            <div class="cert-meta"><span class="cert-issuer">IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
+          </div>
+        </a>
+        <a class="cert-card glow-card" href="assets/certificate5.pdf" target="_blank">
+          <div class="cert-thumb"><img src="assets/cert-covers/mctech-cover.png" alt="MC Tech Training Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+          <div class="cert-info">
+            <div class="cert-name">MC Tech Training — Data Analytics</div>
+            <div class="cert-meta"><span class="cert-issuer">8-Hour IT Specialist Program</span><span class="cert-date">Dec 2025</span></div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
@@ -1195,7 +1454,33 @@ img{max-width:100%;display:block;}
     document.body.style.overflow = '';
   }
   document.getElementById('imageModal').addEventListener('click', e => { if (e.target.id === 'imageModal') closeImg(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeImg(); });
+
+  // Gallery modals ("View all" for Projects / Certifications)
+  function openGallery(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modal.querySelectorAll('.gallery-grid > *').forEach((el, i) => {
+      el.style.animationDelay = (i * 0.05) + 's';
+    });
+  }
+  function closeGallery(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.remove('open');
+    if (!document.querySelector('.gallery-modal.open') && !document.getElementById('imageModal').classList.contains('open')) {
+      document.body.style.overflow = '';
+    }
+  }
+  document.querySelectorAll('.gallery-modal').forEach(modal => {
+    modal.addEventListener('click', e => { if (e.target === modal) closeGallery(modal.id); });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    closeImg();
+    document.querySelectorAll('.gallery-modal.open').forEach(m => closeGallery(m.id));
+  });
 
   // Toast
   function showToast(msg, ok) {
@@ -1206,31 +1491,103 @@ img{max-width:100%;display:block;}
     setTimeout(() => t.classList.remove('show'), 3200);
   }
 
-  // Generic expand/collapse
-  function setupToggle(btnId, containerId, itemSelector, totalCount) {
-    const btn = document.getElementById(btnId);
-    const container = document.getElementById(containerId);
-    if (!btn || !container) return;
-    const hiddenItems = container.querySelectorAll(itemSelector + '.is-hidden');
-    let expanded = false;
-    btn.addEventListener('click', () => {
-      expanded = !expanded;
-      hiddenItems.forEach((el, i) => {
-        el.classList.toggle('is-hidden', !expanded);
-        if (expanded) {
-          // items were hidden during the scroll-reveal pass, so reveal them immediately on click
-          el.style.transitionDelay = (i * 0.06) + 's';
-          requestAnimationFrame(() => el.classList.add('in'));
-        }
-      });
-      btn.innerHTML = expanded
-        ? '<i class="fas fa-chevron-up"></i> Show fewer'
-        : '<i class="fas fa-chevron-down"></i> View all ' + totalCount;
-      if (!expanded) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Split the hero name into per-letter spans for a staggered entrance
+  (function () {
+    const el = document.getElementById('heroName');
+    if (!el || prefersReducedMotion) return;
+    const text = el.textContent;
+    el.textContent = '';
+    let delay = 0;
+    [...text].forEach(ch => {
+      const span = document.createElement('span');
+      span.className = 'ch';
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      span.style.animationDelay = delay + 's';
+      delay += ch === ' ' ? 0 : 0.028;
+      el.appendChild(span);
     });
-  }
-  setupToggle('projectsToggle', 'projGrid', '.proj-card', 10);
-  setupToggle('certsToggle', 'certGrid', '.cert-card', 6);
+  })();
+
+  // Cursor spotlight that trails the pointer inside the hero
+  (function () {
+    const hero = document.getElementById('about');
+    const glow = document.getElementById('cursorGlow');
+    if (!hero || !glow || prefersReducedMotion) return;
+    hero.addEventListener('pointermove', e => {
+      const r = hero.getBoundingClientRect();
+      glow.style.left = (e.clientX - r.left) + 'px';
+      glow.style.top = (e.clientY - r.top) + 'px';
+    });
+  })();
+
+  // Subtle parallax drift for the hero blobs, tied to pointer position
+  (function () {
+    const hero = document.getElementById('about');
+    const blobs = document.querySelectorAll('.hero-blob');
+    if (!hero || !blobs.length || prefersReducedMotion) return;
+    hero.addEventListener('pointermove', e => {
+      const r = hero.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      blobs.forEach((b, i) => {
+        const strength = i === 0 ? 22 : -18;
+        b.style.transform = `translate(${px * strength}px, ${py * strength}px)`;
+      });
+    });
+    hero.addEventListener('pointerleave', () => blobs.forEach(b => b.style.transform = ''));
+  })();
+
+  // Spotlight + tilt for every .glow-card (services, process, projects, certs)
+  (function () {
+    if (prefersReducedMotion) return;
+    document.addEventListener('pointermove', e => {
+      const card = e.target.closest('.glow-card');
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      const mx = ((e.clientX - r.left) / r.width) * 100;
+      const my = ((e.clientY - r.top) / r.height) * 100;
+      card.style.setProperty('--mx', mx + '%');
+      card.style.setProperty('--my', my + '%');
+      const rx = ((my - 50) / 50) * -4;
+      const ry = ((mx - 50) / 50) * 4;
+      card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    }, { passive: true });
+    document.addEventListener('pointerout', e => {
+      const card = e.target.closest('.glow-card');
+      if (!card) return;
+      card.style.transform = '';
+    });
+  })();
+
+  // Live skills marquee ticker
+  (function () {
+    const track = document.getElementById('marqueeTrack');
+    if (!track) return;
+    const items = [
+      ['fa-solid fa-pen-nib', 'UI/UX Design'],
+      ['fa-solid fa-swatchbook', 'Design Systems'],
+      ['fa-brands fa-html5', 'HTML5 / CSS3'],
+      ['fa-brands fa-js', 'JavaScript'],
+      ['fa-brands fa-php', 'PHP'],
+      ['fa-solid fa-database', 'MySQL'],
+      ['fa-brands fa-node-js', 'Node.js'],
+      ['fa-solid fa-bug', 'QA Testing'],
+      ['fa-solid fa-vial', 'Bug Reporting'],
+      ['fa-brands fa-figma', 'Wireframing'],
+      ['fa-brands fa-git-alt', 'Git &amp; GitHub'],
+    ];
+    const html = items.map(([icon, label]) => `<span class="marquee-item"><i class="${icon}"></i>${label}</span>`).join('');
+    track.innerHTML = html + html; // duplicate for seamless loop
+  })();
+
+  // Live "pulse" indicator on every section eyebrow
+  document.querySelectorAll('.section-eyebrow').forEach(el => {
+    const dot = document.createElement('span');
+    dot.className = 'pulse-dot';
+    el.prepend(dot);
+  });
 
   // Contact form
   (function () {
