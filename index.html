@@ -111,7 +111,9 @@ img{max-width:100%;display:block;}
 .nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--ink) 78%, transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
 .nav-inner{max-width:1120px;margin:0 auto;padding:.85rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
 .nav-logo{font-family:var(--disp);font-weight:700;font-size:1rem;color:var(--text-1);display:flex;align-items:center;gap:.55rem;letter-spacing:-.01em;}
-.nav-logo .mark{width:30px;height:30px;border-radius:9px;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--disp);font-weight:800;font-size:.8rem;}
+.nav-logo .mark{width:32px;height:32px;border-radius:50%;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--disp);font-weight:800;font-size:.75rem;flex-shrink:0;overflow:hidden;padding:2px;}
+.nav-logo .mark img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;}
+.nav-logo .mark span{width:100%;height:100%;border-radius:50%;background:var(--ink-soft);display:flex;align-items:center;justify-content:center;}
 .nav-links{display:flex;gap:1.3rem;align-items:center;row-gap:.4rem;flex-wrap:wrap;justify-content:flex-end;}
 .nav-links a{font-family:var(--mono);font-size:var(--fs-2xs);letter-spacing:.03em;text-transform:uppercase;color:var(--text-2);transition:color .18s;position:relative;padding-bottom:.2rem;}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--flame);transition:width .25s ease;}
@@ -463,7 +465,7 @@ img{max-width:100%;display:block;}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo"><span class="mark">GB</span> Gwen Basconcillo</div>
+    <div class="nav-logo"><span class="mark"><img src="assets/gwenita.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'GB'}))"></span> Gwen Basconcillo</div>
     <div class="nav-links" id="navLinks">
       <a href="#about-me">About</a>
       <a href="#services">Services</a>
