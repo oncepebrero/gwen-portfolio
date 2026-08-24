@@ -77,7 +77,8 @@
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;}
+@media (prefers-reduced-motion: reduce){html{scroll-snap-type:none;}}
 body{
   font-family:var(--body);
   background:var(--ink);
@@ -141,7 +142,7 @@ img{max-width:100%;display:block;}
 /* ══════════════════════════════════════════
    HERO
    ══════════════════════════════════════════ */
-.hero{position:relative;padding:4.6rem 0 3rem;overflow:hidden;}
+.hero{position:relative;padding:4.6rem 0 3rem;overflow:hidden;scroll-snap-align:start;}
 .hero-blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.32;z-index:0;pointer-events:none;}
 .hero-blob.b1{width:460px;height:460px;background:var(--cobalt);top:-200px;right:-140px;animation:floatBlob 12s ease-in-out infinite;}
 .hero-blob.b2{width:400px;height:400px;background:var(--flame);bottom:-200px;left:-160px;opacity:.2;animation:floatBlob 14s ease-in-out infinite reverse;}
@@ -212,7 +213,7 @@ img{max-width:100%;display:block;}
 /* ══════════════════════════════════════════
    SECTION SHELL
    ══════════════════════════════════════════ */
-.section{padding:5.4rem 0;border-top:1px solid var(--line);}
+.section{padding:5.4rem 0;border-top:1px solid var(--line);scroll-snap-align:start;scroll-margin-top:64px;}
 .section-head{max-width:62ch;margin-bottom:2.6rem;}
 .section-eyebrow{font-family:var(--mono);font-size:var(--fs-2xs);text-transform:uppercase;letter-spacing:.1em;color:var(--flame);display:flex;align-items:center;gap:.5rem;}
 .section-eyebrow::before{content:'';width:22px;height:1px;background:var(--flame);}
@@ -225,6 +226,15 @@ img{max-width:100%;display:block;}
 
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
 .reveal.in{opacity:1;transform:translateY(0);}
+
+/* nav-triggered section transition — plays when a section is reached via a nav/rail link */
+@keyframes navSectionIn{
+  0%{opacity:0;transform:translateY(38px) scale(.985);filter:blur(6px);}
+  60%{opacity:1;filter:blur(0);}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+}
+.nav-jump{animation:navSectionIn .65s cubic-bezier(.16,.8,.24,1) both;}
+@media (prefers-reduced-motion: reduce){.nav-jump{animation:none;}}
 
 /* frame-card: signature "inspector" corner-bracket hover, used across cards */
 .frame-card{position:relative;}
@@ -495,14 +505,6 @@ img{max-width:100%;display:block;}
 @media (max-width:560px){.gallery-grid{grid-template-columns:1fr;}}
 .gallery-grid .proj-card,.gallery-grid .cert-card{opacity:0;transform:translateY(14px);animation:fadeInUp .5s ease forwards;}
 
-/* testimonial */
-.testimonial{border:1px dashed var(--line-2);border-radius:var(--radius-lg);padding:2.2rem;background:var(--surface);position:relative;}
-.testimonial-quote{font-family:var(--disp);font-weight:600;font-size:1.25rem;color:var(--text-1);line-height:1.5;max-width:56ch;}
-.testimonial-quote::before{content:'"';color:var(--flame);}
-.testimonial-quote::after{content:'"';color:var(--flame);}
-.testimonial-attr{font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-3);margin-top:1rem;}
-.testimonial-note{font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-3);margin-top:1.2rem;padding-top:1.2rem;border-top:1px dashed var(--line-2);}
-
 /* case study modal */
 .case-modal{position:fixed;inset:0;z-index:300;background:rgba(6,6,10,.9);opacity:0;pointer-events:none;transition:opacity .25s ease;display:flex;align-items:flex-start;justify-content:center;padding:3.5rem 1.4rem;overflow-y:auto;}
 .case-modal.open{opacity:1;pointer-events:auto;}
@@ -530,6 +532,19 @@ img{max-width:100%;display:block;}
 
 .back-to-top{position:fixed;bottom:1.6rem;right:1.6rem;width:44px;height:44px;border-radius:50%;background:var(--grad-brand);border:none;color:#fff;font-size:1rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:all .3s ease;z-index:90;box-shadow:var(--shadow-sm);}
 .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+
+/* ══════════════════════════════════════════
+   PAGE TRANSITION CURTAIN — sweeps over the screen when navigating
+   between sections, like a Framer-style page transition.
+   ══════════════════════════════════════════ */
+.page-curtain{position:fixed;inset:0;z-index:500;background:var(--grad-brand);transform:translateY(101%);pointer-events:none;will-change:transform;}
+.page-curtain.covering{transition:transform .5s cubic-bezier(.76,0,.24,1);transform:translateY(0);}
+.page-curtain.revealing{transition:transform .6s cubic-bezier(.76,0,.24,1) .05s;transform:translateY(-101%);}
+.page-curtain-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.15em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .25s ease;}
+.page-curtain.covering .page-curtain-label{opacity:.85;transition-delay:.2s;}
+@media (prefers-reduced-motion: reduce){
+  .page-curtain,.page-curtain.covering,.page-curtain.revealing{transition:none !important;transform:translateY(101%) !important;}
+}
 
 </style>
 </head>
@@ -845,18 +860,18 @@ img{max-width:100%;display:block;}
       </div>
 
       <div class="proj-card reveal frame-card">
-        <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','OJT — Attendance Monitoring System')">
-          <span class="proj-status status-internship">Internship</span>
+        <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','Attendance Monitoring System')">
+          <span class="proj-status status-internship">Professional</span>
           <img src="assets/NSJBI.png" alt="Attendance Monitoring System" onerror="this.style.display='none'">
         </div>
         <div class="proj-body">
           <div>
-            <div class="proj-title">OJT – Attendance Monitoring System <span class="proj-year">· 2025</span></div>
-            <div class="proj-org">New San Jose Builders Inc. · OJT</div>
-            <div class="proj-role">QA &amp; UI/UX Designer</div>
+            <div class="proj-title">Attendance Monitoring System <span class="proj-year">· 2025</span></div>
+            <div class="proj-org">New San Jose Builders Inc.</div>
+            <div class="proj-role">QA &amp; Developer</div>
           </div>
           <ul class="proj-bullets">
-            <li>Web-based attendance monitoring system built during a QA &amp; development internship</li>
+            <li>Web-based attendance monitoring system built during my time as a QA &amp; development team member</li>
             <li>Wrote test cases and documentation alongside feature development for company use</li>
           </ul>
           <div class="proj-foot">
@@ -923,13 +938,13 @@ img{max-width:100%;display:block;}
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-card">
-          <div class="tl-date">2025 - 2026</div>
+          <div class="tl-date">2024 – Present · 2 Years</div>
           <div class="tl-org">New San Jose Builders Inc.</div>
-          <div class="tl-role">QA Analyst, Software Developer &amp; Technical Documentation</div>
+          <div class="tl-role">QA Analyst, Developer &amp; Technical Documentation</div>
           <ul class="tl-bullets">
             <li>Wrote and executed test cases, logging defects for the development team to resolve</li>
             <li>Documented system features and internal processes for reference and onboarding</li>
-            <li>Assisted in building and maintaining internal web tools alongside senior developers</li>
+            <li>Built and maintained internal web tools alongside the development team</li>
           </ul>
         </div>
       </div>
@@ -965,7 +980,7 @@ img{max-width:100%;display:block;}
         <div class="section-eyebrow">Credentials</div>
         <h2 class="section-title">Certifications</h2>
       </div>
-      <button type="button" class="section-more" id="certsToggle" onclick="openGallery('certsGalleryModal')"><i class="fas fa-grip"></i> View all 7</button>
+      <button type="button" class="section-more" id="certsToggle" onclick="openGallery('certsGalleryModal')"><i class="fas fa-grip"></i> View all 6</button>
     </div>
     <div class="cert-grid" id="certGrid">
       <a class="cert-card reveal in frame-card" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
@@ -974,6 +989,14 @@ img{max-width:100%;display:block;}
           <div class="cert-name">Certificate of Academic Distinction</div>
           <div class="cert-meta"><span class="cert-issuer">Mindoro State University</span><span class="cert-date">June 2026</span></div>
           <div class="cert-skills"><span>Academic Excellence</span><span>GWA: 1.7405</span></div>
+        </div>
+      </a>
+      <a class="cert-card reveal in frame-card" href="assets/certificate3.pdf" target="_blank">
+        <div class="cert-thumb"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
+        <div class="cert-info">
+          <div class="cert-name">Python Programming II</div>
+          <div class="cert-meta"><span class="cert-issuer">CodeChum</span><span class="cert-date">Dec 2025</span></div>
+          <div class="cert-skills"><span>Python</span><span>Programming</span></div>
         </div>
       </a>
       <a class="cert-card reveal in frame-card" href="assets/certificate1.pdf" target="_blank">
@@ -995,7 +1018,6 @@ img{max-width:100%;display:block;}
     </div>
   </section>
 
-
   <!-- CTA BANNER -->
   <section class="section reveal" id="cta">
     <div class="cta-banner">
@@ -1003,7 +1025,7 @@ img{max-width:100%;display:block;}
       <h2 class="cta-title">Let's Build Something Great Together</h2>
       <p class="cta-sub">Available for full-time roles, freelance projects, and collaborations in UI/UX design, graphic design, front-end development, QA testing, virtual assistance, and social media content &amp; management.</p>
       <div class="cta-actions">
-        <button class="btn-primary" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fas fa-envelope"></i> Let's Work Together</button>
+        <button class="btn-primary" onclick="jumpToSection('connect')"><i class="fas fa-envelope"></i> Let's Work Together</button>
         <a href="#projects" class="btn-outline"><i class="fas fa-eye"></i> View My Work</a>
         <a href="assets/Basconcillo_Resume.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
       </div>
@@ -1149,18 +1171,18 @@ img{max-width:100%;display:block;}
         </div>
 
         <div class="proj-card frame-card">
-          <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','OJT — Attendance Monitoring System')">
-            <span class="proj-status status-internship">Internship</span>
+          <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','Attendance Monitoring System')">
+            <span class="proj-status status-internship">Professional</span>
             <img src="assets/NSJBI.png" alt="Attendance Monitoring System" onerror="this.style.display='none'">
           </div>
           <div class="proj-body">
             <div>
-              <div class="proj-title">OJT – Attendance Monitoring System <span class="proj-year">· 2025</span></div>
-              <div class="proj-org">New San Jose Builders Inc. · OJT</div>
+              <div class="proj-title">Attendance Monitoring System <span class="proj-year">· 2025</span></div>
+              <div class="proj-org">New San Jose Builders Inc.</div>
               <div class="proj-role">QA &amp; Developer</div>
             </div>
             <ul class="proj-bullets">
-              <li>Web-based attendance monitoring system built during a QA &amp; dev internship</li>
+              <li>Web-based attendance monitoring system built as a QA &amp; dev team member</li>
               <li>Wrote test cases and documentation alongside feature development</li>
             </ul>
             <div class="proj-foot"><div class="proj-stack"><span>Vue.js</span><span>Node.js</span><span>MySQL</span></div></div>
@@ -1311,7 +1333,7 @@ img{max-width:100%;display:block;}
     <div class="gallery-modal-head">
       <div>
         <h3>All Certifications</h3>
-        <div class="gallery-modal-count">7 credentials, 2025–2026</div>
+        <div class="gallery-modal-count">6 credentials, 2025–2026</div>
       </div>
       <button type="button" class="gallery-modal-close" onclick="closeGallery('certsGalleryModal')" aria-label="Close"><i class="fas fa-xmark"></i></button>
     </div>
@@ -1381,6 +1403,8 @@ img{max-width:100%;display:block;}
 
 <div class="toast" id="toast"></div>
 
+<div class="page-curtain" id="pageCurtain" aria-hidden="true"><span class="page-curtain-label" id="pageCurtainLabel"></span></div>
+
 <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <script>
@@ -1416,9 +1440,54 @@ img{max-width:100%;display:block;}
     }));
   }
 
-  document.getElementById('contactScrollBtn')?.addEventListener('click', () => {
-    document.getElementById('connect').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  // Section-to-section navigation — a curtain sweeps over the screen,
+  // the destination section swaps in underneath, then it uncovers.
+  const pageCurtain = document.getElementById('pageCurtain');
+  const pageCurtainLabel = document.getElementById('pageCurtainLabel');
+  const sectionLabels = {
+    'about-me': 'About', 'services': 'Services', 'skills': 'Skills',
+    'projects': 'Work', 'process': 'Process', 'experience': 'Experience',
+    'certifications': 'Certifications', 'connect': 'Contact'
+  };
+  let curtainBusy = false;
+  function jumpToSection(id) {
+    const target = document.getElementById(id);
+    if (!target || curtainBusy) return;
+    if (prefersReducedMotion || !pageCurtain) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    curtainBusy = true;
+    pageCurtainLabel.textContent = sectionLabels[id] || '';
+    pageCurtain.classList.remove('revealing');
+    pageCurtain.classList.add('covering');
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      target.classList.remove('nav-jump');
+      void target.offsetWidth;
+      target.classList.add('nav-jump');
+      pageCurtain.classList.remove('covering');
+      pageCurtain.classList.add('revealing');
+      setTimeout(() => {
+        pageCurtain.classList.remove('revealing');
+        curtainBusy = false;
+      }, 650);
+    }, 520);
+  }
+
+  document.getElementById('contactScrollBtn')?.addEventListener('click', () => jumpToSection('connect'));
+
+  (function () {
+    const navAnchors = document.querySelectorAll('.nav-links a[href^="#"], .spec-rail a[href^="#"], a.btn-outline[href^="#"], a.btn-primary[href^="#"]');
+    navAnchors.forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href').slice(1);
+        if (!document.getElementById(id)) return;
+        e.preventDefault();
+        jumpToSection(id);
+      });
+    });
+  })();
 
   // Image modal
   function openImg(src, caption) {
