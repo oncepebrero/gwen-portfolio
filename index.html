@@ -147,7 +147,7 @@ img{max-width:100%;display:block;}
 .hero-blob.b1{width:460px;height:460px;background:var(--cobalt);top:-200px;right:-140px;animation:floatBlob 12s ease-in-out infinite;}
 .hero-blob.b2{width:400px;height:400px;background:var(--flame);bottom:-200px;left:-160px;opacity:.2;animation:floatBlob 14s ease-in-out infinite reverse;}
 @keyframes floatBlob{0%,100%{transform:translate(0,0);}50%{transform:translate(24px,-28px);}}
-.hero-inner{position:relative;z-index:1;}
+.hero-inner{position:relative;z-index:1;will-change:transform,opacity;}
 
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2.6rem;align-items:center;}
 @media (max-width:980px){.hero-grid{grid-template-columns:1fr;}}
@@ -183,7 +183,7 @@ img{max-width:100%;display:block;}
 .hero-socials a:hover{border-color:var(--flame);color:var(--flame);transform:translateY(-2px);}
 
 /* hero visual composition — layered "design / build / test" cards */
-.hero-visual{position:relative;height:400px;display:flex;align-items:center;justify-content:center;animation:fadeIn 1s ease both;animation-delay:.4s;}
+.hero-visual{position:relative;height:400px;display:flex;align-items:center;justify-content:center;animation:fadeIn 1s ease both;animation-delay:.4s;will-change:transform;}
 @media (max-width:980px){.hero-visual{height:280px;margin-top:1rem;}}
 .hv-card{position:absolute;width:220px;border-radius:var(--radius-md);padding:1.1rem;background:var(--surface);border:1px solid var(--line-2);box-shadow:var(--shadow);}
 .hv-card .hv-tag{font-family:var(--mono);font-size:var(--fs-2xs);text-transform:uppercase;letter-spacing:.08em;color:var(--flame);display:flex;align-items:center;gap:.4rem;}
@@ -224,8 +224,17 @@ img{max-width:100%;display:block;}
 .section-more{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-2);border:1px solid var(--line-2);border-radius:30px;padding:.55rem 1.1rem;cursor:pointer;background:transparent;transition:all .18s;white-space:nowrap;}
 .section-more:hover{border-color:var(--flame);color:var(--flame);}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
-.reveal.in{opacity:1;transform:translateY(0);}
+.reveal{opacity:0;transform:translateY(34px) scale(.97);filter:blur(3px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+
+/* stagger-item: scroll-triggered card entrance, staggered per grid via --stagger-delay */
+.stagger-item{opacity:0;transform:translateY(38px) scale(.92);filter:blur(5px);
+  transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1),filter .65s ease;
+  transition-delay:var(--stagger-delay,0s);}
+.stagger-item.in{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+@media (prefers-reduced-motion: reduce){
+  .reveal,.stagger-item{opacity:1;transform:none;filter:none;transition:none;}
+}
 
 /* nav-triggered section transition — plays when a section is reached via a nav/rail link */
 main.wrap{perspective:1600px;}
@@ -728,22 +737,22 @@ main.wrap{perspective:1600px;}
 
     <div class="services-sub-label">Also available for</div>
     <div class="services-grid">
-      <div class="service-card frame-card">
+      <div class="service-card stagger-item frame-card">
         <i class="fas fa-code"></i>
         <div class="service-title">Front-End Development</div>
         <div class="service-desc">Responsive, user-centered builds with HTML, CSS, JavaScript, and Bootstrap.</div>
       </div>
-      <div class="service-card frame-card">
+      <div class="service-card stagger-item frame-card">
         <i class="fas fa-bug"></i>
         <div class="service-title">QA &amp; Software Testing</div>
         <div class="service-desc">Manual testing, bug reporting, and validation so software works the way it should.</div>
       </div>
-      <div class="service-card frame-card">
+      <div class="service-card stagger-item frame-card">
         <i class="fas fa-headset"></i>
         <div class="service-title">Virtual Assistance</div>
         <div class="service-desc">Organized, detail-driven admin support — documentation, scheduling, and inbox &amp; task management.</div>
       </div>
-      <div class="service-card frame-card">
+      <div class="service-card stagger-item frame-card">
         <i class="fas fa-hashtag"></i>
         <div class="service-title">Social Media Content &amp; Management</div>
         <div class="service-desc">On-brand graphics and content calendars built with the same design eye as client work.</div>
@@ -760,7 +769,7 @@ main.wrap{perspective:1600px;}
     </div>
 
     <div class="skills-columns">
-      <div class="skills-col reveal in">
+      <div class="skills-col stagger-item">
         <div class="skills-col-title">Design &amp; Prototyping</div>
         <ul class="skills-list">
           <li>Design Systems</li>
@@ -768,7 +777,7 @@ main.wrap{perspective:1600px;}
           <li>Canva</li>
         </ul>
       </div>
-      <div class="skills-col reveal in">
+      <div class="skills-col stagger-item">
         <div class="skills-col-title">Languages &amp; Development</div>
         <ul class="skills-list">
           <li>HTML5, CSS3, JavaScript</li>
@@ -778,7 +787,7 @@ main.wrap{perspective:1600px;}
           <li>Node.js &amp; Express.js</li>
         </ul>
       </div>
-      <div class="skills-col reveal in">
+      <div class="skills-col stagger-item">
         <div class="skills-col-title">Data, CMS &amp; Tools</div>
         <ul class="skills-list">
           <li>MySQL</li>
@@ -786,7 +795,7 @@ main.wrap{perspective:1600px;}
           <li>Git &amp; GitHub</li>
         </ul>
       </div>
-      <div class="skills-col reveal in">
+      <div class="skills-col stagger-item">
         <div class="skills-col-title">QA &amp; Practice</div>
         <ul class="skills-list">
           <li>Manual Testing &amp; Test Case Design</li>
@@ -795,7 +804,7 @@ main.wrap{perspective:1600px;}
           <li>Multimedia Editing</li>
         </ul>
       </div>
-      <div class="skills-col reveal in">
+      <div class="skills-col stagger-item">
         <div class="skills-col-title">Admin &amp; Content</div>
         <ul class="skills-list">
           <li>Content Creation (Canva)</li>
@@ -838,7 +847,7 @@ main.wrap{perspective:1600px;}
 
     <div class="proj-grid" id="projGrid">
 
-      <div class="proj-card reveal frame-card">
+      <div class="proj-card stagger-item frame-card">
         <div class="proj-thumb" onclick="openImg('assets/dailydrive-cover.png','DailyDrive — Task Management System')">
           <span class="proj-status status-shipped">Shipped</span>
           <img src="assets/dailydrive-cover.png" alt="DailyDrive productivity dashboard with task lists, calendar, and progress charts" onerror="this.style.display='none'">
@@ -860,7 +869,7 @@ main.wrap{perspective:1600px;}
         </div>
       </div>
 
-      <div class="proj-card reveal frame-card">
+      <div class="proj-card stagger-item frame-card">
         <div class="proj-thumb" onclick="openImg('assets/SafepathUI.png','SafePath — Bullying Complaint System')">
           <span class="proj-status status-shipped">Shipped</span>
           <img src="assets/SafepathUI.png" alt="SafePath confidential reporting interface for student bullying incidents" onerror="this.style.display='none'">
@@ -883,7 +892,7 @@ main.wrap{perspective:1600px;}
         </div>
       </div>
 
-      <div class="proj-card reveal frame-card">
+      <div class="proj-card stagger-item frame-card">
         <div class="proj-thumb" onclick="openImg('assets/NSJBI.png','Attendance Monitoring System')">
           <span class="proj-status status-internship">Professional</span>
           <img src="assets/NSJBI.png" alt="Attendance Monitoring System" onerror="this.style.display='none'">
@@ -924,25 +933,25 @@ main.wrap{perspective:1600px;}
       </div>
     </div>
     <div class="process-grid" id="processGrid">
-      <div class="process-card reveal in frame-card" data-step="1">
+      <div class="process-card stagger-item frame-card" data-step="1">
         <div class="process-num">01</div>
         <div class="process-title">Discover &amp; Define</div>
         <div class="process-desc">Understanding the problem — gathering requirements, identifying user needs, and uncovering pain points before designing anything.</div>
         <div class="process-step-tag">Step 1</div>
       </div>
-      <div class="process-card reveal in frame-card" data-step="2">
+      <div class="process-card stagger-item frame-card" data-step="2">
         <div class="process-num">02</div>
         <div class="process-title">Wireframe &amp; Prototype</div>
         <div class="process-desc">Translating insights into low-fidelity wireframes and interactive prototypes to explore layout, flow, and structure.</div>
         <div class="process-step-tag">Step 2</div>
       </div>
-      <div class="process-card reveal in frame-card" data-step="3">
+      <div class="process-card stagger-item frame-card" data-step="3">
         <div class="process-num">03</div>
         <div class="process-title">Design &amp; Build</div>
         <div class="process-desc">Crafting polished UI and design systems, then developing the front end to bring the design to life with clean, responsive code.</div>
         <div class="process-step-tag">Step 3</div>
       </div>
-      <div class="process-card reveal in frame-card" data-step="4">
+      <div class="process-card stagger-item frame-card" data-step="4">
         <div class="process-num">04</div>
         <div class="process-title">Test &amp; Refine</div>
         <div class="process-desc">Manually testing features, logging bugs, and refining usability and visual details before final delivery.</div>
@@ -1007,7 +1016,7 @@ main.wrap{perspective:1600px;}
       <button type="button" class="section-more" id="certsToggle" onclick="openGallery('certsGalleryModal')"><i class="fas fa-grip"></i> View all 6</button>
     </div>
     <div class="cert-grid" id="certGrid">
-      <a class="cert-card reveal in frame-card" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
+      <a class="cert-card stagger-item frame-card" href="assets/cert-covers/academic-distinction.jpg" target="_blank">
         <div class="cert-thumb"><img src="assets/cert-covers/academic-distinction.jpg" alt="Certificate of Academic Distinction"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
         <div class="cert-info">
           <div class="cert-name">Certificate of Academic Distinction</div>
@@ -1015,7 +1024,7 @@ main.wrap{perspective:1600px;}
           <div class="cert-skills"><span>Academic Excellence</span><span>GWA: 1.7405</span></div>
         </div>
       </a>
-      <a class="cert-card reveal in frame-card" href="assets/certificate3.pdf" target="_blank">
+      <a class="cert-card stagger-item frame-card" href="assets/certificate3.pdf" target="_blank">
         <div class="cert-thumb"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
         <div class="cert-info">
           <div class="cert-name">Python Programming II</div>
@@ -1023,7 +1032,7 @@ main.wrap{perspective:1600px;}
           <div class="cert-skills"><span>Python</span><span>Programming</span></div>
         </div>
       </a>
-      <a class="cert-card reveal in frame-card" href="assets/certificate1.pdf" target="_blank">
+      <a class="cert-card stagger-item frame-card" href="assets/certificate1.pdf" target="_blank">
         <div class="cert-thumb"><img src="assets/cert-covers/cybersecurity-cover.png" alt="Fortinet Cybersecurity Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
         <div class="cert-info">
           <div class="cert-name">Fortinet Certified Associate in Cybersecurity</div>
@@ -1031,7 +1040,7 @@ main.wrap{perspective:1600px;}
           <div class="cert-skills"><span>Cybersecurity</span><span>Threat Awareness</span></div>
         </div>
       </a>
-      <a class="cert-card reveal in frame-card" href="assets/certificate2.pdf" target="_blank">
+      <a class="cert-card stagger-item frame-card" href="assets/certificate2.pdf" target="_blank">
         <div class="cert-thumb"><img src="assets/cert-covers/networking-cover..png" alt="Fortinet Networking Fundamentals Certificate"><span class="cert-ext"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
         <div class="cert-info">
           <div class="cert-name">Fortinet Networking Fundamentals</div>
@@ -1798,12 +1807,49 @@ main.wrap{perspective:1600px;}
     update();
   })();
 
-  // Scroll reveal
+  // Scroll reveal — section-level
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
   }, { threshold: 0.1 });
   revealEls.forEach(el => io.observe(el));
+
+  // Scroll reveal — staggered per-grid card entrance (fires as each grid enters view, not on click)
+  (function () {
+    const groups = new Set();
+    document.querySelectorAll('.stagger-item').forEach(el => { if (el.parentElement) groups.add(el.parentElement); });
+    const staggerIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const items = Array.from(entry.target.querySelectorAll(':scope > .stagger-item'));
+        items.forEach((item, i) => {
+          item.style.setProperty('--stagger-delay', (i * 0.09) + 's');
+          item.classList.add('in');
+        });
+        staggerIO.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    groups.forEach(g => staggerIO.observe(g));
+  })();
+
+  // Scroll parallax — hero content recedes/fades slightly as you scroll past it,
+  // and the visual card cluster drifts at a different rate than the page.
+  (function () {
+    const heroInner = document.querySelector('.hero-inner');
+    const heroVisual = document.querySelector('.hero-visual');
+    const hero = document.querySelector('.hero');
+    if (!hero || prefersReducedMotion) return;
+    function parallax() {
+      const heroHeight = hero.offsetHeight || 1;
+      const progress = Math.min(1, Math.max(0, window.scrollY / heroHeight));
+      if (heroInner) heroInner.style.transform = `translateY(${progress * 46}px) scale(${1 - progress * 0.04})`;
+      if (heroInner) heroInner.style.opacity = String(1 - progress * 0.75);
+      if (heroVisual) heroVisual.style.transform = `translateY(${window.scrollY * -0.12}px)`;
+    }
+    document.addEventListener('scroll', parallax, { passive: true });
+    window.addEventListener('resize', parallax);
+    parallax();
+  })();
 </script>
 </body>
 </html>
