@@ -224,28 +224,24 @@ img{max-width:100%;display:block;}
 .section-more{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-2);border:1px solid var(--line-2);border-radius:30px;padding:.55rem 1.1rem;cursor:pointer;background:transparent;transition:all .18s;white-space:nowrap;}
 .section-more:hover{border-color:var(--flame);color:var(--flame);}
 
-.reveal{opacity:0;transform:translateY(34px) scale(.97);filter:blur(3px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease;}
-.reveal.in{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
 
-/* stagger-item: scroll-triggered card entrance, staggered per grid via --stagger-delay */
-.stagger-item{opacity:0;transform:translateY(38px) scale(.92);filter:blur(5px);
-  transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1),filter .65s ease;
+/* stagger-item: scroll-triggered card entrance, lightly staggered per grid via --stagger-delay */
+.stagger-item{opacity:0;transform:translateY(22px);
+  transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1);
   transition-delay:var(--stagger-delay,0s);}
-.stagger-item.in{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+.stagger-item.in{opacity:1;transform:translateY(0);}
 @media (prefers-reduced-motion: reduce){
-  .reveal,.stagger-item{opacity:1;transform:none;filter:none;transition:none;}
+  .reveal,.stagger-item{opacity:1;transform:none;transition:none;}
 }
 
 /* nav-triggered section transition — plays when a section is reached via a nav/rail link */
-main.wrap{perspective:1600px;}
 @keyframes navSectionIn{
-  0%{opacity:0;transform:translateY(60px) scale(.92) rotateX(8deg);filter:blur(12px);}
-  50%{filter:blur(0);}
-  65%{opacity:1;}
-  78%{transform:translateY(-6px) scale(1.008) rotateX(0deg);}
-  100%{opacity:1;transform:translateY(0) scale(1) rotateX(0deg);filter:blur(0);}
+  0%{opacity:0;transform:translateY(16px);}
+  100%{opacity:1;transform:translateY(0);}
 }
-.nav-jump{animation:navSectionIn .85s cubic-bezier(.16,1,.3,1) both;transform-origin:top center;}
+.nav-jump{animation:navSectionIn .5s cubic-bezier(.4,0,.2,1) both;}
 @media (prefers-reduced-motion: reduce){.nav-jump{animation:none;}}
 
 /* frame-card: signature "inspector" corner-bracket hover, used across cards */
@@ -546,37 +542,22 @@ main.wrap{perspective:1600px;}
 .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
 
 /* ══════════════════════════════════════════
-   PAGE TRANSITION CURTAIN — three staggered panels sweep the screen
-   in the brand gradient colors, with a monogram/label reveal at the
-   moment of full cover, then peel away in reverse to reveal the section.
+   PAGE TRANSITION — a soft crossfade panel that covers the screen,
+   the destination section swaps in underneath, then it fades away.
    ══════════════════════════════════════════ */
-.page-curtain{position:fixed;inset:0;z-index:500;pointer-events:none;display:flex;}
-.curtain-bar{flex:1 1 0;height:100%;transform:translateY(100%);will-change:transform;}
-.curtain-bar:nth-child(1){background:var(--cobalt);}
-.curtain-bar:nth-child(2){background:#8A5CFF;}
-.curtain-bar:nth-child(3){background:var(--flame);}
-.page-curtain.covering .curtain-bar{transition:transform .48s cubic-bezier(.76,0,.24,1);transform:translateY(0) skewX(-4deg);}
-.page-curtain.covering .curtain-bar:nth-child(1){transition-delay:0s;}
-.page-curtain.covering .curtain-bar:nth-child(2){transition-delay:.07s;}
-.page-curtain.covering .curtain-bar:nth-child(3){transition-delay:.14s;}
-.page-curtain.revealing .curtain-bar{transition:transform .55s cubic-bezier(.76,0,.24,1);transform:translateY(-102%) skewX(-4deg);}
-.page-curtain.revealing .curtain-bar:nth-child(1){transition-delay:.16s;}
-.page-curtain.revealing .curtain-bar:nth-child(2){transition-delay:.08s;}
-.page-curtain.revealing .curtain-bar:nth-child(3){transition-delay:0s;}
+.page-curtain{position:fixed;inset:0;z-index:500;pointer-events:none;background:var(--grad-brand);opacity:0;transition:opacity .4s cubic-bezier(.4,0,.2,1);}
+.page-curtain.covering{opacity:1;}
+.page-curtain.revealing{opacity:0;transition:opacity .45s cubic-bezier(.4,0,.2,1);}
 
-.page-curtain-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;opacity:0;transform:scale(.75) rotate(-4deg);transition:opacity .3s ease,transform .35s cubic-bezier(.2,.85,.25,1);pointer-events:none;}
-.page-curtain.covering .page-curtain-center{opacity:1;transform:scale(1) rotate(0deg);transition-delay:.32s;}
-.page-curtain.revealing .page-curtain-center{opacity:0;transform:scale(1.15) rotate(3deg);transition:opacity .2s ease,transform .3s ease;transition-delay:0s;}
+.page-curtain-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;opacity:0;transform:scale(.97);transition:opacity .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1);pointer-events:none;}
+.page-curtain.covering .page-curtain-center{opacity:1;transform:scale(1);transition-delay:.12s;}
+.page-curtain.revealing .page-curtain-center{opacity:0;transform:scale(.98);transition-delay:0s;}
 .page-curtain-mono{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6vw,3.4rem);color:#fff;letter-spacing:-.02em;text-shadow:0 8px 30px rgba(0,0,0,.25);}
 .page-curtain-label{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.88);}
 .page-curtain-line{width:38px;height:2px;background:rgba(255,255,255,.6);border-radius:2px;}
 
-@media (max-width:620px){.page-curtain{flex-direction:column;}}
-
 @media (prefers-reduced-motion: reduce){
-  .page-curtain,.page-curtain.covering,.page-curtain.revealing,.curtain-bar,.page-curtain-center{transition:none !important;}
-  .curtain-bar{transform:translateY(100%) !important;}
-  .page-curtain-center{opacity:0 !important;}
+  .page-curtain,.page-curtain.covering,.page-curtain.revealing,.page-curtain-center{transition:none !important;opacity:0 !important;}
 }
 
 </style>
@@ -1437,7 +1418,6 @@ main.wrap{perspective:1600px;}
 <div class="toast" id="toast"></div>
 
 <div class="page-curtain" id="pageCurtain" aria-hidden="true">
-  <span class="curtain-bar"></span><span class="curtain-bar"></span><span class="curtain-bar"></span>
   <div class="page-curtain-center">
     <div class="page-curtain-mono">GB</div>
     <div class="page-curtain-line"></div>
@@ -1511,8 +1491,8 @@ main.wrap{perspective:1600px;}
       setTimeout(() => {
         pageCurtain.classList.remove('revealing');
         curtainBusy = false;
-      }, 720);
-    }, 620);
+      }, 450);
+    }, 400);
   }
 
   document.getElementById('contactScrollBtn')?.addEventListener('click', () => jumpToSection('connect'));
@@ -1814,41 +1794,64 @@ main.wrap{perspective:1600px;}
   }, { threshold: 0.1 });
   revealEls.forEach(el => io.observe(el));
 
-  // Scroll reveal — staggered per-grid card entrance (fires as each grid enters view, not on click)
+  // Scroll reveal — each card animates in on its own as it individually crosses into
+  // view (not the whole grid at once), so it works the same whether the grid is
+  // several columns wide (desktop) or a single stacked column (mobile).
   (function () {
-    const groups = new Set();
-    document.querySelectorAll('.stagger-item').forEach(el => { if (el.parentElement) groups.add(el.parentElement); });
+    const items = Array.from(document.querySelectorAll('.stagger-item'));
+    if (!items.length) return;
+    // group by parent so siblings that appear together still get a light wave delay
+    const parentIndex = new Map();
+    items.forEach(item => {
+      const parent = item.parentElement;
+      const i = parentIndex.get(parent) || 0;
+      item.dataset.staggerIndex = i;
+      parentIndex.set(parent, i + 1);
+    });
     const staggerIO = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        const items = Array.from(entry.target.querySelectorAll(':scope > .stagger-item'));
-        items.forEach((item, i) => {
-          item.style.setProperty('--stagger-delay', (i * 0.09) + 's');
-          item.classList.add('in');
-        });
-        staggerIO.unobserve(entry.target);
+        const item = entry.target;
+        const i = Number(item.dataset.staggerIndex || 0);
+        item.style.setProperty('--stagger-delay', Math.min(i, 4) * 0.07 + 's');
+        item.classList.add('in');
+        staggerIO.unobserve(item);
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-    groups.forEach(g => staggerIO.observe(g));
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    items.forEach(item => staggerIO.observe(item));
   })();
 
-  // Scroll parallax — hero content recedes/fades slightly as you scroll past it,
-  // and the visual card cluster drifts at a different rate than the page.
+  // Scroll parallax — hero content eases back slightly as you scroll past it.
+  // rAF-throttled to avoid layout jank, and the split "floating cards" drift is
+  // desktop-only since on mobile the visual sits directly under the text and an
+  // independent transform there just collides with it.
   (function () {
     const heroInner = document.querySelector('.hero-inner');
     const heroVisual = document.querySelector('.hero-visual');
     const hero = document.querySelector('.hero');
     if (!hero || prefersReducedMotion) return;
-    function parallax() {
+    let ticking = false;
+    function applyParallax() {
+      ticking = false;
+      const isDesktop = window.innerWidth > 980;
       const heroHeight = hero.offsetHeight || 1;
       const progress = Math.min(1, Math.max(0, window.scrollY / heroHeight));
-      if (heroInner) heroInner.style.transform = `translateY(${progress * 46}px) scale(${1 - progress * 0.04})`;
-      if (heroInner) heroInner.style.opacity = String(1 - progress * 0.75);
-      if (heroVisual) heroVisual.style.transform = `translateY(${window.scrollY * -0.12}px)`;
+      if (heroInner) {
+        heroInner.style.transform = `translateY(${progress * 30}px)`;
+        heroInner.style.opacity = String(1 - progress * 0.6);
+      }
+      if (heroVisual) {
+        heroVisual.style.transform = isDesktop ? `translateY(${Math.min(window.scrollY, heroHeight) * -0.1}px)` : '';
+      }
     }
-    document.addEventListener('scroll', parallax, { passive: true });
-    window.addEventListener('resize', parallax);
-    parallax();
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(applyParallax);
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    applyParallax();
   })();
 </script>
 </body>
