@@ -236,14 +236,6 @@ img{max-width:100%;display:block;}
   .reveal,.stagger-item{opacity:1;transform:none;transition:none;}
 }
 
-/* nav-triggered section transition — plays when a section is reached via a nav/rail link */
-@keyframes navSectionIn{
-  0%{opacity:0;transform:translateY(16px);}
-  100%{opacity:1;transform:translateY(0);}
-}
-.nav-jump{animation:navSectionIn .5s cubic-bezier(.4,0,.2,1) both;}
-@media (prefers-reduced-motion: reduce){.nav-jump{animation:none;}}
-
 /* frame-card: signature "inspector" corner-bracket hover, used across cards */
 .frame-card{position:relative;}
 .frame-card::after{
@@ -540,25 +532,6 @@ img{max-width:100%;display:block;}
 
 .back-to-top{position:fixed;bottom:1.6rem;right:1.6rem;width:44px;height:44px;border-radius:50%;background:var(--grad-brand);border:none;color:#fff;font-size:1rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:all .3s ease;z-index:90;box-shadow:var(--shadow-sm);}
 .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
-
-/* ══════════════════════════════════════════
-   PAGE TRANSITION — a soft crossfade panel that covers the screen,
-   the destination section swaps in underneath, then it fades away.
-   ══════════════════════════════════════════ */
-.page-curtain{position:fixed;inset:0;z-index:500;pointer-events:none;background:var(--grad-brand);opacity:0;transition:opacity .4s cubic-bezier(.4,0,.2,1);}
-.page-curtain.covering{opacity:1;}
-.page-curtain.revealing{opacity:0;transition:opacity .45s cubic-bezier(.4,0,.2,1);}
-
-.page-curtain-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;opacity:0;transform:scale(.97);transition:opacity .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1);pointer-events:none;}
-.page-curtain.covering .page-curtain-center{opacity:1;transform:scale(1);transition-delay:.12s;}
-.page-curtain.revealing .page-curtain-center{opacity:0;transform:scale(.98);transition-delay:0s;}
-.page-curtain-mono{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6vw,3.4rem);color:#fff;letter-spacing:-.02em;text-shadow:0 8px 30px rgba(0,0,0,.25);}
-.page-curtain-label{font-family:var(--mono);font-size:var(--fs-xs);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.88);}
-.page-curtain-line{width:38px;height:2px;background:rgba(255,255,255,.6);border-radius:2px;}
-
-@media (prefers-reduced-motion: reduce){
-  .page-curtain,.page-curtain.covering,.page-curtain.revealing,.page-curtain-center{transition:none !important;opacity:0 !important;}
-}
 
 </style>
 </head>
@@ -1039,7 +1012,7 @@ img{max-width:100%;display:block;}
       <h2 class="cta-title">Let's Build Something Great Together</h2>
       <p class="cta-sub">Available for full-time roles, freelance projects, and collaborations in UI/UX design, graphic design, front-end development, QA testing, virtual assistance, and social media content &amp; management.</p>
       <div class="cta-actions">
-        <button class="btn-primary" onclick="jumpToSection('connect')"><i class="fas fa-envelope"></i> Let's Work Together</button>
+        <button class="btn-primary" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fas fa-envelope"></i> Let's Work Together</button>
         <a href="#projects" class="btn-outline"><i class="fas fa-eye"></i> View My Work</a>
         <a href="assets/Basconcillo_Resume.pdf" target="_blank" class="btn-outline"><i class="fas fa-file-arrow-down"></i> Download Resume</a>
       </div>
@@ -1417,14 +1390,6 @@ img{max-width:100%;display:block;}
 
 <div class="toast" id="toast"></div>
 
-<div class="page-curtain" id="pageCurtain" aria-hidden="true">
-  <div class="page-curtain-center">
-    <div class="page-curtain-mono">GB</div>
-    <div class="page-curtain-line"></div>
-    <div class="page-curtain-label" id="pageCurtainLabel"></div>
-  </div>
-</div>
-
 <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <script>
@@ -1460,54 +1425,9 @@ img{max-width:100%;display:block;}
     }));
   }
 
-  // Section-to-section navigation — a curtain sweeps over the screen,
-  // the destination section swaps in underneath, then it uncovers.
-  const pageCurtain = document.getElementById('pageCurtain');
-  const pageCurtainLabel = document.getElementById('pageCurtainLabel');
-  const sectionLabels = {
-    'about-me': 'About', 'services': 'Services', 'skills': 'Skills',
-    'projects': 'Work', 'process': 'Process', 'experience': 'Experience',
-    'certifications': 'Certifications', 'connect': 'Contact'
-  };
-  let curtainBusy = false;
-  function jumpToSection(id) {
-    const target = document.getElementById(id);
-    if (!target || curtainBusy) return;
-    if (prefersReducedMotion || !pageCurtain) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
-    curtainBusy = true;
-    pageCurtainLabel.textContent = sectionLabels[id] || '';
-    pageCurtain.classList.remove('revealing');
-    pageCurtain.classList.add('covering');
-    setTimeout(() => {
-      target.scrollIntoView({ behavior: 'auto', block: 'start' });
-      target.classList.remove('nav-jump');
-      void target.offsetWidth;
-      target.classList.add('nav-jump');
-      pageCurtain.classList.remove('covering');
-      pageCurtain.classList.add('revealing');
-      setTimeout(() => {
-        pageCurtain.classList.remove('revealing');
-        curtainBusy = false;
-      }, 450);
-    }, 400);
-  }
-
-  document.getElementById('contactScrollBtn')?.addEventListener('click', () => jumpToSection('connect'));
-
-  (function () {
-    const navAnchors = document.querySelectorAll('.nav-links a[href^="#"], .spec-rail a[href^="#"], a.btn-outline[href^="#"], a.btn-primary[href^="#"]');
-    navAnchors.forEach(link => {
-      link.addEventListener('click', e => {
-        const id = link.getAttribute('href').slice(1);
-        if (!document.getElementById(id)) return;
-        e.preventDefault();
-        jumpToSection(id);
-      });
-    });
-  })();
+  document.getElementById('contactScrollBtn')?.addEventListener('click', () => {
+    document.getElementById('connect').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   // Image modal
   function openImg(src, caption) {
