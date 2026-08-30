@@ -480,6 +480,31 @@ img{max-width:100%;display:block;}
 @media (max-width:700px){.mockup-modal-inner{height:94vh;}.mockup-modal-head{padding:.9rem 1rem;}.mockup-modal-titles h3{font-size:.92rem;}.mbc-url{display:none;}.mockup-modal-body{padding:1rem;}}
 
 /* ══════════════════════════════════════════
+   PDF DOCUMENT VIEWER
+   ══════════════════════════════════════════ */
+.thumb-doc{background:linear-gradient(160deg,var(--surface-2),var(--surface));display:flex;align-items:center;justify-content:center;padding:1.3rem;}
+.thumb-doc img{width:auto;height:100%;max-width:62%;object-fit:contain;box-shadow:0 16px 36px rgba(0,0,0,.5);border-radius:3px;background:#fff;position:relative;z-index:1;transition:transform .35s ease;}
+.proj-card:hover .thumb-doc img,.featured-thumb:hover.thumb-doc img{transform:translateY(-4px) scale(1.03);}
+.doc-badge{position:absolute;bottom:14px;right:14px;z-index:3;font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-1);background:rgba(6,6,10,.65);backdrop-filter:blur(6px);border:1px solid var(--line-2);border-radius:20px;padding:.3rem .65rem;display:flex;align-items:center;gap:.4rem;}
+.thumb-doc .mockup-overlay{background:linear-gradient(180deg,rgba(6,6,10,0) 55%,rgba(6,6,10,.8) 100%);}
+
+.doc-modal{position:fixed;inset:0;z-index:320;background:rgba(6,6,10,.94);opacity:0;pointer-events:none;transition:opacity .25s ease;display:flex;align-items:center;justify-content:center;padding:1.6rem;}
+.doc-modal.open{opacity:1;pointer-events:auto;}
+.doc-modal.open .doc-modal-inner{transform:scale(1);}
+.doc-modal-inner{width:100%;max-width:980px;height:90vh;background:var(--ink-soft);border:1px solid var(--line-2);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;transform:scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1);}
+.doc-modal-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.4rem;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+.doc-modal-titles h3{font-family:var(--disp);font-weight:800;font-size:1.05rem;color:var(--text-1);}
+.doc-modal-meta{font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-3);margin-top:.2rem;}
+.doc-toolbar{display:flex;align-items:center;gap:.5rem;}
+.doc-btn{height:34px;padding:0 .8rem;border-radius:9px;border:1px solid var(--line-2);background:var(--surface);color:var(--text-1);cursor:pointer;font-size:.78rem;font-family:var(--mono);display:flex;align-items:center;gap:.4rem;text-decoration:none;transition:border-color .18s,color .18s;}
+.doc-btn:hover{border-color:var(--flame);color:var(--flame);}
+.doc-modal-close{width:34px;height:34px;border-radius:9px;border:1px solid var(--line-2);background:var(--surface);color:var(--text-1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .18s,color .18s;}
+.doc-modal-close:hover{border-color:var(--flame);color:var(--flame);}
+.doc-modal-body{flex:1;background:#525659;}
+.doc-modal-body iframe{width:100%;height:100%;border:none;display:block;}
+@media (max-width:700px){.doc-modal-inner{height:94vh;}.doc-modal-head{padding:.9rem 1rem;}.doc-btn span{display:none;}}
+
+/* ══════════════════════════════════════════
    PROCESS
    ══════════════════════════════════════════ */
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
@@ -915,9 +940,11 @@ img{max-width:100%;display:block;}
     </div>
 
     <div class="featured-project reveal in">
-      <div class="featured-thumb" onclick="openImg('assets/capstone-cover.png','RM\'S — Capstone Project')">
+      <div class="featured-thumb thumb-doc" onclick="openDoc('assets/rms-capstone.pdf','RM\'S — Capstone Project','186 pages · Full capstone documentation')">
         <span class="proj-status status-shipped">Shipped</span>
-        <img src="assets/capstone-cover.png" alt="RM'S Inventory admin dashboard showing stock, sales, and order tracking screens" onerror="this.style.display='none'">
+        <img src="assets/rms-pdf-cover.jpg" alt="RM'S Inventory capstone document cover page" onerror="this.style.display='none'">
+        <div class="mockup-overlay"><span><i class="fas fa-file-pdf"></i> View all 186 pages</span></div>
+        <div class="doc-badge"><i class="fas fa-file-pdf"></i> PDF · 186 pages</div>
       </div>
       <div class="featured-body">
         <div class="featured-eyebrow">Featured Project</div>
@@ -935,9 +962,11 @@ img{max-width:100%;display:block;}
     <div class="proj-grid" id="projGrid">
 
       <div class="proj-card stagger-item frame-card tilt-card">
-        <div class="proj-thumb" onclick="openImg('assets/dailydrive-cover.png','DailyDrive — Task Management System')">
+        <div class="proj-thumb thumb-doc" onclick="openDoc('assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User & Admin guide')">
           <span class="proj-status status-shipped">Shipped</span>
-          <img src="assets/dailydrive-cover.png" alt="DailyDrive productivity dashboard with task lists, calendar, and progress charts" onerror="this.style.display='none'">
+          <img src="assets/dailydrive-pdf-cover.jpg" alt="DailyDrive user manual cover page" onerror="this.style.display='none'">
+          <div class="mockup-overlay"><span><i class="fas fa-file-pdf"></i> View all 21 pages</span></div>
+          <div class="doc-badge"><i class="fas fa-file-pdf"></i> PDF · 21 pages</div>
         </div>
         <div class="proj-body">
           <div>
@@ -1254,9 +1283,11 @@ img{max-width:100%;display:block;}
       <div class="gallery-grid">
 
         <div class="proj-card frame-card tilt-card">
-          <div class="proj-thumb" onclick="openImg('assets/capstone-cover.png','RM\'S — Capstone Project')">
+          <div class="proj-thumb thumb-doc" onclick="openDoc('assets/rms-capstone.pdf','RM\'S — Capstone Project','186 pages · Full capstone documentation')">
             <span class="proj-status status-shipped">Shipped</span>
-            <img src="assets/capstone-cover.png" alt="RM'S Capstone Project" onerror="this.style.display='none'">
+            <img src="assets/rms-pdf-cover.jpg" alt="RM'S Inventory capstone document cover page" onerror="this.style.display='none'">
+            <div class="mockup-overlay"><span><i class="fas fa-file-pdf"></i> View all 186 pages</span></div>
+            <div class="doc-badge"><i class="fas fa-file-pdf"></i> PDF · 186 pages</div>
           </div>
           <div class="proj-body">
             <div>
@@ -1273,9 +1304,11 @@ img{max-width:100%;display:block;}
         </div>
 
         <div class="proj-card frame-card tilt-card">
-          <div class="proj-thumb" onclick="openImg('assets/dailydrive-cover.png','DailyDrive — Task Management System')">
+          <div class="proj-thumb thumb-doc" onclick="openDoc('assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User & Admin guide')">
             <span class="proj-status status-shipped">Shipped</span>
-            <img src="assets/dailydrive-cover.png" alt="DailyDrive" onerror="this.style.display='none'">
+            <img src="assets/dailydrive-pdf-cover.jpg" alt="DailyDrive user manual cover page" onerror="this.style.display='none'">
+            <div class="mockup-overlay"><span><i class="fas fa-file-pdf"></i> View all 21 pages</span></div>
+            <div class="doc-badge"><i class="fas fa-file-pdf"></i> PDF · 21 pages</div>
           </div>
           <div class="proj-body">
             <div>
@@ -1556,11 +1589,11 @@ img{max-width:100%;display:block;}
           <div class="logo-name">Logo Concept 03</div>
         </div>
         <div class="logo-card tilt-card">
-          <div class="logo-thumb" onclick="openImg('assets/logo-4.png','Logo Concept 04')"><img src="assets/logo-4.png" alt="Logo design concept 04"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
+          <div class="logo-thumb" onclick="openImg('assets/logo-4.png','Logo Concept 04')"><img src="assets/logo-5.png" alt="Logo design concept 04"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
           <div class="logo-name">Logo Concept 04</div>
         </div>
         <div class="logo-card tilt-card">
-          <div class="logo-thumb" onclick="openImg('assets/logo-5.png','Logo Concept 05')"><img src="assets/logo-5.png" alt="Logo design concept 05"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
+          <div class="logo-thumb" onclick="openImg('assets/logo-5.png','Logo Concept 05')"><img src="assets/logo-4.png" alt="Logo design concept 05"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
           <div class="logo-name">Logo Concept 05</div>
         </div>
         <div class="logo-card tilt-card">
@@ -1610,6 +1643,26 @@ img{max-width:100%;display:block;}
       </div>
     </div>
     <div class="mockup-modal-hint"><i class="fas fa-hand-pointer"></i> Drag or scroll to explore the full page · Ctrl/⌘ + scroll to zoom</div>
+  </div>
+</div>
+
+<!-- PDF DOCUMENT VIEWER MODAL -->
+<div class="doc-modal" id="docModal">
+  <div class="doc-modal-inner">
+    <div class="doc-modal-head">
+      <div class="doc-modal-titles">
+        <h3 id="docModalTitle"></h3>
+        <div class="doc-modal-meta" id="docModalMeta"></div>
+      </div>
+      <div class="doc-toolbar">
+        <a id="docOpenTab" href="#" target="_blank" rel="noopener" class="doc-btn"><i class="fas fa-up-right-from-square"></i> Open in tab</a>
+        <a id="docDownload" href="#" download class="doc-btn"><i class="fas fa-download"></i> Download</a>
+        <button type="button" class="doc-modal-close" onclick="closeDoc()" aria-label="Close"><i class="fas fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="doc-modal-body">
+      <iframe id="docModalFrame" src="" title="Document preview" loading="lazy"></iframe>
+    </div>
   </div>
 </div>
 
@@ -1677,7 +1730,8 @@ img{max-width:100%;display:block;}
   function anyOtherModalOpen() {
     return !!document.querySelector('.gallery-modal.open') ||
       document.getElementById('caseStudyModal').classList.contains('open') ||
-      document.getElementById('mockupModal').classList.contains('open');
+      document.getElementById('mockupModal').classList.contains('open') ||
+      document.getElementById('docModal').classList.contains('open');
   }
   function closeImg() {
     document.getElementById('imageModal').classList.remove('open');
@@ -1702,7 +1756,8 @@ img{max-width:100%;display:block;}
     const stillOpen = document.querySelector('.gallery-modal.open') ||
       document.getElementById('imageModal').classList.contains('open') ||
       document.getElementById('caseStudyModal').classList.contains('open') ||
-      document.getElementById('mockupModal').classList.contains('open');
+      document.getElementById('mockupModal').classList.contains('open') ||
+      document.getElementById('docModal').classList.contains('open');
     if (!stillOpen) document.body.style.overflow = '';
   }
   document.querySelectorAll('.gallery-modal').forEach(modal => {
@@ -1819,8 +1874,29 @@ img{max-width:100%;display:block;}
     closeImg();
     closeCaseStudy();
     closeMockup();
+    closeDoc();
     document.querySelectorAll('.gallery-modal.open').forEach(m => closeGallery(m.id));
   });
+
+  // PDF document viewer modal
+  function openDoc(src, title, meta) {
+    const frame = document.getElementById('docModalFrame');
+    document.getElementById('docModalTitle').textContent = title || '';
+    document.getElementById('docModalMeta').textContent = meta || '';
+    frame.src = src + '#toolbar=1&navpanes=0&view=FitH';
+    document.getElementById('docOpenTab').href = src;
+    document.getElementById('docDownload').href = src;
+    document.getElementById('docModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDoc() {
+    const modal = document.getElementById('docModal');
+    if (!modal.classList.contains('open')) return;
+    modal.classList.remove('open');
+    document.getElementById('docModalFrame').src = '';
+    if (!anyOtherModalOpen()) document.body.style.overflow = '';
+  }
+  document.getElementById('docModal').addEventListener('click', e => { if (e.target.id === 'docModal') closeDoc(); });
 
   // Toast
   function showToast(msg, ok) {
@@ -1900,7 +1976,7 @@ img{max-width:100%;display:block;}
   }
   function closeCaseStudy(){
     document.getElementById('caseStudyModal').classList.remove('open');
-    if (!document.querySelector('.gallery-modal.open') && !document.getElementById('imageModal').classList.contains('open') && !document.getElementById('mockupModal').classList.contains('open')) {
+    if (!document.querySelector('.gallery-modal.open') && !document.getElementById('imageModal').classList.contains('open') && !document.getElementById('mockupModal').classList.contains('open') && !document.getElementById('docModal').classList.contains('open')) {
       document.body.style.overflow = '';
     }
   }
@@ -2159,4 +2235,3 @@ img{max-width:100%;display:block;}
 </script>
 </body>
 </html>
-
