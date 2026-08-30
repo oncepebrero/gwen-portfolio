@@ -227,6 +227,17 @@ img{max-width:100%;display:block;}
 .section-eyebrow::before{content:'';width:22px;height:1px;background:var(--flame);}
 .section-title{font-family:var(--disp);font-weight:800;font-size:var(--fs-xl);color:var(--text-1);margin-top:.6rem;letter-spacing:-.01em;}
 .section-sub{font-size:var(--fs-base);color:var(--text-2);margin-top:.7rem;line-height:1.7;}
+
+/* Canva Work: combined mockups + logos section */
+.canva-title-row{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;}
+.canva-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:var(--fs-2xs);color:#fff;background:linear-gradient(120deg,#00C4CC,#7D2AE8,#8B3DFF);border-radius:20px;padding:.3rem .75rem;letter-spacing:.02em;white-space:nowrap;box-shadow:0 4px 14px rgba(125,42,232,.35);}
+.canva-subhead{margin:2.6rem 0 1.3rem;}
+.canva-subhead h3{font-family:var(--disp);font-weight:800;font-size:1.15rem;color:var(--text-1);display:flex;align-items:center;gap:.55rem;}
+.canva-subhead h3 i{color:var(--flame);font-size:1rem;}
+.canva-subhead p{font-size:var(--fs-sm);color:var(--text-2);margin-top:.4rem;max-width:62ch;}
+.canva-subhead-row{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.canva-divider{height:1px;background:var(--line);margin:2.8rem 0;}
+@media (max-width:640px){.canva-subhead{margin:2rem 0 1.1rem;}}
 .section-toprow{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:2.6rem;}
 .section-toprow .section-head{margin-bottom:0;}
 .section-more{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-2);border:1px solid var(--line-2);border-radius:30px;padding:.55rem 1.1rem;cursor:pointer;background:transparent;transition:all .18s;white-space:nowrap;}
@@ -666,9 +677,8 @@ img{max-width:100%;display:block;}
   <a href="#about-me" data-target="about-me"><span class="tick"></span><span class="rlabel">About</span></a>
   <a href="#services" data-target="services"><span class="tick"></span><span class="rlabel">Services</span></a>
   <a href="#skills" data-target="skills"><span class="tick"></span><span class="rlabel">Skills</span></a>
-  <a href="#logos" data-target="logos"><span class="tick"></span><span class="rlabel">Logos</span></a>
+  <a href="#canva-work" data-target="canva-work"><span class="tick"></span><span class="rlabel">Canva Work</span></a>
   <a href="#projects" data-target="projects"><span class="tick"></span><span class="rlabel">Work</span></a>
-  <a href="#mockups" data-target="mockups"><span class="tick"></span><span class="rlabel">UI Mockups</span></a>
   <a href="#experience" data-target="experience"><span class="tick"></span><span class="rlabel">Experience</span></a>
   <a href="#connect" data-target="connect"><span class="tick"></span><span class="rlabel">Contact</span></a>
 </nav>
@@ -681,9 +691,8 @@ img{max-width:100%;display:block;}
       <a href="#about-me">About</a>
       <a href="#services">Services</a>
       <a href="#skills">Skills</a>
-      <a href="#logos">Logos</a>
+      <a href="#canva-work">Canva Work</a>
       <a href="#projects">Work</a>
-      <a href="#mockups">UI Mockups</a>
       <a href="#process">Process</a>
       <a href="#experience">Experience</a>
       <a href="#certifications">Certifications</a>
@@ -900,12 +909,51 @@ img{max-width:100%;display:block;}
   </section>
 
   <!-- LOGO DESIGNS -->
-  <section class="section reveal" id="logos">
-    <div class="section-toprow">
-      <div class="section-head">
-        <div class="section-eyebrow"><i class="fas fa-swatchbook"></i> Brand &amp; Identity</div>
-        <h2 class="section-title">Logo Designs</h2>
-        <p class="section-sub">A selection of logo &amp; mark concepts designed in Canva — from monogram marks to full brand lockups.</p>
+  <!-- CANVA WORK: MOCKUPS + LOGOS -->
+  <section class="section reveal" id="canva-work">
+    <div class="section-head">
+      <div class="section-eyebrow"><i class="fas fa-palette"></i> Design Work</div>
+      <div class="canva-title-row">
+        <h2 class="section-title">Website Mockups &amp; Logo Designs</h2>
+        <span class="canva-badge"><i class="fas fa-wand-magic-sparkles"></i> Made in Canva</span>
+      </div>
+      <p class="section-sub">Full-page website concepts and brand &amp; logo marks — all designed and exported from Canva.</p>
+    </div>
+
+    <div class="canva-subhead">
+      <h3><i class="fas fa-display"></i> Website UI/UX Mockups</h3>
+      <p>Click any preview to explore the design up close: scroll through the whole page and zoom in on the details.</p>
+    </div>
+    <div class="mockup-grid">
+      <div class="mockup-card stagger-item tilt-card" onclick="openMockup('assets/mockup-bloom.jpg','BLOOM — Flower Delivery Website','E-commerce concept · Seasonal flower delivery brand','bloom.design')">
+        <div class="mockup-thumb"><div class="mockup-thumb-chrome"><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-url">bloom.design</span></div><img src="assets/mockup-bloom-thumb.jpg" alt="BLOOM flower delivery website UI mockup" loading="lazy"><div class="mockup-overlay"><span><i class="fas fa-arrows-up-down"></i> Scroll</span><span><i class="fas fa-magnifying-glass-plus"></i> Zoom</span></div></div>
+        <div class="mockup-info">
+          <div class="mockup-name">BLOOM</div>
+          <div class="mockup-desc">Flower delivery e-commerce concept — warm palette, product grid &amp; gifting flow.</div>
+        </div>
+      </div>
+      <div class="mockup-card stagger-item tilt-card" onclick="openMockup('assets/mockup-roam.jpg','ROAM — Travel &amp; Stays Website','Travel booking concept · Stays, experiences &amp; guides','roam.design')">
+        <div class="mockup-thumb"><div class="mockup-thumb-chrome"><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-url">roam.design</span></div><img src="assets/mockup-roam-thumb.jpg" alt="ROAM travel booking website UI mockup" loading="lazy"><div class="mockup-overlay"><span><i class="fas fa-arrows-up-down"></i> Scroll</span><span><i class="fas fa-magnifying-glass-plus"></i> Zoom</span></div></div>
+        <div class="mockup-info">
+          <div class="mockup-name">ROAM</div>
+          <div class="mockup-desc">Travel &amp; stays booking concept — search flow, curated destinations &amp; trip builder.</div>
+        </div>
+      </div>
+      <div class="mockup-card stagger-item tilt-card" onclick="openMockup('assets/mockup-levelup.jpg','LEVELUP — Gaming Platform Website','Gaming platform concept · Library, community &amp; news feed','levelup.design')">
+        <div class="mockup-thumb"><div class="mockup-thumb-chrome"><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-url">levelup.design</span></div><img src="assets/mockup-levelup-thumb.jpg" alt="LEVELUP gaming platform website UI mockup" loading="lazy"><div class="mockup-overlay"><span><i class="fas fa-arrows-up-down"></i> Scroll</span><span><i class="fas fa-magnifying-glass-plus"></i> Zoom</span></div></div>
+        <div class="mockup-info">
+          <div class="mockup-name">LEVELUP</div>
+          <div class="mockup-desc">Gaming platform concept — dark neon UI, library progress &amp; community pulse.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="canva-divider"></div>
+
+    <div class="canva-subhead canva-subhead-row">
+      <div>
+        <h3><i class="fas fa-swatchbook"></i> Logo Designs</h3>
+        <p>A selection of logo &amp; mark concepts — from monogram marks to full brand lockups.</p>
       </div>
       <button type="button" class="section-more" id="logosToggle" onclick="openGallery('logosGalleryModal')"><i class="fas fa-grip"></i> View all 8 logos</button>
     </div>
@@ -923,7 +971,7 @@ img{max-width:100%;display:block;}
         <div class="logo-name">Logo Concept 03</div>
       </div>
       <div class="logo-card stagger-item tilt-card">
-        <div class="logo-thumb" onclick="openImg('assets/logo-4.png','Logo Concept 04')"><img src="assets/logo-5.png" alt="Logo design concept 04" loading="lazy"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
+        <div class="logo-thumb" onclick="openImg('assets/logo-4.png','Logo Concept 04')"><img src="assets/logo-4.png" alt="Logo design concept 04" loading="lazy"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
         <div class="logo-name">Logo Concept 04</div>
       </div>
     </div>
@@ -1029,38 +1077,6 @@ img{max-width:100%;display:block;}
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- WEBSITE UI/UX MOCKUPS -->
-  <section class="section reveal" id="mockups">
-    <div class="section-head">
-      <div class="section-eyebrow"><i class="fas fa-display"></i> Design Concepts</div>
-      <h2 class="section-title">Website UI/UX Mockups</h2>
-      <p class="section-sub">Full-page website concepts — click any preview to explore the design up close: scroll through the whole page and zoom in on the details.</p>
-    </div>
-    <div class="mockup-grid">
-      <div class="mockup-card stagger-item tilt-card" onclick="openMockup('assets/mockup-bloom.jpg','BLOOM — Flower Delivery Website','E-commerce concept · Seasonal flower delivery brand','bloom.design')">
-        <div class="mockup-thumb"><div class="mockup-thumb-chrome"><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-url">bloom.design</span></div><img src="assets/mockup-bloom-thumb.jpg" alt="BLOOM flower delivery website UI mockup" loading="lazy"><div class="mockup-overlay"><span><i class="fas fa-arrows-up-down"></i> Scroll</span><span><i class="fas fa-magnifying-glass-plus"></i> Zoom</span></div></div>
-        <div class="mockup-info">
-          <div class="mockup-name">BLOOM</div>
-          <div class="mockup-desc">Flower delivery e-commerce concept — warm palette, product grid &amp; gifting flow.</div>
-        </div>
-      </div>
-      <div class="mockup-card stagger-item tilt-card" onclick="openMockup('assets/mockup-roam.jpg','ROAM — Travel &amp; Stays Website','Travel booking concept · Stays, experiences &amp; guides','roam.design')">
-        <div class="mockup-thumb"><div class="mockup-thumb-chrome"><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-url">roam.design</span></div><img src="assets/mockup-roam-thumb.jpg" alt="ROAM travel booking website UI mockup" loading="lazy"><div class="mockup-overlay"><span><i class="fas fa-arrows-up-down"></i> Scroll</span><span><i class="fas fa-magnifying-glass-plus"></i> Zoom</span></div></div>
-        <div class="mockup-info">
-          <div class="mockup-name">ROAM</div>
-          <div class="mockup-desc">Travel &amp; stays booking concept — search flow, curated destinations &amp; trip builder.</div>
-        </div>
-      </div>
-      <div class="mockup-card stagger-item tilt-card" onclick="openMockup('assets/mockup-levelup.jpg','LEVELUP — Gaming Platform Website','Gaming platform concept · Library, community &amp; news feed','levelup.design')">
-        <div class="mockup-thumb"><div class="mockup-thumb-chrome"><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-url">levelup.design</span></div><img src="assets/mockup-levelup-thumb.jpg" alt="LEVELUP gaming platform website UI mockup" loading="lazy"><div class="mockup-overlay"><span><i class="fas fa-arrows-up-down"></i> Scroll</span><span><i class="fas fa-magnifying-glass-plus"></i> Zoom</span></div></div>
-        <div class="mockup-info">
-          <div class="mockup-name">LEVELUP</div>
-          <div class="mockup-desc">Gaming platform concept — dark neon UI, library progress &amp; community pulse.</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1589,11 +1605,11 @@ img{max-width:100%;display:block;}
           <div class="logo-name">Logo Concept 03</div>
         </div>
         <div class="logo-card tilt-card">
-          <div class="logo-thumb" onclick="openImg('assets/logo-4.png','Logo Concept 04')"><img src="assets/logo-5.png" alt="Logo design concept 04"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
+          <div class="logo-thumb" onclick="openImg('assets/logo-4.png','Logo Concept 04')"><img src="assets/logo-4.png" alt="Logo design concept 04"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
           <div class="logo-name">Logo Concept 04</div>
         </div>
         <div class="logo-card tilt-card">
-          <div class="logo-thumb" onclick="openImg('assets/logo-5.png','Logo Concept 05')"><img src="assets/logo-4.png" alt="Logo design concept 05"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
+          <div class="logo-thumb" onclick="openImg('assets/logo-5.png','Logo Concept 05')"><img src="assets/logo-5.png" alt="Logo design concept 05"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
           <div class="logo-name">Logo Concept 05</div>
         </div>
         <div class="logo-card tilt-card">
