@@ -631,6 +631,12 @@ img{max-width:100%;display:block;}
 .gallery-modal-head h3{font-family:var(--disp);font-weight:800;font-size:1.2rem;color:var(--text-1);}
 .gallery-modal-count{font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-3);margin-top:.25rem;}
 .gallery-modal-close{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:transparent;color:var(--text-1);cursor:pointer;}
+.gallery-modal-tabs{display:flex;gap:.5rem;padding:1rem 1.8rem 0;border-bottom:1px solid var(--line);}
+.gmt-tab{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-2);background:transparent;border:none;padding:.7rem 1rem;cursor:pointer;position:relative;transition:color .18s;}
+.gmt-tab::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--flame);opacity:0;transition:opacity .18s;}
+.gmt-tab:hover{color:var(--text-1);}
+.gmt-tab.active{color:var(--text-1);}
+.gmt-tab.active::after{opacity:1;}
 .gallery-modal-body{padding:1.8rem;max-height:76vh;overflow-y:auto;}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
 @media (max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
@@ -1555,12 +1561,16 @@ img{max-width:100%;display:block;}
     <div class="gallery-modal-head">
       <div>
         <h3>Website Mockups &amp; Logo Designs</h3>
-        <div class="gallery-modal-count">3 website mockups + 6 logo &amp; mark concepts · designed in Canva</div>
+        <div class="gallery-modal-count" id="mockupsGalleryCount">3 website mockups · designed in Canva</div>
       </div>
       <button type="button" class="gallery-modal-close" onclick="closeGallery('mockupsGalleryModal')" aria-label="Close"><i class="fas fa-xmark"></i></button>
     </div>
+    <div class="gallery-modal-tabs">
+      <button type="button" class="gmt-tab active" data-tab="mockups" onclick="switchGalleryTab('mockups')"><i class="fas fa-display"></i> Mockups</button>
+      <button type="button" class="gmt-tab" data-tab="logos" onclick="switchGalleryTab('logos')"><i class="fas fa-swatchbook"></i> Logos</button>
+    </div>
     <div class="gallery-modal-body">
-      <div class="gallery-grid">
+      <div class="gallery-grid gmt-panel" data-panel="mockups">
 
         <div class="mockup-card tilt-card" onclick="openMockup('assets/mockup-bloom.jpg','BLOOM — Flower Delivery Website','E-commerce concept · Seasonal flower delivery brand','bloom.design')">
           <div class="mockup-thumb"><div class="mockup-thumb-chrome"><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-dot"></span><span class="mtc-url">bloom.design</span></div><img src="assets/mockup-bloom-thumb.jpg" alt="BLOOM flower delivery website UI mockup" loading="lazy"><div class="mockup-overlay"><span><i class="fas fa-arrows-up-down"></i> Scroll</span><span><i class="fas fa-magnifying-glass-plus"></i> Zoom</span></div></div>
@@ -1583,6 +1593,9 @@ img{max-width:100%;display:block;}
             <div class="mockup-desc">Gaming platform concept — dark neon UI, library progress &amp; community pulse.</div>
           </div>
         </div>
+
+      </div>
+      <div class="logo-grid logo-grid-modal gmt-panel" data-panel="logos" style="display:none;">
 
         <div class="logo-card tilt-card">
           <div class="logo-thumb" onclick="openImg('assets/logo-1.png','Logo Concept 01')"><img src="assets/logo-1.png" alt="Logo design concept 01" loading="lazy"><span class="logo-zoom"><i class="fas fa-magnifying-glass-plus"></i></span></div>
@@ -1746,9 +1759,21 @@ img{max-width:100%;display:block;}
     if (!modal) return;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    if (id === 'mockupsGalleryModal') switchGalleryTab('mockups');
     modal.querySelectorAll('.gallery-grid > *, .logo-grid > *').forEach((el, i) => {
       el.style.animationDelay = (i * 0.05) + 's';
     });
+  }
+  function switchGalleryTab(tab) {
+    const modal = document.getElementById('mockupsGalleryModal');
+    if (!modal) return;
+    modal.querySelectorAll('.gmt-tab').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+    modal.querySelectorAll('.gmt-panel').forEach(panel => {
+      panel.style.display = panel.dataset.panel === tab ? '' : 'none';
+    });
+    const count = document.getElementById('mockupsGalleryCount');
+    if (count) count.textContent = tab === 'mockups' ? '3 website mockups · designed in Canva' : '6 logo & mark concepts · designed in Canva';
+    modal.querySelector('.gallery-modal-body').scrollTop = 0;
   }
   function closeGallery(id) {
     const modal = document.getElementById(id);
