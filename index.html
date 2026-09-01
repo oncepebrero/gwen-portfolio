@@ -8,7 +8,6 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
-<!-- Open Graph / social preview — swap og:url for your live domain once deployed -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gwen Basconcillo — UI/UX & Graphic Designer">
 <meta property="og:description" content="Design systems, wireframes & prototypes — plus front-end development, QA testing, virtual assistance, and social media content & management.">
@@ -23,11 +22,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-
-/* ══════════════════════════════════════════════════════════
-   TOKENS — "Design Spec" system: ink/paper base, cobalt + flame
-   duotone accent, mono used for annotation/spec-style labels.
-   ══════════════════════════════════════════════════════════ */
 :root{
   --ink:#0C0C10;
   --ink-soft:#131218;
@@ -102,15 +96,11 @@ img{max-width:100%;display:block;}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
 }
 
-/* grain texture */
 .grain{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.035;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
 .scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--grad-brand);z-index:200;width:0%;transition:width .1s linear;}
 
-/* ══════════════════════════════════════════
-   SPEC RAIL — vertical ruler-style scroll nav (desktop signature)
-   ══════════════════════════════════════════ */
 .spec-rail{position:fixed;left:1.1rem;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:.95rem;}
 .spec-rail a{position:relative;display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-3);}
 .spec-rail .tick{width:9px;height:1px;background:var(--text-3);transition:all .25s ease;}
@@ -119,9 +109,6 @@ img{max-width:100%;display:block;}
 .spec-rail a.active .tick{width:20px;background:var(--flame);}
 @media (max-width:1180px){.spec-rail{display:none;}}
 
-/* ══════════════════════════════════════════
-   NAV
-   ══════════════════════════════════════════ */
 .nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb, var(--ink) 78%, transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
 .nav-inner{max-width:1120px;margin:0 auto;padding:.85rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
 .nav-logo{font-family:var(--disp);font-weight:700;font-size:1rem;color:var(--text-1);display:flex;align-items:center;gap:.6rem;letter-spacing:-.01em;transition:transform .2s ease;}
@@ -143,9 +130,6 @@ img{max-width:100%;display:block;}
   .nav-menu-btn{display:inline-flex;}
 }
 
-/* ══════════════════════════════════════════
-   HERO
-   ══════════════════════════════════════════ */
 .hero{position:relative;padding:4.6rem 0 3rem;overflow:hidden;scroll-snap-align:start;}
 .hero-blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.32;z-index:0;pointer-events:none;}
 .hero-blob.b1{width:460px;height:460px;background:var(--cobalt);top:-200px;right:-140px;animation:floatBlob 12s ease-in-out infinite;}
@@ -186,7 +170,6 @@ img{max-width:100%;display:block;}
 .hero-socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;color:var(--text-2);font-size:.85rem;transition:all .18s;}
 .hero-socials a:hover{border-color:var(--flame);color:var(--flame);transform:translateY(-2px);}
 
-/* hero visual composition — layered "design / build / test" cards */
 .hero-visual{position:relative;height:400px;display:flex;align-items:center;justify-content:center;animation:fadeIn 1s ease both;animation-delay:.4s;will-change:transform;}
 @media (max-width:980px){.hero-visual{height:280px;margin-top:1rem;}}
 .hv-card{position:absolute;width:220px;border-radius:var(--radius-md);padding:1.1rem;background:var(--surface);border:1px solid var(--line-2);box-shadow:var(--shadow);}
@@ -207,7 +190,6 @@ img{max-width:100%;display:block;}
 @keyframes badgeSpin{0%{transform:rotate(0deg);}50%{transform:rotate(6deg);}100%{transform:rotate(0deg);}}
 @media (max-width:980px){.hv-brand-badge{width:56px;height:56px;padding:10px;top:-6%;right:4%;}}
 
-/* open-to marquee */
 .marquee{margin-top:2.6rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.85rem 0;overflow:hidden;position:relative;animation:fadeIn 1s ease both;animation-delay:.9s;}
 .marquee::before{content:'Open to';position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;padding:0 1rem;background:linear-gradient(90deg,var(--ink) 55%,transparent);font-family:var(--mono);font-size:var(--fs-2xs);text-transform:uppercase;letter-spacing:.08em;color:var(--flame);z-index:2;}
 .marquee-track{display:flex;gap:2.2rem;white-space:nowrap;animation:marquee 26s linear infinite;width:max-content;padding-left:6.5rem;}
@@ -218,9 +200,6 @@ img{max-width:100%;display:block;}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
-/* ══════════════════════════════════════════
-   SECTION SHELL
-   ══════════════════════════════════════════ */
 .section{padding:4.1rem 0;border-top:1px solid var(--line);scroll-snap-align:start;scroll-margin-top:64px;}
 .section-head{max-width:62ch;margin-bottom:2.6rem;}
 .section-eyebrow{font-family:var(--mono);font-size:var(--fs-2xs);text-transform:uppercase;letter-spacing:.1em;color:var(--flame);display:flex;align-items:center;gap:.5rem;}
@@ -228,7 +207,6 @@ img{max-width:100%;display:block;}
 .section-title{font-family:var(--disp);font-weight:800;font-size:var(--fs-xl);color:var(--text-1);margin-top:.6rem;letter-spacing:-.01em;}
 .section-sub{font-size:var(--fs-base);color:var(--text-2);margin-top:.7rem;line-height:1.7;}
 
-/* Canva Work: combined mockups + logos section */
 .canva-title-row{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;}
 .canva-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:var(--fs-2xs);color:#fff;background:linear-gradient(120deg,#00C4CC,#7D2AE8,#8B3DFF);border-radius:20px;padding:.3rem .75rem;letter-spacing:.02em;white-space:nowrap;box-shadow:0 4px 14px rgba(125,42,232,.35);}
 .canva-subhead{margin:2.6rem 0 1.3rem;}
@@ -246,7 +224,6 @@ img{max-width:100%;display:block;}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);}
 .reveal.in{opacity:1;transform:translateY(0);}
 
-/* stagger-item: scroll-triggered card entrance, lightly staggered per grid via --stagger-delay */
 .stagger-item{opacity:0;transform:translateY(22px);
   transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1);
   transition-delay:var(--stagger-delay,0s);}
@@ -255,7 +232,6 @@ img{max-width:100%;display:block;}
   .reveal,.stagger-item{opacity:1;transform:none;transition:none;}
 }
 
-/* frame-card: signature "inspector" corner-bracket hover, used across cards */
 .frame-card{position:relative;}
 .frame-card::after{
   content:'';position:absolute;inset:9px;pointer-events:none;opacity:0;
@@ -272,9 +248,6 @@ img{max-width:100%;display:block;}
 }
 .frame-card:hover::after,.frame-card:focus-within::after{opacity:1;inset:5px;}
 
-/* ══════════════════════════════════════════
-   ABOUT
-   ══════════════════════════════════════════ */
 .about-grid{display:grid;grid-template-columns:.48fr 1.52fr;gap:2.4rem;align-items:start;}
 @media (max-width:820px){.about-grid{grid-template-columns:1fr;}}
 .about-grid>div:first-child{max-width:290px;}
@@ -315,9 +288,6 @@ img{max-width:100%;display:block;}
 }
 .about-bullets li:hover i{background:var(--grad-brand);color:#fff;transform:scale(1.12) rotate(-6deg);}
 
-/* ══════════════════════════════════════════
-   SERVICES
-   ══════════════════════════════════════════ */
 .services-primary{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem;}
 @media (max-width:760px){.services-primary{grid-template-columns:1fr;}}
 .service-hero{border-radius:var(--radius-lg);padding:1.5rem;background:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease;}
@@ -341,9 +311,6 @@ img{max-width:100%;display:block;}
 .service-title{font-family:var(--disp);font-weight:700;font-size:var(--fs-md);color:var(--text-1);margin-top:.7rem;}
 .service-desc{font-size:var(--fs-sm);color:var(--text-2);margin-top:.45rem;line-height:1.6;}
 
-/* ══════════════════════════════════════════
-   SKILLS
-   ══════════════════════════════════════════ */
 .skills-columns{display:grid;grid-template-columns:repeat(5,1fr);gap:1.4rem;}
 @media (max-width:980px){.skills-columns{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:560px){.skills-columns{grid-template-columns:1fr;}}
@@ -353,9 +320,6 @@ img{max-width:100%;display:block;}
 .skills-strengths{margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid var(--line);font-size:var(--fs-sm);color:var(--text-2);font-style:normal;}
 .skills-strengths strong{color:var(--text-1);}
 
-/* ══════════════════════════════════════════
-   FEATURED PROJECT
-   ══════════════════════════════════════════ */
 .featured-project{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;background:var(--surface);margin-bottom:1.2rem;}
 @media (max-width:820px){.featured-project{grid-template-columns:1fr;}}
 .featured-thumb{position:relative;cursor:pointer;background:var(--grad-soft);aspect-ratio:16/9;}
@@ -381,9 +345,6 @@ img{max-width:100%;display:block;}
 .proj-stack{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;}
 .proj-stack span{font-family:var(--mono);font-size:var(--fs-2xs);border:1px solid var(--line-2);border-radius:20px;padding:.28rem .65rem;color:var(--text-2);}
 
-/* ══════════════════════════════════════════
-   PROJECT GRID
-   ══════════════════════════════════════════ */
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
 @media (max-width:980px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:640px){.proj-grid{grid-template-columns:1fr;}}
@@ -410,9 +371,6 @@ img{max-width:100%;display:block;}
 .proj-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-2);transition:color .18s;}
 .proj-link:hover{color:var(--flame);}
 
-/* ══════════════════════════════════════════
-   TILT + SPOTLIGHT (shared card interaction)
-   ══════════════════════════════════════════ */
 .tilt-card{position:relative;transform-style:preserve-3d;will-change:transform;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .25s ease,box-shadow .35s ease;}
 .tilt-card::before{content:'';position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .3s ease;
   background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.16), transparent 45%);
@@ -421,9 +379,6 @@ img{max-width:100%;display:block;}
 .tilt-card:hover{box-shadow:0 26px 50px rgba(0,0,0,.35);}
 @media (hover:none){.tilt-card::before{display:none;}}
 
-/* ══════════════════════════════════════════
-   LOGO DESIGNS
-   ══════════════════════════════════════════ */
 .logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;}
 @media (max-width:980px){.logo-grid{grid-template-columns:repeat(3,1fr);}}
 @media (max-width:680px){.logo-grid{grid-template-columns:repeat(2,1fr);}}
@@ -441,9 +396,6 @@ img{max-width:100%;display:block;}
 .logo-card:hover .logo-zoom{opacity:1;}
 .logo-name{padding:.6rem .8rem;font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-2);text-align:center;border-top:1px solid var(--line);}
 
-/* ══════════════════════════════════════════
-   WEBSITE UI/UX MOCKUPS
-   ══════════════════════════════════════════ */
 .mockup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
 @media (max-width:900px){.mockup-grid{grid-template-columns:1fr;}}
 .mockup-card{border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;background:var(--surface);cursor:pointer;transition:transform .25s ease,border-color .25s ease;}
@@ -490,9 +442,6 @@ img{max-width:100%;display:block;}
 .mockup-modal-body img{display:block;width:900px;max-width:none;height:auto;border-radius:8px;box-shadow:0 24px 60px rgba(0,0,0,.5);transition:width .2s ease,opacity .25s ease;background:#fff;}
 @media (max-width:700px){.mockup-modal-inner{height:94vh;}.mockup-modal-head{padding:.9rem 1rem;}.mockup-modal-titles h3{font-size:.92rem;}.mbc-url{display:none;}.mockup-modal-body{padding:1rem;}}
 
-/* ══════════════════════════════════════════
-   PDF DOCUMENT VIEWER
-   ══════════════════════════════════════════ */
 .thumb-doc{background:linear-gradient(160deg,var(--surface-2),var(--surface));display:flex;align-items:center;justify-content:center;padding:1.3rem;}
 .thumb-doc img{width:auto;height:100%;max-width:62%;object-fit:contain;box-shadow:0 16px 36px rgba(0,0,0,.5);border-radius:3px;background:#fff;position:relative;z-index:1;transition:transform .35s ease;}
 .proj-card:hover .thumb-doc img,.featured-thumb:hover.thumb-doc img{transform:translateY(-4px) scale(1.03);}
@@ -515,9 +464,6 @@ img{max-width:100%;display:block;}
 .doc-modal-body iframe{width:100%;height:100%;border:none;display:block;}
 @media (max-width:700px){.doc-modal-inner{height:94vh;}.doc-modal-head{padding:.9rem 1rem;}.doc-btn span{display:none;}}
 
-/* ══════════════════════════════════════════
-   PROCESS
-   ══════════════════════════════════════════ */
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
 .process-progress{margin:0 0 2.2rem;}
 .process-progress-track{height:3px;background:var(--line);border-radius:3px;overflow:hidden;position:relative;}
@@ -537,9 +483,6 @@ img{max-width:100%;display:block;}
 .process-desc{font-size:var(--fs-sm);color:var(--text-2);margin-top:.55rem;line-height:1.65;}
 .process-step-tag{font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-3);text-transform:uppercase;letter-spacing:.05em;margin-top:.9rem;}
 
-/* ══════════════════════════════════════════
-   TIMELINE (experience / education)
-   ══════════════════════════════════════════ */
 .timeline{position:relative;padding-left:1.7rem;}
 .timeline::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line-2);}
 .tl-item{position:relative;margin-bottom:1.4rem;}
@@ -552,9 +495,6 @@ img{max-width:100%;display:block;}
 .tl-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:var(--fs-2xs);color:var(--amber);border:1px solid rgba(255,178,62,.35);background:rgba(255,178,62,.08);border-radius:20px;padding:.3rem .7rem;margin-top:.7rem;}
 .tl-card .tl-bullets{margin-top:.9rem;}
 
-/* ══════════════════════════════════════════
-   CERTIFICATIONS
-   ══════════════════════════════════════════ */
 .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;}
 @media (max-width:980px){.cert-grid{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:540px){.cert-grid{grid-template-columns:1fr;}}
@@ -575,9 +515,6 @@ img{max-width:100%;display:block;}
 .cert-skills{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem;}
 .cert-skills span{font-family:var(--mono);font-size:.62rem;border:1px solid var(--line-2);border-radius:20px;padding:.2rem .5rem;color:var(--text-2);}
 
-/* ══════════════════════════════════════════
-   CTA BANNER
-   ══════════════════════════════════════════ */
 .cta-banner{position:relative;border-radius:var(--radius-lg);padding:3.4rem 2.4rem;text-align:center;overflow:hidden;background:var(--surface);border:1px solid var(--line-2);}
 .cta-banner::before{content:'';position:absolute;inset:0;background:var(--grad-soft);}
 .cta-eyebrow{position:relative;z-index:1;font-family:var(--mono);font-size:var(--fs-2xs);text-transform:uppercase;letter-spacing:.08em;color:var(--flame);}
@@ -587,9 +524,6 @@ img{max-width:100%;display:block;}
 .cta-pillrow{position:relative;z-index:1;display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem;}
 .cta-pillrow span{font-family:var(--mono);font-size:var(--fs-2xs);border:1px solid var(--line-2);border-radius:20px;padding:.35rem .75rem;color:var(--text-2);}
 
-/* ══════════════════════════════════════════
-   CONNECT / CONTACT
-   ══════════════════════════════════════════ */
 .connect-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:2.4rem;}
 @media (max-width:860px){.connect-grid{grid-template-columns:1fr;}}
 .connect-text{font-size:var(--fs-base);color:var(--text-2);line-height:1.75;max-width:46ch;}
@@ -606,17 +540,11 @@ img{max-width:100%;display:block;}
 .fg input:focus,.fg textarea:focus{border-color:var(--flame);outline:none;}
 .ferr{font-size:var(--fs-2xs);color:var(--flame);margin-top:.3rem;min-height:1em;}
 
-/* ══════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════ */
 .site-footer{border-top:1px solid var(--line);padding:2.2rem 1.6rem;text-align:center;font-family:var(--mono);font-size:var(--fs-2xs);color:var(--text-3);display:flex;flex-direction:column;align-items:center;gap:.5rem;}
 .footer-brand{display:flex;align-items:center;gap:.6rem;font-family:var(--disp);font-weight:700;font-size:1rem;color:var(--text-1);margin-bottom:.3rem;}
 .footer-logo{height:34px;width:auto;opacity:.9;}
 [data-theme="light"] .footer-logo{opacity:.95;}
 
-/* ══════════════════════════════════════════
-   MODALS
-   ══════════════════════════════════════════ */
 .img-modal{position:fixed;inset:0;z-index:310;background:rgba(6,6,10,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease;padding:2rem;}
 .img-modal.open{opacity:1;pointer-events:auto;}
 .img-modal-inner{max-width:min(900px,92vw);max-height:88vh;display:flex;flex-direction:column;gap:.8rem;}
@@ -643,7 +571,6 @@ img{max-width:100%;display:block;}
 @media (max-width:560px){.gallery-grid{grid-template-columns:1fr;}}
 .gallery-grid .proj-card,.gallery-grid .cert-card{opacity:0;transform:translateY(14px);animation:fadeInUp .5s ease forwards;}
 
-/* case study modal */
 .case-modal{position:fixed;inset:0;z-index:300;background:rgba(6,6,10,.9);opacity:0;pointer-events:none;transition:opacity .25s ease;display:flex;align-items:flex-start;justify-content:center;padding:3.5rem 1.4rem;overflow-y:auto;}
 .case-modal.open{opacity:1;pointer-events:auto;}
 .case-modal-inner{width:100%;max-width:820px;background:var(--ink-soft);border:1px solid var(--line-2);border-radius:var(--radius-lg);overflow:hidden;}
@@ -664,12 +591,16 @@ img{max-width:100%;display:block;}
 .case-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:var(--fs-xs);color:var(--text-1);border:1px solid var(--line-2);border-radius:30px;padding:.55rem 1.1rem;transition:all .18s;margin-top:.6rem;background:transparent;cursor:pointer;}
 .case-link:hover{border-color:var(--flame);color:var(--flame);}
 
-/* toast */
 .toast{position:fixed;bottom:1.6rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink-soft);border:1px solid var(--line-2);color:var(--text-1);padding:.8rem 1.3rem;border-radius:30px;font-family:var(--mono);font-size:var(--fs-xs);opacity:0;pointer-events:none;transition:all .3s ease;z-index:400;box-shadow:var(--shadow);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
 .back-to-top{position:fixed;bottom:1.6rem;right:1.6rem;width:44px;height:44px;border-radius:50%;background:var(--grad-brand);border:none;color:#fff;font-size:1rem;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:all .3s ease;z-index:90;box-shadow:var(--shadow-sm);}
 .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+
+/* infographics — portrait design pieces added to the mockups+logos modal */
+.infographic-thumb{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--surface-2);}
+.infographic-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease;display:block;}
+.mockup-card:hover .infographic-thumb img{transform:scale(1.05);}
 
 </style>
 </head>
@@ -1555,7 +1486,7 @@ img{max-width:100%;display:block;}
   </div>
 </div>
 
-<!-- WEBSITE MOCKUPS + LOGOS GALLERY MODAL -->
+<!-- WEBSITE MOCKUPS + INFOGRAPHICS + LOGOS GALLERY MODAL -->
 <div class="gallery-modal" id="mockupsGalleryModal">
   <div class="gallery-modal-inner">
     <div class="gallery-modal-head">
@@ -1567,6 +1498,7 @@ img{max-width:100%;display:block;}
     </div>
     <div class="gallery-modal-tabs">
       <button type="button" class="gmt-tab active" data-tab="mockups" onclick="switchGalleryTab('mockups')"><i class="fas fa-display"></i> Mockups</button>
+      <button type="button" class="gmt-tab" data-tab="infographics" onclick="switchGalleryTab('infographics')"><i class="fas fa-chart-simple"></i> Infographics</button>
       <button type="button" class="gmt-tab" data-tab="logos" onclick="switchGalleryTab('logos')"><i class="fas fa-swatchbook"></i> Logos</button>
     </div>
     <div class="gallery-modal-body">
@@ -1591,6 +1523,45 @@ img{max-width:100%;display:block;}
           <div class="mockup-info">
             <div class="mockup-name">LEVELUP</div>
             <div class="mockup-desc">Gaming platform concept — dark neon UI, library progress &amp; community pulse.</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="mockup-grid gmt-panel" data-panel="infographics" style="display:none;">
+
+        <div class="mockup-card tilt-card" onclick="openMockup('assets/1.png','How A Website Works','Infographic · Web request &amp; response cycle')">
+          <div class="infographic-thumb"><img src="assets/1.png" alt="How a website works infographic" loading="lazy"></div>
+          <div class="mockup-info">
+            <div class="mockup-name">How A Website Works</div>
+            <div class="mockup-desc">A step-by-step look at how a browser request travels to the server and back.</div>
+          </div>
+        </div>
+        <div class="mockup-card tilt-card" onclick="openMockup('assets/2.png','7 Ways to Protect Your Digital Identity','Infographic · Everyday digital security habits')">
+          <div class="infographic-thumb"><img src="assets/2.png" alt="7 ways to protect your digital identity infographic" loading="lazy"></div>
+          <div class="mockup-info">
+            <div class="mockup-name">7 Ways to Protect Your Digital Identity</div>
+            <div class="mockup-desc">Seven everyday habits that keep accounts and personal data safer online.</div>
+          </div>
+        </div>
+        <div class="mockup-card tilt-card" onclick="openMockup('assets/3.png','How A Database Works','Infographic · From an app request to useful information')">
+          <div class="infographic-thumb"><img src="assets/3.png" alt="How a database works infographic" loading="lazy"></div>
+          <div class="mockup-info">
+            <div class="mockup-name">How A Database Works</div>
+            <div class="mockup-desc">How an app's request flows through an API into the database and back.</div>
+          </div>
+        </div>
+        <div class="mockup-card tilt-card" onclick="openMockup('assets/4.png','The Software Testing Process','Infographic · From requirements to release confidence')">
+          <div class="infographic-thumb"><img src="assets/4.png" alt="The software testing process infographic" loading="lazy"></div>
+          <div class="mockup-info">
+            <div class="mockup-name">The Software Testing Process</div>
+            <div class="mockup-desc">A simplified QA workflow — from requirements to release confidence.</div>
+          </div>
+        </div>
+        <div class="mockup-card tilt-card" onclick="openMockup('assets/5.png','One Website. Every Screen.','Infographic · Responsive design across devices')">
+          <div class="infographic-thumb"><img src="assets/5.png" alt="One website every screen responsive design infographic" loading="lazy"></div>
+          <div class="mockup-info">
+            <div class="mockup-name">One Website. Every Screen.</div>
+            <div class="mockup-desc">How responsive design adapts one layout across desktop, tablet, and mobile.</div>
           </div>
         </div>
 
@@ -1696,7 +1667,6 @@ img{max-width:100%;display:block;}
 <script>
   document.getElementById('fyear').textContent = new Date().getFullYear();
 
-  // Theme (dark default, light optional)
   const htmlEl = document.documentElement;
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const themeIcon = document.getElementById('themeIcon');
@@ -1710,7 +1680,6 @@ img{max-width:100%;display:block;}
     setTheme(htmlEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
 
-  // Mobile nav menu
   const navMenuBtn = document.getElementById('navMenuBtn');
   const navLinks = document.getElementById('navLinks');
   if (navMenuBtn && navLinks) {
@@ -1730,7 +1699,6 @@ img{max-width:100%;display:block;}
     document.getElementById('connect').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // Image modal
   function openImg(src, caption) {
     document.getElementById('modalImage').src = src;
     document.getElementById('modalCaption').textContent = caption || '';
@@ -1749,14 +1717,13 @@ img{max-width:100%;display:block;}
   }
   document.getElementById('imageModal').addEventListener('click', e => { if (e.target.id === 'imageModal') closeImg(); });
 
-  // Gallery modals
   function openGallery(id) {
     const modal = document.getElementById(id);
     if (!modal) return;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (id === 'mockupsGalleryModal') switchGalleryTab('mockups');
-    modal.querySelectorAll('.gallery-grid > *, .logo-grid > *').forEach((el, i) => {
+    modal.querySelectorAll('.gallery-grid > *, .logo-grid > *, .mockup-grid > *').forEach((el, i) => {
       el.style.animationDelay = (i * 0.05) + 's';
     });
   }
@@ -1768,7 +1735,11 @@ img{max-width:100%;display:block;}
       panel.style.display = panel.dataset.panel === tab ? '' : 'none';
     });
     const count = document.getElementById('mockupsGalleryCount');
-    if (count) count.textContent = tab === 'mockups' ? '3 website mockups · designed in Canva' : '6 logo & mark concepts · designed in Canva';
+    if (count) {
+      if (tab === 'mockups') count.textContent = '3 website mockups · designed in Canva';
+      else if (tab === 'infographics') count.textContent = '5 infographics · designed in Canva';
+      else count.textContent = '6 logo & mark concepts · designed in Canva';
+    }
     modal.querySelector('.gallery-modal-body').scrollTop = 0;
   }
   function closeGallery(id) {
@@ -1786,18 +1757,15 @@ img{max-width:100%;display:block;}
     modal.addEventListener('click', e => { if (e.target === modal) closeGallery(modal.id); });
   });
 
-  // Mockup viewer modal — fits the container width by default, zooms up to native
-  // resolution only (so it never blurs from upscaling), and never floats tiny in a
-  // big empty modal like before.
-  let mockupFitWidth = 900;   // px width representing "Fit" (100%) — recalculated per image
+  let mockupFitWidth = 900;
   let mockupNativeWidth = 1366;
-  let mockupScale = 1;        // multiplier applied on top of the fit width
+  let mockupScale = 1;
   let mockupMinScale = 0.4;
   let mockupMaxScale = 2.5;
 
   function computeFitWidth() {
     const body = document.getElementById('mockupModalBody');
-    const available = Math.max(280, body.clientWidth - 56); // minus body padding
+    const available = Math.max(280, body.clientWidth - 56);
     return Math.min(available, mockupNativeWidth);
   }
   function applyMockupZoom() {
@@ -1869,13 +1837,11 @@ img{max-width:100%;display:block;}
   (function () {
     const body = document.getElementById('mockupModalBody');
     if (!body) return;
-    // ctrl/cmd + wheel to zoom
     body.addEventListener('wheel', e => {
       if (!e.ctrlKey && !e.metaKey) return;
       e.preventDefault();
       mockupZoom(e.deltaY < 0 ? 0.15 : -0.15);
     }, { passive: false });
-    // drag to pan
     let isDown = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
     body.addEventListener('mousedown', e => {
       isDown = true; body.classList.add('dragging');
@@ -1900,7 +1866,6 @@ img{max-width:100%;display:block;}
     document.querySelectorAll('.gallery-modal.open').forEach(m => closeGallery(m.id));
   });
 
-  // PDF document viewer modal
   function openDoc(src, title, meta) {
     const frame = document.getElementById('docModalFrame');
     document.getElementById('docModalTitle').textContent = title || '';
@@ -1920,7 +1885,6 @@ img{max-width:100%;display:block;}
   }
   document.getElementById('docModal').addEventListener('click', e => { if (e.target.id === 'docModal') closeDoc(); });
 
-  // Toast
   function showToast(msg, ok) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -1929,7 +1893,6 @@ img{max-width:100%;display:block;}
     setTimeout(() => t.classList.remove('show'), 3200);
   }
 
-  // Case studies — expanded narratives for the three strongest projects
   const caseStudies = {
     remhart: {
       eyebrow: 'Featured Case Study',
@@ -2006,7 +1969,6 @@ img{max-width:100%;display:block;}
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Split hero name into per-letter spans for staggered entrance
   (function () {
     const el = document.getElementById('heroName');
     if (!el || prefersReducedMotion) return;
@@ -2023,7 +1985,6 @@ img{max-width:100%;display:block;}
     });
   })();
 
-  // Rotating role line — cycles through her range of roles
   (function () {
     const el = document.getElementById('roleText');
     if (!el || prefersReducedMotion) return;
@@ -2038,7 +1999,6 @@ img{max-width:100%;display:block;}
     }, 2800);
   })();
 
-  // About section — animated count-up for the quick-fact numbers
   (function () {
     const nums = document.querySelectorAll('.stat-num[data-count]');
     if (!nums.length) return;
@@ -2063,7 +2023,6 @@ img{max-width:100%;display:block;}
     nums.forEach(el => statIO.observe(el));
   })();
 
-  // Skills / open-to marquee ticker
   (function () {
     const track = document.getElementById('marqueeTrack');
     if (!track) return;
@@ -2081,7 +2040,6 @@ img{max-width:100%;display:block;}
     track.innerHTML = html + html;
   })();
 
-  // Contact form
   (function () {
     const form = document.getElementById('contactFormElement');
     const btn = document.getElementById('submitBtn');
@@ -2106,7 +2064,6 @@ img{max-width:100%;display:block;}
     });
   })();
 
-  // Scroll progress bar + back-to-top + spec rail active state
   const scrollProgress = document.getElementById('scrollProgress');
   const backToTop = document.getElementById('backToTop');
   const railLinks = document.querySelectorAll('.spec-rail a');
@@ -2132,7 +2089,6 @@ img{max-width:100%;display:block;}
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  // Process section — scroll-linked progress bar
   (function () {
     const section = document.getElementById('process');
     const fill = document.getElementById('processFill');
@@ -2155,20 +2111,15 @@ img{max-width:100%;display:block;}
     update();
   })();
 
-  // Scroll reveal — section-level
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
   }, { threshold: 0.1 });
   revealEls.forEach(el => io.observe(el));
 
-  // Scroll reveal — each card animates in on its own as it individually crosses into
-  // view (not the whole grid at once), so it works the same whether the grid is
-  // several columns wide (desktop) or a single stacked column (mobile).
   (function () {
     const items = Array.from(document.querySelectorAll('.stagger-item'));
     if (!items.length) return;
-    // group by parent so siblings that appear together still get a light wave delay
     const parentIndex = new Map();
     items.forEach(item => {
       const parent = item.parentElement;
@@ -2189,10 +2140,6 @@ img{max-width:100%;display:block;}
     items.forEach(item => staggerIO.observe(item));
   })();
 
-  // Scroll parallax — hero content eases back slightly as you scroll past it.
-  // rAF-throttled to avoid layout jank, and the split "floating cards" drift is
-  // desktop-only since on mobile the visual sits directly under the text and an
-  // independent transform there just collides with it.
   (function () {
     const heroInner = document.querySelector('.hero-inner');
     const heroVisual = document.querySelector('.hero-visual');
@@ -2222,7 +2169,6 @@ img{max-width:100%;display:block;}
     applyParallax();
   })();
 
-  // Magnetic pull on primary/outline buttons
   (function () {
     if (prefersReducedMotion || window.matchMedia('(hover: none)').matches) return;
     document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
@@ -2236,7 +2182,6 @@ img{max-width:100%;display:block;}
     });
   })();
 
-  // Tilt + spotlight interaction for project / logo / mockup cards
   (function () {
     if (prefersReducedMotion || window.matchMedia('(hover: none)').matches) return;
     const MAX_TILT = 7;
