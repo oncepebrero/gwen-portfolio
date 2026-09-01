@@ -555,31 +555,28 @@ function showToast(msg, ok){
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-/* custom cursor */
+/* custom cursor — a quiet trailing ring with a small solid dot at the
+   true pointer position; the ring softly fills when over anything
+   clickable, and eases down on click for a light tactile response. */
 if (isFinePointer && !prefersReducedMotion){
   document.body.classList.add('has-cursor');
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
-  const label = document.getElementById('cursorLabel');
   let rx=0, ry=0, tx=0, ty=0;
   window.addEventListener('mousemove', e=>{
     dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
     tx = e.clientX; ty = e.clientY;
-    label.style.left = e.clientX + 'px'; label.style.top = e.clientY + 'px';
   });
-  function loop(){ rx += (tx-rx)*0.2; ry += (ty-ry)*0.2; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(loop); }
+  function loop(){ rx += (tx-rx)*0.18; ry += (ty-ry)*0.18; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(loop); }
   loop();
-  document.querySelectorAll('.clickable, a, button').forEach(el=>{
-    el.addEventListener('mouseenter', ()=> ring.classList.add('big'));
-    el.addEventListener('mouseleave', ()=>{ ring.classList.remove('big'); label.classList.remove('show'); label.textContent=''; });
-  });
-  document.querySelectorAll('[data-cursor]').forEach(el=>{
-    el.addEventListener('mouseenter', ()=>{ label.textContent = el.dataset.cursor; label.classList.add('show'); });
+  document.addEventListener('mousedown', ()=> document.body.classList.add('cursor-down'));
+  document.addEventListener('mouseup', ()=> document.body.classList.remove('cursor-down'));
+  document.body.addEventListener('mouseover', e=>{
+    ring.classList.toggle('big', !!e.target.closest('.clickable, a, button'));
   });
 } else {
   document.getElementById('cursorDot').style.display='none';
   document.getElementById('cursorRing').style.display='none';
-  document.getElementById('cursorLabel').style.display='none';
 }
 
 /* scroll progress + back-to-top + index rail */
@@ -650,6 +647,16 @@ backToTop.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smoo
     coords.textContent = `x ${Math.round(px*480)} · y ${Math.round(py*360)}`;
   });
   canvas.addEventListener('mouseleave', ()=>{ node.style.transform = ''; coords.textContent = 'x 240 · y 160'; });
+
+  const visual = document.getElementById('heroVisual');
+  const inspector = visual.querySelector('.inspector');
+  visual.addEventListener('mousemove', e=>{
+    const r = visual.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    inspector.style.transform = `perspective(1000px) rotateX(${(-py*4).toFixed(2)}deg) rotateY(${(px*5).toFixed(2)}deg)`;
+  });
+  visual.addEventListener('mouseleave', ()=>{ inspector.style.transform = ''; });
 })();
 
 /* stat count-up */
