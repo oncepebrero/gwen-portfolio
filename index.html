@@ -703,16 +703,8 @@ img{max-width:100%;display:block;}
 @media (prefers-reduced-motion: reduce){.loader{transition:opacity .3s ease,visibility .3s;}.loader::before,.loader::after{transition:none;display:none;}}
 
 /* ══════════════════════════════════════════
-   PAGE / SECTION TRANSITION WIPE
+   PAGE / SECTION TRANSITION WIPE — removed (plain smooth scroll used instead)
    ══════════════════════════════════════════ */
-.page-transition{position:fixed;inset:0;z-index:900;pointer-events:none;background:var(--accent);transform:scaleY(0);transform-origin:bottom;}
-.page-transition.run{animation:pageWipe .8s cubic-bezier(.76,0,.24,1);}
-@keyframes pageWipe{
-  0%{transform:scaleY(0);transform-origin:bottom;}
-  42%{transform:scaleY(1);transform-origin:bottom;}
-  58%{transform:scaleY(1);transform-origin:top;}
-  100%{transform:scaleY(0);transform-origin:top;}
-}
 
 /* section index counters — small "01 / 09" style marker appended to the eyebrow */
 main{counter-reset:sectioncount;}
@@ -744,7 +736,6 @@ main{counter-reset:sectioncount;}
 </div>
 
 <!-- SECTION / PAGE TRANSITION WIPE -->
-<div class="page-transition" id="pageTransition" aria-hidden="true"></div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -791,7 +782,6 @@ main{counter-reset:sectioncount;}
   <div class="wrap hero-inner">
     <div class="hero-grid">
       <div>
-        <div class="hero-kicker"><span class="dot"></span> Available for full-time roles &amp; freelance projects</div>
         <h1 class="hero-name" id="heroName">Gwen Basconcillo</h1>
         <svg class="signature-underline" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true">
           <path d="M4 14 C 60 4, 110 22, 160 10 S 260 2, 296 12"></path>
@@ -2356,13 +2346,10 @@ main{counter-reset:sectioncount;}
   })();
 
   // ══════════════════════════════════════════
-  // SECTION-WIPE TRANSITION on internal anchor navigation
-  // (treats each section like its own "page" with a transition between them)
+  // SMOOTH SCROLL on internal anchor navigation
+  // (just scrolls to the section, like scrolling/swiping normally)
   // ══════════════════════════════════════════
   (function () {
-    const overlay = document.getElementById('pageTransition');
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!overlay) return;
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       const href = a.getAttribute('href');
       if (!href || href.length < 2) return;
@@ -2376,12 +2363,7 @@ main{counter-reset:sectioncount;}
           navLinksEl.classList.remove('open');
           if (navMenuBtnEl) { navMenuBtnEl.setAttribute('aria-expanded', 'false'); navMenuBtnEl.innerHTML = '<i class="fas fa-bars"></i>'; }
         }
-        if (reduced) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-        overlay.classList.remove('run');
-        void overlay.offsetWidth;
-        overlay.classList.add('run');
-        setTimeout(() => { target.scrollIntoView({ behavior: 'auto', block: 'start' }); }, 380);
-        setTimeout(() => { overlay.classList.remove('run'); }, 860);
+        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
       });
     });
   })();
