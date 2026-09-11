@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gwen Basconcillo — UI/UX Designer</title>
 <meta name="description" content="Gwen Basconcillo — UI/UX &amp; Graphic Designer specializing in design systems, wireframing and prototyping, with complementary skills in front-end development, QA testing, virtual assistance, and social media content creation. BS Information Technology, Mindoro State University.">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" tyFpe="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
 <!-- Open Graph / social preview — swap og:url for your live domain once deployed -->
@@ -1017,29 +1017,25 @@ main{counter-reset:sectioncount;}
       <button type="button" class="section-more" id="projectsToggle" onclick="openGallery('projectsGalleryModal')"><i class="fas fa-grip"></i> View all 10 projects</button>
     </div>
 
-    <div class="proj-card stagger-item frame-card tilt-card">
-  <div class="proj-thumb thumb-doc" onclick="openDoc('assets/rms-capstone.pdf','RM\'S — Capstone Project','186 pages · Full capstone documentation')">
-    <span class="proj-status status-shipped">Shipped</span>
-    <img src="assets/rms-pdf-cover.png" alt="RM'S Inventory capstone document cover page" onerror="this.style.display='none'">
-    <div class="mockup-overlay"><span><i class="fas fa-file-pdf"></i> View all 186 pages</span></div>
-    <div class="doc-badge"><i class="fas fa-file-pdf"></i> PDF · 186 pages</div>
-  </div>
-  <div class="proj-body">
-    <div>
-      <div class="proj-title">RM'S Inventory — Capstone Project <span class="proj-year">· 2025</span></div>
-      <div class="proj-org">Mindoro State University · for REMHART</div>
-      <div class="proj-role">UI/UX Designer · QA Analyst · Technical Writer/Documentation</div>
+    <div class="featured-project reveal in">
+      <div class="featured-thumb thumb-doc" onclick="openDoc('assets/rms-capstone.pdf','RM\'S — Capstone Project','186 pages · Full capstone documentation')">
+        <span class="proj-status status-shipped">Shipped</span>
+        <img src="assets/rms-pdf-cover.png" alt="RM'S Inventory capstone document cover page" onerror="this.style.display='none'">
+        <div class="mockup-overlay"><span><i class="fas fa-file-pdf"></i> View all 186 pages</span></div>
+        <div class="doc-badge"><i class="fas fa-file-pdf"></i> PDF · 186 pages</div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-eyebrow">Featured Project</div>
+        <h3 class="featured-title">RM'S Inventory — Capstone Project</h3>
+        <div class="featured-meta">Mindoro State University · for REMHART · 2025 · UI/UX Designer · QA Analyst · Technical Writer/Documentation </div>
+        <ul class="tl-bullets">
+          <li>AI-integrated inventory &amp; e-commerce system with real-time demand forecasting, built for a live retail client</li>
+          <li>Designed the database schema and built the admin dashboard for stock, sales, and order tracking</li>
+        </ul>
+        <div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI Integration</span></div>
+        <button type="button" class="case-link" onclick="openCaseStudy('remhart')"><i class="fas fa-book-open"></i> View Case Study</button>
+      </div>
     </div>
-    <ul class="proj-bullets">
-      <li>AI-integrated inventory &amp; e-commerce system with real-time demand forecasting, built for a live retail client</li>
-      <li>Designed the database schema and built the admin dashboard for stock, sales, and order tracking</li>
-    </ul>
-    <div class="proj-foot">
-      <div class="proj-stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI Integration</span></div>
-      <button type="button" class="case-link" onclick="openCaseStudy('remhart')"><i class="fas fa-book-open"></i> View Case Study</button>
-    </div>
-  </div>
-</div>
 
     <div class="proj-grid" id="projGrid">
 
