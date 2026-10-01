@@ -355,6 +355,20 @@ footer{margin-top:0}
  .lbg .lbstory ul{grid-template-columns:1fr;gap:.9rem;margin-top:1rem;padding-top:1rem}
  .lbg .lbstory li{font-size:.92rem}
 }
+
+.plate img.fit,.pvb .pi.fit{object-fit:contain;object-position:center;background:#e1e1e3}
+.info .tag.ptag{position:static;display:inline-block;margin:.5rem 0 .2rem;padding:.2rem .7rem;border:1px solid var(--ln);border-radius:99px;background:none;backdrop-filter:none}
+
+/* ── responsive pass ── */
+.logo{white-space:nowrap}.logo span:last-child{overflow:hidden;text-overflow:ellipsis}
+.nr .btn{white-space:nowrap}
+@media(max-width:1000px){.links{display:none}.mb{display:grid}.nr .btn{display:none}}
+.info .tag.ptag{display:block;width:fit-content}
+@media(max-width:900px){.concepts{grid-template-columns:1fr 1fr}.concepts .refs{grid-column:1/-1}}
+@media(max-width:600px){.concepts{grid-template-columns:1fr}}
+@media(max-width:820px){.cap{padding-right:0}.sh .btn{align-self:flex-start}}
+@media(max-width:480px){.btn{padding:.8rem 1.2rem}.soc{gap:.5rem}.tabs{flex-wrap:wrap}.wr{gap:.9rem}}
+@media(max-width:380px){.logo>span:last-child{font-size:.92rem}.hero-bot .row{gap:.6rem}.name .ln:nth-child(2){padding-left:1rem}}
 </style>
 </head>
 <body>
@@ -388,7 +402,7 @@ footer{margin-top:0}
   <div class="sh rv"><div><span class="mono">01 — Selected work</span><h2>Things I’ve <em>designed,</em><br>built &amp; broken on purpose.</h2></div><button class="btn" data-open data-mag>View all 11 works ↗</button></div>
 
   <article class="case rv">
-    <div class="plate doc"><span class="tag mono">Capstone · 2025</span><img src="assets/rms-pdf-cover.png" alt="RM’S Inventory capstone document cover" onerror="this.remove()">
+    <div class="plate"><span class="tag mono">Capstone · 2025</span><img src="assets/rms-preview.jpg" alt="RM Distribution wholesale website" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#293462"/><g fill="#1CD6CE" opacity=".85"><rect x="120" y="290" width="46" height="120"/><rect x="200" y="240" width="46" height="170"/><rect x="280" y="270" width="46" height="140"/><rect x="360" y="190" width="46" height="220"/><rect x="440" y="220" width="46" height="190"/></g><g fill="#D61C4E" opacity=".9"><rect x="520" y="150" width="46" height="260"/><rect x="600" y="110" width="46" height="300"/></g><polyline points="140,280 220,230 300,255 380,175 460,200 540,130 620,90" fill="none" stroke="#FEDB39" stroke-width="3" stroke-dasharray="8 8"/><circle cx="620" cy="90" r="8" fill="#FEDB39"/></svg></div>
     <div class="info"><div class="no">01</div><span class="mono">UI/UX · QA · Tech writing</span><h3>RM’S Inventory</h3>
       <p>AI-assisted inventory &amp; e-commerce system with real-time demand forecasting, built for a live retail client, REMHART.</p>
@@ -398,7 +412,7 @@ footer{margin-top:0}
   </article>
 
   <article class="case r rv">
-    <div class="plate doc"><span class="tag mono">Solo build · 2026</span><img src="assets/dailydrive-pdf-cover.jpg" alt="DailyDrive user manual cover page" onerror="this.remove()">
+    <div class="plate"><span class="tag mono">Solo build · 2026</span><img src="assets/dailydrive-preview.jpg" alt="DailyDrive dashboard" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#0D1226"/><g fill="none" stroke="#EFEBE3" stroke-opacity=".25" stroke-width="2"><rect x="110" y="110" width="360" height="60" rx="30"/><rect x="110" y="200" width="360" height="60" rx="30"/><rect x="110" y="290" width="360" height="60" rx="30"/></g><circle cx="140" cy="140" r="16" fill="#1CD6CE"/><circle cx="140" cy="230" r="16" fill="#1CD6CE"/><circle cx="140" cy="320" r="16" fill="none" stroke="#FEDB39" stroke-width="3"/><circle cx="600" cy="250" r="110" fill="none" stroke="#293462" stroke-width="22"/><path d="M600 140a110 110 0 1 1-104 146" fill="none" stroke="#D61C4E" stroke-width="22" stroke-linecap="round"/><text x="600" y="262" text-anchor="middle" fill="#EFEBE3" font-family="serif" font-size="46" font-style="italic">72%</text></svg></div>
     <div class="info"><div class="no">02</div><span class="mono">Full-stack · Solo</span><h3>DailyDrive</h3>
       <p>A task platform with dashboards, subtasks, recurring tasks, gamification and cron-driven reminders. Documented with a 21-page manual.</p>
@@ -408,7 +422,7 @@ footer{margin-top:0}
   </article>
 
   <article class="case rv">
-    <div class="plate"><span class="tag mono">Application dev · 2024</span><img src="assets/SafepathUI.png" alt="SafePath confidential reporting interface" onerror="this.remove()">
+    <div class="plate"><span class="tag mono">Application dev · 2024</span><img src="assets/safepath-preview.jpg" alt="SafePath admin dashboard and mobile app" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#D61C4E"/><g fill="none" stroke="#fff" stroke-opacity=".3"><circle cx="400" cy="250" r="200"/><circle cx="400" cy="250" r="150"/><circle cx="400" cy="250" r="100"/></g><path d="M400 130l90 30v70c0 60-40 100-90 120-50-20-90-60-90-120v-70z" fill="#0A0E1D"/><path d="M360 245l30 30 55-65" fill="none" stroke="#FEDB39" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <div class="info"><div class="no">03</div><span class="mono">UI/UX · QA · Documentation</span><h3>SafePath</h3>
       <p>A confidential bullying-report platform with AI text classification that flags concerning reports for staff review.</p>
@@ -509,6 +523,8 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 $$('.rv').forEach(el=>io.observe(el));
 const pio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const p=e.target.querySelector('.plate');p&&p.classList.add('in');pio.unobserve(e.target)}}),{threshold:.12});
 $$('.case').forEach(c=>pio.observe(c));
+// keep the category tag off the screenshots
+$$('.case').forEach(c=>{const t=c.querySelector('.plate .tag'),n=c.querySelector('.info .no');if(t&&n){t.classList.add('ptag');n.after(t)}});
 // stories live in the modal only
 const STORY=$$('.case .story').map(e=>e.querySelector('ul').outerHTML);$$('.case .story').forEach(e=>e.remove());STORY[3]='<ul><li><b>Problem</b>The team had a flowchart but nothing visual to review with stakeholders.</li><li><b>Approach</b>Built clickable prototypes from the flowchart and iterated with the dev team.</li><li><b>Outcome</b>A clean handoff: designs that were already checked for buildability.</li></ul>';
 $$('.case .plate').forEach((p,i)=>{p.setAttribute('role','button');p.tabIndex=0;p.setAttribute('aria-label','Preview project '+(i+1));p.onclick=()=>openLb(i);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
@@ -594,9 +610,9 @@ function openLbImg(src,cap){$('#lbi').innerHTML=`<div class="big2"><img src="${s
 function closeLb(){lb.classList.remove('open')}
 $('#lbx').onclick=closeLb;lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()},true);
-const IMGS=['assets/rms-pdf-cover.png','assets/dailydrive-pdf-cover.jpg','assets/SafepathUI.png','assets/NSJBI.png','assets/Minsu.png','assets/Slites.png','assets/lavalust.jpg','assets/WIX.png','assets/mushroom.jpg','assets/meat.jpg','assets/BRAINSTER.png'];
+const IMGS=['assets/rms-preview.jpg','assets/dailydrive-preview.jpg','assets/safepath-preview.jpg','assets/NSJBI.png','assets/Minsu.png','assets/Slites.png','assets/lavalust.jpg','assets/WIX.png','assets/mushroom.jpg','assets/meat.jpg','assets/BRAINSTER.png'];
 const DOC={0:['assets/rms-capstone.pdf','RM’S — Capstone Project','186 pages · Full capstone documentation'],1:['assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User & Admin guide']};
-const imgTag=i=>`<img class="pi${DOC[i]?' doc':''}" src="${IMGS[i]}" alt="${P[i][0]}" loading="lazy" onerror="this.remove()">`;
+const imgTag=i=>`<img class="pi" src="${IMGS[i]}" alt="${P[i][0]}" loading="lazy" onerror="this.remove()">`;
 $$('#wl .wr').forEach((r,i)=>{const n=r.firstElementChild;n.insertAdjacentHTML('afterend',`<div class="pv" role="button" tabindex="0" aria-label="Preview ${P[i][0]}">${ART[i]}${imgTag(i)}<span class="pz mono">Preview ↗</span></div>`);const pv=r.querySelector('.pv');pv.onclick=()=>openLb(i);pv.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
 
 // ── living name ──
