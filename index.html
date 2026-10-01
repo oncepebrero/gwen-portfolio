@@ -465,7 +465,8 @@ footer{margin-top:0}
       <article><span class="mono">2025 – 2026 · Freelance · Remote · 1 year</span><h3>Cyberbacker</h3><div class="rl">UI/UX Designer &amp; Front-end Developer</div>
         <ul><li>Worked remotely as a freelancer, designing interfaces and building them out for client projects.</li></ul>
         <div class="stack"><span>UI/UX</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Bootstrap</span><span>Shopify</span></div></article>
-      <article><span class="mono">February-July 2026 · 6months</span><h3>New San Jose Builders Inc.</h3><div class="rl">QA Analyst, Developer &amp; Technical Documentation</div>
+      <article><span class="mono">February – July 2026 · 6 months</span><h3>New San Jose Builders Inc.</h3><div class="rl">QA Analyst, Developer &amp; Technical Documentation</div>
+        <ul><li>Built DailyDrive solo — time-tracking, admin dashboard, reporting.</li><li>Wrote and ran test cases and logged defects for the Ticketing, Employee Self-Service and HRM systems before deployment.</li><li>Joined sprint reviews and contributed internal documentation.</li></ul></article>
       <article><span class="mono">2022 – 2026</span><h3>Mindoro State University</h3><div class="rl">BS Information Technology</div><span class="badge">★ Dean’s Lister, AY 2022–2026</span></article>
     </div></div>
 </div></div></section>
@@ -500,7 +501,9 @@ try{const s=localStorage.getItem('gb-theme');if(s)root.dataset.theme=s}catch(e){
 $('#theme').onclick=()=>{const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');const n=cur==='light'?'dark':'light';root.dataset.theme=n;try{localStorage.setItem('gb-theme',n)}catch(e){}};
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.id==='proc')e.target.style.setProperty('--p','100%');io.unobserve(e.target)}}),{threshold:.12});
-$$('.rv,.plate').forEach(el=>io.observe(el));
+$$('.rv').forEach(el=>io.observe(el));
+const pio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const p=e.target.querySelector('.plate');p&&p.classList.add('in');pio.unobserve(e.target)}}),{threshold:.12});
+$$('.case').forEach(c=>pio.observe(c));
 // stories live in the modal only
 const STORY=$$('.case .story').map(e=>e.querySelector('ul').outerHTML);$$('.case .story').forEach(e=>e.remove());
 $$('.case .plate').forEach((p,i)=>{p.setAttribute('role','button');p.tabIndex=0;p.setAttribute('aria-label','Preview project '+(i+1));p.onclick=()=>openLb(i);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
