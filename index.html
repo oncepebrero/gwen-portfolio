@@ -341,6 +341,20 @@ footer{margin-top:0}
 @media(max-height:700px) and (min-width:861px){#about .tl li:nth-child(n+2){display:none}#about .tl article:nth-child(2) li{display:none}#about .tl article:nth-child(2) li:first-child{display:list-item}}
 @media(max-height:640px){#services,#about,#contact{padding-top:4rem}#services .sxh p{display:none}#services .sxh{padding:.5rem 0}}
 @media(min-width:700px) and (max-width:860px){#about .ab{grid-template-columns:1fr 1.15fr;gap:2rem}}
+
+/* work cards + preview modal polish */
+.plate{transition:clip-path 1.2s var(--ease),transform .45s cubic-bezier(.22,.8,.3,1),box-shadow .45s;will-change:transform}
+.plate.in:hover{box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.plate svg{inset:0;height:100%}
+.lbi{width:min(1120px,100%)}
+.lbg{display:block}
+.lbt h3{margin-top:1.2rem}
+@media(min-width:900px){
+ .lbg{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(1.5rem,3.5vw,3rem);align-items:center}
+ .lbt h3{margin-top:0}
+ .lbg .lbstory ul{grid-template-columns:1fr;gap:.9rem;margin-top:1rem;padding-top:1rem}
+ .lbg .lbstory li{font-size:.92rem}
+}
 </style>
 </head>
 <body>
@@ -403,15 +417,6 @@ footer{margin-top:0}
     <div class="story" id="s3"><div><ul><li><b>Problem</b>Students under-report bullying because they fear being identified.</li><li><b>Approach</b>A calm, neutral interface, since tone matters when the user already feels exposed.</li><li><b>Outcome</b>A shipped reporting flow that helps staff respond without exposing the student.</li></ul></div></div>
   </article>
 
-  <article class="case r rv">
-    <div class="plate"><span class="tag mono">Professional · 2025</span><img src="assets/NSJBI.png" alt="Attendance Monitoring System interface" onerror="this.remove()">
-      <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#10162B"/><rect x="120" y="90" width="560" height="60" rx="10" fill="#1CD6CE" fill-opacity=".9"/><g fill="#EFEBE3" fill-opacity=".18"><rect x="120" y="180" width="130" height="60" rx="8"/><rect x="270" y="180" width="130" height="60" rx="8"/><rect x="420" y="180" width="130" height="60" rx="8"/><rect x="570" y="180" width="110" height="60" rx="8"/><rect x="120" y="260" width="130" height="60" rx="8"/><rect x="420" y="260" width="130" height="60" rx="8"/><rect x="120" y="340" width="130" height="60" rx="8"/><rect x="270" y="340" width="130" height="60" rx="8"/></g><g fill="#FEDB39"><rect x="270" y="260" width="130" height="60" rx="8"/><rect x="570" y="260" width="110" height="60" rx="8"/><rect x="420" y="340" width="130" height="60" rx="8"/></g></svg></div>
-    <div class="info"><div class="no">04</div><span class="mono">Prototyping · UI</span><h3>Attendance Monitoring</h3>
-      <p>UI mockups and interactive prototypes for a company attendance system, handed to developers as working Vue.js interfaces.</p>
-      <div class="stack"><span>Vue.js</span><span>Node.js</span><span>MySQL</span></div>
-      <div class="acts"><button class="more" onclick="openLb(3)">View interface ↗</button></div></div>
-    <div class="story" id="s4"><div><ul><li><b>Problem</b>The team had a flowchart but nothing visual to review with stakeholders.</li><li><b>Approach</b>Built clickable prototypes from the flowchart and iterated with the dev team.</li><li><b>Outcome</b>A clean handoff: designs that were already checked for buildability.</li></ul></div></div>
-  </article>
 
   <div class="mono rv" style="margin-bottom:1.2rem;border-top:1px solid var(--ln);padding-top:2rem">Also — website concepts designed in Canva</div>
   <div class="concepts rv" style="border:0;padding-top:0">
@@ -505,13 +510,12 @@ $$('.rv').forEach(el=>io.observe(el));
 const pio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const p=e.target.querySelector('.plate');p&&p.classList.add('in');pio.unobserve(e.target)}}),{threshold:.12});
 $$('.case').forEach(c=>pio.observe(c));
 // stories live in the modal only
-const STORY=$$('.case .story').map(e=>e.querySelector('ul').outerHTML);$$('.case .story').forEach(e=>e.remove());
+const STORY=$$('.case .story').map(e=>e.querySelector('ul').outerHTML);$$('.case .story').forEach(e=>e.remove());STORY[3]='<ul><li><b>Problem</b>The team had a flowchart but nothing visual to review with stakeholders.</li><li><b>Approach</b>Built clickable prototypes from the flowchart and iterated with the dev team.</li><li><b>Outcome</b>A clean handoff: designs that were already checked for buildability.</li></ul>';
 $$('.case .plate').forEach((p,i)=>{p.setAttribute('role','button');p.tabIndex=0;p.setAttribute('aria-label','Preview project '+(i+1));p.onclick=()=>openLb(i);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
 // scroll: progress, nav, parallax, active link
 const secs=$$('#work,#about,#credentials,#capabilities,#contact'),links=$$('#links a');
 let tick=false;
 function onS(){const d=document.documentElement,m=d.scrollHeight-innerHeight;$('#bar').style.width=(m>0?scrollY/m*100:0)+'%';$('#nav').classList.toggle('s',scrollY>40);
- if(!rm)$$('.plate svg').forEach(v=>{const r=v.parentElement.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){v.style.marginTop=((r.top+r.height/2-innerHeight/2)*-.06)+'px'}});
  $$('.orb').forEach((o,i)=>{if(!rm)o.style.translate='0 '+(scrollY*(.05+i*.03))+'px'});tick=false}
 addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(onS)}},{passive:true});onS();
 // cursor + magnetic
@@ -523,7 +527,7 @@ if(!touch&&!rm){const c=$('#cur'),cl=$('#curl'),hero=$('.hero'),ph=$('#photo .fr
  addEventListener('pointerup',()=>c.classList.remove('dn'));
  $$('[data-mag]').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener('pointerleave',()=>b.style.transform='')});
  // plate tilt
- $$('.plate').forEach(p=>{p.addEventListener('pointermove',e=>{const r=p.getBoundingClientRect();p.style.transform=`perspective(900px) rotateY(${((e.clientX-r.left)/r.width-.5)*5}deg) rotateX(${(.5-(e.clientY-r.top)/r.height)*4}deg)`});p.addEventListener('pointerleave',()=>p.style.transform='')});
+ $$('.plate').forEach(p=>{p.addEventListener('pointermove',e=>{const r=p.getBoundingClientRect();p.style.transform=`perspective(1100px) rotateY(${((e.clientX-r.left)/r.width-.5)*3}deg) rotateX(${(.5-(e.clientY-r.top)/r.height)*2.4}deg)`});p.addEventListener('pointerleave',()=>p.style.transform='')});
 }
 // drag scroll certs
 (function(){const c=$('#certs');let d=false,sx=0,sl=0,mv=0;
@@ -549,7 +553,7 @@ $$('.pipe span:not(.ar),.logo>span:last-child').forEach(e=>e.addEventListener('p
 // scroll skew on ticker
 (function(){const tk=$('.tick');let ly=scrollY,to;addEventListener('scroll',()=>{if(rm)return;const v=scrollY-ly;ly=scrollY;tk.style.transform=`skewX(${Math.max(-9,Math.min(9,-v*.2))}deg)`;clearTimeout(to);to=setTimeout(()=>tk.style.transform='',120)},{passive:true})})();
 // modal
-const P=[['RM’S Inventory — Capstone','2025','Technical writer · QA · Prototyping','AI-integrated inventory & e-commerce with demand forecasting, for REMHART.','PHP · JavaScript · MySQL','Shipped'],['DailyDrive','2026','Solo developer','Task platform with dashboards, subtasks, gamification and cron reminders.','Node.js · Express · MySQL','Shipped'],['SafePath','2024','UI/UX · QA · Docs','Confidential bullying-report system with AI flagging for staff review.','Express · TensorFlow · Bootstrap','Shipped'],['Attendance Monitoring','2025','Prototyping · UI','Mockups and prototypes translated into working Vue.js interfaces.','Vue.js · Node.js · MySQL','Professional'],['MinSU Event Venue Scheduling','2023','Developer','Role-based venue booking with conflict checks against double-booking.','HTML · PHP · MySQL','Academic'],['SLITES Smart Lighting','2024','IoT developer','Automated lighting with LDR & PIR sensors on Orange Pi, plus a live dashboard.','Orange Pi · Python · MySQL','Prototype'],['Panchitan ni Unchang — Lavalust','2024','Web developer','Eatery e-commerce on the Lavalust PHP framework with FAQs, support and order history.','Lavalust · PHP · MySQL','Shipped'],['Panchitan ni Unchang — Wix','2024','Site builder · IA','The same eatery rebuilt as a Wix storefront with fresh information architecture.','Wix · E-commerce','Shipped'],['IoT Mushroom Monitor','2023','IoT developer','Humidity & temperature monitoring with automated pump control.','Arduino · Sensors · MySQL','Prototype'],['Meat Quality Detection','2024','ML developer','Embedded image-processing system that predicts meat freshness.','Python · Image ML','Prototype'],['Brainster','2023','Game developer','Puzzle game teaching logic, set theory and graph theory.','JavaScript','Academic']];
+const P=[['RM’S Inventory — Capstone','2025','Technical writer · QA · Prototyping','AI-integrated inventory & e-commerce with demand forecasting, for REMHART.','PHP · JavaScript · MySQL','Shipped'],['DailyDrive','2026','Solo developer','Task platform with dashboards, subtasks, gamification and cron reminders.','Node.js · Express · MySQL','Shipped'],['SafePath','2024','UI/UX · QA · Docs','Confidential bullying-report system with AI flagging for staff review.','Express · TensorFlow · Bootstrap · MySQL','Shipped'],['Attendance Monitoring','2025','Prototyping · UI','Mockups and prototypes translated into working Vue.js interfaces.','Vue.js · Node.js · MySQL','Professional'],['MinSU Event Venue Scheduling','2023','Developer','Role-based venue booking with conflict checks against double-booking.','HTML · PHP · MySQL','Academic'],['SLITES Smart Lighting','2024','IoT developer','Automated lighting with LDR & PIR sensors on Orange Pi, plus a live dashboard.','Orange Pi · Python · MySQL','Prototype'],['Panchitan ni Unchang — Lavalust','2024','Web developer','Eatery e-commerce on the Lavalust PHP framework with FAQs, support and order history.','Lavalust · PHP · MySQL','Shipped'],['Panchitan ni Unchang — Wix','2024','Site builder · IA','The same eatery rebuilt as a Wix storefront with fresh information architecture.','Wix · E-commerce','Shipped'],['IoT Mushroom Monitor','2023','IoT developer','Humidity & temperature monitoring with automated pump control.','Arduino · Sensors · MySQL','Prototype'],['Meat Quality Detection','2024','ML developer','Embedded image-processing system that predicts meat freshness.','Python · Image ML','Prototype'],['Brainster','2023','Game developer','Puzzle game teaching logic, set theory and graph theory.','JavaScript','Academic']];
 $('#wl').innerHTML=P.map((p,i)=>`<li class="wr" style="--i:${i};--c:var(${['--d','--b','--t'][i%3]})"><span class="mono">${String(i+1).padStart(2,'0')}</span><div><h3>${p[0]}</h3><p class="mono" style="margin:.2rem 0 .5rem">${p[2]} · ${p[1]}</p><p>${p[3]}</p><div class="stack">${p[4].split(' · ').map(x=>`<span>${x}</span>`).join('')}</div></div><span class="st mono">${p[5]}</span></li>`).join('');
 const REFS='<span class="mono">Skincare references</span><ul>'+['naturium.com','prequelskin.com','versedskin.com','ritual.com','olly.com','moonjuice.com'].map(d=>`<li><a href="https://${d}" target="_blank" rel="noopener"><span>${d}</span><span>↗</span></a></li>`).join('')+'</ul>';
 const MOCKS=[['BLOOM','Flower delivery — warm palette & gifting flow.','#f08aa4,#f6c28b','assets/mockup-bloom-thumb.jpg','assets/mockup-bloom.jpg','BLOOM — Flower Delivery Website','E-commerce concept · Seasonal flower delivery brand'],['Skincare Product Website','Skincare e-commerce concept.','#bcd8c1,#f2e3d3','','','','']];
@@ -585,7 +589,7 @@ const ART=[plates[0],plates[1],plates[2],plates[3],
  W(R(0,0,800,500,'#293462',0)+R(170,90,460,320,'#D61C4E',14,.75)+'<rect x="170" y="90" width="460" height="320" rx="14" fill="none" stroke="#1CD6CE" stroke-width="5" stroke-dasharray="14 10"/>'+R(170,50,190,40,'#1CD6CE',6)+'<text x="190" y="78" font-family="monospace" font-size="22" fill="#0A0E1D">FRESH 94%</text><circle cx="400" cy="250" r="80" fill="#FEDB39" fill-opacity=".55"/>'),
  W(R(0,0,800,500,'#0A0E1D',0)+[...Array(12)].map((_,i)=>R(110+i%4*140,80+(i/4|0)*120,126,106,['#D61C4E','#1CD6CE','#FEDB39','#293462'][(i*5)%4],10,i===6?0:.9)).join(''))];
 const lb=$('#lb');
-function openLb(i){const p=P[i],d=DOC[i];$('#lbi').innerHTML=`<div class="big2 pvb">${ART[i]}${imgTag(i)}</div><h3>${p[0]}</h3><p class="mono" style="margin-bottom:.8rem">${p[2]} · ${p[1]} · ${p[5]}</p><p style="max-width:60ch">${p[3]}</p><div class="stack">${p[4].split(' · ').map(x=>`<span>${x}</span>`).join('')}</div>${STORY[i]?`<div class="lbstory">${STORY[i]}</div>`:''}<div class="acts">${d?`<button class="more" onclick="openDoc('${d[0]}','${d[1]}','${d[2]}')">Open PDF ↗</button>`:''}${i===2?'<a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a>':''}</div>`;lb.classList.add('open');setTimeout(()=>$('#lbx').focus(),50)}
+function openLb(i){const p=P[i],d=DOC[i];$('#lbi').innerHTML=`<div class="lbg"><div class="big2 pvb">${ART[i]}${imgTag(i)}</div><div class="lbt"><h3>${p[0]}</h3><p class="mono" style="margin-bottom:.8rem">${p[2]} · ${p[1]} · ${p[5]}</p><p style="max-width:60ch">${p[3]}</p><div class="stack">${p[4].split(' · ').map(x=>`<span>${x}</span>`).join('')}</div>${STORY[i]?`<div class="lbstory">${STORY[i]}</div>`:''}<div class="acts">${d?`<button class="more" onclick="openDoc('${d[0]}','${d[1]}','${d[2]}')">Open PDF ↗</button>`:''}${i===2?'<a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a>':''}</div></div></div>`;lb.classList.add('open');setTimeout(()=>$('#lbx').focus(),50)}
 function openLbImg(src,cap){$('#lbi').innerHTML=`<div class="big2"><img src="${src}" alt="${cap}" style="width:100%;height:100%;object-fit:contain;background:var(--bg2)"></div><h3>${cap}</h3>`;lb.classList.add('open');setTimeout(()=>$('#lbx').focus(),50)}
 function closeLb(){lb.classList.remove('open')}
 $('#lbx').onclick=closeLb;lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
