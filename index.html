@@ -610,7 +610,7 @@ function openLbImg(src,cap){$('#lbi').innerHTML=`<div class="big2"><img src="${s
 function closeLb(){lb.classList.remove('open')}
 $('#lbx').onclick=closeLb;lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()},true);
-const IMGS=['assets/rms-preview.jpg','assets/dailydrive-preview.jpg','assets/safepath-preview.jpg','assets/NSJBI.png','assets/Minsu.png','assets/Slites.png','assets/lavalust.jpg','assets/WIX.png','assets/mushroom.jpg','assets/meat.jpg','assets/BRAINSTER.png'];
+const IMGS=['assets/rms-preview.jpg','assets/dailydrive-preview.png','assets/safepath-preview.jpg','assets/NSJBI.png','assets/Minsu.png','assets/Slites.png','assets/lavalust.jpg','assets/WIX.png','assets/mushroom.jpg','assets/meat.jpg','assets/BRAINSTER.png'];
 const DOC={0:['assets/rms-capstone.pdf','RM’S — Capstone Project','186 pages · Full capstone documentation'],1:['assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User & Admin guide']};
 const imgTag=i=>`<img class="pi" src="${IMGS[i]}" alt="${P[i][0]}" loading="lazy" onerror="this.remove()">`;
 $$('#wl .wr').forEach((r,i)=>{const n=r.firstElementChild;n.insertAdjacentHTML('afterend',`<div class="pv" role="button" tabindex="0" aria-label="Preview ${P[i][0]}">${ART[i]}${imgTag(i)}<span class="pz mono">Preview ↗</span></div>`);const pv=r.querySelector('.pv');pv.onclick=()=>openLb(i);pv.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
