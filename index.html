@@ -260,27 +260,80 @@ footer{border-top:1px solid var(--ln);padding:1.6rem 0;margin-top:3rem}footer .w
 .sxb li b{display:block;font:600 1.05rem var(--serif);color:var(--tx);margin-bottom:.3rem}.sxb li{font-size:.88rem;border-left:2px solid var(--c);padding-left:.9rem}
 @media(max-width:820px){.sxh{grid-template-columns:2rem 1fr 1.5rem}.sxh p{display:none}.sxb>ul{grid-template-columns:1fr;padding-left:0;gap:1rem}}
 
-/* skincare reference cards */
+/* works wall (all-works archive) */
+.wl{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(210px,24vw,290px);gap:1rem;margin-top:.4rem}
+.wk{position:relative;opacity:0;border-radius:10px;overflow:hidden;background:var(--bg2);border:1px solid var(--ln);transition:transform .5s var(--ease),border-color .3s,box-shadow .5s}
+.md.open .wk{animation:rw .8s var(--ease) forwards;animation-delay:calc(var(--i)*80ms + 250ms)}
+.wk:hover,.wk:focus-within{transform:translateY(-6px);border-color:var(--c);box-shadow:0 22px 50px rgba(0,0,0,.3)}
+.wk.s0{grid-column:span 2;grid-row:span 2}.wk.s3,.wk.s6{grid-column:span 2}
+.wk-in{position:absolute;inset:0;width:100%;height:100%;text-align:left;display:flex;flex-direction:column;justify-content:space-between;padding:1rem;color:#EFEBE3;cursor:pointer}
+.wk-art{position:absolute;inset:0}
+.wk-art svg,.wk-art .pi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .9s var(--ease)}
+.wk:hover .wk-art svg,.wk:hover .wk-art .pi{transform:scale(1.07)}
+.wk-in::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,14,29,.55) 0,rgba(10,14,29,0) 32%,rgba(10,14,29,.92) 100%)}
+.wk-top,.wk-b{position:relative;z-index:2}
+.wk-top{display:flex;justify-content:space-between;align-items:center}
+.wk-top .mono{color:#EFEBE3}
+.wk-n{font:italic 300 2.2rem/1 var(--serif);color:var(--c)}
+.wk .st{color:var(--c);border:1px solid var(--c);border-radius:99px;padding:.15rem .6rem;background:rgba(10,14,29,.55);backdrop-filter:blur(6px)}
+.wk-b h3{color:#EFEBE3;font-size:clamp(1.2rem,1.9vw,1.7rem);line-height:1.08}
+.wk.s0 .wk-b h3{font-size:clamp(1.8rem,3.2vw,2.8rem)}
+.wk-b .mono{color:#A3A8C4;margin-top:.3rem}
+.wk-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.wk-x>div{overflow:hidden}
+.wk:hover .wk-x,.wk:focus-within .wk-x,.wk.s0 .wk-x{grid-template-rows:1fr}
+.wk-x p{font-size:.85rem;color:#D5D8E6;margin-top:.5rem;max-width:46ch}
+.wk-x .stack{margin:.6rem 0 0}.wk-x .stack span{color:#EFEBE3;border-color:rgba(239,235,227,.3)}
+@media(hover:none){.wk-x{grid-template-rows:1fr}}
+@media(max-width:900px){.wl{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(220px,40vw,300px)}.wk.s0{grid-row:span 1}}
+@media(max-width:520px){.wl{grid-template-columns:1fr}.wk.s0,.wk.s3,.wk.s6{grid-column:span 1}}
+
+/* selected work: sticky stacking poster cards */
+.stk{padding-bottom:1rem}
+#portfolio .case{display:block;position:sticky;top:calc(5rem + var(--k,0)*1rem);height:min(82vh,650px);min-height:540px;aspect-ratio:auto;padding:0;border:0;margin:0 0 2.2rem;border-radius:22px;overflow:hidden;background:var(--cb);color:#EFEBE3;box-shadow:0 -18px 50px rgba(0,0,0,.28)}
+.stk>.case:nth-child(1){--k:0;--cb:linear-gradient(160deg,#293462,#10162B);--ca:#1CD6CE}
+.stk>.case:nth-child(2){--k:1;--cb:linear-gradient(160deg,#10162B,#070A15);--ca:#D61C4E}
+.stk>.case:nth-child(3){--k:2;--cb:linear-gradient(160deg,#D61C4E,#7A1030);--ca:#FEDB39;margin-bottom:0}
+#portfolio .case::before{display:none}
+#portfolio .case::after{content:'';position:absolute;width:60%;aspect-ratio:1;left:20%;top:-38%;border-radius:50%;background:var(--ca);opacity:.22;filter:blur(80px);pointer-events:none}
+#portfolio .case .info{position:relative;z-index:2;display:block;text-align:center;padding:clamp(1.4rem,3.4vh,2.4rem) 1.4rem 0;border:0;background:none;backdrop-filter:none;opacity:1;transform:none;max-width:860px;margin:0 auto}
+#portfolio .case .info .no{position:absolute;z-index:-1;left:50%;top:-1.2rem;transform:translateX(-50%);font:italic 300 clamp(9rem,22vw,19rem)/1 var(--serif);color:transparent;-webkit-text-stroke:1.5px rgba(239,235,227,.2);opacity:1;pointer-events:none}
+#portfolio .case .tag{position:static;display:inline-block;background:rgba(239,235,227,.1);border:1px solid rgba(239,235,227,.28);color:#EFEBE3;padding:.25rem .8rem;border-radius:99px;backdrop-filter:none}
+#portfolio .case .tx .mono{display:block;margin-top:.9rem;color:rgba(239,235,227,.65)}
+#portfolio .case .info h3{color:#EFEBE3;margin:.3rem 0 .5rem;font-size:clamp(2.2rem,6vw,5rem);font-weight:300;letter-spacing:-.04em}
+#portfolio .case .info p{color:#D5D8E6;font-size:.95rem;max-width:56ch;margin:0 auto}
+#portfolio .case .info .stack{justify-content:center;margin:.9rem 0 .7rem}
+#portfolio .case .info .stack span{color:#EFEBE3;border-color:rgba(239,235,227,.3)}
+#portfolio .case .info .acts{justify-content:center;margin-top:0}
+#portfolio .case .info .more{color:#EFEBE3;border-color:#EFEBE3}
+#portfolio .case .plate{position:absolute;left:0;right:0;bottom:0;margin:0 auto;width:min(880px,88%);height:42%;aspect-ratio:auto;border-radius:12px 12px 0 0;border:1px solid rgba(239,235,227,.28);border-bottom:0;box-shadow:0 -24px 60px rgba(0,0,0,.45);background:#0A0E1D;transition:clip-path 1.2s var(--ease),transform .45s cubic-bezier(.22,.8,.3,1),translate .6s var(--ease),box-shadow .45s}
+#portfolio .case:hover .plate{translate:0 -18px}
+#portfolio .case .plate::before{content:'';position:absolute;left:0;right:0;top:0;height:22px;z-index:3;background:radial-gradient(circle at 13px 11px,#D61C4E 3.5px,transparent 4px),radial-gradient(circle at 27px 11px,#FEDB39 3.5px,transparent 4px),radial-gradient(circle at 41px 11px,#1CD6CE 3.5px,transparent 4px),#0A0E1D}
+#portfolio .case .plate img,#portfolio .case .plate svg{top:22px;height:calc(100% - 22px);inset:22px 0 0 0}
+@media(max-width:700px){#portfolio .case{position:relative;top:auto;height:auto;min-height:0;display:flex;flex-direction:column;margin-bottom:1.4rem;padding-bottom:0}#portfolio .case .info{order:1;padding-bottom:1.4rem}#portfolio .case .info .no{font-size:7rem;top:-.4rem}#portfolio .case .plate{order:2;position:relative;left:auto;right:auto;width:92%;height:auto;aspect-ratio:16/10;margin:0 auto}#portfolio .case:hover .plate{translate:none}}
+
+/* skincare references: expanding brand panels */
 .refs{grid-column:1/-1;border:0;padding:0;margin-top:1.2rem}
 .refs>.mono{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;border-top:1px solid var(--ln)}
-.rfg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.2rem}
-.refs .rf{display:block;border:1px solid var(--ln);border-radius:8px;overflow:hidden;transition:transform .5s var(--ease),border-color .3s}
-.refs .rf:hover{transform:translateY(-8px) rotate(-.6deg);border-color:var(--c)}
-.rf .ch{padding:.5rem .7rem;display:flex;gap:.3rem;border-bottom:1px solid var(--ln);background:var(--bg2)}
-.rf .ch i{width:6px;height:6px;border-radius:50%;background:var(--ln)}
-.rf .sc{aspect-ratio:16/10;position:relative;overflow:hidden;display:grid;place-items:center}
-.rf .wm{font:italic 500 clamp(1.3rem,2.4vw,2rem)/1 var(--serif);letter-spacing:-.02em;position:relative;z-index:1}
-.rf .sc::before,.rf .sc::after{content:'';position:absolute;left:10%;height:6%;border-radius:4px;background:currentColor;opacity:.16}
-.rf .sc::before{top:14%;width:36%}.rf .sc::after{bottom:14%;width:56%;box-shadow:0 -22px 0 currentColor}
-.rf .sc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;z-index:2;transition:transform .6s var(--ease)}
-.rf:hover .sc img{transform:scale(1.05)}
-.rf .sc.has .wm,.rf .sc.has::before,.rf .sc.has::after{display:none}
-.rf .rb{padding:.9rem 1rem;font-size:.85rem}
-.rf .rb b{font:600 1rem var(--serif);color:var(--tx);display:flex;justify-content:space-between;align-items:baseline}
-.rf .rb b i{font-style:normal;color:var(--c);transition:transform .4s var(--ease)}
-.rf:hover .rb b i{transform:translate(4px,-4px)}
-.rf .rb .mono{display:block;margin-top:.5rem}
-@media(max-width:900px){.rfg{grid-template-columns:1fr 1fr}}
+.rfg{display:flex;gap:.7rem;height:clamp(300px,34vw,400px);margin-top:1.2rem}
+.refs .rf{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem;border-radius:14px;overflow:hidden;background:var(--tb);color:var(--tf);transition:flex .7s var(--ease),transform .5s var(--ease)}
+.refs .rf:hover,.refs .rf:focus-visible{flex:2.8}
+.refs .rf::after{content:'';position:absolute;right:-30%;top:-22%;width:90%;aspect-ratio:1;border-radius:50%;background:var(--c);opacity:.3;transition:transform .9s var(--ease);pointer-events:none}
+.refs .rf:hover::after{transform:scale(1.35)}
+.rf>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;z-index:0;transition:transform .8s var(--ease)}
+.rf:hover>img{transform:scale(1.05)}
+.rf.has{color:#fff}.rf.has::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 40%,rgba(0,0,0,.7))}.rf.has::after{display:none}
+.rf .rt,.rf .rbm{position:relative;z-index:2}
+.rf .rt{display:flex;justify-content:space-between;align-items:flex-start}
+.rf .rt .mono{color:inherit;opacity:.65}
+.rf .ar{width:34px;height:34px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;transition:transform .5s var(--ease),background .3s,color .3s}
+.rf:hover .ar{transform:rotate(-45deg);background:var(--tf);color:var(--tb)}
+.rf.has:hover .ar{background:#fff;color:#111}
+.rf .wm{display:block;font:italic 400 clamp(1.3rem,2.3vw,2.2rem)/1 var(--serif);letter-spacing:-.02em}
+.rf .rd{max-height:0;opacity:0;overflow:hidden;font-size:.88rem;line-height:1.45;transition:max-height .6s var(--ease),opacity .5s,margin .5s}
+.rf:hover .rd,.rf:focus-visible .rd{max-height:7rem;opacity:1;margin-top:.6rem}
+.rf .rd .mono{display:block;margin-top:.5rem;color:inherit;opacity:.65}
+@media(max-width:820px){.rfg{display:grid;grid-template-columns:1fr 1fr;height:auto}.refs .rf{min-height:190px}.refs .rf:hover{flex:none}.rf .rd{max-height:7rem;opacity:1;margin-top:.5rem}}
 @media(max-width:520px){.rfg{grid-template-columns:1fr}}
 
 .nm{position:relative;padding:.6rem 1rem .4rem}
@@ -423,41 +476,29 @@ footer{margin-top:0}
 <section class="pg" id="portfolio"><div class="w">
   <div class="sh rv"><div><span class="mono">01 — Selected work</span><h2>Things I’ve <em>designed,</em><br>built &amp; broken on purpose.</h2></div><button class="btn" data-open data-mag>View all works ↗</button></div>
 
-  <article class="case rv">
-    <div class="plate"><span class="tag mono">Capstone · 2025</span><img src="assets/rms-preview.jpg" alt="RM Distribution wholesale website" onerror="this.remove()">
+  <div class="stk"><article class="case rv">
+    <div class="plate"><img src="assets/rms-preview.jpg" alt="RM Distribution wholesale website" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#293462"/><g fill="#1CD6CE" opacity=".85"><rect x="120" y="290" width="46" height="120"/><rect x="200" y="240" width="46" height="170"/><rect x="280" y="270" width="46" height="140"/><rect x="360" y="190" width="46" height="220"/><rect x="440" y="220" width="46" height="190"/></g><g fill="#D61C4E" opacity=".9"><rect x="520" y="150" width="46" height="260"/><rect x="600" y="110" width="46" height="300"/></g><polyline points="140,280 220,230 300,255 380,175 460,200 540,130 620,90" fill="none" stroke="#FEDB39" stroke-width="3" stroke-dasharray="8 8"/><circle cx="620" cy="90" r="8" fill="#FEDB39"/></svg></div>
-    <div class="info"><div class="no">01</div><span class="mono">UI/UX · QA · Tech writing</span><h3>RM’S Inventory</h3>
-      <p>AI-assisted inventory &amp; e-commerce system with real-time demand forecasting, built for a live retail client, REMHART.</p>
-      <div class="stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI</span></div>
-      <div class="acts"><button class="more" onclick="openDoc('assets/rms-capstone.pdf','RM’S — Capstone Project','186 pages · Full capstone documentation')">Capstone PDF · 186 pp ↗</button></div></div>
+    <div class="info"><div class="no">01</div><span class="tag mono">Capstone · 2025</span><div class="tx"><span class="mono">UI/UX · QA · Tech writing</span><h3>RM’S Inventory</h3><p>AI-assisted inventory &amp; e-commerce system with real-time demand forecasting, built for a live retail client, REMHART.</p></div><div class="mt"><div class="stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI</span></div><div class="acts"><button class="more" onclick="openDoc('assets/rms-capstone.pdf','RM’S — Capstone Project','186 pages · Full capstone documentation')">Capstone PDF · 186 pp ↗</button></div></div></div>
     <div class="story" id="s1"><div><ul><li><b>Problem</b>Stock, sales and orders tracked by hand, with no way to see a stock-out coming.</li><li><b>Approach</b>Gathered requirements with the client, then wireframes and schema before any code.</li><li><b>Outcome</b>A working system with a dashboard non-technical staff can read, tested before handoff.</li></ul></div></div>
   </article>
 
-  <article class="case r rv">
-    <div class="plate"><span class="tag mono">Solo build · 2026</span><img src="assets/dailydrive-preview.png" alt="DailyDrive dashboard" onerror="this.remove()">
+  <article class="case rv">
+    <div class="plate"><img src="assets/dailydrive-preview.png" alt="DailyDrive dashboard" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#0D1226"/><g fill="none" stroke="#EFEBE3" stroke-opacity=".25" stroke-width="2"><rect x="110" y="110" width="360" height="60" rx="30"/><rect x="110" y="200" width="360" height="60" rx="30"/><rect x="110" y="290" width="360" height="60" rx="30"/></g><circle cx="140" cy="140" r="16" fill="#1CD6CE"/><circle cx="140" cy="230" r="16" fill="#1CD6CE"/><circle cx="140" cy="320" r="16" fill="none" stroke="#FEDB39" stroke-width="3"/><circle cx="600" cy="250" r="110" fill="none" stroke="#293462" stroke-width="22"/><path d="M600 140a110 110 0 1 1-104 146" fill="none" stroke="#D61C4E" stroke-width="22" stroke-linecap="round"/><text x="600" y="262" text-anchor="middle" fill="#EFEBE3" font-family="serif" font-size="46" font-style="italic">72%</text></svg></div>
-    <div class="info"><div class="no">02</div><span class="mono">Full-stack · Solo</span><h3>DailyDrive</h3>
-      <p>A task platform with dashboards, subtasks, recurring tasks, gamification and cron-driven reminders. Documented with a 21-page manual.</p>
-      <div class="stack"><span>Node.js</span><span>Express</span><span>MySQL</span><span>Chart.js</span></div>
-      <div class="acts"><button class="more" onclick="openDoc('assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User &amp; Admin guide')">User manual · 21 pp ↗</button></div></div>
+    <div class="info"><div class="no">02</div><span class="tag mono">Solo build · 2026</span><div class="tx"><span class="mono">Full-stack · Solo</span><h3>DailyDrive</h3><p>A task platform with dashboards, subtasks, recurring tasks, gamification and cron-driven reminders. Documented with a 21-page manual.</p></div><div class="mt"><div class="stack"><span>Node.js</span><span>Express</span><span>MySQL</span><span>Chart.js</span></div><div class="acts"><button class="more" onclick="openDoc('assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User &amp; Admin guide')">User manual · 21 pp ↗</button></div></div></div>
     <div class="story" id="s2"><div><ul><li><b>Problem</b>Task apps were either too thin for real workloads or too heavy to stick with.</li><li><b>Approach</b>Wireframed both dashboards first, then built end-to-end using my own daily load as the test bed.</li><li><b>Outcome</b>Shipped and in daily use, with dark/light mode designed in from the start.</li></ul></div></div>
   </article>
 
   <article class="case rv">
-    <div class="plate"><span class="tag mono">Application dev · 2024</span><img src="assets/safepath-preview.jpg" alt="SafePath admin dashboard and mobile app" onerror="this.remove()">
+    <div class="plate"><img src="assets/safepath-preview.jpg" alt="SafePath admin dashboard and mobile app" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#D61C4E"/><g fill="none" stroke="#fff" stroke-opacity=".3"><circle cx="400" cy="250" r="200"/><circle cx="400" cy="250" r="150"/><circle cx="400" cy="250" r="100"/></g><path d="M400 130l90 30v70c0 60-40 100-90 120-50-20-90-60-90-120v-70z" fill="#0A0E1D"/><path d="M360 245l30 30 55-65" fill="none" stroke="#FEDB39" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="info"><div class="no">03</div><span class="mono">UI/UX · QA · Documentation</span><h3>SafePath</h3>
-      <p>A confidential bullying-report platform with AI text classification that flags concerning reports for staff review.</p>
-      <div class="stack"><span>Express.js</span><span>TensorFlow</span><span>Bootstrap</span><span>MySQL</span></div>
-      <div class="acts"><button class="more" onclick="openLb(2)">View interface ↗</button><a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a></div></div>
+    <div class="info"><div class="no">03</div><span class="tag mono">Application dev · 2024</span><div class="tx"><span class="mono">UI/UX · QA · Documentation</span><h3>SafePath</h3><p>A confidential bullying-report platform with AI text classification that flags concerning reports for staff review.</p></div><div class="mt"><div class="stack"><span>Express.js</span><span>TensorFlow</span><span>Bootstrap</span><span>MySQL</span></div><div class="acts"><button class="more" onclick="openLb(2)">View interface ↗</button><a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a></div></div></div>
     <div class="story" id="s3"><div><ul><li><b>Problem</b>Students under-report bullying because they fear being identified.</li><li><b>Approach</b>A calm, neutral interface, since tone matters when the user already feels exposed.</li><li><b>Outcome</b>A shipped reporting flow that helps staff respond without exposing the student.</li></ul></div></div>
-  </article>
+  </article></div>
 
 
-  <div class="mono rv" style="margin-bottom:1.2rem;border-top:1px solid var(--ln);padding-top:2rem">Also — website concepts designed in Canva</div>
   <div class="concepts rv" style="border:0;padding-top:0">
-    <div class="mock" role="button" tabindex="0" style="cursor:pointer" onclick="openMockup('assets/mockup-bloom.jpg','BLOOM — Flower Delivery Website','E-commerce concept · Seasonal flower delivery brand')"><div class="ch"><i></i><i></i><i></i></div><div class="sc" style="background:linear-gradient(135deg,#f08aa4,#f6c28b)"><i></i><img src="assets/mockup-bloom-thumb.jpg" alt="BLOOM flower delivery website UI mockup" loading="lazy" onload="this.parentNode.classList.add('has')" onerror="this.remove()"></div><p><b>BLOOM</b>Flower delivery — warm palette &amp; gifting flow.</p></div>
-    <div class="mock" role="button" tabindex="0" style="cursor:pointer" onclick="openMockup('assets/mockup-skincare.jpg','LUMA SKIN — Skincare Website','E-commerce concept · Responsive on desktop, tablet and mobile')"><div class="ch"><i></i><i></i><i></i></div><div class="sc" style="background:#e6ded4"><i></i><img style="object-fit:contain;object-position:center" src="assets/mockup-skincare-thumb.jpg" alt="LUMA SKIN skincare website mockup on desktop, tablet and mobile" loading="lazy" onload="this.parentNode.classList.add('has')" onerror="this.remove()"></div><p><b>Skincare Product Website</b>LUMA SKIN — skincare e-commerce concept.</p></div>
     <div class="refs"></div>
   </div>
   <div class="rv" style="margin-top:2.5rem;text-align:center"><button class="btn f" data-open data-mag>Explore every project &amp; concept ↗</button></div>
@@ -526,7 +567,7 @@ footer{margin-top:0}
 <div class="xm" id="dm" role="dialog" aria-modal="true" aria-label="Document"><div class="xh"><div><h3 id="dmt"></h3><span class="mono" id="dmm"></span></div><div class="xt"><a class="ic" id="dmo" href="#" target="_blank" rel="noopener">Open in tab</a><a class="ic" id="dmd" href="#" download>Download</a><button class="ic" onclick="closeDoc()" aria-label="Close">✕</button></div></div><div class="xb"><iframe id="dmf" title="Document preview"></iframe></div></div>
 <div class="xm" id="mv" role="dialog" aria-modal="true" aria-label="Mockup viewer"><div class="xh"><div><h3 id="mvt"></h3><span class="mono" id="mvm"></span></div><div class="xt"><button class="ic" onclick="mvSet(mvW/1.2)" aria-label="Zoom out">−</button><button class="ic" onclick="mvSet(mvW*1.2)" aria-label="Zoom in">+</button><button class="ic" onclick="mvSet(mvFit())">Fit</button><button class="ic" onclick="mvSet(mvN)">1:1</button><button class="ic" onclick="closeMockup()" aria-label="Close">✕</button></div></div><div class="xb" id="mvb"><img id="mvi" alt=""></div></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Project preview"><button class="ic" id="lbx" aria-label="Close preview" style="position:absolute;top:1rem;right:1.2rem">✕</button><div class="lbi" id="lbi"></div></div>
-<div class="md" id="md" role="dialog" aria-modal="true" aria-label="All works"><button class="ic mx" id="mx" aria-label="Close">✕</button><div class="w"><span class="mono">The full archive</span><h2 style="margin-top:.6rem">Every project, <em>no edits.</em></h2><div class="tabs"><button class="on" data-tab="p">Projects · 7</button><button data-tab="c">Website concepts · 2</button><button data-tab="l">Logo designs · 5</button></div><ul class="wl" id="wl"></ul><div class="concepts" id="cn" hidden></div><div class="lgg" id="lg" hidden></div></div></div>
+<div class="md" id="md" role="dialog" aria-modal="true" aria-label="All works"><button class="ic mx" id="mx" aria-label="Close">✕</button><div class="w"><span class="mono">The full archive</span><h2 style="margin-top:.6rem">Every project, <em>no edits.</em></h2><div class="tabs"><button class="on" data-tab="p">Projects · 7</button><button data-tab="c">Website concepts · 6</button><button data-tab="l">Logo designs · 5</button></div><ul class="wl" id="wl"></ul><div class="concepts" id="cn" hidden></div><div class="lgg" id="lg" hidden></div></div></div>
 <footer><div class="w mono"><span>© <span id="yr"></span> Gwen M. Basconcillo</span><a href="#top">Back to top ↑</a></div></footer>
 
 <script>
@@ -545,8 +586,6 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 $$('.rv').forEach(el=>io.observe(el));
 const pio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const p=e.target.querySelector('.plate');p&&p.classList.add('in');pio.unobserve(e.target)}}),{threshold:.12});
 $$('.case').forEach(c=>pio.observe(c));
-// keep the category tag off the screenshots
-$$('.case').forEach(c=>{const t=c.querySelector('.plate .tag'),n=c.querySelector('.info .no');if(t&&n){t.classList.add('ptag');n.after(t)}});
 // stories live in the modal only
 const STORY=$$('.case .story').map(e=>e.querySelector('ul').outerHTML);$$('.case .story').forEach(e=>e.remove());STORY[3]='<ul><li><b>Problem</b>The team had a flowchart but nothing visual to review with stakeholders.</li><li><b>Approach</b>Built clickable prototypes from the flowchart and iterated with the dev team.</li><li><b>Outcome</b>A clean handoff: designs that were already checked for buildability.</li></ul>';
 $$('.case .plate').forEach((p,i)=>{p.setAttribute('role','button');p.tabIndex=0;p.setAttribute('aria-label','Preview project '+(i+1));p.onclick=()=>openLb(i);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
@@ -592,7 +631,6 @@ $$('.pipe span:not(.ar),.logo>span:last-child').forEach(e=>e.addEventListener('p
 (function(){const tk=$('.tick');let ly=scrollY,to;addEventListener('scroll',()=>{if(rm)return;const v=scrollY-ly;ly=scrollY;tk.style.transform=`skewX(${Math.max(-9,Math.min(9,-v*.2))}deg)`;clearTimeout(to);to=setTimeout(()=>tk.style.transform='',120)},{passive:true})})();
 // modal
 const P=[['RM’S Inventory — Capstone','2025','Technical writer · QA · Prototyping','AI-integrated inventory & e-commerce with demand forecasting, for REMHART.','PHP · JavaScript · MySQL','Shipped'],['DailyDrive','2026','Solo developer','Task platform with dashboards, subtasks, gamification and cron reminders.','Node.js · Express · MySQL','Shipped'],['SafePath','2024','UI/UX · QA · Docs','Confidential bullying-report system with AI flagging for staff review.','Express · TensorFlow · Bootstrap · MySQL','Shipped'],['Attendance Monitoring','2025','Prototyping · UI','Mockups and prototypes translated into working Vue.js interfaces.','Vue.js · Node.js · MySQL','Professional'],['MinSU Event Venue Scheduling','2023','Developer','Role-based venue booking with conflict checks against double-booking.','HTML · PHP · MySQL','Academic'],['SLITES Smart Lighting','2024','IoT developer','Automated lighting with LDR & PIR sensors on Orange Pi, plus a live dashboard.','Orange Pi · Python · MySQL','Prototype'],['Panchitan ni Unchang — Lavalust','2024','Web developer','Eatery e-commerce on the Lavalust PHP framework with FAQs, support and order history.','Lavalust · PHP · MySQL','Shipped']];
-$('#wl').innerHTML=P.map((p,i)=>`<li class="wr" style="--i:${i};--c:var(${['--d','--b','--t'][i%3]})"><span class="mono">${String(i+1).padStart(2,'0')}</span><div><h3>${p[0]}</h3><p class="mono" style="margin:.2rem 0 .5rem">${p[2]} · ${p[1]}</p><p>${p[3]}</p><div class="stack">${p[4].split(' · ').map(x=>`<span>${x}</span>`).join('')}</div></div><span class="st mono">${p[5]}</span></li>`).join('');
 
 // skincare reference cards: one per site, links open in a new tab
 const RF=[
@@ -602,10 +640,9 @@ const RF=[
  ['ritual.com','Ritual','Transparent, minimal supplements.','#FFD84D','#1B1B1B','#1B1B1B'],
  ['olly.com','Olly','Playful, colorful wellness brand.','#FF8FAE','#3B1030','#FF8FAE'],
  ['moonjuice.com','Moon Juice','Moody, adaptogen-led wellness.','#2B2A4C','#E9E3FF','#B9A6FF']];
-const REFS='<span class="mono"><span>Skincare references</span><span>6 sites · opens in new tab</span></span><div class="rfg">'+RF.map(([d,n,t,bg,fg,c])=>`<a class="rf" style="--c:${c}" href="https://${d}" target="_blank" rel="noopener" aria-label="${n} — ${d}"><div class="ch"><i></i><i></i><i></i></div><div class="sc" style="background:${bg};color:${fg}"><span class="wm">${n}</span><img src="assets/ref-${d.split('.')[0]}.png" alt="${n} website" loading="lazy" onload="this.parentNode.classList.add('has')" onerror="this.remove()"></div><div class="rb"><b>${n}<i>↗</i></b>${t}<span class="mono">${d}</span></div></a>`).join('')+'</div>';
+const REFS='<span class="mono"><span>Skincare references</span><span>6 sites · opens in new tab</span></span><div class="rfg">'+RF.map(([d,n,t,bg,fg,c],i)=>`<a class="rf" style="--tb:${bg};--tf:${fg};--c:${c}" href="https://${d}" target="_blank" rel="noopener" aria-label="${n} — ${d}"><img src="assets/ref-${d.split('.')[0]}.jpg" alt="${n} website" loading="lazy" onload="this.parentNode.classList.add('has')" onerror="this.remove()"><div class="rt"><span class="mono">${String(i+1).padStart(2,'0')}</span><span class="ar">↗</span></div><div class="rbm"><span class="wm">${n}</span><div class="rd">${t}<span class="mono">${d}</span></div></div></a>`).join('')+'</div>';
 
-const MOCKS=[['BLOOM','Flower delivery — warm palette & gifting flow.','#f08aa4,#f6c28b','assets/mockup-bloom-thumb.jpg','assets/mockup-bloom.jpg','BLOOM — Flower Delivery Website','E-commerce concept · Seasonal flower delivery brand'],['Skincare Product Website','LUMA SKIN — skincare e-commerce concept.','#e6ded4,#e6ded4','assets/mockup-skincare-thumb.jpg','assets/mockup-skincare.jpg','LUMA SKIN — Skincare Website','E-commerce concept · Responsive on desktop, tablet and mobile']];
-$('#cn').innerHTML=MOCKS.map(c=>`<div class="mock"${c[4]?` role="button" tabindex="0" style="cursor:pointer" onclick="openMockup('${c[4]}','${c[5]}','${c[6]}')"`:''}><div class="ch"><i></i><i></i><i></i></div><div class="sc" style="background:linear-gradient(135deg,${c[2]})"><i></i>${c[3]?`<img src="${c[3]}" alt="${c[0]}"${c[4].includes('skincare')?' style="object-fit:contain;object-position:center"':''} loading="lazy" onload="this.parentNode.classList.add('has')" onerror="this.remove()">`:''}</div><p><b>${c[0]}</b>${c[1]}</p></div>`).join('')+'<div class="refs"></div>';
+$('#cn').innerHTML='<div class="refs"></div>';
 $('#lg').innerHTML=[1,2,3,5,8].map(n=>`<button class="lgc" onclick="openLbImg('assets/logo-${n}.png','Logo Concept 0${n}')"><img src="assets/logo-${n}.png" alt="Logo design concept 0${n}" loading="lazy" onerror="this.removeAttribute('src')"><span class="mono">Logo Concept 0${n}</span></button>`).join('');
 $$('.refs').forEach(e=>e.innerHTML=REFS);
 $$('.sx').forEach(x=>{const t=()=>{const o=!x.classList.contains('open');$$('.sx').forEach(y=>{y.classList.remove('open');y.setAttribute('aria-expanded',false)});if(o){x.classList.add('open');x.setAttribute('aria-expanded',true)}};x.addEventListener('click',t);x.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}})});
@@ -645,7 +682,8 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()},true);
 const IMGS=['assets/rms-preview.jpg','assets/dailydrive-preview.png','assets/safepath-preview.jpg','assets/NSJBI.png','assets/Minsu.png','assets/Slites.png','assets/lavalust.jpg','assets/WIX.png','assets/mushroom.jpg','assets/meat.jpg','assets/BRAINSTER.png'];
 const DOC={0:['assets/rms-capstone.pdf','RM’S — Capstone Project','186 pages · Full capstone documentation'],1:['assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User & Admin guide']};
 const imgTag=i=>`<img class="pi" src="${IMGS[i]}" alt="${P[i][0]}" loading="lazy" onerror="this.remove()">`;
-$$('#wl .wr').forEach((r,i)=>{const n=r.firstElementChild;n.insertAdjacentHTML('afterend',`<div class="pv" role="button" tabindex="0" aria-label="Preview ${P[i][0]}">${ART[i]}${imgTag(i)}<span class="pz mono">Preview ↗</span></div>`);const pv=r.querySelector('.pv');pv.onclick=()=>openLb(i);pv.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
+const COL=['--d','--b','--t'];
+$('#wl').innerHTML=P.map((p,i)=>`<li class="wk s${i}" style="--i:${i};--c:var(${COL[i%3]})"><button class="wk-in" onclick="openLb(${i})" aria-label="Open ${p[0]}"><div class="wk-art">${ART[i]}${imgTag(i)}</div><div class="wk-top"><span class="wk-n">${String(i+1).padStart(2,'0')}</span><span class="st mono">${p[5]}</span></div><div class="wk-b"><h3>${p[0]}</h3><p class="mono">${p[2]} · ${p[1]}</p><div class="wk-x"><div><p>${p[3]}</p><div class="stack">${p[4].split(' · ').map(x=>`<span>${x}</span>`).join('')}</div></div></div></div></button></li>`).join('');
 
 // ── living name ──
 (function(){const nm=$('.name'),box=$('.nm'),cols=['--d','--b','--t'];let k=0;
