@@ -54,12 +54,12 @@ nav .w{display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .btn:hover{color:var(--bg)}.btn:hover::before{transform:translateY(0);border-radius:0}
 .btn.f{background:var(--d);border-color:var(--d);color:#fff}.btn.f::before{background:var(--tx)}
 /* hero */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 0 2.2rem;position:relative;overflow:hidden}
+.hero{height:100vh;height:100svh;min-height:32rem;display:flex;flex-direction:column;justify-content:flex-start;padding:4.8rem 0 0;position:relative;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none;animation:dr 18s ease-in-out infinite}
 .o1{width:38vw;height:38vw;background:var(--navy);top:-8%;left:-6%}.o2{width:26vw;height:26vw;background:var(--d);top:8%;right:4%;opacity:.28;animation-delay:-6s}.o3{width:20vw;height:20vw;background:var(--b);bottom:10%;left:42%;opacity:.16;animation-delay:-11s}
 @keyframes dr{50%{transform:translate(6%,8%) scale(1.15)}}
-.hero .w{position:relative;z-index:1;width:100%}
-.hero-top{display:flex;justify-content:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.hero .w{position:relative;z-index:1;width:100%;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(.6rem,2vh,1.4rem);padding-bottom:clamp(.6rem,2vh,1.2rem)}
+.hero-top{display:flex;justify-content:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:0}
 .live{display:flex;align-items:center;gap:.5rem}.live i{width:7px;height:7px;border-radius:50%;background:var(--b);animation:pu 2s infinite}
 @keyframes pu{50%{box-shadow:0 0 0 6px transparent;opacity:.4}0%{box-shadow:0 0 0 0 var(--b)}}
 .name{font-size:clamp(3.4rem,13.5vw,11.5rem);font-weight:300;line-height:.88;letter-spacing:-.045em}
@@ -68,14 +68,14 @@ nav .w{display:flex;align-items:center;justify-content:space-between;gap:1rem}
 .name .ln:nth-child(2){padding-left:clamp(0rem,8vw,7rem)}
 .name .ln:nth-child(2) span{animation-delay:.12s;font-style:italic}
 @keyframes up{to{transform:none}}
-.hero-bot{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:end;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--ln)}
-.pipe{font:italic 300 clamp(1.6rem,3.4vw,2.6rem)/1.15 var(--serif);color:var(--tx);display:flex;gap:.7rem;flex-wrap:wrap;align-items:baseline}
+.hero-bot{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:end;margin-top:0;padding-top:clamp(.7rem,2vh,1.5rem);border-top:1px solid var(--ln)}
+.pipe{font:italic 300 clamp(1.4rem,min(3.4vw,5vh),2.6rem)/1.15 var(--serif);color:var(--tx);display:flex;gap:.7rem;flex-wrap:wrap;align-items:baseline}
 .pipe span{transition:transform .4s var(--ease)}.pipe span:hover{transform:translateY(-4px)}
 .pipe .ar{font:400 1rem var(--mono);color:var(--tx3)}
 .hero-bot p{max-width:44ch}
-.hero-bot .row{display:flex;gap:.8rem;margin-top:1.2rem;flex-wrap:wrap}
+.hero-bot .row{display:flex;gap:.8rem;margin-top:clamp(.6rem,1.8vh,1.2rem);flex-wrap:wrap}
 @media(max-width:800px){.hero-bot{grid-template-columns:1fr}}
-.tick{overflow:hidden;border-block:1px solid var(--ln);margin-top:2rem;padding:.7rem 0;position:relative;z-index:1}
+.tick{flex:none;overflow:hidden;border-block:1px solid var(--ln);margin-top:0;padding:.7rem 0;position:relative;z-index:1}
 .tick div{display:flex;gap:2.5rem;width:max-content;animation:mq 30s linear infinite;white-space:nowrap}
 .tick:hover div{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -178,8 +178,8 @@ footer{border-top:1px solid var(--ln);padding:1.6rem 0;margin-top:3rem}footer .w
 .bp{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(color-mix(in srgb,var(--tx) 26%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--tx) 26%,transparent) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(circle 260px at var(--mx,72%) var(--my,30%),#000,transparent);mask-image:radial-gradient(circle 260px at var(--mx,72%) var(--my,30%),#000,transparent)}
 #code{color:var(--b);min-height:1.4em}
 .hero-main{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end}
-.hero-main .name{font-size:clamp(3rem,10.2vw,9.2rem)}
-.photo{position:relative;width:clamp(170px,22vw,290px);margin:0 1.5rem 0 0}
+.hero-main{flex:1;min-height:0;align-items:center}.hero-main .name{font-size:clamp(2.6rem,min(10.2vw,17vh),9.2rem)}
+.photo{position:relative;width:clamp(110px,min(22vw,27vh),290px);margin:0 1.5rem 0 0}
 .photo .fr{position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background:var(--bg2);transition:transform .3s;transform:perspective(900px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));animation:up3 1.2s var(--ease) .5s both}
 @keyframes up3{from{clip-path:inset(100% 0 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
 .photo img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05)}
@@ -190,7 +190,8 @@ footer{border-top:1px solid var(--ln);padding:1.6rem 0;margin-top:3rem}footer .w
 .chip{position:absolute;z-index:4;background:var(--bg);border:1px solid var(--c);color:var(--c);padding:.2rem .7rem;border-radius:99px;animation:fl 4s ease-in-out infinite}
 .c1{--c:var(--d);top:8%;left:-2.2rem}.c2{--c:var(--b);top:46%;right:-2.6rem;animation-delay:-1.3s}.c3{--c:var(--t);bottom:6%;left:-1.6rem;animation-delay:-2.6s}
 @keyframes fl{50%{transform:translateY(-9px)}}
-@media(max-width:800px){.hero-main{grid-template-columns:1fr}.photo{order:-1;width:150px;margin:0 0 1rem 1.5rem}}
+@media(max-width:800px){.hero-main{grid-template-columns:1fr;align-content:center;gap:.6rem}.photo{order:-1;width:clamp(84px,15vh,150px);margin:0 0 .4rem 1.2rem}.chip{display:none}.hero-main .name{font-size:clamp(2.8rem,min(17vw,11vh),5rem)}.hero-bot p{font-size:.92rem}.hero-bot .btn{padding:.6rem 1rem}}
+@media(max-height:620px){.hero-bot p{display:none}.hero-top{display:none}}
 .stamp{position:absolute;right:0;top:-4.6rem;border:2px solid var(--b);color:var(--b);padding:.4rem .9rem;border-radius:6px;transform:rotate(-8deg);opacity:0}
 .proc.in .stamp{animation:stp .6s var(--ease) 1s both}
 @keyframes stp{0%{transform:scale(2.2) rotate(-16deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(-8deg);opacity:1}}
@@ -392,7 +393,7 @@ footer{border-top:1px solid var(--ln);padding:1.6rem 0;margin-top:3rem}footer .w
   <div class="sh rv"><div><span class="mono">02 — Expertise</span><h2>One person, <em>the whole pipeline.</em></h2></div></div>
   <div class="caps rv">
     <div class="cap"><span class="mono d">Design</span><h3>UI/UX &amp; Brand</h3><p>Flows, wireframes, interactive prototypes, logos and mockups.</p><ul><li>Canva</li><li>Visual Paradigm</li><li>Picsart</li></ul></div>
-    <div class="cap"><span class="mono b">Build</span><h3>Front-end &amp; Full-stack</h3><p>Responsive interfaces and the systems behind them.</p><ul><li>HTML · CSS · JavaScript</li><li>Node.js · Express · PHP</li><li>Python · C# · Bootstrap</li><li>MySQL · Wix · Git</li></ul></div>
+    <div class="cap"><span class="mono b">Build</span><h3>Front-end &amp; Full-stack</h3><p>Responsive interfaces and the systems behind them.</p><ul><li>HTML · CSS · JavaScript</li><li>Node.js · Express · PHP</li><li>Python · C# · Bootstrap</li><li>MySQL · Wix · Shopify · Git</li></ul></div>
     <div class="cap"><span class="mono t">Test</span><h3>QA &amp; Documentation</h3><p>Reproducible bugs and docs the next person can actually use.</p><ul><li>Manual test case design</li><li>Bug reporting</li><li>Technical documentation</li></ul></div>
   </div>
   </div></section>
@@ -430,6 +431,9 @@ footer{border-top:1px solid var(--ln);padding:1.6rem 0;margin-top:3rem}footer .w
     <div class="tl">
       <article><span class="mono">2025 – 2026 · 1 year</span><h3>New San Jose Builders Inc.</h3><div class="rl">QA Analyst, Developer &amp; Technical Documentation</div>
         <ul><li>Built DailyDrive solo — time-tracking, admin dashboard, reporting.</li><li>Wrote and ran test cases and logged defects for the Ticketing, Employee Self-Service and HRM systems before deployment.</li><li>Joined sprint reviews and contributed internal documentation.</li></ul></article>
+      <article><span class="mono">2025 – 2026 · Freelance · Remote · 1 year</span><h3>Cyberbacker</h3><div class="rl">UI/UX Designer &amp; Front-end Developer</div>
+        <ul><li>Worked remotely as a freelancer, designing interfaces and building them out for client projects.</li></ul>
+        <div class="stack"><span>UI/UX</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Bootstrap</span><span>Shopify</span></div></article>
       <article><span class="mono">2022 – 2026</span><h3>Mindoro State University</h3><div class="rl">BS Information Technology</div><span class="badge">★ Dean’s Lister, AY 2023–2026</span></article>
     </div></div>
 </div></div></section>
