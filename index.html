@@ -300,6 +300,9 @@ footer{border-top:1px solid var(--ln);padding:1.6rem 0;margin-top:3rem}footer .w
 .cf label{display:grid;gap:.3rem;font:500 .68rem var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--tx3)}
 .cf input,.cf textarea{background:transparent;border:0;border-bottom:1px solid var(--ln);padding:.7rem 0;color:var(--tx);font:400 1rem var(--sans);outline:0;resize:vertical;transition:border-color .3s}.cf input:focus,.cf textarea:focus{border-color:var(--b)}
 .cf button{justify-self:start}.flogo{height:26px;width:auto;vertical-align:middle;margin-right:.6rem}
+.lbstory ul{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;list-style:none;margin:1.2rem 0 .4rem;padding-top:1.4rem;border-top:1px solid var(--ln)}
+.lbstory li b{display:block;font:500 .7rem var(--mono);text-transform:uppercase;color:var(--t);letter-spacing:.08em;margin-bottom:.4rem}
+@media(max-width:820px){.lbstory ul{grid-template-columns:1fr;gap:1rem}}
 .pvb{position:relative}.pv .pi,.pvb .pi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .8s var(--ease)}
 .pv .pi.doc,.pvb .pi.doc{inset:5%;width:auto;height:90%;left:50%;top:50%;right:auto;bottom:auto;max-width:62%;object-fit:contain;background:#fff;border-radius:3px;box-shadow:0 14px 30px rgba(0,0,0,.45);transform:translate(-50%,-50%)}
 .pv:hover .pi:not(.doc){transform:scale(1.08)}
@@ -337,42 +340,42 @@ footer{border-top:1px solid var(--ln);padding:1.6rem 0;margin-top:3rem}footer .w
   <div class="sh rv"><div><span class="mono">01 — Selected work</span><h2>Things I’ve <em>designed,</em><br>built &amp; broken on purpose.</h2></div><button class="btn" data-open data-mag>View all 11 works ↗</button></div>
 
   <article class="case rv">
-    <div class="plate doc" data-toggle="s1"><span class="tag mono">Capstone · 2025</span><img src="assets/rms-pdf-cover.png" alt="RM’S Inventory capstone document cover" onerror="this.remove()">
+    <div class="plate doc"><span class="tag mono">Capstone · 2025</span><img src="assets/rms-pdf-cover.png" alt="RM’S Inventory capstone document cover" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#293462"/><g fill="#1CD6CE" opacity=".85"><rect x="120" y="290" width="46" height="120"/><rect x="200" y="240" width="46" height="170"/><rect x="280" y="270" width="46" height="140"/><rect x="360" y="190" width="46" height="220"/><rect x="440" y="220" width="46" height="190"/></g><g fill="#D61C4E" opacity=".9"><rect x="520" y="150" width="46" height="260"/><rect x="600" y="110" width="46" height="300"/></g><polyline points="140,280 220,230 300,255 380,175 460,200 540,130 620,90" fill="none" stroke="#FEDB39" stroke-width="3" stroke-dasharray="8 8"/><circle cx="620" cy="90" r="8" fill="#FEDB39"/></svg></div>
     <div class="info"><div class="no">01</div><span class="mono">UI/UX · QA · Tech writing</span><h3>RM’S Inventory</h3>
       <p>AI-assisted inventory &amp; e-commerce system with real-time demand forecasting, built for a live retail client, REMHART.</p>
       <div class="stack"><span>PHP</span><span>JavaScript</span><span>MySQL</span><span>AI</span></div>
-      <button class="more" data-toggle="s1">Read the story <span>+</span></button><div class="acts"><button class="more" onclick="openDoc('assets/rms-capstone.pdf','RM’S — Capstone Project','186 pages · Full capstone documentation')">Capstone PDF · 186 pp ↗</button></div></div>
+      <div class="acts"><button class="more" onclick="openDoc('assets/rms-capstone.pdf','RM’S — Capstone Project','186 pages · Full capstone documentation')">Capstone PDF · 186 pp ↗</button></div></div>
     <div class="story" id="s1"><div><ul><li><b>Problem</b>Stock, sales and orders tracked by hand, with no way to see a stock-out coming.</li><li><b>Approach</b>Gathered requirements with the client, then wireframes and schema before any code.</li><li><b>Outcome</b>A working system with a dashboard non-technical staff can read, tested before handoff.</li></ul></div></div>
   </article>
 
   <article class="case r rv">
-    <div class="plate doc" data-toggle="s2"><span class="tag mono">Solo build · 2026</span><img src="assets/dailydrive-pdf-cover.jpg" alt="DailyDrive user manual cover page" onerror="this.remove()">
+    <div class="plate doc"><span class="tag mono">Solo build · 2026</span><img src="assets/dailydrive-pdf-cover.jpg" alt="DailyDrive user manual cover page" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#0D1226"/><g fill="none" stroke="#EFEBE3" stroke-opacity=".25" stroke-width="2"><rect x="110" y="110" width="360" height="60" rx="30"/><rect x="110" y="200" width="360" height="60" rx="30"/><rect x="110" y="290" width="360" height="60" rx="30"/></g><circle cx="140" cy="140" r="16" fill="#1CD6CE"/><circle cx="140" cy="230" r="16" fill="#1CD6CE"/><circle cx="140" cy="320" r="16" fill="none" stroke="#FEDB39" stroke-width="3"/><circle cx="600" cy="250" r="110" fill="none" stroke="#293462" stroke-width="22"/><path d="M600 140a110 110 0 1 1-104 146" fill="none" stroke="#D61C4E" stroke-width="22" stroke-linecap="round"/><text x="600" y="262" text-anchor="middle" fill="#EFEBE3" font-family="serif" font-size="46" font-style="italic">72%</text></svg></div>
     <div class="info"><div class="no">02</div><span class="mono">Full-stack · Solo</span><h3>DailyDrive</h3>
       <p>A task platform with dashboards, subtasks, recurring tasks, gamification and cron-driven reminders. Documented with a 21-page manual.</p>
       <div class="stack"><span>Node.js</span><span>Express</span><span>MySQL</span><span>Chart.js</span></div>
-      <button class="more" data-toggle="s2">Read the story <span>+</span></button><div class="acts"><button class="more" onclick="openDoc('assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User &amp; Admin guide')">User manual · 21 pp ↗</button></div></div>
+      <div class="acts"><button class="more" onclick="openDoc('assets/dailydrive-manual.pdf','DailyDrive — User Manual','21 pages · User &amp; Admin guide')">User manual · 21 pp ↗</button></div></div>
     <div class="story" id="s2"><div><ul><li><b>Problem</b>Task apps were either too thin for real workloads or too heavy to stick with.</li><li><b>Approach</b>Wireframed both dashboards first, then built end-to-end using my own daily load as the test bed.</li><li><b>Outcome</b>Shipped and in daily use, with dark/light mode designed in from the start.</li></ul></div></div>
   </article>
 
   <article class="case rv">
-    <div class="plate" data-toggle="s3"><span class="tag mono">Application dev · 2024</span><img src="assets/SafepathUI.png" alt="SafePath confidential reporting interface" onerror="this.remove()">
+    <div class="plate"><span class="tag mono">Application dev · 2024</span><img src="assets/SafepathUI.png" alt="SafePath confidential reporting interface" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#D61C4E"/><g fill="none" stroke="#fff" stroke-opacity=".3"><circle cx="400" cy="250" r="200"/><circle cx="400" cy="250" r="150"/><circle cx="400" cy="250" r="100"/></g><path d="M400 130l90 30v70c0 60-40 100-90 120-50-20-90-60-90-120v-70z" fill="#0A0E1D"/><path d="M360 245l30 30 55-65" fill="none" stroke="#FEDB39" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <div class="info"><div class="no">03</div><span class="mono">UI/UX · QA · Documentation</span><h3>SafePath</h3>
       <p>A confidential bullying-report platform with AI text classification that flags concerning reports for staff review.</p>
       <div class="stack"><span>Express.js</span><span>TensorFlow</span><span>Bootstrap</span><span>MySQL</span></div>
-      <button class="more" data-toggle="s3">Read the story <span>+</span></button><div class="acts"><button class="more" onclick="openLbImg('assets/SafepathUI.png','SafePath — Bullying Complaint System')">View interface ↗</button><a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a></div></div>
+      <div class="acts"><button class="more" onclick="openLb(2)">View interface ↗</button><a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a></div></div>
     <div class="story" id="s3"><div><ul><li><b>Problem</b>Students under-report bullying because they fear being identified.</li><li><b>Approach</b>A calm, neutral interface, since tone matters when the user already feels exposed.</li><li><b>Outcome</b>A shipped reporting flow that helps staff respond without exposing the student.</li></ul></div></div>
   </article>
 
   <article class="case r rv">
-    <div class="plate" data-toggle="s4"><span class="tag mono">Professional · 2025</span><img src="assets/NSJBI.png" alt="Attendance Monitoring System interface" onerror="this.remove()">
+    <div class="plate"><span class="tag mono">Professional · 2025</span><img src="assets/NSJBI.png" alt="Attendance Monitoring System interface" onerror="this.remove()">
       <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><rect width="800" height="500" fill="#10162B"/><rect x="120" y="90" width="560" height="60" rx="10" fill="#1CD6CE" fill-opacity=".9"/><g fill="#EFEBE3" fill-opacity=".18"><rect x="120" y="180" width="130" height="60" rx="8"/><rect x="270" y="180" width="130" height="60" rx="8"/><rect x="420" y="180" width="130" height="60" rx="8"/><rect x="570" y="180" width="110" height="60" rx="8"/><rect x="120" y="260" width="130" height="60" rx="8"/><rect x="420" y="260" width="130" height="60" rx="8"/><rect x="120" y="340" width="130" height="60" rx="8"/><rect x="270" y="340" width="130" height="60" rx="8"/></g><g fill="#FEDB39"><rect x="270" y="260" width="130" height="60" rx="8"/><rect x="570" y="260" width="110" height="60" rx="8"/><rect x="420" y="340" width="130" height="60" rx="8"/></g></svg></div>
     <div class="info"><div class="no">04</div><span class="mono">Prototyping · UI</span><h3>Attendance Monitoring</h3>
       <p>UI mockups and interactive prototypes for a company attendance system, handed to developers as working Vue.js interfaces.</p>
       <div class="stack"><span>Vue.js</span><span>Node.js</span><span>MySQL</span></div>
-      <button class="more" data-toggle="s4">Read the story <span>+</span></button><div class="acts"><button class="more" onclick="openLbImg('assets/NSJBI.png','Attendance Monitoring System')">View interface ↗</button></div></div>
+      <div class="acts"><button class="more" onclick="openLb(3)">View interface ↗</button></div></div>
     <div class="story" id="s4"><div><ul><li><b>Problem</b>The team had a flowchart but nothing visual to review with stakeholders.</li><li><b>Approach</b>Built clickable prototypes from the flowchart and iterated with the dev team.</li><li><b>Outcome</b>A clean handoff: designs that were already checked for buildability.</li></ul></div></div>
   </article>
 
@@ -460,8 +463,9 @@ $('#theme').onclick=()=>{const cur=root.dataset.theme||(matchMedia('(prefers-col
 // reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.id==='proc')e.target.style.setProperty('--p','100%');io.unobserve(e.target)}}),{threshold:.12});
 $$('.rv,.plate').forEach(el=>io.observe(el));
-// story toggles
-$$('[data-toggle]').forEach(el=>el.addEventListener('click',()=>{const s=document.getElementById(el.dataset.toggle);const o=s.classList.toggle('open');const b=s.previousElementSibling.querySelector('.more span');if(b)b.textContent=o?'−':'+'}));
+// stories live in the modal only
+const STORY=$$('.case .story').map(e=>e.querySelector('ul').outerHTML);$$('.case .story').forEach(e=>e.remove());
+$$('.case .plate').forEach((p,i)=>{p.setAttribute('role','button');p.tabIndex=0;p.setAttribute('aria-label','Preview project '+(i+1));p.onclick=()=>openLb(i);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(i)}}});
 // scroll: progress, nav, parallax, active link
 const secs=$$('#work,#about,#credentials,#capabilities,#contact'),links=$$('#links a');
 let tick=false;
@@ -540,7 +544,7 @@ const ART=[plates[0],plates[1],plates[2],plates[3],
  W(R(0,0,800,500,'#293462',0)+R(170,90,460,320,'#D61C4E',14,.75)+'<rect x="170" y="90" width="460" height="320" rx="14" fill="none" stroke="#1CD6CE" stroke-width="5" stroke-dasharray="14 10"/>'+R(170,50,190,40,'#1CD6CE',6)+'<text x="190" y="78" font-family="monospace" font-size="22" fill="#0A0E1D">FRESH 94%</text><circle cx="400" cy="250" r="80" fill="#FEDB39" fill-opacity=".55"/>'),
  W(R(0,0,800,500,'#0A0E1D',0)+[...Array(12)].map((_,i)=>R(110+i%4*140,80+(i/4|0)*120,126,106,['#D61C4E','#1CD6CE','#FEDB39','#293462'][(i*5)%4],10,i===6?0:.9)).join(''))];
 const lb=$('#lb');
-function openLb(i){const p=P[i],d=DOC[i];$('#lbi').innerHTML=`<div class="big2 pvb">${ART[i]}${imgTag(i)}</div><h3>${p[0]}</h3><p class="mono" style="margin-bottom:.8rem">${p[2]} · ${p[1]} · ${p[5]}</p><p style="max-width:60ch">${p[3]}</p><div class="stack">${p[4].split(' · ').map(x=>`<span>${x}</span>`).join('')}</div><div class="acts">${d?`<button class="more" onclick="openDoc('${d[0]}','${d[1]}','${d[2]}')">Open PDF ↗</button>`:''}${i===2?'<a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a>':''}</div>`;lb.classList.add('open');setTimeout(()=>$('#lbx').focus(),50)}
+function openLb(i){const p=P[i],d=DOC[i];$('#lbi').innerHTML=`<div class="big2 pvb">${ART[i]}${imgTag(i)}</div><h3>${p[0]}</h3><p class="mono" style="margin-bottom:.8rem">${p[2]} · ${p[1]} · ${p[5]}</p><p style="max-width:60ch">${p[3]}</p><div class="stack">${p[4].split(' · ').map(x=>`<span>${x}</span>`).join('')}</div>${STORY[i]?`<div class="lbstory">${STORY[i]}</div>`:''}<div class="acts">${d?`<button class="more" onclick="openDoc('${d[0]}','${d[1]}','${d[2]}')">Open PDF ↗</button>`:''}${i===2?'<a class="more" href="https://github.com/oncepebrero/SafePath" target="_blank" rel="noopener">Repository ↗</a>':''}</div>`;lb.classList.add('open');setTimeout(()=>$('#lbx').focus(),50)}
 function openLbImg(src,cap){$('#lbi').innerHTML=`<div class="big2"><img src="${src}" alt="${cap}" style="width:100%;height:100%;object-fit:contain;background:var(--bg2)"></div><h3>${cap}</h3>`;lb.classList.add('open');setTimeout(()=>$('#lbx').focus(),50)}
 function closeLb(){lb.classList.remove('open')}
 $('#lbx').onclick=closeLb;lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
