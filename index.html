@@ -444,6 +444,102 @@ footer{margin-top:0}
 @media(max-width:820px){.cap{padding-right:0}.sh .btn{align-self:flex-start}}
 @media(max-width:480px){.btn{padding:.8rem 1.2rem}.soc{gap:.5rem}.tabs{flex-wrap:wrap}.wr{gap:.9rem}}
 @media(max-width:380px){.logo>span:last-child{font-size:.92rem}.hero-bot .row{gap:.6rem}.name .ln:nth-child(2){padding-left:1rem}}
+
+/* ── redesign: hero · credentials · services · about · contact ── */
+.hero-top{justify-content:space-between;align-items:center}
+.avail{display:inline-flex;gap:.5rem;align-items:center;border:1px solid var(--ln);border-radius:99px;padding:.3rem .8rem;color:var(--tx)}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--b);animation:pu 2s infinite}
+.hero-main{display:grid;place-items:center;text-align:center}
+.hero-main>.nm,.hero-main>.photo{grid-area:1/1}
+.hero-main .nm{position:relative;z-index:2;padding:0}
+.hero-main .name{font-size:clamp(3rem,min(15vw,25vh),12rem)}
+.hero-main .name .ln:nth-child(2){padding-left:0}
+.photo{width:clamp(140px,min(22vw,34vh),330px);margin:0;z-index:1;order:0}
+.photo .fr{aspect-ratio:3/4.3;border-radius:999px 999px 10px 10px}
+.hero-bot{grid-template-columns:1fr 1.2fr 1fr;align-items:center}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem 1.4rem}
+.stats dt{font:300 clamp(1.6rem,3vw,2.4rem)/1 var(--serif);color:var(--tx)}
+.stats dd{font:500 .66rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--tx3)}
+@media(max-width:1000px){.hero-bot{grid-template-columns:1fr 1fr}.stats{grid-column:1/-1;grid-template-columns:repeat(4,1fr)}}
+@media(max-width:800px){.hero-bot{grid-template-columns:1fr}.hero-main{align-content:center}.photo{width:clamp(110px,20vh,190px)}.hero-main .name{font-size:clamp(2.8rem,min(17vw,14vh),5rem)}}
+@media(max-height:620px){.stats{display:none}}
+/* credentials */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:0 clamp(1.2rem,4vw,2.5rem);max-width:1200px;margin:0 auto}
+.cgrid .cert{width:auto;min-height:240px;border-radius:14px;position:relative}
+.cgrid .cert:first-child{grid-column:span 2;grid-row:span 2;min-height:500px}
+.cgrid .ct{position:absolute;inset:0;aspect-ratio:auto}
+.cgrid .cb{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:3.5rem 1.2rem 1.1rem;background:linear-gradient(transparent,rgba(10,14,29,.95))}
+.cgrid .cb h3{color:#EFEBE3}.cgrid .cb small,.cgrid .cb .mono{color:#C3C7DC}
+.gwa{display:block;font:italic 300 clamp(3rem,8vw,6.5rem)/1 var(--serif);color:var(--t);margin-bottom:.6rem}
+.gwa small{display:block;font:500 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#EFEBE3}
+@media(max-width:820px){.cgrid{grid-template-columns:1fr 1fr}.cgrid .cert:first-child{grid-column:1/-1;grid-row:auto;min-height:360px}}
+@media(max-width:520px){.cgrid{grid-template-columns:1fr}}
+/* services */
+.svg4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.sc4{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;min-height:clamp(360px,54vh,460px);padding:1.5rem;border:1px solid var(--ln);border-radius:16px;transition:transform .5s var(--ease)}
+.sc4::before{content:'';position:absolute;inset:0;background:var(--c);transform:translateY(101%);transition:transform .6s var(--ease);z-index:-1}
+.sc4:hover{transform:translateY(-6px)}.sc4:hover::before{transform:none}
+.sc4 .mono{color:var(--c);transition:color .3s}.sc4 i{position:absolute;right:1.4rem;top:1.2rem;font-style:normal;font-size:1.6rem;color:var(--c);transition:transform .5s var(--ease),color .3s}
+.sc4:hover i{transform:rotate(45deg)}
+.sc4 h3{font-size:clamp(1.5rem,2.3vw,2.1rem);margin:2.4rem 0 .6rem;transition:color .3s}
+.sc4 p{font-size:.9rem;transition:color .3s}
+.sc4 ul{list-style:none;margin-top:auto;padding-top:1.4rem}
+.sc4 li{padding:.55rem 0;border-top:1px dashed var(--ln);font-size:.88rem;transition:color .3s,border-color .3s}
+.sc4:hover .mono,.sc4:hover i,.sc4:hover h3,.sc4:hover p,.sc4:hover li{color:#0A0E1D}.sc4:hover li{border-color:rgba(10,14,29,.3)}
+@media(max-width:1000px){.svg4{grid-template-columns:1fr 1fr}.sc4{min-height:300px}}
+@media(max-width:560px){.svg4{grid-template-columns:1fr}}
+/* about */
+.ah{text-align:center;max-width:980px;margin:0 auto}
+#about .ah .hook{font-size:clamp(1.7rem,4.4vw,3.8rem);line-height:1.12;margin:1.2rem 0 1.4rem}
+.lead{max-width:62ch;margin:0 auto 1.6rem}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem}
+.pills span{display:inline-flex;gap:.6rem;align-items:center;border:1px solid var(--ln);border-radius:99px;padding:.45rem 1rem;font-size:.85rem;color:var(--tx)}
+.pills i{width:8px;height:8px;border-radius:50%}
+.tl3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:clamp(2rem,6vh,4rem)}
+.tl3 article{border-top:2px solid var(--c);padding-top:1.1rem}
+.tl3 h3{font-size:1.5rem;margin:.4rem 0}.tl3 .rl{color:var(--tx);font-weight:500;font-size:.92rem;margin-bottom:.6rem}.tl3 p{font-size:.9rem}
+@media(max-width:860px){.tl3{grid-template-columns:1fr}}
+/* contact */
+#contact>.w{display:block}
+.ct2{text-align:center;padding:clamp(1.6rem,5vw,4.5rem);border:1px solid var(--ln);border-radius:28px;background:radial-gradient(circle at 12% 0,rgba(214,28,78,.32),transparent 50%),radial-gradient(circle at 92% 100%,rgba(28,214,206,.24),transparent 50%),var(--bg2)}
+.ct2 h2{font-size:clamp(2.3rem,7vw,6rem);margin:.8rem 0 0}
+#contact .ct2 .big{font-size:clamp(1.05rem,3.6vw,3rem);margin:1.4rem auto 1.8rem}
+.ct2 .soc{justify-content:center}
+#contact .ct2 .cf{max-width:640px;margin:2.2rem auto 0;text-align:left}
+.ct2 .cf button{justify-self:center}
+
+/* ── hero: clean, fits one screen ── */
+.hero{height:100vh;height:100svh;min-height:34rem}
+.hero-top{justify-content:flex-end}
+.hero-main{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(1.5rem,5vw,4rem);align-items:center;text-align:left;flex:1;min-height:0}
+.hero-main>.nm,.hero-main>.photo{grid-area:auto}
+.hero-main .nm{padding:0;z-index:1}
+.hero-main .name{font-size:clamp(2.6rem,min(11.5vw,17vh),9.5rem);line-height:.9}
+.hero-main .name .ln:nth-child(2){padding-left:clamp(0rem,3vw,3rem)}
+.photo{width:auto;height:clamp(200px,min(52vh,62vw),460px);aspect-ratio:3/4;margin:0;justify-self:end}
+.photo .fr{height:100%;width:100%;aspect-ratio:auto;border-radius:16px}
+.photo::before{inset:-8px;border-radius:20px}
+.chip{display:none}
+.name .lt{animation:none!important}
+.hero-bot{grid-template-columns:1fr 1fr;align-items:end}
+@media(max-width:800px){
+ .hero{height:auto;min-height:100svh;padding-top:4.6rem}
+ .hero-top{display:none}
+ .hero-main{grid-template-columns:1fr;justify-items:center;text-align:center;gap:1rem;padding:.5rem 0}
+ .photo{order:-1;justify-self:center;height:clamp(150px,27vh,260px);margin:0}
+ .hero-main .name{font-size:clamp(2.8rem,15vw,5.4rem)}
+ .hero-main .name .ln:nth-child(2){padding-left:0}
+ .hero-bot{grid-template-columns:1fr;text-align:center;gap:1rem}
+ .hero-bot .pipe,.hero-bot .row{justify-content:center}
+ .hero-bot p{margin-inline:auto}
+}
+@media(max-height:560px) and (orientation:landscape){
+ .hero{height:auto;min-height:100svh}
+ .hero-main .name{font-size:clamp(2.4rem,9vw,5rem)}
+ .photo{height:clamp(130px,40vh,220px)}
+ .hero-bot p{display:none}
+}
+img,svg{max-width:100%}
 </style>
 </head>
 <body>
@@ -519,9 +615,9 @@ footer{margin-top:0}
 </div></section>
 
 </div>
-<section class="pg" id="credentials"><div class="w"><div class="sh rv"><div><span class="mono">03 — Credentials</span><h2>Proof, <em>stamped.</em></h2></div><span class="mono">Drag or swipe →</span></div></div>
-  <div class="certs rv" id="certs">
-<a class="cert" style="--c:var(--t)" href="assets/cert-covers/academic-distinction.jpg" target="_blank" rel="noopener"><div class="ct"><img src="assets/cert-covers/academic-distinction.jpg" alt="Certificate of Academic Distinction" loading="lazy" onerror="this.remove()"></div><div class="cb"><i class="seal"></i><span class="mono">Jun 2026</span><h3>Certificate of Academic Distinction</h3><small>Mindoro State University · GWA 1.7405</small></div></a>
+<section class="pg" id="credentials"><div class="w"><div class="sh rv"><div><span class="mono">03 — Credentials</span><h2>Proof, <em>stamped.</em></h2></div><span class="mono">6 certificates · click to open</span></div></div>
+  <div class="cgrid rv" id="certs">
+<a class="cert" style="--c:var(--t)" href="assets/cert-covers/academic-distinction.jpg" target="_blank" rel="noopener"><div class="ct"><img src="assets/cert-covers/academic-distinction.jpg" alt="Certificate of Academic Distinction" loading="lazy" onerror="this.remove()"></div><div class="cb"><i class="seal"></i><b class="gwa">1.7405<small>GWA · Academic Distinction</small></b><span class="mono">Jun 2026</span><h3>Certificate of Academic Distinction</h3><small>Mindoro State University · GWA 1.7405</small></div></a>
 <a class="cert" style="--c:var(--b)" href="assets/certificate1.pdf" target="_blank" rel="noopener"><div class="ct"><img src="assets/cert-covers/cybersecurity-cover.png" alt="Fortinet Certified Associate in Cybersecurity" loading="lazy" onerror="this.remove()"></div><div class="cb"><i class="seal"></i><span class="mono">Sep 2025</span><h3>Fortinet Certified Associate in Cybersecurity</h3><small>Fortinet Training Institute</small></div></a>
 <a class="cert" style="--c:var(--d)" href="assets/certificate2.pdf" target="_blank" rel="noopener"><div class="ct"><img src="assets/cert-covers/networking-cover..png" alt="Fortinet Networking Fundamentals" loading="lazy" onerror="this.remove()"></div><div class="cb"><i class="seal"></i><span class="mono">Sep 2025</span><h3>Fortinet Networking Fundamentals</h3><small>Fortinet Training Institute</small></div></a>
 <a class="cert" style="--c:var(--t)" href="assets/certificate3.pdf" target="_blank" rel="noopener"><div class="ct"><img src="assets/cert-covers/python-cover.png" alt="Python Programming II" loading="lazy" onerror="this.remove()"></div><div class="cb"><i class="seal"></i><span class="mono">Dec 2025</span><h3>Python Programming II</h3><small>CodeChum</small></div></a>
@@ -530,38 +626,25 @@ footer{margin-top:0}
   </div>
 </section>
 
-<section class="pg" id="services"><div class="w"><div class="sh rv"><div><span class="mono">04 — Services</span><h2>What I can take <em>off your plate.</em></h2></div></div>
-<div class="sx rv open" style="--c:var(--d)" tabindex="0" role="button" aria-expanded="false"><div class="sxh"><span class="mono">01</span><h3>UI/UX &amp; Graphic Design</h3><p>Interfaces and visuals built around usability first.</p><i aria-hidden="true">+</i></div><div class="sxb"><ul><li><b>User flows &amp; wireframes</b><span>Structure and logic before a pixel is polished.</span></li><li><b>Interactive prototypes</b><span>Clickable, ready for stakeholder review and usability tests.</span></li><li><b>Graphic &amp; brand design</b><span>Logos, mockups and layouts in Canva.</span></li></ul></div></div>
-<div class="sx rv" style="--c:var(--b)" tabindex="0" role="button" aria-expanded="false"><div class="sxh"><span class="mono">02</span><h3>Front-end &amp; Web Development</h3><p>Approved designs turned into responsive, working interfaces.</p><i aria-hidden="true">+</i></div><div class="sxb"><ul><li><b>Responsive builds</b><span>HTML, CSS, JavaScript and Bootstrap.</span></li><li><b>Full-stack features</b><span>Node.js, Express, PHP and MySQL.</span></li><li><b>CMS &amp; site builds</b><span>Wix and framework builds you can manage yourself.</span></li></ul></div></div>
-<div class="sx rv" style="--c:var(--t)" tabindex="0" role="button" aria-expanded="false"><div class="sxh"><span class="mono">03</span><h3>QA Testing &amp; Documentation</h3><p>Making sure what shipped works, and that others can follow why.</p><i aria-hidden="true">+</i></div><div class="sxb"><ul><li><b>Manual test cases</b><span>Expected behavior, edge cases and regressions.</span></li><li><b>Bug reporting</b><span>Reproducible reports developers can act on.</span></li><li><b>Technical docs</b><span>User manuals and system docs people will read.</span></li></ul></div></div>
-<div class="sx rv" style="--c:var(--tx2)" tabindex="0" role="button" aria-expanded="false"><div class="sxh"><span class="mono">04</span><h3>Admin &amp; Content Support</h3><p>The same organization and eye for detail, for everyday work.</p><i aria-hidden="true">+</i></div><div class="sxb"><ul><li><b>Virtual assistance</b><span>Documentation, scheduling, inbox &amp; tasks.</span></li><li><b>Social media management</b><span>On-brand graphics and content calendars.</span></li><li><b>Client communication</b><span>Clear updates and quick turnarounds.</span></li></ul></div></div>
-<div class="rv" style="margin-top:2rem"><a class="btn f" href="#contact" data-mag>Start a project →</a></div>
-</div></section>
-<section class="pg" id="about"><div class="w"><div class="ab">
-  <div class="rv"><span class="mono">05 — About</span>
+<section class="pg" id="services"><div class="w"><div class="sh rv"><div><span class="mono">04 — Services</span><h2>What I can take <em>off your plate.</em></h2></div><a class="btn f" href="#contact" data-mag>Start a project →</a></div><div class="svg4 rv"><article class="sc4" style="--c:var(--d)"><span class="mono">01</span><i>↗</i><h3>UI/UX &amp; Graphic Design</h3><p>Interfaces and visuals built around usability first.</p><ul><li>User flows &amp; wireframes</li><li>Interactive prototypes</li><li>Graphic &amp; brand design</li></ul></article><article class="sc4" style="--c:var(--b)"><span class="mono">02</span><i>↗</i><h3>Front-end &amp; Web Development</h3><p>Approved designs turned into responsive, working interfaces.</p><ul><li>Responsive builds</li><li>Full-stack features</li><li>CMS &amp; site builds</li></ul></article><article class="sc4" style="--c:var(--t)"><span class="mono">03</span><i>↗</i><h3>QA Testing &amp; Documentation</h3><p>Making sure what shipped works, and that others can follow why.</p><ul><li>Manual test cases</li><li>Bug reporting</li><li>Technical docs</li></ul></article><article class="sc4" style="--c:var(--tx2)"><span class="mono">04</span><i>↗</i><h3>Admin &amp; Content Support</h3><p>The same organization and eye for detail, for everyday work.</p><ul><li>Virtual assistance</li><li>Social media management</li><li>Client communication</li></ul></article></div></div></section>
+<section class="pg" id="about"><div class="w">
+  <div class="ah rv"><span class="mono">05 — About</span>
     <p class="hook">I catch usability and functional issues before they get expensive — because I’ve tested software, not just designed it.</p>
-    <p>BS Information Technology graduate working across the whole pipeline instead of handing off at the wireframe. I think about interfaces the way a developer and a QA analyst would: what’s buildable, and what breaks under real use.</p>
-    <div class="roles"><div><i style="background:var(--d)"></i>UI/UX — flows, wireframes, prototypes</div><div><i style="background:var(--b)"></i>Front-end — HTML/CSS/JS, Node, Vue, PHP</div><div><i style="background:var(--t)"></i>QA — test cases, bug reports, docs</div></div></div>
-  <div class="rv"><span class="mono" style="display:block;margin-bottom:1.5rem">Experience &amp; education</span>
-    <div class="tl">
-      <article><span class="mono">2025 – 2026 · Freelance · Remote · 1 year</span><h3>Cyberbacker</h3><div class="rl">UI/UX Designer &amp; Front-end Developer</div>
-        <ul><li>Worked remotely as a freelancer, designing interfaces and building them out for client projects.</li></ul>
-        <div class="stack"><span>UI/UX</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Bootstrap</span><span>Shopify</span></div></article>
-      <article><span class="mono">February – July 2026 · Remote · 6 months</span><h3>New San Jose Builders Inc.</h3><div class="rl">QA Analyst, Developer &amp; Technical Documentation</div>
-        <ul><li>Built DailyDrive solo — time-tracking, admin dashboard, reporting.</li><li>Wrote and ran test cases and logged defects for the Ticketing, Employee Self-Service and HRM systems before deployment.</li><li>Joined sprint reviews and contributed internal documentation.</li></ul></article>
-      <article><span class="mono">2022 – 2026</span><h3>Mindoro State University</h3><div class="rl">BS Information Technology</div><span class="badge">★ Dean’s Lister, AY 2022–2026</span></article>
-    </div></div>
-</div></div></section>
+    <p class="lead">BS Information Technology graduate working across the whole pipeline instead of handing off at the wireframe. I think about interfaces the way a developer and a QA analyst would: what’s buildable, and what breaks under real use.</p>
+    <div class="pills"><span><i style="background:var(--d)"></i>UI/UX — flows, wireframes, prototypes</span><span><i style="background:var(--b)"></i>Front-end — HTML/CSS/JS, Node, Vue, PHP</span><span><i style="background:var(--t)"></i>QA — test cases, bug reports, docs</span></div></div>
+  <div class="tl3 rv">
+    <article style="--c:var(--d)"><span class="mono">2025 – 2026 · Freelance · Remote</span><h3>Cyberbacker</h3><div class="rl">UI/UX Designer &amp; Front-end Developer</div><p>Worked remotely as a freelancer, designing interfaces and building them out for client projects.</p><div class="stack"><span>UI/UX</span><span>JavaScript</span><span>Bootstrap</span><span>Shopify</span></div></article>
+    <article style="--c:var(--b)"><span class="mono">Feb – Jul 2026 · Remote · 6 months</span><h3>New San Jose Builders Inc.</h3><div class="rl">QA Analyst, Developer &amp; Tech Docs</div><p>Built DailyDrive solo, then wrote and ran test cases and logged defects for the Ticketing, Employee Self-Service and HRM systems before deployment.</p></article>
+    <article style="--c:var(--t)"><span class="mono">2022 – 2026</span><h3>Mindoro State University</h3><div class="rl">BS Information Technology</div><span class="badge">★ Dean’s Lister, AY 2022–2026</span></article>
+  </div></div></section>
 
-<section class="pg" id="contact"><div class="w">
-  <div class="cl">
-  <span class="mono rv">06 — Contact</span>
-  <h2 class="rv" style="margin-top:.8rem">Let’s make something <em>worth shipping.</em></h2>
-  <a class="big rv" href="mailto:gwenbasconcillo11@gmail.com" data-hov>gwenbasconcillo11@gmail.com</a>
-  <div class="soc rv"><a class="btn f" href="mailto:gwenbasconcillo11@gmail.com" data-mag>Send an email</a><a class="btn" data-mag href="https://www.linkedin.com/in/gwen-basconcillo-b09858423" target="_blank" rel="noopener">LinkedIn</a><a class="btn" data-mag href="https://github.com/oncepebrero" target="_blank" rel="noopener">GitHub</a><a class="btn" data-mag href="https://facebook.com/oncepebrero" target="_blank" rel="noopener">Facebook</a><a class="btn" data-mag href="assets/Basconcillo_Resume.pdf" target="_blank" rel="noopener">Résumé ↓</a></div>
-  </div>
-  <form class="cf rv" id="cf" action="https://formspree.io/f/mwvavydo" method="POST"><div class="r2"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label></div><label>Message<textarea name="message" rows="4" required></textarea></label><input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off"><button class="btn f" type="submit" id="cfb">Send message →</button><span class="mono" id="fs" role="status"></span></form>
-</div></section>
+<section class="pg" id="contact"><div class="w"><div class="ct2 rv">
+  <span class="mono">06 — Contact</span>
+  <h2>Let’s make something <em>worth shipping.</em></h2>
+  <a class="big" href="mailto:gwenbasconcillo11@gmail.com" data-hov>gwenbasconcillo11@gmail.com</a>
+  <div class="soc"><a class="btn f" href="mailto:gwenbasconcillo11@gmail.com" data-mag>Send an email</a><a class="btn" data-mag href="https://www.linkedin.com/in/gwen-basconcillo-b09858423" target="_blank" rel="noopener">LinkedIn</a><a class="btn" data-mag href="https://github.com/oncepebrero" target="_blank" rel="noopener">GitHub</a><a class="btn" data-mag href="https://facebook.com/oncepebrero" target="_blank" rel="noopener">Facebook</a><a class="btn" data-mag href="assets/Basconcillo_Resume.pdf" target="_blank" rel="noopener">Résumé ↓</a></div>
+  <form class="cf" id="cf" action="https://formspree.io/f/mwvavydo" method="POST"><div class="r2"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label></div><label>Message<textarea name="message" rows="4" required></textarea></label><input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off"><button class="btn f" type="submit" id="cfb">Send message →</button><span class="mono" id="fs" role="status"></span></form>
+</div></div></section>
 </main>
 <nav id="mm" aria-label="Menu"><a href="#home">Home</a><a href="#portfolio">Portfolio</a><a href="#expertise">Expertise</a><a href="#credentials">Credentials</a><a href="#services">Services</a><a href="#about">About me</a><a href="#contact">Contact</a></nav>
 <div class="xm" id="dm" role="dialog" aria-modal="true" aria-label="Document"><div class="xh"><div><h3 id="dmt"></h3><span class="mono" id="dmm"></span></div><div class="xt"><a class="ic" id="dmo" href="#" target="_blank" rel="noopener">Open in tab</a><a class="ic" id="dmd" href="#" download>Download</a><button class="ic" onclick="closeDoc()" aria-label="Close">✕</button></div></div><div class="xb"><iframe id="dmf" title="Document preview"></iframe></div></div>
