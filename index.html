@@ -846,6 +846,42 @@ img,svg{max-width:100%}
 @keyframes shine{0%,55%{left:-60%}100%{left:140%}}
 @media(max-width:800px){.hc .photo::before{translate:10px 10px}}
 @media(prefers-reduced-motion:reduce){.hc .photo,.hc .photo .fr::before{animation:none}}
+
+/* ── v16: responsive pass (all devices) ── */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.hc-l,.hc .photo,.ax>*,.cx>*,.ctg>*{min-width:0}
+/* laptops / small desktops: keep the name inside its column */
+@media(max-width:1100px){.hc .name{font-size:clamp(3rem,min(8.8vw,17vh),7rem)}.hc{gap:clamp(1.2rem,3vw,2.4rem)}}
+/* tablets */
+@media(min-width:801px) and (max-width:1000px){.hc .photo{height:min(52vh,420px)}.hc .intro{max-width:24ch}}
+/* phones */
+@media(max-width:800px){
+ .hc .row .btn{padding:.7rem 1.1rem}
+ .hc .photo{margin-bottom:.4rem}
+ .sh .btn{width:fit-content}
+}
+@media(max-width:480px){
+ .proc{grid-template-columns:1fr}
+ .hc .row{gap:.5rem}.hc .row .btn{flex:1 1 auto;justify-content:center}
+ .big{font-size:clamp(1rem,5.4vw,1.4rem)}
+ #contact .cx .big{font-size:clamp(.95rem,5vw,1.3rem)}
+}
+/* short screens (landscape phones, small laptops): never trap sticky cards */
+@media(max-height:620px){#portfolio .case{position:relative;top:auto;height:auto;min-height:540px}}
+/* touch devices */
+@media(hover:none){
+ .ic{width:40px;height:40px}
+ .tabs button{padding:.65rem 1.1rem}
+}
+@media(hover:none) and (min-width:821px){.rfg{display:grid;grid-template-columns:repeat(3,1fr);height:auto}.refs .rf{min-height:200px}.refs .rf:hover{flex:none}.rf .rd{max-height:7rem;opacity:1;margin-top:.5rem}}
+/* landscape phones: keep hero in two columns */
+@media(max-height:560px) and (orientation:landscape){
+ .hero{height:auto;min-height:100svh}
+ .hc{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-content:center}
+ .hc .photo{order:0;justify-self:end;height:200px}
+ .hc .name{font-size:clamp(2.4rem,9vw,4.4rem)}
+ .hc .intro{font-size:1rem}
+}
 </style>
 </head>
 <body>
